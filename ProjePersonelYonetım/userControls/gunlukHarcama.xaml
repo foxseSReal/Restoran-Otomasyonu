@@ -1,0 +1,84 @@
+﻿<UserControl x:Class="ProjePersonelYonetım.userControls.gunlukHarcama"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProjePersonelYonetım.userControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="784" d:DesignWidth="1036">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="200"/>
+        </Grid.RowDefinitions>
+        <!---->
+        <Border Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource effectliBorder}"/>
+        <Border Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource effectliBorder}"/>
+        <Border Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource effectliBorder}"/>
+        <!---->
+
+        <!--Sol-->
+        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
+            <StackPanel Margin="30 30 0 0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                
+                <DatePicker FontFamily="Calibri" Foreground="Red" FontSize="18" materialDesign:HintAssist.Hint="Tarih Seç" x:Name="gunlukDataGridAralik" Margin="0 20 0 0" Width="150" Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                <DatePicker FontFamily="Calibri" FontSize="18" Foreground="Red" materialDesign:HintAssist.Hint="Tarih Seç" x:Name="gunlukDataGridAralik2" Margin="20 20 0 0" Width="150" Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                <Button Content="Filtrele" Margin="30 20 0 0" Width="80" Height="30" Style="{StaticResource MaterialDesignRaisedDarkButton}" Click="Button_Click"/>
+
+
+            </StackPanel>
+            <DataGrid x:Name="harcamalar_DataGrid" Margin="20 5 0 0" Width="480" Height="470" Foreground="Black" SelectionChanged="harcamalar_DataGrid_SelectionChanged"/>
+        </StackPanel>
+        <!---->
+
+        <!--Sag-->
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="0">
+            <TextBox x:Name="harcamaYer" Width="200" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Harcanan Yer" IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}" Style="{StaticResource MaterialDesignFilledTextBox}"
+            
+            TextWrapping="Wrap"
+            Margin="0 100 0 0"
+            Foreground="WhiteSmoke"
+            FontSize="18"
+            MaxLength="36"/>
+            
+                
+            <TextBox x:Name="harcamaTutari" Width="200" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Harcama Tutarı" IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}" Style="{StaticResource MaterialDesignFilledTextBox}"
+            TextWrapping="Wrap"
+            Margin="0 20 0 0"
+            Foreground="WhiteSmoke"
+            FontSize="18"
+            MaxLength="8"/>
+            <!--Aciklama Kutusu-->
+            <TextBox x:Name="haracamaAciklama" Foreground="White" Margin="0 20 0 0" Width="200" Height="100" VerticalAlignment="Top" FontWeight="SemiBold" materialDesign:HintAssist.Hint="Açıklama Bölümü..." IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+TextWrapping="Wrap" MaxLength="50"
+VerticalScrollBarVisibility="Auto"/>
+            <!---->
+
+            <!--Tarih&Saat-->
+            <DatePicker x:Name="harcamaTarih" materialDesign:HintAssist.Hint="Tarih Seç" Foreground="Red" Margin="0 20 0 0" Width="200" Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+            <materialDesign:TimePicker x:Name="harcamaSaat" materialDesign:HintAssist.Hint="Saat Seç" Foreground="Red" Is24Hours="True" Margin="0 20 0 0" Width="200"/>
+            <!---->
+
+            <Button x:Name="harcamaButton" Content="Ekle" Width="200" Height="50" Margin="0 50 0 0" Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}" Click="harcamaButton_Click"/>
+        </StackPanel>
+
+
+        <!--Alt-->
+        <StackPanel Margin="20 0 0 0" Orientation="Horizontal" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
+            <Border Padding="10" Style="{StaticResource Card}">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock FontWeight="SemiBold" Text="Toplam ₺" FontSize="24" Foreground="White"/>
+                    <TextBlock x:Name="harcamaGunlukToplam" FontSize="30" FontWeight="Bold" Foreground="Yellow"/>
+                    <Separator Width="570" Height="20"/>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+        <!---->
+    </Grid>
+</UserControl>

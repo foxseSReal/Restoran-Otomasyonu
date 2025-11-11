@@ -1,0 +1,620 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RestoranYonetimDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TBLADISYONLAR">
+    <Key>
+      <PropertyRef Name="ADISYONID" />
+    </Key>
+    <Property Name="ADISYONID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MASAID" Type="int" />
+    <Property Name="ADISYONTARIHI" Type="datetime" />
+    <Property Name="TOPLAMTUTAR" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="INDIRIMTUTARI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="KDVTUTARI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ODEMEDURUMU" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="TBLCALISANLAR">
+    <Key>
+      <PropertyRef Name="CALISANID" />
+    </Key>
+    <Property Name="CALISANID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AD" Type="nvarchar" MaxLength="50" />
+    <Property Name="SOYAD" Type="nvarchar" MaxLength="50" />
+    <Property Name="POZISYON" Type="nvarchar" MaxLength="50" />
+    <Property Name="TELEFON" Type="nvarchar" MaxLength="20" />
+    <Property Name="ADRES" Type="nvarchar" MaxLength="100" />
+    <Property Name="MAIL" Type="nvarchar" MaxLength="100" />
+    <Property Name="ISGIRIS" Type="date" />
+    <Property Name="DURUMU" Type="bit" />
+    <Property Name="Resimler" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="TBLCALISANVARDIYA">
+    <Key>
+      <PropertyRef Name="CALISANVARDIYAID" />
+    </Key>
+    <Property Name="CALISANVARDIYAID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CALISANID" Type="int" />
+    <Property Name="VARDIYAID" Type="int" />
+    <Property Name="CALISMATARIHI" Type="date" />
+  </EntityType>
+  <EntityType Name="TBLCEKSENET">
+    <Key>
+      <PropertyRef Name="CEKSENETID" />
+    </Key>
+    <Property Name="CEKSENETID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TIP" Type="nvarchar" MaxLength="10" />
+    <Property Name="ODEMETARIHI" Type="date" />
+    <Property Name="TUTAR" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ISLEMTURU" Type="nvarchar" MaxLength="10" />
+    <Property Name="ILGILITEDARIKCID" Type="int" />
+    <Property Name="ILGILIGIDERID" Type="int" />
+    <Property Name="DURUM" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="TBLDETAYSIPARIS">
+    <Key>
+      <PropertyRef Name="DETAYID" />
+    </Key>
+    <Property Name="DETAYID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SIPARISID" Type="int" />
+    <Property Name="URUNID" Type="int" />
+    <Property Name="ADET" Type="int" />
+    <Property Name="BIRIMFIYAT" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="TBLGIDER">
+    <Key>
+      <PropertyRef Name="GIDERID" />
+    </Key>
+    <Property Name="GIDERID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TEDARIKCID" Type="int" />
+    <Property Name="GIDERTURU" Type="nvarchar" MaxLength="50" />
+    <Property Name="MIKTAR" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="TARIH" Type="date" />
+    <Property Name="ACIKLAMA" Type="text" />
+  </EntityType>
+  <EntityType Name="TBLMAAS">
+    <Key>
+      <PropertyRef Name="MAASID" />
+    </Key>
+    <Property Name="MAASID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CALISANID" Type="int" Nullable="false" />
+    <Property Name="ODEME" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="SAATLIKUCRET" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="CALISILANSAAT" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="FAZLAMESAISAAT" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="BRUTMAAS" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="KESINTILER" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="NETMAAS" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ODEMETARIHI" Type="date" />
+    <Property Name="AVANS" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="TBLMALZEMELER">
+    <Key>
+      <PropertyRef Name="MALZEMEID" />
+    </Key>
+    <Property Name="MALZEMEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TEDARIKCID" Type="int" Nullable="false" />
+    <Property Name="MALZEMEADI" Type="nvarchar" MaxLength="100" />
+    <Property Name="OLCUMBIRIMI" Type="nvarchar" MaxLength="50" />
+    <Property Name="MEVCUTSTOK" Type="decimal" Precision="10" Scale="3" />
+  </EntityType>
+  <EntityType Name="TBLMASALAR">
+    <Key>
+      <PropertyRef Name="MASAID" />
+    </Key>
+    <Property Name="MASAID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MASANO" Type="nvarchar" MaxLength="10" />
+    <Property Name="KAPASITE" Type="nchar" MaxLength="10" />
+    <Property Name="DURUM" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="TBLMUSTERILER">
+    <Key>
+      <PropertyRef Name="MUSTERID" />
+    </Key>
+    <Property Name="MUSTERID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AD" Type="nvarchar" MaxLength="25" />
+    <Property Name="SOYADI" Type="nvarchar" MaxLength="25" />
+    <Property Name="TELEFON" Type="nvarchar" MaxLength="20" />
+    <Property Name="EMAIL" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="TBLODEME">
+    <Key>
+      <PropertyRef Name="ODEMEID" />
+    </Key>
+    <Property Name="ODEMEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ADISYONID" Type="int" />
+    <Property Name="ODEMETURU" Type="nvarchar" MaxLength="50" />
+    <Property Name="ODEMETUTARI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ODEMETARIHI" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TBLPERSONELHAREKETLERI">
+    <Key>
+      <PropertyRef Name="HAREKETID" />
+    </Key>
+    <Property Name="HAREKETID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CALISANID" Type="int" />
+    <Property Name="HAREKETTIPI" Type="nvarchar" MaxLength="10" />
+    <Property Name="HAREKETZAMANI" Type="datetime" />
+    <Property Name="CALISMATARIHI" Type="date" />
+  </EntityType>
+  <EntityType Name="TBLREZERVASYONLAR">
+    <Key>
+      <PropertyRef Name="REZERVASYONID" />
+    </Key>
+    <Property Name="REZERVASYONID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MASAID" Type="int" />
+    <Property Name="MUSTERID" Type="int" />
+    <Property Name="TARIHSAAT" Type="datetime" />
+    <Property Name="KISISAYISI" Type="int" />
+    <Property Name="Durum" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="TBLSIPARISLER">
+    <Key>
+      <PropertyRef Name="SIPARISID" />
+    </Key>
+    <Property Name="SIPARISID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MASAID" Type="int" />
+    <Property Name="CALISANID" Type="int" />
+    <Property Name="MUSTERID" Type="int" />
+    <Property Name="ADISYONID" Type="int" />
+    <Property Name="SIPARISTARIHI" Type="datetime" />
+    <Property Name="TOPLAMTUTAR" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="DURUM" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="TBLSTOKTAKIP">
+    <Key>
+      <PropertyRef Name="HAREKETID" />
+    </Key>
+    <Property Name="HAREKETID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MALZEMEID" Type="int" />
+    <Property Name="TEDARIKCID" Type="int" />
+    <Property Name="HAREKETTURU" Type="nvarchar" MaxLength="10" />
+    <Property Name="MIKTAR" Type="decimal" Precision="10" Scale="3" />
+    <Property Name="BIRIMFIYAT" Type="decimal" Precision="10" Scale="3" />
+    <Property Name="HAREKETTARIHI" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TBLTARIFLER">
+    <Key>
+      <PropertyRef Name="TARIFID" />
+    </Key>
+    <Property Name="TARIFID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="URUNID" Type="int" />
+    <Property Name="MALZEMEID" Type="int" />
+    <Property Name="KULLANILANMIKTAR" Type="decimal" Precision="10" Scale="3" />
+    <Property Name="ACIKLAMA" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="TBLTEDARIKCILER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AD" Type="nvarchar" MaxLength="100" />
+    <Property Name="TELEFON" Type="nvarchar" MaxLength="20" />
+    <Property Name="ADRES" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TBLURUNKATAGORI">
+    <Key>
+      <PropertyRef Name="KATAGORID" />
+    </Key>
+    <Property Name="KATAGORID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KATAGORIADI" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TBLURUNLER">
+    <Key>
+      <PropertyRef Name="URUNID" />
+    </Key>
+    <Property Name="URUNID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KATAGORID" Type="int" />
+    <Property Name="URUNADI" Type="nvarchar" MaxLength="50" />
+    <Property Name="FIYAT" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="TBLVARDIYALAR">
+    <Key>
+      <PropertyRef Name="VARDIYAID" />
+    </Key>
+    <Property Name="VARDIYAID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VARDIYADI" Type="nvarchar" MaxLength="20" />
+    <Property Name="BASLANGICSAATI" Type="time" Precision="7" />
+    <Property Name="BITISSAATI" Type="time" Precision="7" />
+    <Property Name="AÇIKLAMA" Type="nvarchar" MaxLength="70" />
+  </EntityType>
+  <Association Name="FK_TBLADISYONLAR_TBLMASALAR">
+    <End Role="TBLMASALAR" Type="Self.TBLMASALAR" Multiplicity="0..1" />
+    <End Role="TBLADISYONLAR" Type="Self.TBLADISYONLAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLMASALAR">
+        <PropertyRef Name="MASAID" />
+      </Principal>
+      <Dependent Role="TBLADISYONLAR">
+        <PropertyRef Name="MASAID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLCALISANVARDIYA_TBLCALISANLAR">
+    <End Role="TBLCALISANLAR" Type="Self.TBLCALISANLAR" Multiplicity="0..1" />
+    <End Role="TBLCALISANVARDIYA" Type="Self.TBLCALISANVARDIYA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLCALISANLAR">
+        <PropertyRef Name="CALISANID" />
+      </Principal>
+      <Dependent Role="TBLCALISANVARDIYA">
+        <PropertyRef Name="CALISANID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLCALISANVARDIYA_TBLVARDIYALAR">
+    <End Role="TBLVARDIYALAR" Type="Self.TBLVARDIYALAR" Multiplicity="0..1" />
+    <End Role="TBLCALISANVARDIYA" Type="Self.TBLCALISANVARDIYA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLVARDIYALAR">
+        <PropertyRef Name="VARDIYAID" />
+      </Principal>
+      <Dependent Role="TBLCALISANVARDIYA">
+        <PropertyRef Name="VARDIYAID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLCEKSENET_TBLGIDER">
+    <End Role="TBLGIDER" Type="Self.TBLGIDER" Multiplicity="0..1" />
+    <End Role="TBLCEKSENET" Type="Self.TBLCEKSENET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLGIDER">
+        <PropertyRef Name="GIDERID" />
+      </Principal>
+      <Dependent Role="TBLCEKSENET">
+        <PropertyRef Name="ILGILIGIDERID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLCEKSENET_TBLTEDARIKCILER">
+    <End Role="TBLTEDARIKCILER" Type="Self.TBLTEDARIKCILER" Multiplicity="0..1" />
+    <End Role="TBLCEKSENET" Type="Self.TBLCEKSENET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLTEDARIKCILER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TBLCEKSENET">
+        <PropertyRef Name="ILGILITEDARIKCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLDETAYSIPARIS_TBLSIPARISLER">
+    <End Role="TBLSIPARISLER" Type="Self.TBLSIPARISLER" Multiplicity="0..1" />
+    <End Role="TBLDETAYSIPARIS" Type="Self.TBLDETAYSIPARIS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLSIPARISLER">
+        <PropertyRef Name="SIPARISID" />
+      </Principal>
+      <Dependent Role="TBLDETAYSIPARIS">
+        <PropertyRef Name="SIPARISID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLDETAYSIPARIS_TBLURUNLER">
+    <End Role="TBLURUNLER" Type="Self.TBLURUNLER" Multiplicity="0..1" />
+    <End Role="TBLDETAYSIPARIS" Type="Self.TBLDETAYSIPARIS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLURUNLER">
+        <PropertyRef Name="URUNID" />
+      </Principal>
+      <Dependent Role="TBLDETAYSIPARIS">
+        <PropertyRef Name="URUNID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLGIDER_TBLTEDARIKCILER">
+    <End Role="TBLTEDARIKCILER" Type="Self.TBLTEDARIKCILER" Multiplicity="0..1" />
+    <End Role="TBLGIDER" Type="Self.TBLGIDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLTEDARIKCILER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TBLGIDER">
+        <PropertyRef Name="TEDARIKCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLMAAS_TBLCALISANLAR">
+    <End Role="TBLCALISANLAR" Type="Self.TBLCALISANLAR" Multiplicity="1" />
+    <End Role="TBLMAAS" Type="Self.TBLMAAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLCALISANLAR">
+        <PropertyRef Name="CALISANID" />
+      </Principal>
+      <Dependent Role="TBLMAAS">
+        <PropertyRef Name="CALISANID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLMALZEMELER_TBLTEDARIKCILER">
+    <End Role="TBLTEDARIKCILER" Type="Self.TBLTEDARIKCILER" Multiplicity="1" />
+    <End Role="TBLMALZEMELER" Type="Self.TBLMALZEMELER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLTEDARIKCILER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TBLMALZEMELER">
+        <PropertyRef Name="TEDARIKCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLODEME_TBLADISYONLAR">
+    <End Role="TBLADISYONLAR" Type="Self.TBLADISYONLAR" Multiplicity="0..1" />
+    <End Role="TBLODEME" Type="Self.TBLODEME" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLADISYONLAR">
+        <PropertyRef Name="ADISYONID" />
+      </Principal>
+      <Dependent Role="TBLODEME">
+        <PropertyRef Name="ADISYONID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLPERSONELHAREKETLERI_TBLCALISANLAR">
+    <End Role="TBLCALISANLAR" Type="Self.TBLCALISANLAR" Multiplicity="0..1" />
+    <End Role="TBLPERSONELHAREKETLERI" Type="Self.TBLPERSONELHAREKETLERI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLCALISANLAR">
+        <PropertyRef Name="CALISANID" />
+      </Principal>
+      <Dependent Role="TBLPERSONELHAREKETLERI">
+        <PropertyRef Name="CALISANID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLREZERVASYONLAR_TBLMASALAR">
+    <End Role="TBLMASALAR" Type="Self.TBLMASALAR" Multiplicity="0..1" />
+    <End Role="TBLREZERVASYONLAR" Type="Self.TBLREZERVASYONLAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLMASALAR">
+        <PropertyRef Name="MASAID" />
+      </Principal>
+      <Dependent Role="TBLREZERVASYONLAR">
+        <PropertyRef Name="MASAID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLREZERVASYONLAR_TBLMUSTERILER">
+    <End Role="TBLMUSTERILER" Type="Self.TBLMUSTERILER" Multiplicity="0..1" />
+    <End Role="TBLREZERVASYONLAR" Type="Self.TBLREZERVASYONLAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLMUSTERILER">
+        <PropertyRef Name="MUSTERID" />
+      </Principal>
+      <Dependent Role="TBLREZERVASYONLAR">
+        <PropertyRef Name="MUSTERID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLSIPARISLER_TBLADISYONLAR">
+    <End Role="TBLADISYONLAR" Type="Self.TBLADISYONLAR" Multiplicity="0..1" />
+    <End Role="TBLSIPARISLER" Type="Self.TBLSIPARISLER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLADISYONLAR">
+        <PropertyRef Name="ADISYONID" />
+      </Principal>
+      <Dependent Role="TBLSIPARISLER">
+        <PropertyRef Name="ADISYONID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLSIPARISLER_TBLCALISANLAR">
+    <End Role="TBLCALISANLAR" Type="Self.TBLCALISANLAR" Multiplicity="0..1" />
+    <End Role="TBLSIPARISLER" Type="Self.TBLSIPARISLER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLCALISANLAR">
+        <PropertyRef Name="CALISANID" />
+      </Principal>
+      <Dependent Role="TBLSIPARISLER">
+        <PropertyRef Name="CALISANID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLSIPARISLER_TBLMASALAR">
+    <End Role="TBLMASALAR" Type="Self.TBLMASALAR" Multiplicity="0..1" />
+    <End Role="TBLSIPARISLER" Type="Self.TBLSIPARISLER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLMASALAR">
+        <PropertyRef Name="MASAID" />
+      </Principal>
+      <Dependent Role="TBLSIPARISLER">
+        <PropertyRef Name="MASAID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLSIPARISLER_TBLMUSTERILER">
+    <End Role="TBLMUSTERILER" Type="Self.TBLMUSTERILER" Multiplicity="0..1" />
+    <End Role="TBLSIPARISLER" Type="Self.TBLSIPARISLER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLMUSTERILER">
+        <PropertyRef Name="MUSTERID" />
+      </Principal>
+      <Dependent Role="TBLSIPARISLER">
+        <PropertyRef Name="MUSTERID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLSTOKTAKIP_TBLMALZEMELER">
+    <End Role="TBLMALZEMELER" Type="Self.TBLMALZEMELER" Multiplicity="0..1" />
+    <End Role="TBLSTOKTAKIP" Type="Self.TBLSTOKTAKIP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLMALZEMELER">
+        <PropertyRef Name="MALZEMEID" />
+      </Principal>
+      <Dependent Role="TBLSTOKTAKIP">
+        <PropertyRef Name="MALZEMEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLSTOKTAKIP_TBLTEDARIKCILER">
+    <End Role="TBLTEDARIKCILER" Type="Self.TBLTEDARIKCILER" Multiplicity="0..1" />
+    <End Role="TBLSTOKTAKIP" Type="Self.TBLSTOKTAKIP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLTEDARIKCILER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TBLSTOKTAKIP">
+        <PropertyRef Name="TEDARIKCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLTARIFLER_TBLMALZEMELER">
+    <End Role="TBLMALZEMELER" Type="Self.TBLMALZEMELER" Multiplicity="0..1" />
+    <End Role="TBLTARIFLER" Type="Self.TBLTARIFLER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLMALZEMELER">
+        <PropertyRef Name="MALZEMEID" />
+      </Principal>
+      <Dependent Role="TBLTARIFLER">
+        <PropertyRef Name="MALZEMEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLTARIFLER_TBLURUNLER">
+    <End Role="TBLURUNLER" Type="Self.TBLURUNLER" Multiplicity="0..1" />
+    <End Role="TBLTARIFLER" Type="Self.TBLTARIFLER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLURUNLER">
+        <PropertyRef Name="URUNID" />
+      </Principal>
+      <Dependent Role="TBLTARIFLER">
+        <PropertyRef Name="URUNID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLURUNLER_TBLURUNKATAGORI">
+    <End Role="TBLURUNKATAGORI" Type="Self.TBLURUNKATAGORI" Multiplicity="0..1" />
+    <End Role="TBLURUNLER" Type="Self.TBLURUNLER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLURUNKATAGORI">
+        <PropertyRef Name="KATAGORID" />
+      </Principal>
+      <Dependent Role="TBLURUNLER">
+        <PropertyRef Name="KATAGORID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RestoranYonetimDBModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLADISYONLAR" EntityType="Self.TBLADISYONLAR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLCALISANLAR" EntityType="Self.TBLCALISANLAR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLCALISANVARDIYA" EntityType="Self.TBLCALISANVARDIYA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLCEKSENET" EntityType="Self.TBLCEKSENET" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLDETAYSIPARIS" EntityType="Self.TBLDETAYSIPARIS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLGIDER" EntityType="Self.TBLGIDER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLMAAS" EntityType="Self.TBLMAAS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLMALZEMELER" EntityType="Self.TBLMALZEMELER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLMASALAR" EntityType="Self.TBLMASALAR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLMUSTERILER" EntityType="Self.TBLMUSTERILER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLODEME" EntityType="Self.TBLODEME" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLPERSONELHAREKETLERI" EntityType="Self.TBLPERSONELHAREKETLERI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLREZERVASYONLAR" EntityType="Self.TBLREZERVASYONLAR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLSIPARISLER" EntityType="Self.TBLSIPARISLER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLSTOKTAKIP" EntityType="Self.TBLSTOKTAKIP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLTARIFLER" EntityType="Self.TBLTARIFLER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLTEDARIKCILER" EntityType="Self.TBLTEDARIKCILER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLURUNKATAGORI" EntityType="Self.TBLURUNKATAGORI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLURUNLER" EntityType="Self.TBLURUNLER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLVARDIYALAR" EntityType="Self.TBLVARDIYALAR" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_TBLADISYONLAR_TBLMASALAR" Association="Self.FK_TBLADISYONLAR_TBLMASALAR">
+      <End Role="TBLMASALAR" EntitySet="TBLMASALAR" />
+      <End Role="TBLADISYONLAR" EntitySet="TBLADISYONLAR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLCALISANVARDIYA_TBLCALISANLAR" Association="Self.FK_TBLCALISANVARDIYA_TBLCALISANLAR">
+      <End Role="TBLCALISANLAR" EntitySet="TBLCALISANLAR" />
+      <End Role="TBLCALISANVARDIYA" EntitySet="TBLCALISANVARDIYA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLCALISANVARDIYA_TBLVARDIYALAR" Association="Self.FK_TBLCALISANVARDIYA_TBLVARDIYALAR">
+      <End Role="TBLVARDIYALAR" EntitySet="TBLVARDIYALAR" />
+      <End Role="TBLCALISANVARDIYA" EntitySet="TBLCALISANVARDIYA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLCEKSENET_TBLGIDER" Association="Self.FK_TBLCEKSENET_TBLGIDER">
+      <End Role="TBLGIDER" EntitySet="TBLGIDER" />
+      <End Role="TBLCEKSENET" EntitySet="TBLCEKSENET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLCEKSENET_TBLTEDARIKCILER" Association="Self.FK_TBLCEKSENET_TBLTEDARIKCILER">
+      <End Role="TBLTEDARIKCILER" EntitySet="TBLTEDARIKCILER" />
+      <End Role="TBLCEKSENET" EntitySet="TBLCEKSENET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLDETAYSIPARIS_TBLSIPARISLER" Association="Self.FK_TBLDETAYSIPARIS_TBLSIPARISLER">
+      <End Role="TBLSIPARISLER" EntitySet="TBLSIPARISLER" />
+      <End Role="TBLDETAYSIPARIS" EntitySet="TBLDETAYSIPARIS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLDETAYSIPARIS_TBLURUNLER" Association="Self.FK_TBLDETAYSIPARIS_TBLURUNLER">
+      <End Role="TBLURUNLER" EntitySet="TBLURUNLER" />
+      <End Role="TBLDETAYSIPARIS" EntitySet="TBLDETAYSIPARIS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLGIDER_TBLTEDARIKCILER" Association="Self.FK_TBLGIDER_TBLTEDARIKCILER">
+      <End Role="TBLTEDARIKCILER" EntitySet="TBLTEDARIKCILER" />
+      <End Role="TBLGIDER" EntitySet="TBLGIDER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLMAAS_TBLCALISANLAR" Association="Self.FK_TBLMAAS_TBLCALISANLAR">
+      <End Role="TBLCALISANLAR" EntitySet="TBLCALISANLAR" />
+      <End Role="TBLMAAS" EntitySet="TBLMAAS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLMALZEMELER_TBLTEDARIKCILER" Association="Self.FK_TBLMALZEMELER_TBLTEDARIKCILER">
+      <End Role="TBLTEDARIKCILER" EntitySet="TBLTEDARIKCILER" />
+      <End Role="TBLMALZEMELER" EntitySet="TBLMALZEMELER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLODEME_TBLADISYONLAR" Association="Self.FK_TBLODEME_TBLADISYONLAR">
+      <End Role="TBLADISYONLAR" EntitySet="TBLADISYONLAR" />
+      <End Role="TBLODEME" EntitySet="TBLODEME" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLPERSONELHAREKETLERI_TBLCALISANLAR" Association="Self.FK_TBLPERSONELHAREKETLERI_TBLCALISANLAR">
+      <End Role="TBLCALISANLAR" EntitySet="TBLCALISANLAR" />
+      <End Role="TBLPERSONELHAREKETLERI" EntitySet="TBLPERSONELHAREKETLERI" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLREZERVASYONLAR_TBLMASALAR" Association="Self.FK_TBLREZERVASYONLAR_TBLMASALAR">
+      <End Role="TBLMASALAR" EntitySet="TBLMASALAR" />
+      <End Role="TBLREZERVASYONLAR" EntitySet="TBLREZERVASYONLAR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLREZERVASYONLAR_TBLMUSTERILER" Association="Self.FK_TBLREZERVASYONLAR_TBLMUSTERILER">
+      <End Role="TBLMUSTERILER" EntitySet="TBLMUSTERILER" />
+      <End Role="TBLREZERVASYONLAR" EntitySet="TBLREZERVASYONLAR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLSIPARISLER_TBLADISYONLAR" Association="Self.FK_TBLSIPARISLER_TBLADISYONLAR">
+      <End Role="TBLADISYONLAR" EntitySet="TBLADISYONLAR" />
+      <End Role="TBLSIPARISLER" EntitySet="TBLSIPARISLER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLSIPARISLER_TBLCALISANLAR" Association="Self.FK_TBLSIPARISLER_TBLCALISANLAR">
+      <End Role="TBLCALISANLAR" EntitySet="TBLCALISANLAR" />
+      <End Role="TBLSIPARISLER" EntitySet="TBLSIPARISLER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLSIPARISLER_TBLMASALAR" Association="Self.FK_TBLSIPARISLER_TBLMASALAR">
+      <End Role="TBLMASALAR" EntitySet="TBLMASALAR" />
+      <End Role="TBLSIPARISLER" EntitySet="TBLSIPARISLER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLSIPARISLER_TBLMUSTERILER" Association="Self.FK_TBLSIPARISLER_TBLMUSTERILER">
+      <End Role="TBLMUSTERILER" EntitySet="TBLMUSTERILER" />
+      <End Role="TBLSIPARISLER" EntitySet="TBLSIPARISLER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLSTOKTAKIP_TBLMALZEMELER" Association="Self.FK_TBLSTOKTAKIP_TBLMALZEMELER">
+      <End Role="TBLMALZEMELER" EntitySet="TBLMALZEMELER" />
+      <End Role="TBLSTOKTAKIP" EntitySet="TBLSTOKTAKIP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLSTOKTAKIP_TBLTEDARIKCILER" Association="Self.FK_TBLSTOKTAKIP_TBLTEDARIKCILER">
+      <End Role="TBLTEDARIKCILER" EntitySet="TBLTEDARIKCILER" />
+      <End Role="TBLSTOKTAKIP" EntitySet="TBLSTOKTAKIP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLTARIFLER_TBLMALZEMELER" Association="Self.FK_TBLTARIFLER_TBLMALZEMELER">
+      <End Role="TBLMALZEMELER" EntitySet="TBLMALZEMELER" />
+      <End Role="TBLTARIFLER" EntitySet="TBLTARIFLER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLTARIFLER_TBLURUNLER" Association="Self.FK_TBLTARIFLER_TBLURUNLER">
+      <End Role="TBLURUNLER" EntitySet="TBLURUNLER" />
+      <End Role="TBLTARIFLER" EntitySet="TBLTARIFLER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLURUNLER_TBLURUNKATAGORI" Association="Self.FK_TBLURUNLER_TBLURUNKATAGORI">
+      <End Role="TBLURUNKATAGORI" EntitySet="TBLURUNKATAGORI" />
+      <End Role="TBLURUNLER" EntitySet="TBLURUNLER" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

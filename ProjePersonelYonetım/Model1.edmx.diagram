@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bce7ec9c50074ec09a13e28c3871eebc" Name="Diagram1">
+        <EntityTypeShape EntityType="RestoranYonetimDBModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestoranYonetimDBModel.TBLADISYONLAR" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestoranYonetimDBModel.TBLCALISANLAR" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestoranYonetimDBModel.TBLCALISANVARDIYA" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestoranYonetimDBModel.TBLCEKSENET" Width="1.5" PointX="15.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestoranYonetimDBModel.TBLDETAYSIPARIS" Width="1.5" PointX="8.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestoranYonetimDBModel.TBLGIDER" Width="1.5" PointX="13" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestoranYonetimDBModel.TBLMAAS" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestoranYonetimDBModel.TBLMALZEMELER" Width="1.5" PointX="13" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestoranYonetimDBModel.TBLMASALAR" Width="1.5" PointX="1.5" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestoranYonetimDBModel.TBLMUSTERILER" Width="1.5" PointX="3.75" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestoranYonetimDBModel.TBLODEME" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestoranYonetimDBModel.TBLPERSONELHAREKETLERI" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestoranYonetimDBModel.TBLREZERVASYONLAR" Width="1.5" PointX="6" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestoranYonetimDBModel.TBLSIPARISLER" Width="1.5" PointX="6" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestoranYonetimDBModel.TBLSTOKTAKIP" Width="1.5" PointX="15.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestoranYonetimDBModel.TBLTARIFLER" Width="1.5" PointX="15.25" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestoranYonetimDBModel.TBLTEDARIKCILER" Width="1.5" PointX="10.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestoranYonetimDBModel.TBLURUNKATAGORI" Width="1.5" PointX="3.75" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestoranYonetimDBModel.TBLURUNLER" Width="1.5" PointX="6" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestoranYonetimDBModel.TBLVARDIYALAR" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="RestoranYonetimDBModel.FK_TBLADISYONLAR_TBLMASALAR" ManuallyRouted="false" />
+        <AssociationConnector Association="RestoranYonetimDBModel.FK_TBLODEME_TBLADISYONLAR" ManuallyRouted="false" />
+        <AssociationConnector Association="RestoranYonetimDBModel.FK_TBLSIPARISLER_TBLADISYONLAR" ManuallyRouted="false" />
+        <AssociationConnector Association="RestoranYonetimDBModel.FK_TBLCALISANVARDIYA_TBLCALISANLAR" ManuallyRouted="false" />
+        <AssociationConnector Association="RestoranYonetimDBModel.FK_TBLMAAS_TBLCALISANLAR" ManuallyRouted="false" />
+        <AssociationConnector Association="RestoranYonetimDBModel.FK_TBLPERSONELHAREKETLERI_TBLCALISANLAR" ManuallyRouted="false" />
+        <AssociationConnector Association="RestoranYonetimDBModel.FK_TBLSIPARISLER_TBLCALISANLAR" ManuallyRouted="false" />
+        <AssociationConnector Association="RestoranYonetimDBModel.FK_TBLCALISANVARDIYA_TBLVARDIYALAR" ManuallyRouted="false" />
+        <AssociationConnector Association="RestoranYonetimDBModel.FK_TBLCEKSENET_TBLGIDER" ManuallyRouted="false" />
+        <AssociationConnector Association="RestoranYonetimDBModel.FK_TBLCEKSENET_TBLTEDARIKCILER" ManuallyRouted="false" />
+        <AssociationConnector Association="RestoranYonetimDBModel.FK_TBLDETAYSIPARIS_TBLSIPARISLER" ManuallyRouted="false" />
+        <AssociationConnector Association="RestoranYonetimDBModel.FK_TBLDETAYSIPARIS_TBLURUNLER" ManuallyRouted="false" />
+        <AssociationConnector Association="RestoranYonetimDBModel.FK_TBLGIDER_TBLTEDARIKCILER" ManuallyRouted="false" />
+        <AssociationConnector Association="RestoranYonetimDBModel.FK_TBLMALZEMELER_TBLTEDARIKCILER" ManuallyRouted="false" />
+        <AssociationConnector Association="RestoranYonetimDBModel.FK_TBLSTOKTAKIP_TBLMALZEMELER" ManuallyRouted="false" />
+        <AssociationConnector Association="RestoranYonetimDBModel.FK_TBLTARIFLER_TBLMALZEMELER" ManuallyRouted="false" />
+        <AssociationConnector Association="RestoranYonetimDBModel.FK_TBLREZERVASYONLAR_TBLMASALAR" ManuallyRouted="false" />
+        <AssociationConnector Association="RestoranYonetimDBModel.FK_TBLSIPARISLER_TBLMASALAR" ManuallyRouted="false" />
+        <AssociationConnector Association="RestoranYonetimDBModel.FK_TBLREZERVASYONLAR_TBLMUSTERILER" ManuallyRouted="false" />
+        <AssociationConnector Association="RestoranYonetimDBModel.FK_TBLSIPARISLER_TBLMUSTERILER" ManuallyRouted="false" />
+        <AssociationConnector Association="RestoranYonetimDBModel.FK_TBLSTOKTAKIP_TBLTEDARIKCILER" ManuallyRouted="false" />
+        <AssociationConnector Association="RestoranYonetimDBModel.FK_TBLTARIFLER_TBLURUNLER" ManuallyRouted="false" />
+        <AssociationConnector Association="RestoranYonetimDBModel.FK_TBLURUNLER_TBLURUNKATAGORI" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

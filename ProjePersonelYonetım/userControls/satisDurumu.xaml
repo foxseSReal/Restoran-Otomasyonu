@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="ProjePersonelYonetım.userControls.satisDurumu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProjePersonelYonetım.userControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="784" d:DesignWidth="1036">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+
+
+        <Grid Grid.Row="0" Margin="0 0 0 15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+
+            <Border Grid.Column="0" CornerRadius="10" Margin="5" Background="White"
+                materialDesign:ElevationAssist.Elevation="Dp3" Padding="10">
+                <StackPanel>
+                    <TextBlock Text="Bugünkü Satış" Foreground="#666" FontSize="13"/>
+                    <TextBlock x:Name="satis_Bugun" Text="₺3.250" FontSize="22" FontWeight="Bold" Foreground="#212121"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Aylık -->
+            <Border Grid.Column="1" CornerRadius="10" Margin="5" Background="White"
+                materialDesign:ElevationAssist.Elevation="Dp3" Padding="10">
+                <StackPanel>
+                    <TextBlock Text="Aylık Satış" Foreground="#666" FontSize="13"/>
+                    <TextBlock x:Name="satis_Aylik" Text="₺85.700" FontSize="22" FontWeight="Bold" Foreground="#212121"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Toplam Sipariş -->
+            <Border Grid.Column="2" CornerRadius="10" Margin="5" Background="White"
+                materialDesign:ElevationAssist.Elevation="Dp3" Padding="10">
+                <StackPanel>
+                    <TextBlock Text="Toplam Sipariş" Foreground="#666" FontSize="13"/>
+                    <TextBlock x:Name="satis_Toplam" Text="247" FontSize="22" FontWeight="Bold" Foreground="#212121"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Satış/Ürün Ortalama -->
+            <Border Grid.Column="3" CornerRadius="10" Margin="5" Background="White"
+                materialDesign:ElevationAssist.Elevation="Dp3" Padding="10">
+                <StackPanel>
+                    <TextBlock Text="Satış/Ürün Ortalama" Foreground="#666" FontSize="13"/>
+                    <TextBlock x:Name="satis_Ortalama" Text="₺347" FontSize="22" FontWeight="Bold" Foreground="#212121"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 0 0 15" VerticalAlignment="Center">
+            <DatePicker Foreground="Red" x:Name="satis_BaslanicTarih" Width="160" Margin="180 0 20 0"
+                    materialDesign:HintAssist.Hint="Başlangıç Tarihi"
+                    Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+            <!---->
+            <DatePicker Foreground="Red" x:Name="satis_BitisTarih" Width="160" Margin="15 0 20 0"
+                    materialDesign:HintAssist.Hint="Bitiş Tarihi"
+                    Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+            <!---->
+            <TextBox x:Name="txtatisara" Foreground="White" Margin="0 0 0 10" Width="200" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Satış Ara" FontSize="20" Style="{StaticResource MaterialDesignFloatingHintTextBox}" TextChanged="satisara_TextChanged" />
+            <!---->
+            <Button Content="Filtrele"
+                Width="100" Height="38" Margin="10 0 0 0"
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                Foreground="White" Click="Button_Click" />
+            <Button Content="Temizle" Margin="10 0 0 0"
+                Width="100" Height="38"
+                Background="{StaticResource MaterialDesignDarkSeparatorBackground}"
+                Style="{StaticResource MaterialDesignRaisedLightButton}"
+                Foreground="White"/>
+        </StackPanel>
+
+        <!-- DATA GRID -->
+        <Border Grid.Row="2" CornerRadius="10"
+            materialDesign:ElevationAssist.Elevation="Dp2" Padding="10">
+            <DataGrid x:Name="satis_DataGrid" AutoGenerateColumns="True" CanUserAddRows="False" HeadersVisibility="Column" RowHeight="40" FontSize="13" Foreground="Black"/>
+        </Border>
+
+        <!-- ALT BİLGİ PANELİ -->
+        <Border Grid.Row="3" Background="White" CornerRadius="10" Padding="20"
+            materialDesign:ElevationAssist.Elevation="Dp3">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock x:Name="satis_ToplamSatis" Margin="0 0 220 0" Text="Toplam Satış: ₺128.950" FontWeight="Bold" FontSize="24" Foreground="#333"/>
+                <TextBlock x:Name="satis_ToplamSiparis" Text="Toplam Sipariş: 247" FontWeight="Bold" FontSize="24" Foreground="#333"/>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,167 @@
+﻿<UserControl x:Class="ProjePersonelYonetım.userControls.musteriFirma"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:ProjePersonelYonetım.userControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="784" d:DesignWidth="1036">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+
+        <!---->
+        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2"  Style="{StaticResource effectliBorder}"/>
+        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2"  Style="{StaticResource effectliBorder}"/>
+        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2"  Style="{StaticResource effectliBorder}"/>
+        <!---->
+
+        <!--Sol-->
+        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
+            <TextBox x:Name="musteriFirma_Ara" Width="300" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Ara" IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}" Style="{StaticResource MaterialDesignFilledTextBox}"
+    TextWrapping="Wrap"
+    Margin="10 60 0 0"
+    Foreground="WhiteSmoke"
+    FontSize="18"
+    MaxLength="36" TextChanged="musteriFirma_Ara_TextChanged"/>
+            <Separator Width="400" Height="20" Margin="0 5 0 0"/>
+            <DataGrid x:Name="musteri_DataGrid" Margin="20 5 0 0" Width="480" Height="280" AutoGenerateColumns="True" Foreground="Black" SelectionChanged="musteri_DataGrid_SelectionChanged"/>
+            <Separator Width="400" Height="20" Margin="0 10 0 0" Foreground="White"/>
+            <DataGrid x:Name="Modeme_DataGrid" Margin="20 5 0 0" Width="480" Height="280" AutoGenerateColumns="True" Foreground="Black" SelectionChanged="Modeme_DataGrid_SelectionChanged" />
+
+        </StackPanel>
+        <!---->
+
+        <!--Sag StackPanel-->
+        <TabControl  Grid.Row="0" Grid.Column="1">
+            <TabItem Margin="0 100 0 0" Background="#50dcdcdc" Width="250" Header="Müşteri/Firma">
+                <Grid Width="500" Height="600">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="70"/>
+                    </Grid.RowDefinitions>
+                    <!--1-->
+                    <StackPanel Orientation="Vertical" Grid.Column="0">
+                        <StackPanel Orientation="Horizontal"/>
+                        <Separator Width="250" Height="20" Margin="0 113 0 0"/>
+                        <!--Adres-->
+                        <GroupBox Margin="0 20 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="200" materialDesign:ElevationAssist.Elevation="Dp16" BorderThickness="0" Header="Adres" >
+                            <TextBox TextWrapping="Wrap" x:Name="musteriAdres" Foreground="White" Margin="-4 0 0 0" Width="190" FontSize="16" MaxLength="150" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        </GroupBox>
+                        <!---->
+                        <!--Aciklama Kutusu-->
+                        <!---->
+                        <Separator Margin="0 0 0 0" Width="200" Foreground="White"/>
+
+                    </StackPanel>
+                    <!--2-->
+                    <StackPanel VerticalAlignment="Top" Orientation="Vertical" Grid.Column="1">
+
+                        <TextBox x:Name="musteriFirma_isim" Foreground="White" Margin="0 70 0 10" Width="200" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Müsteri/Firma Yaz" FontSize="16" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <!---->
+                        <ComboBox x:Name="cbxMusteri_Firma" Margin="0 0 0 15" Width="200" 
+materialDesign:ColorZoneAssist.Mode="SecondaryLight"
+materialDesign:HintAssist.HelperText="Müşteri/Firma"
+materialDesign:HintAssist.Hint="Seçin" Foreground="White"
+materialDesign:TextFieldAssist.HasClearButton="True" FontSize="16"
+ materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource MaterialDesign.Brush.Primary}" Style="{StaticResource MaterialDesignFloatingHintComboBox}" >
+                            <ComboBoxItem Content="Müşteri" />
+                            <ComboBoxItem Content="Firma" />
+                        </ComboBox>
+                        <TextBox x:Name="musteriWeb" Foreground="White" Margin="0 10 0 10" Width="200" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Web Sitesi" FontSize="16" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox x:Name="musteriEmail" Foreground="White" Margin="0 10 0 10" Width="200" VerticalAlignment="Center" materialDesign:HintAssist.Hint="E-Mail" FontSize="16" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox x:Name="musteriTelefon" Foreground="White" Width="200" Margin="0 10 0 10" materialDesign:TextFieldAssist.HasTrailingIcon="True" materialDesign:HintAssist.Hint="+90" FontSize="16" materialDesign:TextFieldAssist.TrailingIcon="Phone" materialDesign:TextFieldAssist.LeadingIcon="RunFast" materialDesign:TextFieldAssist.TrailingIconSize="30" materialDesign:TransitionAssist.DisableTransitions="True" MaxLength="12"/>
+                        <TextBox x:Name="musteriTelefon2" Foreground="White" Width="200" Margin="0 10 0 10" materialDesign:TextFieldAssist.HasTrailingIcon="True" materialDesign:HintAssist.Hint="+90" FontSize="16" materialDesign:TextFieldAssist.TrailingIcon="Phone" materialDesign:TextFieldAssist.LeadingIcon="RunFast" materialDesign:TextFieldAssist.TrailingIconSize="30" materialDesign:TransitionAssist.DisableTransitions="True" MaxLength="12"/>
+                        <TextBox x:Name="musteri_vergiDairesi" Foreground="White" Margin="0 10 0 10" Width="200" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Vergi Dairesi" FontSize="16" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox x:Name="musteri_vergiDairesi_HesapNo" Foreground="White" Margin="0 10 0 10" Width="200" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Hesap No" FontSize="16" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    </StackPanel>
+
+                    <!--Buttonlar-->
+                    <StackPanel Margin="80 10 0 0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
+                        <Button x:Name="musteri_ekleButton" Width="90" materialDesign:ButtonAssist.CornerRadius="25 25 0 0" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                    ToolTip="Personel Ekle" Click="musteri_ekleButton_Click">
+                            <TextBlock Text="Ekle" />
+                        </Button>
+                        <Button x:Name="musteri_silButton" Width="90" materialDesign:ButtonAssist.CornerRadius="25 25 0 0" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                    ToolTip="Personel Sil " Click="musteri_silButton_Click">
+                            <TextBlock Text="Sil" />
+                        </Button>
+                        <Button x:Name="musteri_guncelleButton" Width="90" materialDesign:ButtonAssist.CornerRadius="25 25 0 0" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                    ToolTip="Personeli Güncelle" Click="musteri_guncelleButton_Click">
+                            <TextBlock Text="Güncelle" />
+                        </Button>
+                        <Button x:Name="musteri_temizleButton" Width="90" materialDesign:ButtonAssist.CornerRadius="25 25 0 0" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                    ToolTip="Görünen Yerleri Temizle" Click="musteri_temizleButton_Click">
+                            <TextBlock Text="Temizle" />
+                        </Button>
+                    </StackPanel>
+
+                </Grid>
+            </TabItem>
+
+            <!--Ödeme/Güncelleme TabItem-->
+
+            <TabItem Margin="0 100 0 0" Width="250" Background="#50dcdcdc" Header="Müşteri Borç İşlemler,">
+                <Grid Width="500" Height="600">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="70"/>
+                    </Grid.RowDefinitions>
+                    <!--1-->
+                    <StackPanel Orientation="Vertical" Grid.Column="0">
+                        <StackPanel Orientation="Horizontal"/>
+                        <!--Adres-->
+                        <!---->
+                        <!--Aciklama Kutusu-->
+                        <!---->
+                        <Separator Margin="0 0 0 0" Width="200" Foreground="White"/>
+                        <TextBlock x:Name="gizliText" Visibility="Hidden" Foreground="White" Text="*"/>
+
+                    </StackPanel>
+                    <!--2-->
+                    <StackPanel VerticalAlignment="Top" Orientation="Vertical" Grid.Column="1">
+
+                        <TextBox Foreground="White" Margin="0 70 0 10" Width="200" VerticalAlignment="Center" Name="txtMusteri" materialDesign:HintAssist.Hint="Müsteri Bilgisi" FontSize="16" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <!---->
+                        <TextBox Foreground="White" Margin="0 10 0 10" Width="200" VerticalAlignment="Center" Name="txtBorcTutar"  materialDesign:TextFieldAssist.PrefixText="₺" materialDesign:HintAssist.Hint="Borç Tutar" FontSize="16" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <DatePicker x:Name="BorcTarih" Foreground="Red" materialDesign:HintAssist.Hint="Tarih Seç"  FontSize="18" Margin="0 0  10 10" Width="201" Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                        <TextBox Foreground="White" Margin="0 10 0 10" Width="200" VerticalAlignment="Center" Name="txtAciklama" materialDesign:HintAssist.Hint="Açıklama" FontSize="16" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <Separator Width="200" Height="20" Margin="0 10 0 0"/>
+                        <TextBlock x:Name="kalanBorc" Foreground="Yellow" FontSize="36" Margin="0 20 0 0"/>
+                        <TextBox Foreground="White" Margin="0 40 0 10" Width="200" VerticalAlignment="Center" Name="txtOdenecekTutar"  materialDesign:TextFieldAssist.PrefixText="₺" materialDesign:HintAssist.Hint="Ödenecek Tutar" FontSize="16" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    </StackPanel>
+                    
+                    <!--Buttonlar-->
+                    <StackPanel Margin="90 10 0 0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
+                        <Button Width="110" x:Name="btnBorcListele" Content="Borc Listele" materialDesign:ButtonAssist.CornerRadius="25 25 0 0" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Style="{StaticResource MaterialDesignRaisedSecondaryButton}" Click="btnBorcListele_Click"
+                                ToolTip="Tüm Borçları Listele"/>
+
+
+                        <Button Width="100" x:Name="btnBorcEkle" materialDesign:ButtonAssist.CornerRadius="25 25 0 0" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                    ToolTip="Borç Ekle" Content="Borç Ekle" Click="btnBorcEkle_Click"/>
+
+                        <Button Width="90" x:Name="btnBorcGuncelle" materialDesign:ButtonAssist.CornerRadius="25 25 0 0" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                    ToolTip="Borç Öde" Content="Borç Öde" Click="btnBorcGuncelle_Click"/>
+
+                        <Button Width="90" x:Name="btnBorcSil" materialDesign:ButtonAssist.CornerRadius="25 25 0 0" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                    ToolTip="Borcu Bitenleri Sil" Content="Sil" Click="btnBorcSil_Click"/>
+
+                    </StackPanel>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

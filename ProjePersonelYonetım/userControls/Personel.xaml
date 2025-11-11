@@ -1,0 +1,167 @@
+﻿<UserControl x:Class="ProjePersonelYonetım.userControls.Personel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:ProjePersonelYonetım.userControls"
+             mc:Ignorable="d" 
+             Loaded="UserControl_Loaded"
+             d:DesignHeight="784" d:DesignWidth="1036">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="260"/>
+        </Grid.RowDefinitions>
+
+        <!---->
+        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2"  Style="{StaticResource effectliBorder}"/>
+        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2"  Style="{StaticResource effectliBorder}"/>
+        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2"  Style="{StaticResource effectliBorder}"/>
+        <!---->
+
+        <!--Alt-->
+        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource uzunCard}"/>
+
+        <!--Sağ-->
+        <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource SagCard}"/>
+
+
+        <!--Sol StackPanel-->
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
+            <DataGrid IsReadOnly="True" x:Name="personel_DataGrid" CanUserAddRows="False" CanUserDeleteRows="False" Focusable="True" SelectedCellsChanged="personel_DataGrid_SelectedCellsChanged" Margin="10 30 0 0" Width="500" Height="481" SelectionChanged="personel_DataGrid_SelectionChanged"/>
+        </StackPanel>
+
+        <!--Sag StackPanel-->
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+            <!--1-->
+            <StackPanel Orientation="Vertical" Grid.Column="0">
+                <StackPanel Orientation="Horizontal">
+                    <Ellipse Width="100" Height="100" HorizontalAlignment="Left" Margin="40 50 0 0">
+                        <Ellipse.Fill>
+                            <ImageBrush x:Name="resim" ImageSource="/indir.jpeg"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <ToggleButton x:Name="IsTakip_ToggleButton" Margin="40 40 0 0" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="MaterialDesignSwitchToggleButton with Custom Track Background">
+                        <materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
+                            <SolidColorBrush Color="Green" />
+                        </materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
+                        <materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+                            <SolidColorBrush Color="Red" />
+                        </materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+                    </ToggleButton>
+                    <Button Click="Resimekleme" x:Name="ResimDegistirmeButtonu" Width="20" Height="10" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" FontSize="8" Margin="-150 100 0 0" Content="o o o" Padding="0 0 0 0" Style="{StaticResource MaterialDesignFlatDarkBgButton}"/>
+                </StackPanel>
+                <TextBox x:Name="tckimlik" Foreground="Black" Width="200" FontSize="20" materialDesign:TextFieldAssist.HasTrailingIcon="True" materialDesign:TextFieldAssist.TrailingIcon="IdCard" materialDesign:TextFieldAssist.LeadingIcon="RunFast" materialDesign:HintAssist.Hint="TC Kimlik" materialDesign:TextFieldAssist.TrailingIconSize="30" materialDesign:TransitionAssist.DisableTransitions="True" MaxLength="11"/>
+                <!---->
+                <!--Adres-->
+                <GroupBox Margin="0 20 0 0" HorizontalAlignment="Center" Width="200" materialDesign:ElevationAssist.Elevation="Dp16" BorderThickness="0" Header="Adres" Height="93" >
+                    <TextBox TextWrapping="Wrap" x:Name="adres" Foreground="Black" Margin="-4 0 0 0" Width="190" FontSize="15" MaxLength="200" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <!---->
+                </GroupBox>
+                <Separator Margin="0 0 0 0" Width="200" Foreground="Black"/>
+                <TextBlock x:Name="resimYolu" Text="*"/>
+                <TextBox x:Name="txtPersonelAra" Foreground="Black" Width="200" FontSize="20" materialDesign:TextFieldAssist.HasTrailingIcon="True" materialDesign:TextFieldAssist.LeadingIcon="RunFast" materialDesign:HintAssist.Hint="Personel Ara" materialDesign:TextFieldAssist.TrailingIconSize="30" materialDesign:TransitionAssist.DisableTransitions="True" TextChanged="txtPersonelAra_TextChanged" />
+            </StackPanel>
+            <!--2-->
+            <StackPanel VerticalAlignment="Top" Orientation="Vertical" Grid.Column="1">
+
+                <TextBox x:Name="adSoyad" Foreground="Black" Margin="0 70 0 10" Width="200" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Ad Soyad" FontSize="20" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                <!---->
+                <ComboBox x:Name="cbxPosizyon" Margin="0 0 0 15" Width="200" 
+materialDesign:ColorZoneAssist.Mode="SecondaryLight"
+materialDesign:HintAssist.HelperText="Posizyon Seçin"
+materialDesign:HintAssist.Hint="Pozisyon" Foreground="Black"
+materialDesign:TextFieldAssist.HasClearButton="True"
+FontSize="20" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource MaterialDesign.Brush.Primary}" Style="{StaticResource MaterialDesignFloatingHintComboBox}" >
+                    <ComboBoxItem Content="Garson" />
+                    <ComboBoxItem Content="Aşçı" />
+                    <ComboBoxItem Content="Temizlikçi" />
+                    <ComboBoxItem Content="Muhasebe" />
+                </ComboBox>
+                <TextBox x:Name="email" Foreground="Black" Margin="0 10 0 10" Width="200" VerticalAlignment="Center" materialDesign:HintAssist.Hint="E-Mail" FontSize="20" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                <TextBox x:Name="maas" Foreground="Black" Margin="0 10 0 10" Width="200" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Maaş" FontSize="20" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                <TextBox x:Name="telefon" Foreground="Black" Width="200" FontSize="20" materialDesign:TextFieldAssist.HasTrailingIcon="True" materialDesign:TextFieldAssist.TrailingIcon="Phone" materialDesign:TextFieldAssist.LeadingIcon="RunFast" materialDesign:HintAssist.Hint="+90" materialDesign:TextFieldAssist.TrailingIconSize="30" materialDesign:TransitionAssist.DisableTransitions="True" MaxLength="12"/>
+                <DatePicker x:Name="Tarih" Foreground="Black" Margin="0 10 0 10" Width="200" materialDesign:HintAssist.Hint="Tarih Seç" FontSize="20" Style="{StaticResource MaterialDesignFilledDatePicker}"/>
+                <Separator Margin="0 0 0 0" Width="200" Foreground="Black"/>
+            </StackPanel>
+
+            <!--Buttonlar-->
+            <StackPanel Margin="80 30 0 0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
+                <Button Click="btnekle" x:Name="ekleButton" Width="90" materialDesign:ButtonAssist.CornerRadius="25 25 0 0" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                    ToolTip="Personel Ekle">
+                    <TextBlock Text="Ekle" />
+                </Button>
+                <Button x:Name="silButton" Click="btnsil" Width="90" materialDesign:ButtonAssist.CornerRadius="25 25 0 0" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                    ToolTip="Personel Sil ">
+                    <TextBlock Text="Sil" />
+                </Button>
+                <Button x:Name="guncelleButton" Click="guncelleButton_Click" Width="90" materialDesign:ButtonAssist.CornerRadius="25 25 0 0" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                    ToolTip="Personeli Güncelle">
+                    <TextBlock Text="Güncelle" />
+                </Button>
+                <Button x:Name="temizleButton" Width="90" materialDesign:ButtonAssist.CornerRadius="25 25 0 0" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                    ToolTip="Görünen Yerleri Temizle" Click="temizleButton_Click">
+                    <TextBlock Text="Temizle" />
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <!--Alt StackPanel-->
+
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <DataGrid x:Name="personelOdeme_DataGrid" Margin="-30 20 0 0" Width="450" Height="200" Background="{StaticResource MaterialDesignDarkSeparatorBackground}" SelectionChanged="personelOdeme_DataGrid_SelectionChanged"/>
+            </StackPanel>
+
+            <!---->
+
+            <StackPanel Width="200" HorizontalAlignment="Left" Orientation="Vertical" Grid.Column="1">
+                <TextBox Margin="0 20 0 0" x:Name="odemeTutar" Foreground="Black"  Width="200" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Ödeme Miktarı" FontSize="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                <DatePicker x:Name="odemeTarih" Foreground="Black" Margin="0 10 0 10" Width="200" materialDesign:HintAssist.Hint="Tarih Seç" FontSize="20" Style="{StaticResource MaterialDesignFilledDatePicker}"/>
+            </StackPanel>
+
+            <StackPanel Margin="-100 20 0 0"   Orientation="Vertical" Grid.Column="2">
+                <ComboBox x:Name="cbxOdemeTuru" Margin="0 0 0 0" Width="200" 
+materialDesign:ColorZoneAssist.Mode="SecondaryLight"
+materialDesign:HintAssist.HelperText="Ödeme Türü Belirleyin"
+materialDesign:HintAssist.Hint="Ödeme Türü Belirle" Foreground="Black"
+materialDesign:TextFieldAssist.HasClearButton="True"
+FontSize="15" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource MaterialDesign.Brush.Primary}" Style="{StaticResource MaterialDesignFloatingHintComboBox}" >
+                    <ComboBoxItem Content="Avans" />
+                    <ComboBoxItem Content="Prim" />
+                    <ComboBoxItem Content="Borç" />
+                    <ComboBoxItem Content="Diğer..." />
+                </ComboBox>
+                <!--Adres-->
+                <GroupBox Margin="0 20 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="200" materialDesign:ElevationAssist.Elevation="Dp16" BorderThickness="0" Header="Açıklama" >
+                    <TextBox materialDesign:TextFieldAssist.SuffixText="..." materialDesign:TextFieldAssist.SuffixTextVisibility="Always" TextWrapping="Wrap" x:Name="aciklama" Foreground="Black" Width="170" FontSize="12" MaxLength="50" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <!---->
+                </GroupBox>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="odemeButton" Content="Ödeme Yap" ToolTip="Ödeme Yap" Margin="20 30 0 0" Foreground="Black" Width="120" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Click="odemeButton_Click"/>
+                    <Button x:Name="odemeGuncelle" Content="Güncelle" ToolTip="Ödeme Güncelle" Margin="10 30 0 0" Foreground="Black" Width="120" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Click="odemeButton_Click"/>
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+
+    </Grid>
+</UserControl>

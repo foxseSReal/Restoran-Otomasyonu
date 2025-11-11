@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RestoranYonetimDBModelStoreContainer" CdmEntityContainer="RestoranYonetimDBEntities2">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="RestoranYonetimDBModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLADISYONLAR">
+      <EntityTypeMapping TypeName="RestoranYonetimDBModel.TBLADISYONLAR">
+        <MappingFragment StoreEntitySet="TBLADISYONLAR">
+          <ScalarProperty Name="ADISYONID" ColumnName="ADISYONID" />
+          <ScalarProperty Name="MASAID" ColumnName="MASAID" />
+          <ScalarProperty Name="ADISYONTARIHI" ColumnName="ADISYONTARIHI" />
+          <ScalarProperty Name="TOPLAMTUTAR" ColumnName="TOPLAMTUTAR" />
+          <ScalarProperty Name="INDIRIMTUTARI" ColumnName="INDIRIMTUTARI" />
+          <ScalarProperty Name="KDVTUTARI" ColumnName="KDVTUTARI" />
+          <ScalarProperty Name="ODEMEDURUMU" ColumnName="ODEMEDURUMU" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLCALISANLAR">
+      <EntityTypeMapping TypeName="RestoranYonetimDBModel.TBLCALISANLAR">
+        <MappingFragment StoreEntitySet="TBLCALISANLAR">
+          <ScalarProperty Name="Resimler" ColumnName="Resimler" />
+          <ScalarProperty Name="DURUMU" ColumnName="DURUMU" />
+          <ScalarProperty Name="CALISANID" ColumnName="CALISANID" />
+          <ScalarProperty Name="AD" ColumnName="AD" />
+          <ScalarProperty Name="SOYAD" ColumnName="SOYAD" />
+          <ScalarProperty Name="POZISYON" ColumnName="POZISYON" />
+          <ScalarProperty Name="TELEFON" ColumnName="TELEFON" />
+          <ScalarProperty Name="ADRES" ColumnName="ADRES" />
+          <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+          <ScalarProperty Name="ISGIRIS" ColumnName="ISGIRIS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLCALISANVARDIYA">
+      <EntityTypeMapping TypeName="RestoranYonetimDBModel.TBLCALISANVARDIYA">
+        <MappingFragment StoreEntitySet="TBLCALISANVARDIYA">
+          <ScalarProperty Name="CALISANVARDIYAID" ColumnName="CALISANVARDIYAID" />
+          <ScalarProperty Name="CALISANID" ColumnName="CALISANID" />
+          <ScalarProperty Name="VARDIYAID" ColumnName="VARDIYAID" />
+          <ScalarProperty Name="CALISMATARIHI" ColumnName="CALISMATARIHI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLCEKSENET">
+      <EntityTypeMapping TypeName="RestoranYonetimDBModel.TBLCEKSENET">
+        <MappingFragment StoreEntitySet="TBLCEKSENET">
+          <ScalarProperty Name="CEKSENETID" ColumnName="CEKSENETID" />
+          <ScalarProperty Name="TIP" ColumnName="TIP" />
+          <ScalarProperty Name="ODEMETARIHI" ColumnName="ODEMETARIHI" />
+          <ScalarProperty Name="TUTAR" ColumnName="TUTAR" />
+          <ScalarProperty Name="ISLEMTURU" ColumnName="ISLEMTURU" />
+          <ScalarProperty Name="ILGILITEDARIKCID" ColumnName="ILGILITEDARIKCID" />
+          <ScalarProperty Name="ILGILIGIDERID" ColumnName="ILGILIGIDERID" />
+          <ScalarProperty Name="DURUM" ColumnName="DURUM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLDETAYSIPARIS">
+      <EntityTypeMapping TypeName="RestoranYonetimDBModel.TBLDETAYSIPARIS">
+        <MappingFragment StoreEntitySet="TBLDETAYSIPARIS">
+          <ScalarProperty Name="DETAYID" ColumnName="DETAYID" />
+          <ScalarProperty Name="SIPARISID" ColumnName="SIPARISID" />
+          <ScalarProperty Name="URUNID" ColumnName="URUNID" />
+          <ScalarProperty Name="ADET" ColumnName="ADET" />
+          <ScalarProperty Name="BIRIMFIYAT" ColumnName="BIRIMFIYAT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLGIDER">
+      <EntityTypeMapping TypeName="RestoranYonetimDBModel.TBLGIDER">
+        <MappingFragment StoreEntitySet="TBLGIDER">
+          <ScalarProperty Name="GIDERID" ColumnName="GIDERID" />
+          <ScalarProperty Name="TEDARIKCID" ColumnName="TEDARIKCID" />
+          <ScalarProperty Name="GIDERTURU" ColumnName="GIDERTURU" />
+          <ScalarProperty Name="MIKTAR" ColumnName="MIKTAR" />
+          <ScalarProperty Name="TARIH" ColumnName="TARIH" />
+          <ScalarProperty Name="ACIKLAMA" ColumnName="ACIKLAMA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLMAAS">
+      <EntityTypeMapping TypeName="RestoranYonetimDBModel.TBLMAAS">
+        <MappingFragment StoreEntitySet="TBLMAAS">
+          <ScalarProperty Name="AVANS" ColumnName="AVANS" />
+          <ScalarProperty Name="MAASID" ColumnName="MAASID" />
+          <ScalarProperty Name="CALISANID" ColumnName="CALISANID" />
+          <ScalarProperty Name="ODEME" ColumnName="ODEME" />
+          <ScalarProperty Name="SAATLIKUCRET" ColumnName="SAATLIKUCRET" />
+          <ScalarProperty Name="CALISILANSAAT" ColumnName="CALISILANSAAT" />
+          <ScalarProperty Name="FAZLAMESAISAAT" ColumnName="FAZLAMESAISAAT" />
+          <ScalarProperty Name="BRUTMAAS" ColumnName="BRUTMAAS" />
+          <ScalarProperty Name="KESINTILER" ColumnName="KESINTILER" />
+          <ScalarProperty Name="NETMAAS" ColumnName="NETMAAS" />
+          <ScalarProperty Name="ODEMETARIHI" ColumnName="ODEMETARIHI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLMALZEMELER">
+      <EntityTypeMapping TypeName="RestoranYonetimDBModel.TBLMALZEMELER">
+        <MappingFragment StoreEntitySet="TBLMALZEMELER">
+          <ScalarProperty Name="MALZEMEID" ColumnName="MALZEMEID" />
+          <ScalarProperty Name="TEDARIKCID" ColumnName="TEDARIKCID" />
+          <ScalarProperty Name="MALZEMEADI" ColumnName="MALZEMEADI" />
+          <ScalarProperty Name="OLCUMBIRIMI" ColumnName="OLCUMBIRIMI" />
+          <ScalarProperty Name="MEVCUTSTOK" ColumnName="MEVCUTSTOK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLMASALAR">
+      <EntityTypeMapping TypeName="RestoranYonetimDBModel.TBLMASALAR">
+        <MappingFragment StoreEntitySet="TBLMASALAR">
+          <ScalarProperty Name="MASAID" ColumnName="MASAID" />
+          <ScalarProperty Name="MASANO" ColumnName="MASANO" />
+          <ScalarProperty Name="KAPASITE" ColumnName="KAPASITE" />
+          <ScalarProperty Name="DURUM" ColumnName="DURUM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLMUSTERILER">
+      <EntityTypeMapping TypeName="RestoranYonetimDBModel.TBLMUSTERILER">
+        <MappingFragment StoreEntitySet="TBLMUSTERILER">
+          <ScalarProperty Name="MUSTERID" ColumnName="MUSTERID" />
+          <ScalarProperty Name="AD" ColumnName="AD" />
+          <ScalarProperty Name="SOYADI" ColumnName="SOYADI" />
+          <ScalarProperty Name="TELEFON" ColumnName="TELEFON" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLODEME">
+      <EntityTypeMapping TypeName="RestoranYonetimDBModel.TBLODEME">
+        <MappingFragment StoreEntitySet="TBLODEME">
+          <ScalarProperty Name="ODEMEID" ColumnName="ODEMEID" />
+          <ScalarProperty Name="ADISYONID" ColumnName="ADISYONID" />
+          <ScalarProperty Name="ODEMETURU" ColumnName="ODEMETURU" />
+          <ScalarProperty Name="ODEMETUTARI" ColumnName="ODEMETUTARI" />
+          <ScalarProperty Name="ODEMETARIHI" ColumnName="ODEMETARIHI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLPERSONELHAREKETLERI">
+      <EntityTypeMapping TypeName="RestoranYonetimDBModel.TBLPERSONELHAREKETLERI">
+        <MappingFragment StoreEntitySet="TBLPERSONELHAREKETLERI">
+          <ScalarProperty Name="HAREKETID" ColumnName="HAREKETID" />
+          <ScalarProperty Name="CALISANID" ColumnName="CALISANID" />
+          <ScalarProperty Name="HAREKETTIPI" ColumnName="HAREKETTIPI" />
+          <ScalarProperty Name="HAREKETZAMANI" ColumnName="HAREKETZAMANI" />
+          <ScalarProperty Name="CALISMATARIHI" ColumnName="CALISMATARIHI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLREZERVASYONLAR">
+      <EntityTypeMapping TypeName="RestoranYonetimDBModel.TBLREZERVASYONLAR">
+        <MappingFragment StoreEntitySet="TBLREZERVASYONLAR">
+          <ScalarProperty Name="REZERVASYONID" ColumnName="REZERVASYONID" />
+          <ScalarProperty Name="MASAID" ColumnName="MASAID" />
+          <ScalarProperty Name="MUSTERID" ColumnName="MUSTERID" />
+          <ScalarProperty Name="TARIHSAAT" ColumnName="TARIHSAAT" />
+          <ScalarProperty Name="KISISAYISI" ColumnName="KISISAYISI" />
+          <ScalarProperty Name="Durum" ColumnName="Durum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLSIPARISLER">
+      <EntityTypeMapping TypeName="RestoranYonetimDBModel.TBLSIPARISLER">
+        <MappingFragment StoreEntitySet="TBLSIPARISLER">
+          <ScalarProperty Name="SIPARISID" ColumnName="SIPARISID" />
+          <ScalarProperty Name="MASAID" ColumnName="MASAID" />
+          <ScalarProperty Name="CALISANID" ColumnName="CALISANID" />
+          <ScalarProperty Name="MUSTERID" ColumnName="MUSTERID" />
+          <ScalarProperty Name="ADISYONID" ColumnName="ADISYONID" />
+          <ScalarProperty Name="SIPARISTARIHI" ColumnName="SIPARISTARIHI" />
+          <ScalarProperty Name="TOPLAMTUTAR" ColumnName="TOPLAMTUTAR" />
+          <ScalarProperty Name="DURUM" ColumnName="DURUM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLSTOKTAKIP">
+      <EntityTypeMapping TypeName="RestoranYonetimDBModel.TBLSTOKTAKIP">
+        <MappingFragment StoreEntitySet="TBLSTOKTAKIP">
+          <ScalarProperty Name="HAREKETID" ColumnName="HAREKETID" />
+          <ScalarProperty Name="MALZEMEID" ColumnName="MALZEMEID" />
+          <ScalarProperty Name="TEDARIKCID" ColumnName="TEDARIKCID" />
+          <ScalarProperty Name="HAREKETTURU" ColumnName="HAREKETTURU" />
+          <ScalarProperty Name="MIKTAR" ColumnName="MIKTAR" />
+          <ScalarProperty Name="BIRIMFIYAT" ColumnName="BIRIMFIYAT" />
+          <ScalarProperty Name="HAREKETTARIHI" ColumnName="HAREKETTARIHI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLTARIFLER">
+      <EntityTypeMapping TypeName="RestoranYonetimDBModel.TBLTARIFLER">
+        <MappingFragment StoreEntitySet="TBLTARIFLER">
+          <ScalarProperty Name="TARIFID" ColumnName="TARIFID" />
+          <ScalarProperty Name="URUNID" ColumnName="URUNID" />
+          <ScalarProperty Name="MALZEMEID" ColumnName="MALZEMEID" />
+          <ScalarProperty Name="KULLANILANMIKTAR" ColumnName="KULLANILANMIKTAR" />
+          <ScalarProperty Name="ACIKLAMA" ColumnName="ACIKLAMA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLTEDARIKCILER">
+      <EntityTypeMapping TypeName="RestoranYonetimDBModel.TBLTEDARIKCILER">
+        <MappingFragment StoreEntitySet="TBLTEDARIKCILER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AD" ColumnName="AD" />
+          <ScalarProperty Name="TELEFON" ColumnName="TELEFON" />
+          <ScalarProperty Name="ADRES" ColumnName="ADRES" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLURUNKATAGORI">
+      <EntityTypeMapping TypeName="RestoranYonetimDBModel.TBLURUNKATAGORI">
+        <MappingFragment StoreEntitySet="TBLURUNKATAGORI">
+          <ScalarProperty Name="KATAGORID" ColumnName="KATAGORID" />
+          <ScalarProperty Name="KATAGORIADI" ColumnName="KATAGORIADI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLURUNLER">
+      <EntityTypeMapping TypeName="RestoranYonetimDBModel.TBLURUNLER">
+        <MappingFragment StoreEntitySet="TBLURUNLER">
+          <ScalarProperty Name="URUNID" ColumnName="URUNID" />
+          <ScalarProperty Name="KATAGORID" ColumnName="KATAGORID" />
+          <ScalarProperty Name="URUNADI" ColumnName="URUNADI" />
+          <ScalarProperty Name="FIYAT" ColumnName="FIYAT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLVARDIYALAR">
+      <EntityTypeMapping TypeName="RestoranYonetimDBModel.TBLVARDIYALAR">
+        <MappingFragment StoreEntitySet="TBLVARDIYALAR">
+          <ScalarProperty Name="VARDIYAID" ColumnName="VARDIYAID" />
+          <ScalarProperty Name="VARDIYADI" ColumnName="VARDIYADI" />
+          <ScalarProperty Name="BASLANGICSAATI" ColumnName="BASLANGICSAATI" />
+          <ScalarProperty Name="BITISSAATI" ColumnName="BITISSAATI" />
+          <ScalarProperty Name="AÇIKLAMA" ColumnName="AÇIKLAMA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
