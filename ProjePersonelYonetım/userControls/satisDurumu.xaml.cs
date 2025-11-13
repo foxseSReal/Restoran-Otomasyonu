@@ -87,5 +87,13 @@ namespace ProjePersonelYonetım.userControls
                         };
             satis_DataGrid.ItemsSource = liste.ToList();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            satis_BaslanicTarih.Text = "";
+            satis_BitisTarih.Text = "";
+            txtatisara.Text = "";
+            SatisListele();
+        }
     }   
 }

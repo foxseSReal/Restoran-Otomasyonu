@@ -33,7 +33,8 @@
 
         <!--Sol StackPanel-->
         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
-            <DataGrid IsReadOnly="True" x:Name="personel_DataGrid" CanUserAddRows="False" CanUserDeleteRows="False" Focusable="True" SelectedCellsChanged="personel_DataGrid_SelectedCellsChanged" Margin="10 30 0 0" Width="500" Height="481" SelectionChanged="personel_DataGrid_SelectionChanged"/>
+            <TextBox x:Name="txtPersonelAra" Margin="0 20 0 0" Foreground="White" Width="200" FontSize="20" materialDesign:TextFieldAssist.TrailingIcon="Search" materialDesign:TextFieldAssist.HasTrailingIcon="True" materialDesign:TextFieldAssist.LeadingIcon="RunFast" materialDesign:HintAssist.Hint="Personel Ara" materialDesign:TextFieldAssist.TrailingIconSize="30" materialDesign:TransitionAssist.DisableTransitions="True" TextChanged="txtPersonelAra_TextChanged" />
+            <DataGrid IsReadOnly="True" x:Name="personel_DataGrid" Margin="10 10 0 0" CanUserAddRows="False" CanUserDeleteRows="False" Focusable="True" SelectedCellsChanged="personel_DataGrid_SelectedCellsChanged"  Width="500" Height="441" SelectionChanged="personel_DataGrid_SelectionChanged"/>
         </StackPanel>
 
         <!--Sag StackPanel-->
@@ -72,8 +73,7 @@
                     <!---->
                 </GroupBox>
                 <Separator Margin="0 0 0 0" Width="200" Foreground="Black"/>
-                <TextBlock x:Name="resimYolu" Text="*"/>
-                <TextBox x:Name="txtPersonelAra" Foreground="Black" Width="200" FontSize="20" materialDesign:TextFieldAssist.HasTrailingIcon="True" materialDesign:TextFieldAssist.LeadingIcon="RunFast" materialDesign:HintAssist.Hint="Personel Ara" materialDesign:TextFieldAssist.TrailingIconSize="30" materialDesign:TransitionAssist.DisableTransitions="True" TextChanged="txtPersonelAra_TextChanged" />
+                <TextBlock x:Name="resimYolu" Text="*" Visibility="Hidden"/>
             </StackPanel>
             <!--2-->
             <StackPanel VerticalAlignment="Top" Orientation="Vertical" Grid.Column="1">
@@ -157,7 +157,7 @@ FontSize="15" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Ma
                 </GroupBox>
                 <StackPanel Orientation="Horizontal">
                     <Button x:Name="odemeButton" Content="Ödeme Yap" ToolTip="Ödeme Yap" Margin="20 30 0 0" Foreground="Black" Width="120" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Click="odemeButton_Click"/>
-                    <Button x:Name="odemeGuncelle" Content="Güncelle" ToolTip="Ödeme Güncelle" Margin="10 30 0 0" Foreground="Black" Width="120" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Click="odemeButton_Click"/>
+                    <Button x:Name="odemeGuncelle" Content="Güncelle" ToolTip="Ödeme Güncelle" Margin="10 30 0 0" Foreground="Black" Width="120" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Click="odemeGuncelle_Click" />
                 </StackPanel>
             </StackPanel>
 

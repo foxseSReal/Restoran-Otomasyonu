@@ -1,10 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "F:\\ProjePersonelYonet\u0131m\\",
+  "WorkspaceRootPath": "C:\\Users\\genca\\OneDrive\\Desktop\\ProjePersonelYonet\u0131m\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{76CCA350-EB37-4E60-B22C-5786DCB65DEE}|ProjePersonelYonet\u0131m\\ProjePersonelYonet\u0131m.csproj|F:\\ProjePersonelYonet\u0131m\\projepersonelyonet\u0131m\\usercontrols\\musterifirma.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{76CCA350-EB37-4E60-B22C-5786DCB65DEE}|ProjePersonelYonet\u0131m\\ProjePersonelYonet\u0131m.csproj|solutionrelative:projepersonelyonet\u0131m\\usercontrols\\musterifirma.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{76CCA350-EB37-4E60-B22C-5786DCB65DEE}|ProjePersonelYonet\u0131m\\ProjePersonelYonet\u0131m.csproj|c:\\users\\genca\\onedrive\\desktop\\projepersonelyonet\u0131m\\projepersonelyonet\u0131m\\usercontrols\\personel.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{76CCA350-EB37-4E60-B22C-5786DCB65DEE}|ProjePersonelYonet\u0131m\\ProjePersonelYonet\u0131m.csproj|solutionrelative:projepersonelyonet\u0131m\\usercontrols\\personel.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,18 +14,30 @@
       "DocumentGroups": [
         {
           "DockedWidth": 9,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "musteriFirma.xaml",
-              "DocumentMoniker": "F:\\ProjePersonelYonet\u0131m\\ProjePersonelYonet\u0131m\\userControls\\musteriFirma.xaml",
-              "RelativeDocumentMoniker": "ProjePersonelYonet\u0131m\\userControls\\musteriFirma.xaml",
-              "ToolTip": "F:\\ProjePersonelYonet\u0131m\\ProjePersonelYonet\u0131m\\userControls\\musteriFirma.xaml",
-              "RelativeToolTip": "ProjePersonelYonet\u0131m\\userControls\\musteriFirma.xaml",
+              "Title": "Personel.xaml",
+              "DocumentMoniker": "C:\\Users\\genca\\OneDrive\\Desktop\\ProjePersonelYonet\u0131m\\ProjePersonelYonet\u0131m\\userControls\\Personel.xaml",
+              "RelativeDocumentMoniker": "ProjePersonelYonet\u0131m\\userControls\\Personel.xaml",
+              "ToolTip": "C:\\Users\\genca\\OneDrive\\Desktop\\ProjePersonelYonet\u0131m\\ProjePersonelYonet\u0131m\\userControls\\Personel.xaml",
+              "RelativeToolTip": "ProjePersonelYonet\u0131m\\userControls\\Personel.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-07T22:08:00.864Z",
+              "WhenOpened": "2025-11-13T18:56:25.226Z",
               "EditorCaption": ""
             }
           ]

@@ -13,6 +13,12 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
+        <!---->
+        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"  Style="{StaticResource effectliBorder}"/>
+        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"  Style="{StaticResource effectliBorder}"/>
+        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"  Style="{StaticResource effectliBorder}"/>
+        <!---->
+
         <!--Sol StackPanel-->
         <StackPanel Orientation="Vertical" Grid.Column="0">
             <TextBox x:Name="urunAra" Width="300" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Ürün Ara" Focusable="True" Style="{StaticResource MaterialDesignFilledTextBox}"

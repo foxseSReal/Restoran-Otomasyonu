@@ -109,7 +109,7 @@ materialDesign:TextFieldAssist.HasClearButton="True" FontSize="16"
 
             <!--Ödeme/Güncelleme TabItem-->
 
-            <TabItem Margin="0 100 0 0" Width="250" Background="#50dcdcdc" Header="Müşteri Borç İşlemler,">
+            <TabItem Margin="0 100 10 0" Width="250" Background="#50dcdcdc" Header="Borç İşlemleri">
                 <Grid Width="500" Height="600">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>

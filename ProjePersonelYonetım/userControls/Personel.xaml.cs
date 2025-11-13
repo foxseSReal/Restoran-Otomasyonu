@@ -504,9 +504,22 @@ namespace ProjePersonelYonetım.userControls
 
         private void personelOdeme_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            var secilen = personelOdeme_DataGrid.SelectedItem;
+            if (secilen != null)
+            {
+                dynamic secim = secilen;
+                int odemeId = secim.ID;
+                var odeme = ResDB.TblPERSONELODEME.Find(odemeId);
+                if (odeme != null)
+                {
+                    odemeTarih.Text = odeme.TARIH.ToString();
+                    cbxOdemeTuru.Text = odeme.TUR;
+                    odemeTutar.Text = odeme.ODEMEMIKTARI.ToString();
+                    aciklama.Text = odeme.ACIKLAMA;
+                }
+            }
         }
-        
+
         private void odemegetir()
         {
             var odemeler = from x in ResDB.TblPERSONELODEME
@@ -527,7 +540,7 @@ namespace ProjePersonelYonetım.userControls
             if (seciliPersonelId == -1)
             {
                 MessageBox.Show("Lütfen önce bir personel seçin!");
-               
+
             }
             else
             {
@@ -547,13 +560,19 @@ namespace ProjePersonelYonetım.userControls
             odemegetir();
 
 
+        }//
+        private void odemegrtdoldur()
+        {
+            //ödemeyi texbox a tıklayınca doldur
+            var secilenOdeme = personelOdeme_DataGrid.SelectedItem;
+
         }
 
-      
+
 
         private void txtPersonelAra_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var personelara= txtPersonelAra.Text;
+            var personelara = txtPersonelAra.Text;
             var personel = from x in ResDB.TblPERSONELLER.OrderByDescending(x => x.PersonelID)
                 .Where(x => x.Ad.ToLower().Contains(personelara) ||
                             x.Soyad.ToLower().Contains(personelara))
@@ -570,6 +589,27 @@ namespace ProjePersonelYonetım.userControls
                                DURUMU = x.Durum == true ? "Aktif" : "Pasif"
                            };
             personel_DataGrid.ItemsSource = personel.ToList();
+        }
+
+        private void odemeGuncelle_Click(object sender, RoutedEventArgs e)
+        {
+            var güncellenecek = personelOdeme_DataGrid.SelectedItem;
+            if (güncellenecek != null)
+            {
+                dynamic secim = güncellenecek;
+                int odemeId = secim.ID;
+                var odeme = ResDB.TblPERSONELODEME.Find(odemeId);
+                if (odeme != null)
+                {
+                    odeme.TARIH = DateTime.Parse(odemeTarih.Text);
+                    odeme.TUR = cbxOdemeTuru.Text;
+                    odeme.ODEMEMIKTARI = Convert.ToDecimal(odemeTutar.Text);
+                    odeme.ACIKLAMA = aciklama.Text;
+                    ResDB.SaveChanges();
+                    MessageBox.Show("Ödeme Güncellendi.");
+                    odemegetir();
+                }
+            }
         }
     }
 }
