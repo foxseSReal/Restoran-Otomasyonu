@@ -40,7 +40,7 @@ Aşağıda belirtilen özellikleri kontrol eder;
 
 * `App.config` içerisinde aşağidakine benzer bir yapı vardır. name=[`...`] kısmında Veri Tabanının ismi alıyoruz.
 > [!NOTE]
->Burada birden fazla isim olabilir; her yeni eklenen model ismi alt alta sıralanır.
+>Burada birden fazla isim olabilir; her yeni eklenen model ismi alt alta sıralanır ya da halihazırda olan `<add name [...]` kodunun yanına eklenir.
 ```xml
  <connectionStrings>
    <add name="DBRestoranProje" connectionString="[...]"/>
