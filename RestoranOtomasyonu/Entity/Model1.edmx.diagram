@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0e0412ba582849c183a188bf56cc7a3c" Name="Diagram1">
+        <EntityTypeShape EntityType="RESTORANDBModel.TblBORDROLAR" Width="1.5" PointX="3" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RESTORANDBModel.TblCEKSENET" Width="1.5" PointX="3" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RESTORANDBModel.TblFIRMA" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RESTORANDBModel.TblGELIR" Width="1.5" PointX="6" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RESTORANDBModel.TblGIDER" Width="1.5" PointX="6" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RESTORANDBModel.TblGUNLUKHARCAMA" Width="1.5" PointX="6" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RESTORANDBModel.TblKATEGORI" Width="1.5" PointX="4.5" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RESTORANDBModel.TblMAAS" Width="1.5" PointX="3" PointY="34.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RESTORANDBModel.TblMASA" Width="1.5" PointX="6.75" PointY="31" IsExpanded="true" />
+        <EntityTypeShape EntityType="RESTORANDBModel.TblMODEME" Width="1.5" PointX="9" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RESTORANDBModel.TblMUSTERILER" Width="1.5" PointX="3.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RESTORANDBModel.TblPERSONELLER" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RESTORANDBModel.TblPERSONELODEME" Width="1.5" PointX="3" PointY="37.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RESTORANDBModel.TblREZARVASYON" Width="1.5" PointX="9" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RESTORANDBModel.TblSATIS" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RESTORANDBModel.TblSIPARIS" Width="1.5" PointX="9" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RESTORANDBModel.TblSIPARISDETAY" Width="1.5" PointX="11.25" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RESTORANDBModel.TblSTOKHAREKET" Width="1.5" PointX="9" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RESTORANDBModel.TblURUN" Width="1.5" PointX="6.75" PointY="25.75" IsExpanded="true" />
+        <AssociationConnector Association="RESTORANDBModel.FK__TblBORDRO__Perso__693CA210" ManuallyRouted="false" />
+        <AssociationConnector Association="RESTORANDBModel.FK_CekSenet_Firma" ManuallyRouted="false" />
+        <AssociationConnector Association="RESTORANDBModel.FK_CekSenet_Musteri" ManuallyRouted="false" />
+        <AssociationConnector Association="RESTORANDBModel.FK_CekSenet_Personel" ManuallyRouted="false" />
+        <AssociationConnector Association="RESTORANDBModel.FK_CekSenet_Siparis" ManuallyRouted="false" />
+        <AssociationConnector Association="RESTORANDBModel.FK_Gider_Firma" ManuallyRouted="false" />
+        <AssociationConnector Association="RESTORANDBModel.FK_GunlukHarcama_Firma" ManuallyRouted="false" />
+        <AssociationConnector Association="RESTORANDBModel.FK_StokHareket_Firma" ManuallyRouted="false" />
+        <AssociationConnector Association="RESTORANDBModel.FK_TblMusteriOdeme_TblFIRMA" ManuallyRouted="false" />
+        <AssociationConnector Association="RESTORANDBModel.FK_TblUrun_Firma" ManuallyRouted="false" />
+        <AssociationConnector Association="RESTORANDBModel.FK_Gelir_Musteri" ManuallyRouted="false" />
+        <AssociationConnector Association="RESTORANDBModel.FK_Gelir_Personel" ManuallyRouted="false" />
+        <AssociationConnector Association="RESTORANDBModel.FK_Gider_Personel" ManuallyRouted="false" />
+        <AssociationConnector Association="RESTORANDBModel.FK_GunlukHarcama_Personel" ManuallyRouted="false" />
+        <AssociationConnector Association="RESTORANDBModel.FK_UrunKategori" ManuallyRouted="false" />
+        <AssociationConnector Association="RESTORANDBModel.FK_TblMaas_Personel" ManuallyRouted="false" />
+        <AssociationConnector Association="RESTORANDBModel.FK_Rezervasyon_Masa" ManuallyRouted="false" />
+        <AssociationConnector Association="RESTORANDBModel.FK_Siparis_Masa" ManuallyRouted="false" />
+        <AssociationConnector Association="RESTORANDBModel.FK_TblRezarvasyon_Musteri" ManuallyRouted="false" />
+        <AssociationConnector Association="RESTORANDBModel.FK_Personeller_Odeme" ManuallyRouted="false" />
+        <AssociationConnector Association="RESTORANDBModel.FK_Siparis_Personel" ManuallyRouted="false" />
+        <AssociationConnector Association="RESTORANDBModel.FK_StokHareket_Personel" ManuallyRouted="false" />
+        <AssociationConnector Association="RESTORANDBModel.FK_SiparisDetay_Siparis" ManuallyRouted="false" />
+        <AssociationConnector Association="RESTORANDBModel.FK_SiparisDetay_Urun" ManuallyRouted="false" />
+        <AssociationConnector Association="RESTORANDBModel.FK_StokHareket_Urun" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
