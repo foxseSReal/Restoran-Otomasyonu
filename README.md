@@ -69,6 +69,6 @@ public partial class Personel : UserControl
 ---
 ## 👥 Katkıda Bulunanlar
 
-- **Yusuf Erdoğan** — Proje Yönetimi, Arayüz Tasarımı, Veritabanı, Test, C#
-- **Gencay Çeliker** — Proje Yönetimi, Veritabanı, Hata Ayıklama, C#
+- <a href=https://github.com/foxseSReal> **Yusuf Erdoğan** </a>— Proje Yönetimi, Arayüz Tasarımı, Veritabanı, Test, C#
+- <a href=https://github.com/GencayCeliker> **Gencay Çeliker** </a>— Proje Yönetimi, Veritabanı, Hata Ayıklama, C#
 - **Emrah Çapkan** — Test , C#
