@@ -62,7 +62,7 @@ public partial class Personel : UserControl
 
 ---
 
-## 📚 Kullanılan Nuget Paketleri 
+## 📚 Kullanılan Nuget Paketleri & Diğer
 * 📦 MaterialDesignTheme
 * 🧩 Entity Framework 5 ya da Entity Framework 6
 
