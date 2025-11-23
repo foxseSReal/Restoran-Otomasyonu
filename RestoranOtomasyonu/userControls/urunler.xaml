@@ -28,7 +28,7 @@ Foreground="WhiteSmoke"
 FontSize="18"
 MaxLength="24" TextChanged="urunAra_TextChanged"/>
 
-            <DataGrid x:Name="urunDataGrid" Margin="10 10 0 0" Width="460" Height="620" Foreground="Black" SelectionChanged="urunDataGrid_SelectionChanged"/>
+            <DataGrid VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" x:Name="urunDataGrid" Margin="10 10 0 0" Width="460" Height="620" Foreground="Black" SelectionChanged="urunDataGrid_SelectionChanged"/>
         </StackPanel>
 
         <!--Sag StackPanel-->

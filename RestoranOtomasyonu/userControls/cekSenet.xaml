@@ -45,8 +45,8 @@ FontSize="20" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Ma
                 <DatePicker FontFamily="Calibri" Foreground="Red" FontSize="18" materialDesign:HintAssist.Hint="Ödeme Tarihi" x:Name="CeksenetDataGridAralik2" Margin="20 20 0 0" Width="150" Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
                 <Button x:Name="cekSenet_Filtrele" Content="Filtrele" Margin="20 20 0 0" Click="cekSenet_Filtrele_Click"/>
             </StackPanel>
-            <DataGrid x:Name="cekSenet_DataGrid" Margin="20 5 0 0" Width="480" Height="255" Foreground="Black" SelectionChanged="cekSenet_DataGrid_SelectionChanged"/>
-            <DataGrid x:Name="cekSenetOdeme_DataGrid"  Margin="20 25 0 0"  Width="480" Height="277" Foreground="Black" SelectionChanged="cekSenetOdeme_DataGrid_SelectionChanged"/>
+            <DataGrid VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" x:Name="cekSenet_DataGrid" Margin="20 5 0 0" Width="480" Height="255" Foreground="Black" SelectionChanged="cekSenet_DataGrid_SelectionChanged"/>
+            <DataGrid VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"  x:Name="cekSenetOdeme_DataGrid"  Margin="20 25 0 0"  Width="480" Height="277" Foreground="Black" SelectionChanged="cekSenetOdeme_DataGrid_SelectionChanged"/>
         </StackPanel>
         <!---->
 

@@ -1,0 +1,666 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RESTORANDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="TblBORDROLAR">
+    <Key>
+      <PropertyRef Name="BordroID" />
+    </Key>
+    <Property Name="BordroID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PersonelID" Type="int" Nullable="false" />
+    <Property Name="Ay" Type="smallint" Nullable="false" />
+    <Property Name="Yil" Type="smallint" Nullable="false" />
+    <Property Name="AnaMaas" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Prim" Type="decimal" Precision="8" Scale="2" />
+    <Property Name="Kesinti" Type="decimal" Precision="8" Scale="2" />
+    <Property Name="Avans" Type="decimal" Precision="8" Scale="2" />
+    <Property Name="ToplamOdeme" Type="decimal" Precision="10" Scale="2" StoreGeneratedPattern="Computed" />
+    <Property Name="OdemeTarihi" Type="date" />
+    <Property Name="Aciklama" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TblCEKSENET">
+    <Key>
+      <PropertyRef Name="CeksenetId" />
+    </Key>
+    <Property Name="CeksenetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SatisNo" Type="int" />
+    <Property Name="MusteriId" Type="int" />
+    <Property Name="FirmaId" Type="int" />
+    <Property Name="Tutar" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="OdemeTuru" Type="nvarchar" MaxLength="50" />
+    <Property Name="PersonelId" Type="int" />
+    <Property Name="YTarih" Type="date" Nullable="false" />
+    <Property Name="OTarih" Type="date" />
+    <Property Name="Aciklama" Type="nvarchar" MaxLength="200" />
+    <Property Name="Durum" Type="bit" />
+  </EntityType>
+  <EntityType Name="TblFIRMA">
+    <Key>
+      <PropertyRef Name="FirmaId" />
+    </Key>
+    <Property Name="FirmaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirmaAdi" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Unvan" Type="nvarchar" MaxLength="50" />
+    <Property Name="Telefon" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Telefonİki" Type="nvarchar" MaxLength="30" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Adres" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="WebSitesi" Type="nvarchar" MaxLength="250" />
+    <Property Name="VergiDairesi" Type="nvarchar(max)" />
+    <Property Name="HesapNo" Type="nvarchar(max)" />
+    <Property Name="Durumu" Type="bit" />
+  </EntityType>
+  <EntityType Name="TblGELIR">
+    <Key>
+      <PropertyRef Name="GelirId" />
+    </Key>
+    <Property Name="GelirId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GelirTuru" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Tutar" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+    <Property Name="Tarih" Type="datetime" />
+    <Property Name="Aciklama" Type="nvarchar" MaxLength="500" />
+    <Property Name="PersonelId" Type="int" Nullable="false" />
+    <Property Name="MusteriId" Type="int" />
+    <Property Name="ReferansTablo" Type="nvarchar" MaxLength="50" />
+    <Property Name="ReferansId" Type="int" />
+  </EntityType>
+  <EntityType Name="TblGIDER">
+    <Key>
+      <PropertyRef Name="GiderId" />
+    </Key>
+    <Property Name="GiderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GiderTuru" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Tutar" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+    <Property Name="Tarih" Type="datetime" />
+    <Property Name="Aciklama" Type="nvarchar" MaxLength="500" />
+    <Property Name="PersonelId" Type="int" Nullable="false" />
+    <Property Name="FirmaId" Type="int" />
+    <Property Name="ReferansTablo" Type="nvarchar" MaxLength="50" />
+    <Property Name="ReferansId" Type="int" />
+  </EntityType>
+  <EntityType Name="TblGUNLUKHARCAMA">
+    <Key>
+      <PropertyRef Name="GunlukId" />
+    </Key>
+    <Property Name="GunlukId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HarcananYer" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Tarih" Type="date" Nullable="false" />
+    <Property Name="Saat" Type="time" Precision="7" Nullable="false" />
+    <Property Name="Aciklama" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Tutar" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="PersonelID" Type="int" />
+    <Property Name="FirmaId" Type="int" />
+  </EntityType>
+  <EntityType Name="TblKATEGORI">
+    <Key>
+      <PropertyRef Name="KategoriId" />
+    </Key>
+    <Property Name="KategoriId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KategoriAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TblMAAS">
+    <Key>
+      <PropertyRef Name="MaasTanimID" />
+    </Key>
+    <Property Name="MaasTanimID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PersonelID" Type="int" Nullable="false" />
+    <Property Name="NetTutar" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="BaslangicTarihi" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TblMASA">
+    <Key>
+      <PropertyRef Name="MasaId" />
+    </Key>
+    <Property Name="MasaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MasaNo" Type="int" Nullable="false" />
+    <Property Name="Aciklama" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Tutar" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Durum" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TblMODEME">
+    <Key>
+      <PropertyRef Name="OdemeId" />
+    </Key>
+    <Property Name="OdemeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FmusteriID" Type="int" />
+    <Property Name="BorcTutar" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="OdenenTutar" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Tarih" Type="date" />
+    <Property Name="Aciklama" Type="nvarchar" MaxLength="50" />
+    <Property Name="durum" Type="bit" />
+  </EntityType>
+  <EntityType Name="TblMUSTERILER">
+    <Key>
+      <PropertyRef Name="MusteriId" />
+    </Key>
+    <Property Name="MusteriId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Soyad" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="MasaId" Type="int" Nullable="false" />
+    <Property Name="Tarih" Type="date" Nullable="false" />
+    <Property Name="Saat" Type="time" Precision="7" Nullable="false" />
+    <Property Name="Aciklama" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Telefon" Type="nvarchar" MaxLength="20" />
+    <Property Name="Durum" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TblPERSONELLER">
+    <Key>
+      <PropertyRef Name="PersonelID" />
+    </Key>
+    <Property Name="PersonelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Soyad" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="TCKimlikNo" Type="nchar" MaxLength="11" Nullable="false" />
+    <Property Name="Telefon" Type="nchar" MaxLength="12" Nullable="false" />
+    <Property Name="Adres" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Pozisyon" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Tarih" Type="date" Nullable="false" />
+    <Property Name="Durum" Type="bit" Nullable="false" />
+    <Property Name="Resim" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="TblPERSONELODEME">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PERSONEL" Type="int" />
+    <Property Name="TUR" Type="nvarchar" MaxLength="50" />
+    <Property Name="ODEMEMIKTARI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="TARIH" Type="date" />
+    <Property Name="ACIKLAMA" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TblREZARVASYON">
+    <Key>
+      <PropertyRef Name="RezarvasyonId" />
+    </Key>
+    <Property Name="RezarvasyonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MusteriId" Type="int" Nullable="false" />
+    <Property Name="MasaNoId" Type="int" Nullable="false" />
+    <Property Name="KisiSayisi" Type="int" Nullable="false" />
+    <Property Name="Tarih" Type="date" Nullable="false" />
+    <Property Name="Saat" Type="time" Precision="7" Nullable="false" />
+    <Property Name="Aciklama" Type="nvarchar" MaxLength="100" />
+    <Property Name="Durum" Type="bit" />
+  </EntityType>
+  <EntityType Name="TblSATIS">
+    <Key>
+      <PropertyRef Name="SatisId" />
+    </Key>
+    <Property Name="SatisId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UrunId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TblSIPARIS">
+    <Key>
+      <PropertyRef Name="SiparisId" />
+    </Key>
+    <Property Name="SiparisId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MasaId" Type="int" Nullable="false" />
+    <Property Name="PersonelId" Type="int" Nullable="false" />
+    <Property Name="Tarih" Type="datetime" />
+    <Property Name="ToplamTutar" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="OdemeDurumu" Type="bit" />
+  </EntityType>
+  <EntityType Name="TblSIPARISDETAY">
+    <Key>
+      <PropertyRef Name="SiparisDetayId" />
+    </Key>
+    <Property Name="SiparisDetayId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SiparisId" Type="int" Nullable="false" />
+    <Property Name="UrunId" Type="int" Nullable="false" />
+    <Property Name="Miktar" Type="int" Nullable="false" />
+    <Property Name="BirimFiyat" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="ToplamTutar" Type="decimal" Precision="10" Scale="2" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="TblSTOKHAREKET">
+    <Key>
+      <PropertyRef Name="StokHareketId" />
+    </Key>
+    <Property Name="StokHareketId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UrunId" Type="int" Nullable="false" />
+    <Property Name="FirmaId" Type="int" />
+    <Property Name="HareketTipi" Type="nvarchar" MaxLength="20" />
+    <Property Name="Miktar" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="BirimTuru" Type="nvarchar" MaxLength="50" />
+    <Property Name="BirimFiyat" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Tarih" Type="date" />
+    <Property Name="Saat" Type="time" Precision="3" />
+    <Property Name="Aciklama" Type="nvarchar" MaxLength="250" />
+    <Property Name="PersonelId" Type="int" />
+  </EntityType>
+  <EntityType Name="TblURUN">
+    <Key>
+      <PropertyRef Name="UrunId" />
+    </Key>
+    <Property Name="UrunId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UrunAdi" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Fiyat" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="KategoriId" Type="int" Nullable="false" />
+    <Property Name="FirmaId" Type="int" Nullable="false" />
+    <Property Name="Aciklama" Type="nvarchar" MaxLength="250" />
+    <Property Name="StokMiktari" Type="int" />
+    <Property Name="Birim" Type="nvarchar" MaxLength="20" />
+    <Property Name="Durum" Type="bit" />
+    <Property Name="ResimYolu" Type="nvarchar" MaxLength="250" />
+    <Property Name="EklenmeTarihi" Type="datetime" />
+  </EntityType>
+  <Association Name="FK__TblBORDRO__Perso__693CA210">
+    <End Role="TblPERSONELLER" Type="Self.TblPERSONELLER" Multiplicity="1" />
+    <End Role="TblBORDROLAR" Type="Self.TblBORDROLAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblPERSONELLER">
+        <PropertyRef Name="PersonelID" />
+      </Principal>
+      <Dependent Role="TblBORDROLAR">
+        <PropertyRef Name="PersonelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CekSenet_Firma">
+    <End Role="TblFIRMA" Type="Self.TblFIRMA" Multiplicity="0..1" />
+    <End Role="TblCEKSENET" Type="Self.TblCEKSENET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblFIRMA">
+        <PropertyRef Name="FirmaId" />
+      </Principal>
+      <Dependent Role="TblCEKSENET">
+        <PropertyRef Name="FirmaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CekSenet_Musteri">
+    <End Role="TblMUSTERILER" Type="Self.TblMUSTERILER" Multiplicity="0..1" />
+    <End Role="TblCEKSENET" Type="Self.TblCEKSENET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblMUSTERILER">
+        <PropertyRef Name="MusteriId" />
+      </Principal>
+      <Dependent Role="TblCEKSENET">
+        <PropertyRef Name="MusteriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CekSenet_Personel">
+    <End Role="TblPERSONELLER" Type="Self.TblPERSONELLER" Multiplicity="0..1" />
+    <End Role="TblCEKSENET" Type="Self.TblCEKSENET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblPERSONELLER">
+        <PropertyRef Name="PersonelID" />
+      </Principal>
+      <Dependent Role="TblCEKSENET">
+        <PropertyRef Name="PersonelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CekSenet_Siparis">
+    <End Role="TblSIPARIS" Type="Self.TblSIPARIS" Multiplicity="0..1" />
+    <End Role="TblCEKSENET" Type="Self.TblCEKSENET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblSIPARIS">
+        <PropertyRef Name="SiparisId" />
+      </Principal>
+      <Dependent Role="TblCEKSENET">
+        <PropertyRef Name="SatisNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gelir_Musteri">
+    <End Role="TblMUSTERILER" Type="Self.TblMUSTERILER" Multiplicity="0..1" />
+    <End Role="TblGELIR" Type="Self.TblGELIR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblMUSTERILER">
+        <PropertyRef Name="MusteriId" />
+      </Principal>
+      <Dependent Role="TblGELIR">
+        <PropertyRef Name="MusteriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gelir_Personel">
+    <End Role="TblPERSONELLER" Type="Self.TblPERSONELLER" Multiplicity="1" />
+    <End Role="TblGELIR" Type="Self.TblGELIR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblPERSONELLER">
+        <PropertyRef Name="PersonelID" />
+      </Principal>
+      <Dependent Role="TblGELIR">
+        <PropertyRef Name="PersonelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gider_Firma">
+    <End Role="TblFIRMA" Type="Self.TblFIRMA" Multiplicity="0..1" />
+    <End Role="TblGIDER" Type="Self.TblGIDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblFIRMA">
+        <PropertyRef Name="FirmaId" />
+      </Principal>
+      <Dependent Role="TblGIDER">
+        <PropertyRef Name="FirmaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gider_Personel">
+    <End Role="TblPERSONELLER" Type="Self.TblPERSONELLER" Multiplicity="1" />
+    <End Role="TblGIDER" Type="Self.TblGIDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblPERSONELLER">
+        <PropertyRef Name="PersonelID" />
+      </Principal>
+      <Dependent Role="TblGIDER">
+        <PropertyRef Name="PersonelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GunlukHarcama_Firma">
+    <End Role="TblFIRMA" Type="Self.TblFIRMA" Multiplicity="0..1" />
+    <End Role="TblGUNLUKHARCAMA" Type="Self.TblGUNLUKHARCAMA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblFIRMA">
+        <PropertyRef Name="FirmaId" />
+      </Principal>
+      <Dependent Role="TblGUNLUKHARCAMA">
+        <PropertyRef Name="FirmaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GunlukHarcama_Personel">
+    <End Role="TblPERSONELLER" Type="Self.TblPERSONELLER" Multiplicity="0..1" />
+    <End Role="TblGUNLUKHARCAMA" Type="Self.TblGUNLUKHARCAMA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblPERSONELLER">
+        <PropertyRef Name="PersonelID" />
+      </Principal>
+      <Dependent Role="TblGUNLUKHARCAMA">
+        <PropertyRef Name="PersonelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Personeller_Odeme">
+    <End Role="TblPERSONELLER" Type="Self.TblPERSONELLER" Multiplicity="0..1" />
+    <End Role="TblPERSONELODEME" Type="Self.TblPERSONELODEME" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblPERSONELLER">
+        <PropertyRef Name="PersonelID" />
+      </Principal>
+      <Dependent Role="TblPERSONELODEME">
+        <PropertyRef Name="PERSONEL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rezervasyon_Masa">
+    <End Role="TblMASA" Type="Self.TblMASA" Multiplicity="1" />
+    <End Role="TblREZARVASYON" Type="Self.TblREZARVASYON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblMASA">
+        <PropertyRef Name="MasaId" />
+      </Principal>
+      <Dependent Role="TblREZARVASYON">
+        <PropertyRef Name="MasaNoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Siparis_Masa">
+    <End Role="TblMASA" Type="Self.TblMASA" Multiplicity="1" />
+    <End Role="TblSIPARIS" Type="Self.TblSIPARIS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblMASA">
+        <PropertyRef Name="MasaId" />
+      </Principal>
+      <Dependent Role="TblSIPARIS">
+        <PropertyRef Name="MasaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Siparis_Personel">
+    <End Role="TblPERSONELLER" Type="Self.TblPERSONELLER" Multiplicity="1" />
+    <End Role="TblSIPARIS" Type="Self.TblSIPARIS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblPERSONELLER">
+        <PropertyRef Name="PersonelID" />
+      </Principal>
+      <Dependent Role="TblSIPARIS">
+        <PropertyRef Name="PersonelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SiparisDetay_Siparis">
+    <End Role="TblSIPARIS" Type="Self.TblSIPARIS" Multiplicity="1" />
+    <End Role="TblSIPARISDETAY" Type="Self.TblSIPARISDETAY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblSIPARIS">
+        <PropertyRef Name="SiparisId" />
+      </Principal>
+      <Dependent Role="TblSIPARISDETAY">
+        <PropertyRef Name="SiparisId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SiparisDetay_Urun">
+    <End Role="TblURUN" Type="Self.TblURUN" Multiplicity="1" />
+    <End Role="TblSIPARISDETAY" Type="Self.TblSIPARISDETAY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblURUN">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="TblSIPARISDETAY">
+        <PropertyRef Name="UrunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StokHareket_Firma">
+    <End Role="TblFIRMA" Type="Self.TblFIRMA" Multiplicity="0..1" />
+    <End Role="TblSTOKHAREKET" Type="Self.TblSTOKHAREKET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblFIRMA">
+        <PropertyRef Name="FirmaId" />
+      </Principal>
+      <Dependent Role="TblSTOKHAREKET">
+        <PropertyRef Name="FirmaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StokHareket_Personel">
+    <End Role="TblPERSONELLER" Type="Self.TblPERSONELLER" Multiplicity="0..1" />
+    <End Role="TblSTOKHAREKET" Type="Self.TblSTOKHAREKET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblPERSONELLER">
+        <PropertyRef Name="PersonelID" />
+      </Principal>
+      <Dependent Role="TblSTOKHAREKET">
+        <PropertyRef Name="PersonelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StokHareket_Urun">
+    <End Role="TblURUN" Type="Self.TblURUN" Multiplicity="1" />
+    <End Role="TblSTOKHAREKET" Type="Self.TblSTOKHAREKET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblURUN">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="TblSTOKHAREKET">
+        <PropertyRef Name="UrunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblMaas_Personel">
+    <End Role="TblPERSONELLER" Type="Self.TblPERSONELLER" Multiplicity="1" />
+    <End Role="TblMAAS" Type="Self.TblMAAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblPERSONELLER">
+        <PropertyRef Name="PersonelID" />
+      </Principal>
+      <Dependent Role="TblMAAS">
+        <PropertyRef Name="PersonelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblMusteriOdeme_TblFIRMA">
+    <End Role="TblFIRMA" Type="Self.TblFIRMA" Multiplicity="0..1" />
+    <End Role="TblMODEME" Type="Self.TblMODEME" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblFIRMA">
+        <PropertyRef Name="FirmaId" />
+      </Principal>
+      <Dependent Role="TblMODEME">
+        <PropertyRef Name="FmusteriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblRezarvasyon_Musteri">
+    <End Role="TblMUSTERILER" Type="Self.TblMUSTERILER" Multiplicity="1" />
+    <End Role="TblREZARVASYON" Type="Self.TblREZARVASYON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblMUSTERILER">
+        <PropertyRef Name="MusteriId" />
+      </Principal>
+      <Dependent Role="TblREZARVASYON">
+        <PropertyRef Name="MusteriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblUrun_Firma">
+    <End Role="TblFIRMA" Type="Self.TblFIRMA" Multiplicity="1" />
+    <End Role="TblURUN" Type="Self.TblURUN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblFIRMA">
+        <PropertyRef Name="FirmaId" />
+      </Principal>
+      <Dependent Role="TblURUN">
+        <PropertyRef Name="FirmaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UrunKategori">
+    <End Role="TblKATEGORI" Type="Self.TblKATEGORI" Multiplicity="1" />
+    <End Role="TblURUN" Type="Self.TblURUN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblKATEGORI">
+        <PropertyRef Name="KategoriId" />
+      </Principal>
+      <Dependent Role="TblURUN">
+        <PropertyRef Name="KategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RESTORANDBModelStoreContainer">
+    <EntitySet Name="TblBORDROLAR" EntityType="Self.TblBORDROLAR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblCEKSENET" EntityType="Self.TblCEKSENET" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblFIRMA" EntityType="Self.TblFIRMA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblGELIR" EntityType="Self.TblGELIR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblGIDER" EntityType="Self.TblGIDER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblGUNLUKHARCAMA" EntityType="Self.TblGUNLUKHARCAMA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblKATEGORI" EntityType="Self.TblKATEGORI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblMAAS" EntityType="Self.TblMAAS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblMASA" EntityType="Self.TblMASA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblMODEME" EntityType="Self.TblMODEME" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblMUSTERILER" EntityType="Self.TblMUSTERILER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblPERSONELLER" EntityType="Self.TblPERSONELLER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblPERSONELODEME" EntityType="Self.TblPERSONELODEME" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblREZARVASYON" EntityType="Self.TblREZARVASYON" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblSATIS" EntityType="Self.TblSATIS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblSIPARIS" EntityType="Self.TblSIPARIS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblSIPARISDETAY" EntityType="Self.TblSIPARISDETAY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblSTOKHAREKET" EntityType="Self.TblSTOKHAREKET" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblURUN" EntityType="Self.TblURUN" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__TblBORDRO__Perso__693CA210" Association="Self.FK__TblBORDRO__Perso__693CA210">
+      <End Role="TblPERSONELLER" EntitySet="TblPERSONELLER" />
+      <End Role="TblBORDROLAR" EntitySet="TblBORDROLAR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CekSenet_Firma" Association="Self.FK_CekSenet_Firma">
+      <End Role="TblFIRMA" EntitySet="TblFIRMA" />
+      <End Role="TblCEKSENET" EntitySet="TblCEKSENET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CekSenet_Musteri" Association="Self.FK_CekSenet_Musteri">
+      <End Role="TblMUSTERILER" EntitySet="TblMUSTERILER" />
+      <End Role="TblCEKSENET" EntitySet="TblCEKSENET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CekSenet_Personel" Association="Self.FK_CekSenet_Personel">
+      <End Role="TblPERSONELLER" EntitySet="TblPERSONELLER" />
+      <End Role="TblCEKSENET" EntitySet="TblCEKSENET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CekSenet_Siparis" Association="Self.FK_CekSenet_Siparis">
+      <End Role="TblSIPARIS" EntitySet="TblSIPARIS" />
+      <End Role="TblCEKSENET" EntitySet="TblCEKSENET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gelir_Musteri" Association="Self.FK_Gelir_Musteri">
+      <End Role="TblMUSTERILER" EntitySet="TblMUSTERILER" />
+      <End Role="TblGELIR" EntitySet="TblGELIR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gelir_Personel" Association="Self.FK_Gelir_Personel">
+      <End Role="TblPERSONELLER" EntitySet="TblPERSONELLER" />
+      <End Role="TblGELIR" EntitySet="TblGELIR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gider_Firma" Association="Self.FK_Gider_Firma">
+      <End Role="TblFIRMA" EntitySet="TblFIRMA" />
+      <End Role="TblGIDER" EntitySet="TblGIDER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gider_Personel" Association="Self.FK_Gider_Personel">
+      <End Role="TblPERSONELLER" EntitySet="TblPERSONELLER" />
+      <End Role="TblGIDER" EntitySet="TblGIDER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GunlukHarcama_Firma" Association="Self.FK_GunlukHarcama_Firma">
+      <End Role="TblFIRMA" EntitySet="TblFIRMA" />
+      <End Role="TblGUNLUKHARCAMA" EntitySet="TblGUNLUKHARCAMA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GunlukHarcama_Personel" Association="Self.FK_GunlukHarcama_Personel">
+      <End Role="TblPERSONELLER" EntitySet="TblPERSONELLER" />
+      <End Role="TblGUNLUKHARCAMA" EntitySet="TblGUNLUKHARCAMA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Personeller_Odeme" Association="Self.FK_Personeller_Odeme">
+      <End Role="TblPERSONELLER" EntitySet="TblPERSONELLER" />
+      <End Role="TblPERSONELODEME" EntitySet="TblPERSONELODEME" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rezervasyon_Masa" Association="Self.FK_Rezervasyon_Masa">
+      <End Role="TblMASA" EntitySet="TblMASA" />
+      <End Role="TblREZARVASYON" EntitySet="TblREZARVASYON" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Siparis_Masa" Association="Self.FK_Siparis_Masa">
+      <End Role="TblMASA" EntitySet="TblMASA" />
+      <End Role="TblSIPARIS" EntitySet="TblSIPARIS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Siparis_Personel" Association="Self.FK_Siparis_Personel">
+      <End Role="TblPERSONELLER" EntitySet="TblPERSONELLER" />
+      <End Role="TblSIPARIS" EntitySet="TblSIPARIS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SiparisDetay_Siparis" Association="Self.FK_SiparisDetay_Siparis">
+      <End Role="TblSIPARIS" EntitySet="TblSIPARIS" />
+      <End Role="TblSIPARISDETAY" EntitySet="TblSIPARISDETAY" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SiparisDetay_Urun" Association="Self.FK_SiparisDetay_Urun">
+      <End Role="TblURUN" EntitySet="TblURUN" />
+      <End Role="TblSIPARISDETAY" EntitySet="TblSIPARISDETAY" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StokHareket_Firma" Association="Self.FK_StokHareket_Firma">
+      <End Role="TblFIRMA" EntitySet="TblFIRMA" />
+      <End Role="TblSTOKHAREKET" EntitySet="TblSTOKHAREKET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StokHareket_Personel" Association="Self.FK_StokHareket_Personel">
+      <End Role="TblPERSONELLER" EntitySet="TblPERSONELLER" />
+      <End Role="TblSTOKHAREKET" EntitySet="TblSTOKHAREKET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StokHareket_Urun" Association="Self.FK_StokHareket_Urun">
+      <End Role="TblURUN" EntitySet="TblURUN" />
+      <End Role="TblSTOKHAREKET" EntitySet="TblSTOKHAREKET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblMaas_Personel" Association="Self.FK_TblMaas_Personel">
+      <End Role="TblPERSONELLER" EntitySet="TblPERSONELLER" />
+      <End Role="TblMAAS" EntitySet="TblMAAS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblMusteriOdeme_TblFIRMA" Association="Self.FK_TblMusteriOdeme_TblFIRMA">
+      <End Role="TblFIRMA" EntitySet="TblFIRMA" />
+      <End Role="TblMODEME" EntitySet="TblMODEME" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblRezarvasyon_Musteri" Association="Self.FK_TblRezarvasyon_Musteri">
+      <End Role="TblMUSTERILER" EntitySet="TblMUSTERILER" />
+      <End Role="TblREZARVASYON" EntitySet="TblREZARVASYON" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblUrun_Firma" Association="Self.FK_TblUrun_Firma">
+      <End Role="TblFIRMA" EntitySet="TblFIRMA" />
+      <End Role="TblURUN" EntitySet="TblURUN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UrunKategori" Association="Self.FK_UrunKategori">
+      <End Role="TblKATEGORI" EntitySet="TblKATEGORI" />
+      <End Role="TblURUN" EntitySet="TblURUN" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

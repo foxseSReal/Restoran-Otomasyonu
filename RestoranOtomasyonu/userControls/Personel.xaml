@@ -34,7 +34,7 @@
         <!--Sol StackPanel-->
         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
             <TextBox x:Name="txtPersonelAra" Margin="0 20 0 0" Foreground="White" Width="200" FontSize="20" materialDesign:TextFieldAssist.TrailingIcon="Search" materialDesign:TextFieldAssist.HasTrailingIcon="True" materialDesign:TextFieldAssist.LeadingIcon="RunFast" materialDesign:HintAssist.Hint="Personel Ara" materialDesign:TextFieldAssist.TrailingIconSize="30" materialDesign:TransitionAssist.DisableTransitions="True" TextChanged="txtPersonelAra_TextChanged" />
-            <DataGrid IsReadOnly="True" x:Name="personel_DataGrid" Margin="10 10 0 0" CanUserAddRows="False" CanUserDeleteRows="False" Focusable="True" SelectedCellsChanged="personel_DataGrid_SelectedCellsChanged"  Width="500" Height="441" SelectionChanged="personel_DataGrid_SelectionChanged"/>
+            <DataGrid VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"  IsReadOnly="True" x:Name="personel_DataGrid" Margin="10 10 0 0" CanUserAddRows="False" CanUserDeleteRows="False" Focusable="True" SelectedCellsChanged="personel_DataGrid_SelectedCellsChanged"  Width="500" Height="441" SelectionChanged="personel_DataGrid_SelectionChanged"/>
         </StackPanel>
 
         <!--Sag StackPanel-->

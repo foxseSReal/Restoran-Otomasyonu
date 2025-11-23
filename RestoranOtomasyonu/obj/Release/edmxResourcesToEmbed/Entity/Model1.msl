@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RESTORANDBModelStoreContainer" CdmEntityContainer="RESTORANDBEntities1">
+    <EntitySetMapping Name="TblBORDROLAR">
+      <EntityTypeMapping TypeName="RESTORANDBModel.TblBORDROLAR">
+        <MappingFragment StoreEntitySet="TblBORDROLAR">
+          <ScalarProperty Name="BordroID" ColumnName="BordroID" />
+          <ScalarProperty Name="PersonelID" ColumnName="PersonelID" />
+          <ScalarProperty Name="Ay" ColumnName="Ay" />
+          <ScalarProperty Name="Yil" ColumnName="Yil" />
+          <ScalarProperty Name="AnaMaas" ColumnName="AnaMaas" />
+          <ScalarProperty Name="Prim" ColumnName="Prim" />
+          <ScalarProperty Name="Kesinti" ColumnName="Kesinti" />
+          <ScalarProperty Name="Avans" ColumnName="Avans" />
+          <ScalarProperty Name="ToplamOdeme" ColumnName="ToplamOdeme" />
+          <ScalarProperty Name="OdemeTarihi" ColumnName="OdemeTarihi" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblCEKSENET">
+      <EntityTypeMapping TypeName="RESTORANDBModel.TblCEKSENET">
+        <MappingFragment StoreEntitySet="TblCEKSENET">
+          <ScalarProperty Name="CeksenetId" ColumnName="CeksenetId" />
+          <ScalarProperty Name="SatisNo" ColumnName="SatisNo" />
+          <ScalarProperty Name="MusteriId" ColumnName="MusteriId" />
+          <ScalarProperty Name="FirmaId" ColumnName="FirmaId" />
+          <ScalarProperty Name="Tutar" ColumnName="Tutar" />
+          <ScalarProperty Name="OdemeTuru" ColumnName="OdemeTuru" />
+          <ScalarProperty Name="PersonelId" ColumnName="PersonelId" />
+          <ScalarProperty Name="YTarih" ColumnName="YTarih" />
+          <ScalarProperty Name="OTarih" ColumnName="OTarih" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="Durum" ColumnName="Durum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblFIRMA">
+      <EntityTypeMapping TypeName="RESTORANDBModel.TblFIRMA">
+        <MappingFragment StoreEntitySet="TblFIRMA">
+          <ScalarProperty Name="FirmaId" ColumnName="FirmaId" />
+          <ScalarProperty Name="FirmaAdi" ColumnName="FirmaAdi" />
+          <ScalarProperty Name="Unvan" ColumnName="Unvan" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Telefonİki" ColumnName="Telefonİki" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+          <ScalarProperty Name="WebSitesi" ColumnName="WebSitesi" />
+          <ScalarProperty Name="VergiDairesi" ColumnName="VergiDairesi" />
+          <ScalarProperty Name="HesapNo" ColumnName="HesapNo" />
+          <ScalarProperty Name="Durumu" ColumnName="Durumu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblGELIR">
+      <EntityTypeMapping TypeName="RESTORANDBModel.TblGELIR">
+        <MappingFragment StoreEntitySet="TblGELIR">
+          <ScalarProperty Name="GelirId" ColumnName="GelirId" />
+          <ScalarProperty Name="GelirTuru" ColumnName="GelirTuru" />
+          <ScalarProperty Name="Tutar" ColumnName="Tutar" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="PersonelId" ColumnName="PersonelId" />
+          <ScalarProperty Name="MusteriId" ColumnName="MusteriId" />
+          <ScalarProperty Name="ReferansTablo" ColumnName="ReferansTablo" />
+          <ScalarProperty Name="ReferansId" ColumnName="ReferansId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblGIDER">
+      <EntityTypeMapping TypeName="RESTORANDBModel.TblGIDER">
+        <MappingFragment StoreEntitySet="TblGIDER">
+          <ScalarProperty Name="GiderId" ColumnName="GiderId" />
+          <ScalarProperty Name="GiderTuru" ColumnName="GiderTuru" />
+          <ScalarProperty Name="Tutar" ColumnName="Tutar" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="PersonelId" ColumnName="PersonelId" />
+          <ScalarProperty Name="FirmaId" ColumnName="FirmaId" />
+          <ScalarProperty Name="ReferansTablo" ColumnName="ReferansTablo" />
+          <ScalarProperty Name="ReferansId" ColumnName="ReferansId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblGUNLUKHARCAMA">
+      <EntityTypeMapping TypeName="RESTORANDBModel.TblGUNLUKHARCAMA">
+        <MappingFragment StoreEntitySet="TblGUNLUKHARCAMA">
+          <ScalarProperty Name="GunlukId" ColumnName="GunlukId" />
+          <ScalarProperty Name="HarcananYer" ColumnName="HarcananYer" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="Saat" ColumnName="Saat" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="Tutar" ColumnName="Tutar" />
+          <ScalarProperty Name="PersonelID" ColumnName="PersonelID" />
+          <ScalarProperty Name="FirmaId" ColumnName="FirmaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblKATEGORI">
+      <EntityTypeMapping TypeName="RESTORANDBModel.TblKATEGORI">
+        <MappingFragment StoreEntitySet="TblKATEGORI">
+          <ScalarProperty Name="KategoriId" ColumnName="KategoriId" />
+          <ScalarProperty Name="KategoriAdi" ColumnName="KategoriAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblMAAS">
+      <EntityTypeMapping TypeName="RESTORANDBModel.TblMAAS">
+        <MappingFragment StoreEntitySet="TblMAAS">
+          <ScalarProperty Name="MaasTanimID" ColumnName="MaasTanimID" />
+          <ScalarProperty Name="PersonelID" ColumnName="PersonelID" />
+          <ScalarProperty Name="NetTutar" ColumnName="NetTutar" />
+          <ScalarProperty Name="BaslangicTarihi" ColumnName="BaslangicTarihi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblMASA">
+      <EntityTypeMapping TypeName="RESTORANDBModel.TblMASA">
+        <MappingFragment StoreEntitySet="TblMASA">
+          <ScalarProperty Name="MasaId" ColumnName="MasaId" />
+          <ScalarProperty Name="MasaNo" ColumnName="MasaNo" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="Tutar" ColumnName="Tutar" />
+          <ScalarProperty Name="Durum" ColumnName="Durum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblMODEME">
+      <EntityTypeMapping TypeName="RESTORANDBModel.TblMODEME">
+        <MappingFragment StoreEntitySet="TblMODEME">
+          <ScalarProperty Name="OdemeId" ColumnName="OdemeId" />
+          <ScalarProperty Name="FmusteriID" ColumnName="FmusteriID" />
+          <ScalarProperty Name="BorcTutar" ColumnName="BorcTutar" />
+          <ScalarProperty Name="OdenenTutar" ColumnName="OdenenTutar" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="durum" ColumnName="durum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblMUSTERILER">
+      <EntityTypeMapping TypeName="RESTORANDBModel.TblMUSTERILER">
+        <MappingFragment StoreEntitySet="TblMUSTERILER">
+          <ScalarProperty Name="MusteriId" ColumnName="MusteriId" />
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+          <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+          <ScalarProperty Name="MasaId" ColumnName="MasaId" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="Saat" ColumnName="Saat" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Durum" ColumnName="Durum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblPERSONELLER">
+      <EntityTypeMapping TypeName="RESTORANDBModel.TblPERSONELLER">
+        <MappingFragment StoreEntitySet="TblPERSONELLER">
+          <ScalarProperty Name="PersonelID" ColumnName="PersonelID" />
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+          <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+          <ScalarProperty Name="TCKimlikNo" ColumnName="TCKimlikNo" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Pozisyon" ColumnName="Pozisyon" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="Durum" ColumnName="Durum" />
+          <ScalarProperty Name="Resim" ColumnName="Resim" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblPERSONELODEME">
+      <EntityTypeMapping TypeName="RESTORANDBModel.TblPERSONELODEME">
+        <MappingFragment StoreEntitySet="TblPERSONELODEME">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PERSONEL" ColumnName="PERSONEL" />
+          <ScalarProperty Name="TUR" ColumnName="TUR" />
+          <ScalarProperty Name="ODEMEMIKTARI" ColumnName="ODEMEMIKTARI" />
+          <ScalarProperty Name="TARIH" ColumnName="TARIH" />
+          <ScalarProperty Name="ACIKLAMA" ColumnName="ACIKLAMA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblREZARVASYON">
+      <EntityTypeMapping TypeName="RESTORANDBModel.TblREZARVASYON">
+        <MappingFragment StoreEntitySet="TblREZARVASYON">
+          <ScalarProperty Name="RezarvasyonId" ColumnName="RezarvasyonId" />
+          <ScalarProperty Name="MusteriId" ColumnName="MusteriId" />
+          <ScalarProperty Name="MasaNoId" ColumnName="MasaNoId" />
+          <ScalarProperty Name="KisiSayisi" ColumnName="KisiSayisi" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="Saat" ColumnName="Saat" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="Durum" ColumnName="Durum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblSATIS">
+      <EntityTypeMapping TypeName="RESTORANDBModel.TblSATIS">
+        <MappingFragment StoreEntitySet="TblSATIS">
+          <ScalarProperty Name="SatisId" ColumnName="SatisId" />
+          <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblSIPARIS">
+      <EntityTypeMapping TypeName="RESTORANDBModel.TblSIPARIS">
+        <MappingFragment StoreEntitySet="TblSIPARIS">
+          <ScalarProperty Name="SiparisId" ColumnName="SiparisId" />
+          <ScalarProperty Name="MasaId" ColumnName="MasaId" />
+          <ScalarProperty Name="PersonelId" ColumnName="PersonelId" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="ToplamTutar" ColumnName="ToplamTutar" />
+          <ScalarProperty Name="OdemeDurumu" ColumnName="OdemeDurumu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblSIPARISDETAY">
+      <EntityTypeMapping TypeName="RESTORANDBModel.TblSIPARISDETAY">
+        <MappingFragment StoreEntitySet="TblSIPARISDETAY">
+          <ScalarProperty Name="SiparisDetayId" ColumnName="SiparisDetayId" />
+          <ScalarProperty Name="SiparisId" ColumnName="SiparisId" />
+          <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+          <ScalarProperty Name="Miktar" ColumnName="Miktar" />
+          <ScalarProperty Name="BirimFiyat" ColumnName="BirimFiyat" />
+          <ScalarProperty Name="ToplamTutar" ColumnName="ToplamTutar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblSTOKHAREKET">
+      <EntityTypeMapping TypeName="RESTORANDBModel.TblSTOKHAREKET">
+        <MappingFragment StoreEntitySet="TblSTOKHAREKET">
+          <ScalarProperty Name="StokHareketId" ColumnName="StokHareketId" />
+          <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+          <ScalarProperty Name="FirmaId" ColumnName="FirmaId" />
+          <ScalarProperty Name="HareketTipi" ColumnName="HareketTipi" />
+          <ScalarProperty Name="Miktar" ColumnName="Miktar" />
+          <ScalarProperty Name="BirimTuru" ColumnName="BirimTuru" />
+          <ScalarProperty Name="BirimFiyat" ColumnName="BirimFiyat" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="Saat" ColumnName="Saat" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="PersonelId" ColumnName="PersonelId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblURUN">
+      <EntityTypeMapping TypeName="RESTORANDBModel.TblURUN">
+        <MappingFragment StoreEntitySet="TblURUN">
+          <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+          <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+          <ScalarProperty Name="Fiyat" ColumnName="Fiyat" />
+          <ScalarProperty Name="KategoriId" ColumnName="KategoriId" />
+          <ScalarProperty Name="FirmaId" ColumnName="FirmaId" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="StokMiktari" ColumnName="StokMiktari" />
+          <ScalarProperty Name="Birim" ColumnName="Birim" />
+          <ScalarProperty Name="Durum" ColumnName="Durum" />
+          <ScalarProperty Name="ResimYolu" ColumnName="ResimYolu" />
+          <ScalarProperty Name="EklenmeTarihi" ColumnName="EklenmeTarihi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

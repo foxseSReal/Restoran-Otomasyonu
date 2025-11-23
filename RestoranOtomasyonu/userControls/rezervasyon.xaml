@@ -34,7 +34,7 @@
                 <Button x:Name="rezervasyonBtn_Filtrele" Content="Filtrele" Width="80" Margin="10 20 0 0" Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}" Click="rezervasyonBtn_Filtrele_Click"/>
 
             </StackPanel>
-            <DataGrid x:Name="rezervasyon_DataGrid" Margin="20 5 0 0" Width="480" Height="600" Foreground="Black" SelectionChanged="rezervasyon_DataGrid_SelectionChanged"/>
+            <DataGrid VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"  x:Name="rezervasyon_DataGrid" Margin="20 5 0 0" Width="480" Height="600" Foreground="Black" SelectionChanged="rezervasyon_DataGrid_SelectionChanged"/>
         </StackPanel>
         <!---->
 

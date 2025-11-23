@@ -91,7 +91,7 @@
         <!-- DATA GRID -->
         <Border Grid.Row="2" CornerRadius="10"
             materialDesign:ElevationAssist.Elevation="Dp2" Padding="10">
-            <DataGrid x:Name="satis_DataGrid" Width="950" AutoGenerateColumns="True" CanUserAddRows="False" HeadersVisibility="Column" RowHeight="40" FontSize="13" Foreground="Black"/>
+            <DataGrid VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"  x:Name="satis_DataGrid" Width="950" AutoGenerateColumns="True" CanUserAddRows="False" HeadersVisibility="Column" RowHeight="40" FontSize="13" Foreground="Black"/>
         </Border>
 
         <!-- ALT BİLGİ PANELİ -->

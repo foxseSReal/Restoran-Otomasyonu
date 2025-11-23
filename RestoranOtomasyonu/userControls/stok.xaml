@@ -33,7 +33,7 @@
                 <Button Content="Filtrele" Margin="30 0 0 0" Width="80" Height="30" Style="{StaticResource MaterialDesignRaisedDarkButton}" Click="Button_Click_2" />
 
             </StackPanel>
-            <DataGrid x:Name="stokDataGrid" Margin="10 10 0 0" Width="460" Height="570" SelectionChanged="stokDataGrid_SelectionChanged"/>
+            <DataGrid VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"  x:Name="stokDataGrid" Margin="10 10 0 0" Width="460" Height="570" SelectionChanged="stokDataGrid_SelectionChanged"/>
         </StackPanel>
 
         <!--Sag-->
