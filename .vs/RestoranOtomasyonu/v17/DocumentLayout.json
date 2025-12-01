@@ -1,48 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Yusuf\\Desktop\\Restoran Otomasyonu\\RestoranOtomasyonu\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{76CCA350-EB37-4E60-B22C-5786DCB65DEE}|RestoranOtomasyonu\\RestoranOtomasyonu.csproj|c:\\users\\yusuf\\desktop\\restoran otomasyonu\\restoranotomasyonu\\restoranotomasyonu\\usercontrols\\urunler.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{76CCA350-EB37-4E60-B22C-5786DCB65DEE}|RestoranOtomasyonu\\RestoranOtomasyonu.csproj|solutionrelative:restoranotomasyonu\\usercontrols\\urunler.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{76CCA350-EB37-4E60-B22C-5786DCB65DEE}|RestoranOtomasyonu\\RestoranOtomasyonu.csproj|c:\\users\\yusuf\\desktop\\restoran otomasyonu\\restoranotomasyonu\\restoranotomasyonu\\usercontrols\\stok.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{76CCA350-EB37-4E60-B22C-5786DCB65DEE}|RestoranOtomasyonu\\RestoranOtomasyonu.csproj|solutionrelative:restoranotomasyonu\\usercontrols\\stok.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{76CCA350-EB37-4E60-B22C-5786DCB65DEE}|RestoranOtomasyonu\\RestoranOtomasyonu.csproj|c:\\users\\yusuf\\desktop\\restoran otomasyonu\\restoranotomasyonu\\restoranotomasyonu\\usercontrols\\satisdurumu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{76CCA350-EB37-4E60-B22C-5786DCB65DEE}|RestoranOtomasyonu\\RestoranOtomasyonu.csproj|solutionrelative:restoranotomasyonu\\usercontrols\\satisdurumu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{76CCA350-EB37-4E60-B22C-5786DCB65DEE}|RestoranOtomasyonu\\RestoranOtomasyonu.csproj|c:\\users\\yusuf\\desktop\\restoran otomasyonu\\restoranotomasyonu\\restoranotomasyonu\\usercontrols\\rezervasyon.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{76CCA350-EB37-4E60-B22C-5786DCB65DEE}|RestoranOtomasyonu\\RestoranOtomasyonu.csproj|solutionrelative:restoranotomasyonu\\usercontrols\\rezervasyon.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{76CCA350-EB37-4E60-B22C-5786DCB65DEE}|RestoranOtomasyonu\\RestoranOtomasyonu.csproj|c:\\users\\yusuf\\desktop\\restoran otomasyonu\\restoranotomasyonu\\restoranotomasyonu\\usercontrols\\personel.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{76CCA350-EB37-4E60-B22C-5786DCB65DEE}|RestoranOtomasyonu\\RestoranOtomasyonu.csproj|solutionrelative:restoranotomasyonu\\usercontrols\\personel.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{76CCA350-EB37-4E60-B22C-5786DCB65DEE}|RestoranOtomasyonu\\RestoranOtomasyonu.csproj|c:\\users\\yusuf\\desktop\\restoran otomasyonu\\restoranotomasyonu\\restoranotomasyonu\\usercontrols\\musterifirma.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{76CCA350-EB37-4E60-B22C-5786DCB65DEE}|RestoranOtomasyonu\\RestoranOtomasyonu.csproj|solutionrelative:restoranotomasyonu\\usercontrols\\musterifirma.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{76CCA350-EB37-4E60-B22C-5786DCB65DEE}|RestoranOtomasyonu\\RestoranOtomasyonu.csproj|c:\\users\\yusuf\\desktop\\restoran otomasyonu\\restoranotomasyonu\\restoranotomasyonu\\usercontrols\\muhasebe.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{76CCA350-EB37-4E60-B22C-5786DCB65DEE}|RestoranOtomasyonu\\RestoranOtomasyonu.csproj|solutionrelative:restoranotomasyonu\\usercontrols\\muhasebe.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{76CCA350-EB37-4E60-B22C-5786DCB65DEE}|RestoranOtomasyonu\\RestoranOtomasyonu.csproj|c:\\users\\yusuf\\desktop\\restoran otomasyonu\\restoranotomasyonu\\restoranotomasyonu\\usercontrols\\gunlukharcama.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{76CCA350-EB37-4E60-B22C-5786DCB65DEE}|RestoranOtomasyonu\\RestoranOtomasyonu.csproj|solutionrelative:restoranotomasyonu\\usercontrols\\gunlukharcama.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{76CCA350-EB37-4E60-B22C-5786DCB65DEE}|RestoranOtomasyonu\\RestoranOtomasyonu.csproj|c:\\users\\yusuf\\desktop\\restoran otomasyonu\\restoranotomasyonu\\restoranotomasyonu\\usercontrols\\ceksenet.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{76CCA350-EB37-4E60-B22C-5786DCB65DEE}|RestoranOtomasyonu\\RestoranOtomasyonu.csproj|solutionrelative:restoranotomasyonu\\usercontrols\\ceksenet.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{76CCA350-EB37-4E60-B22C-5786DCB65DEE}|RestoranOtomasyonu\\RestoranOtomasyonu.csproj|c:\\users\\yusuf\\desktop\\restoran otomasyonu\\restoranotomasyonu\\restoranotomasyonu\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76CCA350-EB37-4E60-B22C-5786DCB65DEE}|RestoranOtomasyonu\\RestoranOtomasyonu.csproj|solutionrelative:restoranotomasyonu\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -50,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -67,127 +26,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "urunler.xaml",
-              "DocumentMoniker": "C:\\Users\\Yusuf\\Desktop\\Restoran Otomasyonu\\RestoranOtomasyonu\\RestoranOtomasyonu\\userControls\\urunler.xaml",
-              "RelativeDocumentMoniker": "RestoranOtomasyonu\\userControls\\urunler.xaml",
-              "ToolTip": "C:\\Users\\Yusuf\\Desktop\\Restoran Otomasyonu\\RestoranOtomasyonu\\RestoranOtomasyonu\\userControls\\urunler.xaml",
-              "RelativeToolTip": "RestoranOtomasyonu\\userControls\\urunler.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-23T21:53:35.463Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "stok.xaml",
-              "DocumentMoniker": "C:\\Users\\Yusuf\\Desktop\\Restoran Otomasyonu\\RestoranOtomasyonu\\RestoranOtomasyonu\\userControls\\stok.xaml",
-              "RelativeDocumentMoniker": "RestoranOtomasyonu\\userControls\\stok.xaml",
-              "ToolTip": "C:\\Users\\Yusuf\\Desktop\\Restoran Otomasyonu\\RestoranOtomasyonu\\RestoranOtomasyonu\\userControls\\stok.xaml",
-              "RelativeToolTip": "RestoranOtomasyonu\\userControls\\stok.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-23T21:53:26.208Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "satisDurumu.xaml",
-              "DocumentMoniker": "C:\\Users\\Yusuf\\Desktop\\Restoran Otomasyonu\\RestoranOtomasyonu\\RestoranOtomasyonu\\userControls\\satisDurumu.xaml",
-              "RelativeDocumentMoniker": "RestoranOtomasyonu\\userControls\\satisDurumu.xaml",
-              "ToolTip": "C:\\Users\\Yusuf\\Desktop\\Restoran Otomasyonu\\RestoranOtomasyonu\\RestoranOtomasyonu\\userControls\\satisDurumu.xaml",
-              "RelativeToolTip": "RestoranOtomasyonu\\userControls\\satisDurumu.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-23T21:53:17.22Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "rezervasyon.xaml",
-              "DocumentMoniker": "C:\\Users\\Yusuf\\Desktop\\Restoran Otomasyonu\\RestoranOtomasyonu\\RestoranOtomasyonu\\userControls\\rezervasyon.xaml",
-              "RelativeDocumentMoniker": "RestoranOtomasyonu\\userControls\\rezervasyon.xaml",
-              "ToolTip": "C:\\Users\\Yusuf\\Desktop\\Restoran Otomasyonu\\RestoranOtomasyonu\\RestoranOtomasyonu\\userControls\\rezervasyon.xaml",
-              "RelativeToolTip": "RestoranOtomasyonu\\userControls\\rezervasyon.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-23T21:53:04.605Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Personel.xaml",
-              "DocumentMoniker": "C:\\Users\\Yusuf\\Desktop\\Restoran Otomasyonu\\RestoranOtomasyonu\\RestoranOtomasyonu\\userControls\\Personel.xaml",
-              "RelativeDocumentMoniker": "RestoranOtomasyonu\\userControls\\Personel.xaml",
-              "ToolTip": "C:\\Users\\Yusuf\\Desktop\\Restoran Otomasyonu\\RestoranOtomasyonu\\RestoranOtomasyonu\\userControls\\Personel.xaml",
-              "RelativeToolTip": "RestoranOtomasyonu\\userControls\\Personel.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-23T21:52:53.645Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "musteriFirma.xaml",
-              "DocumentMoniker": "C:\\Users\\Yusuf\\Desktop\\Restoran Otomasyonu\\RestoranOtomasyonu\\RestoranOtomasyonu\\userControls\\musteriFirma.xaml",
-              "RelativeDocumentMoniker": "RestoranOtomasyonu\\userControls\\musteriFirma.xaml",
-              "ToolTip": "C:\\Users\\Yusuf\\Desktop\\Restoran Otomasyonu\\RestoranOtomasyonu\\RestoranOtomasyonu\\userControls\\musteriFirma.xaml",
-              "RelativeToolTip": "RestoranOtomasyonu\\userControls\\musteriFirma.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-23T21:52:42.707Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "muhasebe.xaml",
-              "DocumentMoniker": "C:\\Users\\Yusuf\\Desktop\\Restoran Otomasyonu\\RestoranOtomasyonu\\RestoranOtomasyonu\\userControls\\muhasebe.xaml",
-              "RelativeDocumentMoniker": "RestoranOtomasyonu\\userControls\\muhasebe.xaml",
-              "ToolTip": "C:\\Users\\Yusuf\\Desktop\\Restoran Otomasyonu\\RestoranOtomasyonu\\RestoranOtomasyonu\\userControls\\muhasebe.xaml",
-              "RelativeToolTip": "RestoranOtomasyonu\\userControls\\muhasebe.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-23T21:52:31.286Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "gunlukHarcama.xaml",
-              "DocumentMoniker": "C:\\Users\\Yusuf\\Desktop\\Restoran Otomasyonu\\RestoranOtomasyonu\\RestoranOtomasyonu\\userControls\\gunlukHarcama.xaml",
-              "RelativeDocumentMoniker": "RestoranOtomasyonu\\userControls\\gunlukHarcama.xaml",
-              "ToolTip": "C:\\Users\\Yusuf\\Desktop\\Restoran Otomasyonu\\RestoranOtomasyonu\\RestoranOtomasyonu\\userControls\\gunlukHarcama.xaml",
-              "RelativeToolTip": "RestoranOtomasyonu\\userControls\\gunlukHarcama.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-23T21:52:16.26Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "cekSenet.xaml",
-              "DocumentMoniker": "C:\\Users\\Yusuf\\Desktop\\Restoran Otomasyonu\\RestoranOtomasyonu\\RestoranOtomasyonu\\userControls\\cekSenet.xaml",
-              "RelativeDocumentMoniker": "RestoranOtomasyonu\\userControls\\cekSenet.xaml",
-              "ToolTip": "C:\\Users\\Yusuf\\Desktop\\Restoran Otomasyonu\\RestoranOtomasyonu\\RestoranOtomasyonu\\userControls\\cekSenet.xaml",
-              "RelativeToolTip": "RestoranOtomasyonu\\userControls\\cekSenet.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-23T21:51:41.187Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Yusuf\\Desktop\\Restoran Otomasyonu\\RestoranOtomasyonu\\RestoranOtomasyonu\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "RestoranOtomasyonu\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\Yusuf\\Desktop\\Restoran Otomasyonu\\RestoranOtomasyonu\\RestoranOtomasyonu\\MainWindow.xaml.cs",
-              "RelativeToolTip": "RestoranOtomasyonu\\MainWindow.xaml.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAowGQAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T22:41:01.708Z",
-              "EditorCaption": ""
             }
           ]
         }

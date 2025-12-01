@@ -1,4 +1,4 @@
-﻿using ProjePersonelYonetım.userControls;
+﻿using RestoranOtomasyonu.Entity;
 using RestoranOtomasyonu.userControls;
 using System;
 using System.Collections.Generic;

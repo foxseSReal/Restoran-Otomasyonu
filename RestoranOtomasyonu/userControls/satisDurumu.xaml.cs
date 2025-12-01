@@ -14,14 +14,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProjePersonelYonetım.userControls
+namespace RestoranOtomasyonu.userControls
 {
     /// <summary>
     /// satisDurumu.xaml etkileşim mantığı
     /// </summary>
     public partial class satisDurumu : UserControl
     {
-        RESTORANDBEntities1 db = new RESTORANDBEntities1();
+        RESTORANDBEntities db = new RESTORANDBEntities();
         
         public satisDurumu()
         {

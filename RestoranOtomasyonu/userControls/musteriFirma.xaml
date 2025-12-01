@@ -1,10 +1,10 @@
-﻿<UserControl x:Class="ProjePersonelYonetım.userControls.musteriFirma"
+﻿<UserControl x:Class="RestoranOtomasyonu.userControls.musteriFirma"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:local="clr-namespace:ProjePersonelYonetım.userControls"
+             xmlns:local="clr-namespace:RestoranOtomasyonu.userControls"
              mc:Ignorable="d" 
              d:DesignHeight="784" d:DesignWidth="1036">
     <Grid>
@@ -29,9 +29,9 @@
     FontSize="18"
     MaxLength="36" TextChanged="musteriFirma_Ara_TextChanged"/>
             <Separator Width="400" Height="20" Margin="0 5 0 0"/>
-            <DataGrid VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"  x:Name="musteri_DataGrid" Margin="20 5 0 0" Width="480" Height="280" AutoGenerateColumns="True" Foreground="Black" SelectionChanged="musteri_DataGrid_SelectionChanged"/>
+            <DataGrid x:Name="musteri_DataGrid" Margin="20 5 0 0" Width="480" Height="280" AutoGenerateColumns="True" Foreground="Black" SelectionChanged="musteri_DataGrid_SelectionChanged"/>
             <Separator Width="400" Height="20" Margin="0 10 0 0" Foreground="White"/>
-            <DataGrid VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"  x:Name="Modeme_DataGrid" Margin="20 5 0 0" Width="480" Height="280" AutoGenerateColumns="True" Foreground="Black" SelectionChanged="Modeme_DataGrid_SelectionChanged" />
+            <DataGrid x:Name="Modeme_DataGrid" Margin="20 5 0 0" Width="480" Height="280" AutoGenerateColumns="True" Foreground="Black" SelectionChanged="Modeme_DataGrid_SelectionChanged" />
 
         </StackPanel>
         <!---->

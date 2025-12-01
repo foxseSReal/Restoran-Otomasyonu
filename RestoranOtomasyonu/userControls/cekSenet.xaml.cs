@@ -1,6 +1,5 @@
 ﻿using RestoranOtomasyonu.Entity;
 using System;
-using System.Data.Entity;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
@@ -16,14 +15,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProjePersonelYonetım.userControls
+namespace RestoranOtomasyonu.userControls
 {
     /// <summary>
     /// cekSenet.xaml etkileşim mantığı
     /// </summary>
     public partial class cekSenet : UserControl
     {
-        RESTORANDBEntities1 db = new RESTORANDBEntities1();
+        RESTORANDBEntities db = new RESTORANDBEntities();
         public cekSenet()
         {
             InitializeComponent();

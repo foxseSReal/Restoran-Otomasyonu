@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProjePersonelYonetım
+namespace RestoranOtomasyonu
 {
     using System;
     using System.Data.Entity;

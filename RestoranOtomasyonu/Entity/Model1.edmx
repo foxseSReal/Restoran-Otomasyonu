@@ -1265,7 +1265,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="RESTORANDBEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="RESTORANDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="TblBORDROLAR" EntityType="Self.TblBORDROLAR" />
           <EntitySet Name="TblCEKSENET" EntityType="Self.TblCEKSENET" />
           <EntitySet Name="TblFIRMA" EntityType="Self.TblFIRMA" />
@@ -1391,7 +1391,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="RESTORANDBModelStoreContainer" CdmEntityContainer="RESTORANDBEntities1">
+        <EntityContainerMapping StorageEntityContainer="RESTORANDBModelStoreContainer" CdmEntityContainer="RESTORANDBEntities">
           <EntitySetMapping Name="TblBORDROLAR">
             <EntityTypeMapping TypeName="RESTORANDBModel.TblBORDROLAR">
               <MappingFragment StoreEntitySet="TblBORDROLAR">

@@ -16,14 +16,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProjePersonelYonetım.userControls
+namespace RestoranOtomasyonu.userControls
 {
     /// <summary>
     /// urunler.xaml etkileşim mantığı
     /// </summary>
     public partial class urunler : UserControl
     {
-        RESTORANDBEntities1 db = new RESTORANDBEntities1();
+        RESTORANDBEntities db = new RESTORANDBEntities();
         private string seciliResimYolu = null; // <--- YENİ SATIR: Seçilen resmin dosya yolunu tutmak için
 
         public urunler()

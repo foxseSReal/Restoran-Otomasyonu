@@ -1,10 +1,10 @@
-﻿<UserControl x:Class="ProjePersonelYonetım.userControls.Personel"
+﻿<UserControl x:Class="RestoranOtomasyonu.userControls.Personel"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:local="clr-namespace:ProjePersonelYonetım.userControls"
+             xmlns:local="clr-namespace:RestoranOtomasyonu.userControls"
              mc:Ignorable="d" 
              Loaded="UserControl_Loaded"
              d:DesignHeight="784" d:DesignWidth="1036">
@@ -34,7 +34,7 @@
         <!--Sol StackPanel-->
         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
             <TextBox x:Name="txtPersonelAra" Margin="0 20 0 0" Foreground="White" Width="200" FontSize="20" materialDesign:TextFieldAssist.TrailingIcon="Search" materialDesign:TextFieldAssist.HasTrailingIcon="True" materialDesign:TextFieldAssist.LeadingIcon="RunFast" materialDesign:HintAssist.Hint="Personel Ara" materialDesign:TextFieldAssist.TrailingIconSize="30" materialDesign:TransitionAssist.DisableTransitions="True" TextChanged="txtPersonelAra_TextChanged" />
-            <DataGrid VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"  IsReadOnly="True" x:Name="personel_DataGrid" Margin="10 10 0 0" CanUserAddRows="False" CanUserDeleteRows="False" Focusable="True" SelectedCellsChanged="personel_DataGrid_SelectedCellsChanged"  Width="500" Height="441" SelectionChanged="personel_DataGrid_SelectionChanged"/>
+            <DataGrid IsReadOnly="True" x:Name="personel_DataGrid" Margin="10 10 0 0" CanUserAddRows="False" CanUserDeleteRows="False" Focusable="True" SelectedCellsChanged="personel_DataGrid_SelectedCellsChanged"  Width="500" Height="441" SelectionChanged="personel_DataGrid_SelectionChanged"/>
         </StackPanel>
 
         <!--Sag StackPanel-->

@@ -12,7 +12,7 @@
 using MaterialDesignThemes.Wpf;
 using MaterialDesignThemes.Wpf.Converters;
 using MaterialDesignThemes.Wpf.Transitions;
-using ProjePersonelYonetım.userControls;
+using RestoranOtomasyonu.userControls;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -35,7 +35,7 @@ using System.Windows.Shapes;
 using System.Windows.Shell;
 
 
-namespace ProjePersonelYonetım.userControls {
+namespace RestoranOtomasyonu.userControls {
     
     
     /// <summary>
@@ -191,7 +191,7 @@ namespace ProjePersonelYonetım.userControls {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ProjePersonelYonetım;component/usercontrols/musretifirma.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/RestoranOtomasyonu;component/usercontrols/musretifirma.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\userControls\musretiFirma.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

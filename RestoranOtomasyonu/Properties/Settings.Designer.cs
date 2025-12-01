@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProjePersonelYonetım.Properties
+namespace RestoranOtomasyonu.Properties
 {
 
 

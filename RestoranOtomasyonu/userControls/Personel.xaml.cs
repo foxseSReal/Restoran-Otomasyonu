@@ -18,7 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static MaterialDesignThemes.Wpf.Theme;
 
-namespace ProjePersonelYonetım.userControls
+namespace RestoranOtomasyonu.userControls
 {
     /// <summary>
     /// Personel.xaml etkileşim mantığı
@@ -27,7 +27,7 @@ namespace ProjePersonelYonetım.userControls
     {
 
         //==================================================//
-        RESTORANDBEntities1 ResDB = new RESTORANDBEntities1();
+        RESTORANDBEntities ResDB = new RESTORANDBEntities();
         //==================================================//
 
         public Personel()

@@ -13,10 +13,10 @@ namespace RestoranOtomasyonu.Entity
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RESTORANDBEntities1 : DbContext
+    public partial class RESTORANDBEntities : DbContext
     {
-        public RESTORANDBEntities1()
-            : base("name=RESTORANDBEntities1")
+        public RESTORANDBEntities()
+            : base("name=RESTORANDBEntities")
         {
         }
     

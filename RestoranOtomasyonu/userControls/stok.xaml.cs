@@ -14,14 +14,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProjePersonelYonetım.userControls
+namespace RestoranOtomasyonu.userControls
 {
     /// <summary>
     /// stok.xaml etkileşim mantığı
     /// </summary>
     public partial class stok : UserControl
     {
-        RESTORANDBEntities1 db = new RESTORANDBEntities1();
+        RESTORANDBEntities db = new RESTORANDBEntities();
         public stok()
         {
             InitializeComponent();

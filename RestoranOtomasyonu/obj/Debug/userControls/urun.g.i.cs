@@ -52,7 +52,7 @@ namespace PersonelHizmetBolum2.userControls {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ProjePersonelYonetım;component/usercontrols/urun.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/RestoranOtomasyonu;component/usercontrols/urun.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\userControls\urun.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

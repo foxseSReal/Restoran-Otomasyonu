@@ -21,11 +21,10 @@ namespace RestoranOtomasyonu.userControls
     /// </summary>
     public partial class rezervasyon : UserControl
     {
-        RESTORANDBEntities1 db = new RESTORANDBEntities1();
+        RESTORANDBEntities db = new RESTORANDBEntities();
         public rezervasyon()
         {
             InitializeComponent();
-
             RezarvasyonListele();
             var rezarvasyon = db.TblREZARVASYON.OrderByDescending(x => x.RezarvasyonId).FirstOrDefault();
             if (rezarvasyon != null)

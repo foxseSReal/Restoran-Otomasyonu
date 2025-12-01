@@ -1,10 +1,10 @@
-﻿<UserControl x:Class="ProjePersonelYonetım.userControls.satisDurumu"
+﻿<UserControl x:Class="RestoranOtomasyonu.userControls.satisDurumu"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ProjePersonelYonetım.userControls"
+             xmlns:local="clr-namespace:RestoranOtomasyonu.userControls"
              mc:Ignorable="d" 
              d:DesignHeight="784" d:DesignWidth="1036">
     <Grid Margin="20">
@@ -91,7 +91,7 @@
         <!-- DATA GRID -->
         <Border Grid.Row="2" CornerRadius="10"
             materialDesign:ElevationAssist.Elevation="Dp2" Padding="10">
-            <DataGrid VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"  x:Name="satis_DataGrid" Width="950" AutoGenerateColumns="True" CanUserAddRows="False" HeadersVisibility="Column" RowHeight="40" FontSize="13" Foreground="Black"/>
+            <DataGrid x:Name="satis_DataGrid" Width="950" AutoGenerateColumns="True" CanUserAddRows="False" HeadersVisibility="Column" RowHeight="40" FontSize="13" Foreground="Black"/>
         </Border>
 
         <!-- ALT BİLGİ PANELİ -->

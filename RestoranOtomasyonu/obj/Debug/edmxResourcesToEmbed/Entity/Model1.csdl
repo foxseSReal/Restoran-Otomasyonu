@@ -592,7 +592,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="RESTORANDBEntities1" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="RESTORANDBEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="TblBORDROLAR" EntityType="Self.TblBORDROLAR" />
     <EntitySet Name="TblCEKSENET" EntityType="Self.TblCEKSENET" />
     <EntitySet Name="TblFIRMA" EntityType="Self.TblFIRMA" />

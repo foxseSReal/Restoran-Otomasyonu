@@ -1,54 +1,296 @@
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\bin\Debug\RestoranOtomasyonu.exe.config
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\bin\Debug\RestoranOtomasyonu.exe
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\bin\Debug\RestoranOtomasyonu.pdb
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\bin\Debug\EntityFramework.dll
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\bin\Debug\MaterialDesignColors.dll
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\bin\Debug\MaterialDesignThemes.Wpf.dll
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\bin\Debug\Microsoft.Xaml.Behaviors.dll
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\bin\Debug\EntityFramework.xml
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\bin\Debug\MaterialDesignThemes.Wpf.xml
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\bin\Debug\Microsoft.Xaml.Behaviors.pdb
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\bin\Debug\Microsoft.Xaml.Behaviors.xml
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.csproj.AssemblyReference.cache
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\Styles\Buttons.baml
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\Styles\iconDesing.baml
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\Styles\UserControlCards.baml
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\MainWindow.g.cs
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\userControls\cekSenet.g.cs
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\userControls\gunlukHarcama.g.cs
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\userControls\muhasebe.g.cs
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\userControls\musteriFirma.g.cs
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\userControls\Personel.g.cs
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\userControls\rezervasyon.g.cs
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\userControls\satisDurumu.g.cs
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\userControls\stok.g.cs
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\userControls\urunler.g.cs
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\App.g.cs
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu_Content.g.cs
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu_MarkupCompile.cache
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu_MarkupCompile.lref
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\App.baml
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\MainWindow.baml
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\userControls\cekSenet.baml
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\userControls\gunlukHarcama.baml
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\userControls\muhasebe.baml
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\userControls\musteriFirma.baml
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\userControls\Personel.baml
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\userControls\rezervasyon.baml
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\userControls\satisDurumu.baml
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\userControls\stok.baml
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\userControls\urunler.baml
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.g.resources
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.Properties.Resources.resources
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.csproj.GenerateResource.cache
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.csproj.CoreCompileInputs.cache
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\Restoran.18DBF1B4.Up2Date
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.exe
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.pdb
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\ProjePersonelYonetım\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.exe.config
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\RestoranOtomasyonu.exe.config
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\RestoranOtomasyonu.exe
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\RestoranOtomasyonu.pdb
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\MaterialDesignColors.dll
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\Microsoft.Xaml.Behaviors.dll
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\Microsoft.Xaml.Behaviors.xml
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.csproj.AssemblyReference.cache
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\MainWindow.g.cs
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\App.g.cs
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu_MarkupCompile.cache
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu_MarkupCompile.lref
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\MainWindow.baml
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.g.resources
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.Properties.Resources.resources
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.csproj.GenerateResource.cache
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.csproj.CoreCompileInputs.cache
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\ProjePer.7102D906.Up2Date
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.exe
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.pdb
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.exe.config
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\Styles\Borders.baml
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\Styles\Buttons.baml
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\Styles\iconDesing.baml
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\cekSenet.g.cs
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\gunlukHarcama.g.cs
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\muhasebe.g.cs
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\musteri.g.cs
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\Personel.g.cs
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\rezervasyon.g.cs
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\satisDurumu.g.cs
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\stok.g.cs
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\urun.g.cs
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\App.baml
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\cekSenet.baml
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\gunlukHarcama.baml
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\muhasebe.baml
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\musteri.baml
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\Personel.baml
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\rezervasyon.baml
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\satisDurumu.baml
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\stok.baml
+C:\Users\Yusuf\Desktop\WPFProjeOrneklerı\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\urun.baml
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\RestoranOtomasyonu.exe.config
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\RestoranOtomasyonu.exe
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\RestoranOtomasyonu.pdb
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\MaterialDesignColors.dll
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\Microsoft.Xaml.Behaviors.dll
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\Microsoft.Xaml.Behaviors.xml
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.csproj.AssemblyReference.cache
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\Styles\Borders.baml
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\Styles\Buttons.baml
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\Styles\iconDesing.baml
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\MainWindow.g.cs
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\cekSenet.g.cs
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\gunlukHarcama.g.cs
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\muhasebe.g.cs
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\musteri.g.cs
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\Personel.g.cs
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\rezervasyon.g.cs
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\satisDurumu.g.cs
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\stok.g.cs
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\urun.g.cs
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\App.g.cs
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu_MarkupCompile.cache
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu_MarkupCompile.lref
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\App.baml
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\MainWindow.baml
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\cekSenet.baml
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\gunlukHarcama.baml
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\muhasebe.baml
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\musteri.baml
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\Personel.baml
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\rezervasyon.baml
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\satisDurumu.baml
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\stok.baml
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\urun.baml
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.g.resources
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.Properties.Resources.resources
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.csproj.GenerateResource.cache
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.csproj.CoreCompileInputs.cache
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\ProjePer.7102D906.Up2Date
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.exe
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.pdb
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\EntityFramework.dll
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\EntityFramework.xml
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu_Content.g.cs
+C:\Users\Yusuf\Desktop\proje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.exe.config
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\RestoranOtomasyonu.exe.config
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\RestoranOtomasyonu.exe
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\RestoranOtomasyonu.pdb
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\EntityFramework.dll
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\MaterialDesignColors.dll
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\Microsoft.Xaml.Behaviors.dll
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\EntityFramework.xml
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\Microsoft.Xaml.Behaviors.xml
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.csproj.AssemblyReference.cache
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.exe.config
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\Styles\Buttons.baml
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\Styles\iconDesing.baml
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\MainWindow.g.cs
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\cekSenet.g.cs
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\gunlukHarcama.g.cs
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\muhasebe.g.cs
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\Personel.g.cs
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\rezervasyon.g.cs
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\satisDurumu.g.cs
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\stok.g.cs
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\App.g.cs
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu_Content.g.cs
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu_MarkupCompile.cache
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu_MarkupCompile.lref
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\App.baml
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\MainWindow.baml
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\cekSenet.baml
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\gunlukHarcama.baml
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\muhasebe.baml
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\Personel.baml
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\rezervasyon.baml
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\satisDurumu.baml
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\stok.baml
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.g.resources
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.Properties.Resources.resources
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.csproj.GenerateResource.cache
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.csproj.CoreCompileInputs.cache
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\ProjePer.7102D906.Up2Date
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.exe
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.pdb
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.csproj.AssemblyReference.cache
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\Styles\Buttons.baml
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\Styles\iconDesing.baml
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\Styles\UserControlCards.baml
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\MainWindow.g.cs
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\App.g.cs
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu_Content.g.cs
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu_MarkupCompile.cache
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu_MarkupCompile.lref
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.exe
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.pdb
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\cekSenet.g.cs
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\RestoranOtomasyonu.exe.config
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\RestoranOtomasyonu.exe
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\RestoranOtomasyonu.pdb
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\EntityFramework.dll
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\MaterialDesignColors.dll
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\Microsoft.Xaml.Behaviors.dll
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\EntityFramework.xml
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\Microsoft.Xaml.Behaviors.xml
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\App.baml
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\MainWindow.baml
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\cekSenet.baml
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.g.resources
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.Properties.Resources.resources
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.csproj.GenerateResource.cache
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.csproj.CoreCompileInputs.cache
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\ProjePer.7102D906.Up2Date
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.exe.config
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\gunlukHarcama.g.cs
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\muhasebe.g.cs
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\Personel.g.cs
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\rezervasyon.g.cs
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\satisDurumu.g.cs
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\stok.g.cs
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\urunler.g.cs
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\gunlukHarcama.baml
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\muhasebe.baml
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\Personel.baml
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\rezervasyon.baml
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\satisDurumu.baml
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\stok.baml
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\urunler.baml
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\musteriFirma.g.cs
+C:\Users\Yusuf\Desktop\ProjeUserControlleri\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\musteriFirma.baml
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\RestoranOtomasyonu.exe.config
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\RestoranOtomasyonu.exe
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\RestoranOtomasyonu.pdb
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\EntityFramework.dll
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\MaterialDesignColors.dll
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\Microsoft.Xaml.Behaviors.dll
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\EntityFramework.xml
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\Microsoft.Xaml.Behaviors.xml
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.csproj.AssemblyReference.cache
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.exe.config
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\Styles\Buttons.baml
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\Styles\iconDesing.baml
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\Styles\UserControlCards.baml
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\MainWindow.g.cs
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\cekSenet.g.cs
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\gunlukHarcama.g.cs
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\muhasebe.g.cs
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\musteriFirma.g.cs
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\Personel.g.cs
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\rezervasyon.g.cs
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\satisDurumu.g.cs
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\stok.g.cs
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\urunler.g.cs
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\App.g.cs
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu_Content.g.cs
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu_MarkupCompile.cache
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu_MarkupCompile.lref
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\App.baml
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\MainWindow.baml
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\cekSenet.baml
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\gunlukHarcama.baml
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\muhasebe.baml
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\musteriFirma.baml
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\Personel.baml
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\rezervasyon.baml
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\satisDurumu.baml
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\stok.baml
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\urunler.baml
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.g.resources
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.Properties.Resources.resources
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.csproj.GenerateResource.cache
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.csproj.CoreCompileInputs.cache
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\ProjePer.7102D906.Up2Date
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.exe
+C:\Users\Yusuf\Desktop\DBBaglıProje\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.pdb
+E:\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\RestoranOtomasyonu.exe.config
+E:\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\RestoranOtomasyonu.exe
+E:\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\RestoranOtomasyonu.pdb
+E:\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\EntityFramework.dll
+E:\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\EntityFramework.SqlServer.dll
+E:\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\MaterialDesignColors.dll
+E:\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\MaterialDesignThemes.Wpf.dll
+E:\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\Microsoft.Xaml.Behaviors.dll
+E:\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\EntityFramework.xml
+E:\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\EntityFramework.SqlServer.xml
+E:\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\MaterialDesignThemes.Wpf.xml
+E:\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+E:\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\Microsoft.Xaml.Behaviors.xml
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.csproj.AssemblyReference.cache
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.exe.config
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\Styles\Buttons.baml
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\Styles\iconDesing.baml
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\Styles\UserControlCards.baml
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\MainWindow.g.cs
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\cekSenet.g.cs
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\gunlukHarcama.g.cs
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\muhasebe.g.cs
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\musteriFirma.g.cs
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\Personel.g.cs
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\rezervasyon.g.cs
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\satisDurumu.g.cs
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\stok.g.cs
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\urunler.g.cs
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\App.g.cs
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu_Content.g.cs
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu_MarkupCompile.cache
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu_MarkupCompile.lref
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\App.baml
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\MainWindow.baml
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\cekSenet.baml
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\gunlukHarcama.baml
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\muhasebe.baml
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\musteriFirma.baml
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\Personel.baml
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\rezervasyon.baml
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\satisDurumu.baml
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\stok.baml
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\urunler.baml
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.g.resources
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.Properties.Resources.resources
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.csproj.GenerateResource.cache
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.csproj.CoreCompileInputs.cache
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\ProjePer.7102D906.Up2Date
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.exe
+E:\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.pdb
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\Styles\UserControlCards.baml
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\musteriFirma.g.cs
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\urunler.g.cs
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\musteriFirma.baml
+C:\Users\genca\OneDrive\Desktop\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\userControls\urunler.baml
 C:\Users\Yusuf\Desktop\Restoran Otomasyonu\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.csproj.AssemblyReference.cache
+C:\Users\Yusuf\Desktop\Restoran Otomasyonu\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.exe.config
 C:\Users\Yusuf\Desktop\Restoran Otomasyonu\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\Styles\Buttons.baml
 C:\Users\Yusuf\Desktop\Restoran Otomasyonu\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\Styles\iconDesing.baml
 C:\Users\Yusuf\Desktop\Restoran Otomasyonu\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\Styles\UserControlCards.baml
@@ -66,6 +308,8 @@ C:\Users\Yusuf\Desktop\Restoran Otomasyonu\RestoranOtomasyonu\RestoranOtomasyonu
 C:\Users\Yusuf\Desktop\Restoran Otomasyonu\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu_Content.g.cs
 C:\Users\Yusuf\Desktop\Restoran Otomasyonu\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu_MarkupCompile.cache
 C:\Users\Yusuf\Desktop\Restoran Otomasyonu\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu_MarkupCompile.lref
+C:\Users\Yusuf\Desktop\Restoran Otomasyonu\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.exe
+C:\Users\Yusuf\Desktop\Restoran Otomasyonu\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.pdb
 C:\Users\Yusuf\Desktop\Restoran Otomasyonu\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\RestoranOtomasyonu.exe.config
 C:\Users\Yusuf\Desktop\Restoran Otomasyonu\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\RestoranOtomasyonu.exe
 C:\Users\Yusuf\Desktop\Restoran Otomasyonu\RestoranOtomasyonu\RestoranOtomasyonu\bin\Debug\RestoranOtomasyonu.pdb
@@ -95,5 +339,3 @@ C:\Users\Yusuf\Desktop\Restoran Otomasyonu\RestoranOtomasyonu\RestoranOtomasyonu
 C:\Users\Yusuf\Desktop\Restoran Otomasyonu\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.csproj.GenerateResource.cache
 C:\Users\Yusuf\Desktop\Restoran Otomasyonu\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.csproj.CoreCompileInputs.cache
 C:\Users\Yusuf\Desktop\Restoran Otomasyonu\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\Restoran.18DBF1B4.Up2Date
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.exe
-C:\Users\Yusuf\Desktop\Restoran Otomasyonu\RestoranOtomasyonu\RestoranOtomasyonu\obj\Debug\RestoranOtomasyonu.pdb
