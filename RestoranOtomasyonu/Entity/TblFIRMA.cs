@@ -21,6 +21,8 @@ namespace RestoranOtomasyonu.Entity
             this.TblGIDER = new HashSet<TblGIDER>();
             this.TblGUNLUKHARCAMA = new HashSet<TblGUNLUKHARCAMA>();
             this.TblSTOKHAREKET = new HashSet<TblSTOKHAREKET>();
+            this.TblFIRMAHAREKET = new HashSet<TblFIRMAHAREKET>();
+            this.TblFIRMAODEME = new HashSet<TblFIRMAODEME>();
             this.TblMODEME = new HashSet<TblMODEME>();
             this.TblURUN = new HashSet<TblURUN>();
             this.TblFIRMAHAREKET = new HashSet<TblFIRMAHAREKET>();
@@ -47,6 +49,10 @@ namespace RestoranOtomasyonu.Entity
         public virtual ICollection<TblGUNLUKHARCAMA> TblGUNLUKHARCAMA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblSTOKHAREKET> TblSTOKHAREKET { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblFIRMAHAREKET> TblFIRMAHAREKET { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblFIRMAODEME> TblFIRMAODEME { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblMODEME> TblMODEME { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

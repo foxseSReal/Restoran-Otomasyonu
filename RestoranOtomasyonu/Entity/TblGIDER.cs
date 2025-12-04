@@ -19,7 +19,7 @@ namespace RestoranOtomasyonu.Entity
         public decimal Tutar { get; set; }
         public Nullable<System.DateTime> Tarih { get; set; }
         public string Aciklama { get; set; }
-        public int PersonelId { get; set; }
+        public Nullable<int> PersonelId { get; set; }
         public Nullable<int> FirmaId { get; set; }
         public string ReferansTablo { get; set; }
         public Nullable<int> ReferansId { get; set; }

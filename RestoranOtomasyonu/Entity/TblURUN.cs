@@ -17,6 +17,7 @@ namespace RestoranOtomasyonu.Entity
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TblURUN()
         {
+            this.TblFIRMAHAREKET = new HashSet<TblFIRMAHAREKET>();
             this.TblSIPARISDETAY = new HashSet<TblSIPARISDETAY>();
             this.TblSTOKHAREKET = new HashSet<TblSTOKHAREKET>();
             this.TblFIRMAHAREKET = new HashSet<TblFIRMAHAREKET>();
@@ -35,6 +36,8 @@ namespace RestoranOtomasyonu.Entity
         public Nullable<System.DateTime> EklenmeTarihi { get; set; }
     
         public virtual TblFIRMA TblFIRMA { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblFIRMAHAREKET> TblFIRMAHAREKET { get; set; }
         public virtual TblKATEGORI TblKATEGORI { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblSIPARISDETAY> TblSIPARISDETAY { get; set; }
