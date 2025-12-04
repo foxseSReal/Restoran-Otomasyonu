@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ff6167f6d2464edd9db7717553e5f007" Name="Diagram1">
+      <Diagram DiagramId="3239567d7345434892f158f77eefb7c5" Name="Diagram1">
         <EntityTypeShape EntityType="RESTORANDBModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RESTORANDBModel.TblBORDROLAR" Width="1.5" PointX="3" PointY="14.625" IsExpanded="true" />
         <EntityTypeShape EntityType="RESTORANDBModel.TblCEKSENET" Width="1.5" PointX="3" PointY="19.25" IsExpanded="true" />
@@ -55,13 +55,6 @@
         <AssociationConnector Association="RESTORANDBModel.FK_SiparisDetay_Siparis" ManuallyRouted="false" />
         <AssociationConnector Association="RESTORANDBModel.FK_SiparisDetay_Urun" ManuallyRouted="false" />
         <AssociationConnector Association="RESTORANDBModel.FK_StokHareket_Urun" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="RESTORANDBModel.sysdiagrams" Width="1.5" PointX="3.375" PointY="0.75" />
-        <EntityTypeShape EntityType="RESTORANDBModel.TblFIRMAHAREKET" Width="1.5" PointX="12" PointY="21.375" />
-        <EntityTypeShape EntityType="RESTORANDBModel.TblFIRMAODEME" Width="1.5" PointX="9" PointY="5" />
-        <AssociationConnector Association="RESTORANDBModel.FK_TblFIRMAHAREKET_TblFIRMA" />
-        <AssociationConnector Association="RESTORANDBModel.FK_TblFIRMAODEME_TblFIRMA" />
-        <AssociationConnector Association="RESTORANDBModel.FK_TblFIRMAHAREKET_TblURUN" />
-        <AssociationConnector Association="RESTORANDBModel.FK_Gider_FirmaHareket" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

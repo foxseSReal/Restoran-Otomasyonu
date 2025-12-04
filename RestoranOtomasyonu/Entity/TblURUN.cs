@@ -20,7 +20,6 @@ namespace RestoranOtomasyonu.Entity
             this.TblFIRMAHAREKET = new HashSet<TblFIRMAHAREKET>();
             this.TblSIPARISDETAY = new HashSet<TblSIPARISDETAY>();
             this.TblSTOKHAREKET = new HashSet<TblSTOKHAREKET>();
-            this.TblFIRMAHAREKET = new HashSet<TblFIRMAHAREKET>();
         }
     
         public int UrunId { get; set; }
@@ -43,7 +42,5 @@ namespace RestoranOtomasyonu.Entity
         public virtual ICollection<TblSIPARISDETAY> TblSIPARISDETAY { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblSTOKHAREKET> TblSTOKHAREKET { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblFIRMAHAREKET> TblFIRMAHAREKET { get; set; }
     }
 }
