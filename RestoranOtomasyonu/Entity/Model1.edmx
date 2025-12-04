@@ -363,12 +363,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Gider_Firma">
-          <End Role="TblFIRMA" Type="Self.TblFIRMA" Multiplicity="0..1" />
+        <Association Name="FK_Gider_FirmaHareket">
+          <End Role="TblFIRMAHAREKET" Type="Self.TblFIRMAHAREKET" Multiplicity="0..1" />
           <End Role="TblGIDER" Type="Self.TblGIDER" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TblFIRMA">
-              <PropertyRef Name="FirmaId" />
+            <Principal Role="TblFIRMAHAREKET">
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="TblGIDER">
               <PropertyRef Name="FirmaId" />
@@ -697,8 +697,8 @@
             <End Role="TblPERSONELLER" EntitySet="TblPERSONELLER" />
             <End Role="TblGELIR" EntitySet="TblGELIR" />
           </AssociationSet>
-          <AssociationSet Name="FK_Gider_Firma" Association="Self.FK_Gider_Firma">
-            <End Role="TblFIRMA" EntitySet="TblFIRMA" />
+          <AssociationSet Name="FK_Gider_FirmaHareket" Association="Self.FK_Gider_FirmaHareket">
+            <End Role="TblFIRMAHAREKET" EntitySet="TblFIRMAHAREKET" />
             <End Role="TblGIDER" EntitySet="TblGIDER" />
           </AssociationSet>
           <AssociationSet Name="FK_Gider_Personel" Association="Self.FK_Gider_Personel">
@@ -878,6 +878,7 @@
           <Property Name="ReferansId" Type="Int32" />
           <NavigationProperty Name="TblFIRMA" Relationship="Self.FK_Gider_Firma" FromRole="TblGIDER" ToRole="TblFIRMA" />
           <NavigationProperty Name="TblPERSONELLER" Relationship="Self.FK_Gider_Personel" FromRole="TblGIDER" ToRole="TblPERSONELLER" />
+          <NavigationProperty Name="TblFIRMAHAREKET" Relationship="RESTORANDBModel.FK_Gider_FirmaHareket" FromRole="TblGIDER" ToRole="TblFIRMAHAREKET" />
         </EntityType>
         <EntityType Name="TblGUNLUKHARCAMA">
           <Key>
@@ -1546,6 +1547,10 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <AssociationSet Name="FK_Gider_FirmaHareket" Association="RESTORANDBModel.FK_Gider_FirmaHareket">
+            <End Role="TblFIRMAHAREKET" EntitySet="TblFIRMAHAREKET" />
+            <End Role="TblGIDER" EntitySet="TblGIDER" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -1570,6 +1575,7 @@
           <Property Name="Tarih" Type="DateTime" Precision="0" />
           <NavigationProperty Name="TblFIRMA" Relationship="RESTORANDBModel.FK_TblFIRMAHAREKET_TblFIRMA" FromRole="TblFIRMAHAREKET" ToRole="TblFIRMA" />
           <NavigationProperty Name="TblURUN" Relationship="RESTORANDBModel.FK_TblFIRMAHAREKET_TblURUN" FromRole="TblFIRMAHAREKET" ToRole="TblURUN" />
+          <NavigationProperty Name="TblGIDER" Relationship="RESTORANDBModel.FK_Gider_FirmaHareket" FromRole="TblFIRMAHAREKET" ToRole="TblGIDER" />
         </EntityType>
         <EntityType Name="TblFIRMAODEME">
           <Key>
@@ -1629,6 +1635,18 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <Association Name="FK_Gider_FirmaHareket">
+          <End Type="RESTORANDBModel.TblFIRMAHAREKET" Role="TblFIRMAHAREKET" Multiplicity="0..1" />
+          <End Type="RESTORANDBModel.TblGIDER" Role="TblGIDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblFIRMAHAREKET">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TblGIDER">
+              <PropertyRef Name="FirmaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

@@ -14,6 +14,12 @@ namespace RestoranOtomasyonu.Entity
     
     public partial class TblFIRMAHAREKET
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TblFIRMAHAREKET()
+        {
+            this.TblGIDER = new HashSet<TblGIDER>();
+        }
+    
         public int ID { get; set; }
         public Nullable<int> UrunId { get; set; }
         public string Aciklama { get; set; }
@@ -24,5 +30,7 @@ namespace RestoranOtomasyonu.Entity
     
         public virtual TblFIRMA TblFIRMA { get; set; }
         public virtual TblURUN TblURUN { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblGIDER> TblGIDER { get; set; }
     }
 }

@@ -26,5 +26,6 @@ namespace RestoranOtomasyonu.Entity
     
         public virtual TblFIRMA TblFIRMA { get; set; }
         public virtual TblPERSONELLER TblPERSONELLER { get; set; }
+        public virtual TblFIRMAHAREKET TblFIRMAHAREKET { get; set; }
     }
 }

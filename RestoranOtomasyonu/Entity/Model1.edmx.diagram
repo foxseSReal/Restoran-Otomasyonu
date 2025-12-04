@@ -55,6 +55,7 @@
         <AssociationConnector Association="RESTORANDBModel.FK_TblFIRMAHAREKET_TblFIRMA" />
         <AssociationConnector Association="RESTORANDBModel.FK_TblFIRMAODEME_TblFIRMA" />
         <AssociationConnector Association="RESTORANDBModel.FK_TblFIRMAHAREKET_TblURUN" />
+        <AssociationConnector Association="RESTORANDBModel.FK_Gider_FirmaHareket" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
