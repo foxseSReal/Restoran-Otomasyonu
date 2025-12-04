@@ -108,7 +108,7 @@
           <Property Name="Tutar" Type="decimal" Precision="12" Scale="2" Nullable="false" />
           <Property Name="Tarih" Type="datetime" />
           <Property Name="Aciklama" Type="nvarchar" MaxLength="500" />
-          <Property Name="PersonelId" Type="int" Nullable="false" />
+          <Property Name="PersonelId" Type="int" />
           <Property Name="FirmaId" Type="int" />
           <Property Name="ReferansTablo" Type="nvarchar" MaxLength="50" />
           <Property Name="ReferansId" Type="int" />
@@ -376,7 +376,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Gider_Personel">
-          <End Role="TblPERSONELLER" Type="Self.TblPERSONELLER" Multiplicity="1" />
+          <End Role="TblPERSONELLER" Type="Self.TblPERSONELLER" Multiplicity="0..1" />
           <End Role="TblGIDER" Type="Self.TblGIDER" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblPERSONELLER">
@@ -872,7 +872,7 @@
           <Property Name="Tutar" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
           <Property Name="Tarih" Type="DateTime" Precision="3" />
           <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="PersonelId" Type="Int32" Nullable="false" />
+          <Property Name="PersonelId" Type="Int32" />
           <Property Name="FirmaId" Type="Int32" />
           <Property Name="ReferansTablo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ReferansId" Type="Int32" />
