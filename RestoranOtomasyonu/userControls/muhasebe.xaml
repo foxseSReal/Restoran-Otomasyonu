@@ -80,7 +80,7 @@
                     <DataGrid x:Name="muhasebeGider_DataGrid" Height="430" Width="470" Grid.Row="2" AutoGenerateColumns="True" CanUserAddRows="False" Margin="0 10 10 0"
               Style="{StaticResource MaterialDesignDataGrid}"
               SelectionMode="Single" RowHeight="38"
-              Foreground="Black"/>
+              Foreground="Black" SelectionChanged="muhasebeGider_DataGrid_SelectionChanged"/>
                 </StackPanel>
             </Grid>
         </StackPanel>

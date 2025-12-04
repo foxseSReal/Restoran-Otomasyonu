@@ -35,23 +35,20 @@ namespace RestoranOtomasyonu.OtherWindows
         }
         void FirmaListele()
         {
-
-            var listele = from x in db.TblFIRMA.OrderByDescending(x => x.FirmaId).ToList()
-                          where x.Unvan == "Firma"
-                          select new
-                          {
-                              ID = x.FirmaId,
-                              MüşteriFirma = x.FirmaAdi,
-                              Adres = x.Adres,
-                              Telefon = x.Telefon,
-                              Telefonİki = x.Telefonİki,
-                              WebSitesi = x.WebSitesi,
-                              VergiDairesi = x.VergiDairesi,
-                              HesapNo = x.HesapNo
-
-                          };
-            firma_DataGrid.ItemsSource = listele;
-
+                var listele = (from x in db.TblFIRMA.OrderByDescending(x => x.FirmaId).ToList()
+                               where x.Unvan == "Firma"
+                               select new
+                               {
+                                   ID = x.FirmaId,
+                                   MusteriFirma = x.FirmaAdi,
+                                   Adres = x.Adres,
+                                   Telefon = x.Telefon,
+                                   TelefonIki = x.Telefonİki,
+                                   WebSitesi = x.WebSitesi,
+                                   VergiDairesi = x.VergiDairesi,
+                                   HesapNo = x.HesapNo
+                               }).ToList();
+                firma_DataGrid.ItemsSource = listele;
         }
         void UrunListele()
         {
@@ -86,34 +83,20 @@ namespace RestoranOtomasyonu.OtherWindows
             temizle();
         }
         int firmaid;
-        private void firma_DataGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
-        {
-            //firmahareket doldur
-            firmaid = (int)(firma_DataGrid.SelectedItem as dynamic).ID;
-            var firmahareket = db.TblFIRMA.Find(firmaid);
-            cbxUrun_Firma.Text = firmahareket.FirmaAdi;
-
-
-        }
-       
-
         int urunid;
-        private void urun_DataGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
-        {
-
-            //urun doldur
-            urunid = (int)(urun_DataGrid.SelectedItem as dynamic).ID;
-            var urun = db.TblURUN.Find(urunid);
-            urun_isim.Text = urun.UrunAdi;
-            urunFiyat.Text = urun.Fiyat.ToString();
-            cbxUrun_Kategori.Text = urun.TblKATEGORI.KategoriAdi;
-
-        }
+   
         private void urun_ekleButton_Click(object sender, RoutedEventArgs e)
         {
+            var firma = db.TblFIRMA.Find(firmaid);
+            if (firma == null)
+            {
+                MessageBox.Show("Firma bulunamadı: " + firmaid);
+                return;
+            }
+
             TblFIRMAHAREKET uekle = new TblFIRMAHAREKET();
             uekle.UrunId = urunid;
-            uekle.FirmaId = firmaid;
+            uekle.FirmaId = cbxUrun_Firma.SelectedIndex;
             uekle.Adet = Convert.ToInt16(urun_Adet.Value);
             uekle.Tarih = DateTime.Now;
             uekle.Tutar = uekle.Adet * db.TblURUN.Find(urunid).Fiyat;
@@ -121,10 +104,12 @@ namespace RestoranOtomasyonu.OtherWindows
 
             //2 kasaya gider kaydı oluşturma
             TblGIDER gider = new TblGIDER();
+            gider.FirmaId = cbxUrun_Firma.SelectedIndex ;
             gider.Aciklama = db.TblFIRMA.Find(firmaid).FirmaAdi + " Firmasından" + db.TblURUN.Find(urunid).UrunAdi + " Ürünü İçin Ödeme";
             gider.Tarih = DateTime.Now;
             gider.Tutar = (decimal)(uekle.Tutar);
             gider.GiderTuru = "Stok Alım";
+           
 
            
             MessageBox.Show("Stok Ekleme İşlemi Başarılı");
@@ -139,6 +124,25 @@ namespace RestoranOtomasyonu.OtherWindows
         private void urun_Adet_ValueChanged(object sender, RoutedPropertyChangedEventArgs<int> e)
         {
             urunFiyat.Text = (Convert.ToDecimal(db.TblURUN.Find(urunid).Fiyat * urun_Adet.Value).ToString());
+        }
+
+        private void firma_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //firmahareket doldur
+            firmaid = (int)(firma_DataGrid.SelectedItem as dynamic).ID;
+            var firmahareket = db.TblFIRMA.Find(firmaid);
+            cbxUrun_Firma.Text = firmahareket.FirmaAdi;
+
+        }
+
+        private void urun_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //urun doldur
+            urunid = (int)(urun_DataGrid.SelectedItem as dynamic).ID;
+            var urun = db.TblURUN.Find(urunid);
+            urun_isim.Text = urun.UrunAdi;
+            urunFiyat.Text = urun.Fiyat.ToString();
+            cbxUrun_Kategori.Text = urun.TblKATEGORI.KategoriAdi;
         }
     }
 }
