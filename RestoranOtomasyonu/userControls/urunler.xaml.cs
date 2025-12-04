@@ -62,7 +62,7 @@ namespace RestoranOtomasyonu.userControls
 
         }
 
-        public void UrunListele()
+         void UrunListele()
         {
           
             var listele = db.TblURUN.OrderByDescending(x=>x.UrunId)

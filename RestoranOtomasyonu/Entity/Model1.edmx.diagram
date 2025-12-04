@@ -49,6 +49,12 @@
         <AssociationConnector Association="RESTORANDBModel.FK_SiparisDetay_Siparis" ManuallyRouted="false" />
         <AssociationConnector Association="RESTORANDBModel.FK_SiparisDetay_Urun" ManuallyRouted="false" />
         <AssociationConnector Association="RESTORANDBModel.FK_StokHareket_Urun" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RESTORANDBModel.sysdiagrams" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="RESTORANDBModel.TblFIRMAHAREKET" Width="1.5" PointX="12" PointY="21.375" />
+        <EntityTypeShape EntityType="RESTORANDBModel.TblFIRMAODEME" Width="1.5" PointX="9" PointY="5" />
+        <AssociationConnector Association="RESTORANDBModel.FK_TblFIRMAHAREKET_TblFIRMA" />
+        <AssociationConnector Association="RESTORANDBModel.FK_TblFIRMAODEME_TblFIRMA" />
+        <AssociationConnector Association="RESTORANDBModel.FK_TblFIRMAHAREKET_TblURUN" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
