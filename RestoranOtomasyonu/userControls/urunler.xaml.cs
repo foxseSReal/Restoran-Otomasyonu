@@ -98,48 +98,51 @@ namespace RestoranOtomasyonu.userControls
 
         private void urun_ekleButton_Click(object sender, RoutedEventArgs e)
         {
-            int? kategoriId = db.TblKATEGORI.FirstOrDefault(x => x.KategoriAdi == cbxUrun_Kategori.Text)?.KategoriId;
-            int? firmaId = db.TblFIRMA.FirstOrDefault(x => x.FirmaAdi == cbxUrun_Firma.Text)?.FirmaId;
+            //int? kategoriId = db.TblKATEGORI.FirstOrDefault(x => x.KategoriAdi == cbxUrun_Kategori.Text)?.KategoriId;
+            //int? firmaId = db.TblFIRMA.FirstOrDefault(x => x.FirmaAdi == cbxUrun_Firma.Text)?.FirmaId;
 
-            if (kategoriId == null || kategoriId == 0)
-            {
-                MessageBox.Show("Lütfen geçerli bir kategori seçin.", "Hata", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
+            //if (kategoriId == null || kategoriId == 0)
+            //{
+            //    MessageBox.Show("Lütfen geçerli bir kategori seçin.", "Hata", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //    return;
+            //}
 
-            if (firmaId == null || firmaId == 0)
-            {
-                MessageBox.Show("Lütfen geçerli bir firma seçin. (Seçilen firma TblFIRMA'da bulunamadı)", "Hata", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
+            //if (firmaId == null || firmaId == 0)
+            //{
+            //    MessageBox.Show("Lütfen geçerli bir firma seçin. (Seçilen firma TblFIRMA'da bulunamadı)", "Hata", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //    return;
+            //}
 
-            try
-            {
-                var yeniUrun = new TblURUN
-                {
-                    UrunAdi = urun_isim.Text,
-                    Fiyat = decimal.Parse(urunFiyat.Text),
-                    Durum = urun_ToggleButton.IsChecked ?? true,
-                    KategoriId = kategoriId.Value,
-                    FirmaId = firmaId.Value,
-                    ResimYolu= seciliResimYolu // <--- YENİ SATIR: Resim yolunu veritabanına ekle
-                };
+            //try
+            //{
+            //    var yeniUrun = new TblURUN
+            //    {
+            //        UrunAdi = urun_isim.Text,
+            //        Fiyat = decimal.Parse(urunFiyat.Text),
+            //        Durum = urun_ToggleButton.IsChecked ?? true,
+            //        KategoriId = kategoriId.Value,
+            //        FirmaId = firmaId.Value,
+            //        ResimYolu= seciliResimYolu // <--- YENİ SATIR: Resim yolunu veritabanına ekle
+            //    };
 
-                db.TblURUN.Add(yeniUrun);
-                db.SaveChanges();
-                MessageBox.Show("Ürün başarıyla eklendi.");
-                UrunListele();
-                urun_temizleButton_Click(null, null); // <--- YENİ SATIR: Ekleme sonrası formu temizle
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Lütfen fiyat alanına geçerli bir sayı girin (örn: 12,50).", "Geçersiz Fiyat", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ürün eklenirken bir hata oluştu:\n" + ex.Message, "Veritabanı Hatası", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            // UrunListele(); // <--- Bu satır try bloğunun içinde zaten var, tekrar gerekmez
+            //    db.TblURUN.Add(yeniUrun);
+            //    db.SaveChanges();
+            //    MessageBox.Show("Ürün başarıyla eklendi.");
+            //    UrunListele();
+            //    urun_temizleButton_Click(null, null); // <--- YENİ SATIR: Ekleme sonrası formu temizle
+            //}
+            //catch (FormatException)
+            //{
+            //    MessageBox.Show("Lütfen fiyat alanına geçerli bir sayı girin (örn: 12,50).", "Geçersiz Fiyat", MessageBoxButton.OK, MessageBoxImage.Error);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Ürün eklenirken bir hata oluştu:\n" + ex.Message, "Veritabanı Hatası", MessageBoxButton.OK, MessageBoxImage.Error);
+            //}
+            //// UrunListele(); // <--- Bu satır try bloğunun içinde zaten var, tekrar gerekmez
+            ///
+
+
         }
 
         private void urunDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

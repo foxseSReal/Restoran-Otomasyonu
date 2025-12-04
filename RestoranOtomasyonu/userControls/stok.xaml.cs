@@ -1,4 +1,5 @@
 ﻿using RestoranOtomasyonu.Entity;
+using RestoranOtomasyonu.OtherWindows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,21 +27,21 @@ namespace RestoranOtomasyonu.userControls
         {
             InitializeComponent();
             Stoklistele();
-           var stok=db.TblSTOKHAREKET.OrderByDescending(x => x.StokHareketId).FirstOrDefault();
+            var stok = db.TblSTOKHAREKET.OrderByDescending(x => x.StokHareketId).FirstOrDefault();
             if (stok != null)
             {
                 stokUrun.Text = stok.TblURUN.UrunAdi;
                 stokMiktari.Text = stok.Miktar.ToString();
                 cbxBirim.Text = stok.BirimTuru;
                 stokFiyat.Text = stok.BirimFiyat.ToString();
-                stokAciklama.Text=stok.Aciklama;
+                stokAciklama.Text = stok.Aciklama;
                 stokTarih.Text = stok.Tarih?.ToString("dd.MM.yyyy");
                 stokSaat.Text = stok.Saat?.ToString(@"hh\:mm");
             }
         }
         public void Stoklistele()
         {
-            var liste = from s in db.TblSTOKHAREKET.OrderByDescending(x=>x.StokHareketId)
+            var liste = from s in db.TblSTOKHAREKET.OrderByDescending(x => x.StokHareketId)
                         select new
                         {
                             ID = s.StokHareketId,
@@ -76,18 +77,27 @@ namespace RestoranOtomasyonu.userControls
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {//stok ekle
-            TblSTOKHAREKET stok = new TblSTOKHAREKET();
-            stok.TblURUN = db.TblURUN.FirstOrDefault(x => x.UrunAdi == stokUrun.Text);
-            stok.Miktar = decimal.Parse(stokMiktari.Text);
-            stok.BirimTuru = cbxBirim.Text;
-            stok.BirimFiyat = decimal.Parse(stokFiyat.Text);
-            stok.Aciklama = stokAciklama.Text;
-            stok.Tarih = DateTime.Parse(stokTarih.Text);
-            stok.Saat = TimeSpan.Parse(stokSaat.Text);
-            db.TblSTOKHAREKET.Add(stok);
-            db.SaveChanges();
-            MessageBox.Show("Stok Ekleme İşlemi Başarılı", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
-            Stoklistele();
+         //    TblSTOKHAREKET stok = new TblSTOKHAREKET();
+         //    stok.TblURUN = db.TblURUN.FirstOrDefault(x => x.UrunAdi == stokUrun.Text);
+         //    stok.Miktar = decimal.Parse(stokMiktari.Text);
+         //    stok.BirimTuru = cbxBirim.Text;
+         //    stok.BirimFiyat = decimal.Parse(stokFiyat.Text);
+         //    stok.Aciklama = stokAciklama.Text;
+         //    stok.Tarih = DateTime.Parse(stokTarih.Text);
+         //    stok.Saat = TimeSpan.Parse(stokSaat.Text);
+         //    db.TblSTOKHAREKET.Add(stok);
+         //    db.SaveChanges();
+         //    MessageBox.Show("Stok Ekleme İşlemi Başarılı", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
+         //    Stoklistele();
+
+            // *** Stok Ekleme Komutu artik baska bir windowda yapilacak *** //
+
+            StokEkle stokEkle = new StokEkle();
+
+            //ShowDialog metodu ile pencereyi modal olarak açıyoruz Kullici kapatmadan altta kalan forma gecis yapamayacak
+
+            stokEkle.ShowDialog();
+
 
         }
 
@@ -114,11 +124,11 @@ namespace RestoranOtomasyonu.userControls
         private void stokAra_TextChanged(object sender, TextChangedEventArgs e)
         {
             var urunara = stokAra.Text;
-            var filtreliListe = db.TblSTOKHAREKET.OrderByDescending(x=>x.UrunId)
+            var filtreliListe = db.TblSTOKHAREKET.OrderByDescending(x => x.UrunId)
                 .Where(x => x.TblURUN.UrunAdi.ToLower().Contains(urunara))
                 .Select(x => new
                 {
-                
+
                     ÜrünAdı = x.TblURUN.UrunAdi,
                     StokMiktarı = x.Miktar,
                     BirimTürü = x.BirimTuru,
@@ -137,7 +147,7 @@ namespace RestoranOtomasyonu.userControls
             DateTime ilktarih = stokAralık.SelectedDate.HasValue ? stokAralık.SelectedDate.Value : DateTime.MinValue;
             DateTime sontarih = stokAralık2.SelectedDate.HasValue ? stokAralık2.SelectedDate.Value : DateTime.MinValue;
             var liste = from s in db.TblSTOKHAREKET.OrderByDescending(x => x.StokHareketId)
-                        .Where(x=>x.Tarih >= ilktarih && x.Tarih <= sontarih)
+                        .Where(x => x.Tarih >= ilktarih && x.Tarih <= sontarih)
                         select new
                         {
                             ID = s.StokHareketId,

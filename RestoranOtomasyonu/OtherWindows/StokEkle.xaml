@@ -1,0 +1,108 @@
+﻿<Window x:Class="RestoranOtomasyonu.OtherWindows.StokEkle"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:RestoranOtomasyonu.OtherWindows"
+        mc:Ignorable="d"
+        Style="{StaticResource MaterialDesignWindow}"
+        Title="StokEkle" Height="584" Width="856" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Vertical">
+            <!--Firma DataGrid-->
+            <TextBlock Text="Firmalar" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black" FontSize="24" Foreground="Aqua"/>
+            <DataGrid IsReadOnly="True" x:Name="firma_DataGrid" Margin="0 10 0 0" CanUserAddRows="False" CanUserDeleteRows="False" Focusable="True" Width="400" Height="250"/>
+
+            <!--Urunler DataGrid-->
+            <TextBlock Text="Ürünler" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black" FontSize="24" Foreground="Aqua"/>
+            <DataGrid IsReadOnly="True" x:Name="urun_DataGrid" Margin="0 10 0 0" CanUserAddRows="False" CanUserDeleteRows="False" Focusable="True" Width="400" Height="250"/>
+        </StackPanel>
+
+        <!--Sag StackPanel-->
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+            <!--1-->
+            <StackPanel Orientation="Vertical" Grid.Column="0">
+                <StackPanel Orientation="Horizontal">
+                    <Ellipse Width="200" Height="200" HorizontalAlignment="Left" Margin="10 50 0 0">
+                        <Ellipse.Fill>
+                            <ImageBrush x:Name="urun_resimKutusu"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </StackPanel>
+                <Button Margin="0 50 0 0" Content="Resim Ekle"/>
+                <!--Adres-->
+
+            </StackPanel>
+            <!--2-->
+            <StackPanel Orientation="Vertical" Width="220" Height="454" Grid.Column="1">
+                <Button Click="Close" Style="{StaticResource ustBarButton}" Margin="120 0 0 0">
+                    <materialDesign:PackIcon Foreground="White" Kind="CloseBox" Style="{StaticResource ustBar_buttonIcon}"/>
+                </Button>
+                <TextBox x:Name="urun_isim" Foreground="White" Margin="10 20 20 15" Width="200" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Ürün" FontSize="16" Style="{StaticResource MaterialDesignFilledTextBox}" />
+                <!---->
+                <ComboBox x:Name="cbxUrun_Kategori" Margin="10 0 20 15" Width="200" 
+materialDesign:ColorZoneAssist.Mode="SecondaryLight"
+materialDesign:HintAssist.HelperText="Kategori Seçin"
+materialDesign:HintAssist.Hint="Kategori" Foreground="White"
+materialDesign:TextFieldAssist.HasClearButton="True"
+FontSize="20" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource MaterialDesign.Brush.Primary}" Style="{StaticResource MaterialDesignFilledComboBox}" >
+                    <ComboBoxItem Content="Çorbalar" />
+                    <ComboBoxItem Content="Ana Yemekler" />
+                    <ComboBoxItem Content="Izgaralar" />
+                    <ComboBoxItem Content="Makarnalar" />
+                    <ComboBoxItem Content="Salatalar" />
+                    <ComboBoxItem Content="Tatlılar" />
+                    <ComboBoxItem Content="İçecekler" />
+                    <ComboBoxItem Content="Kahvaltılıklar" />
+                    <ComboBoxItem Content="Fast Food" />
+                    <ComboBoxItem Content="Yan Ürünler" />
+                    <ComboBoxItem Content="Çocuk Menüleri" />
+                    <ComboBoxItem Content="Vejetaryen" />
+                    <ComboBoxItem Content="Deniz Ürünleri" />
+                    <ComboBoxItem Content="Soslar" />
+                    <ComboBoxItem Content="Ekstralar" />
+                </ComboBox>
+                <materialDesign:NumericUpDown x:Name="urun_Adet" Foreground="White" Width="190" FontSize="24" Margin="0 0 10 15" Style="{StaticResource MaterialDesignFilledNumericUpDown}"/>
+
+                <TextBox x:Name="urunFiyat" Width="200" Margin="10 15 20 15" materialDesign:TextFieldAssist.PrefixText="₺" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Fiyat" AcceptsReturn="True" IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}" Style="{StaticResource MaterialDesignFilledTextBox}" TextWrapping="Wrap" Foreground="WhiteSmoke" FontSize="16" MaxLength="8"/>
+                <ComboBox x:Name="cbxUrun_Firma" Width="200" Margin="10 10 20 0"
+                    materialDesign:ColorZoneAssist.Mode="SecondaryLight"
+                    materialDesign:HintAssist.HelperText="Kategori Seçin"
+                    materialDesign:HintAssist.Hint="Firma" Foreground="White"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
+                    FontSize="16" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource MaterialDesign.Brush.Primary}" Style="{StaticResource MaterialDesignFilledComboBox}" >
+                    <ComboBoxItem Content="Anadolu Et ve Süt Ürünleri A.Ş." />
+                    <ComboBoxItem Content="Yeşilbahçe Sebze Meyve Hali" />
+                    <ComboBoxItem Content="Toptan İçecek Dağıtım Merkezi" />
+                </ComboBox>
+            </StackPanel>
+
+            <!--Buttonlar-->
+            <StackPanel Margin="29 38 0 0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
+                <Button x:Name="urun_ekleButton" Width="180" materialDesign:ButtonAssist.CornerRadius="25 25 0 0" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                    ToolTip="Ürün Ekle">
+                    <TextBlock Text="Ekle" />
+                </Button>
+                <Button x:Name="urun_temizleButton" Width="180" materialDesign:ButtonAssist.CornerRadius="25 25 0 0" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                    ToolTip="Görünen Yerleri Temizle" Click="urun_temizleButton_Click">
+                    <TextBlock Text="Temizle" />
+                </Button>
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</Window>
