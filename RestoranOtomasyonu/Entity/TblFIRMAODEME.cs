@@ -12,19 +12,14 @@ namespace RestoranOtomasyonu.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class TblGIDER
+    public partial class TblFIRMAODEME
     {
-        public int GiderId { get; set; }
-        public string GiderTuru { get; set; }
-        public decimal Tutar { get; set; }
-        public Nullable<System.DateTime> Tarih { get; set; }
-        public string Aciklama { get; set; }
-        public Nullable<int> PersonelId { get; set; }
+        public int Id { get; set; }
         public Nullable<int> FirmaId { get; set; }
-        public string ReferansTablo { get; set; }
-        public Nullable<int> ReferansId { get; set; }
+        public string Aciklama { get; set; }
+        public Nullable<decimal> Tutar { get; set; }
+        public Nullable<System.DateTime> Tarih { get; set; }
     
         public virtual TblFIRMA TblFIRMA { get; set; }
-        public virtual TblPERSONELLER TblPERSONELLER { get; set; }
     }
 }

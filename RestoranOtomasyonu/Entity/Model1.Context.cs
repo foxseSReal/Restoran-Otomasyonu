@@ -25,9 +25,12 @@ namespace RestoranOtomasyonu.Entity
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TblBORDROLAR> TblBORDROLAR { get; set; }
         public virtual DbSet<TblCEKSENET> TblCEKSENET { get; set; }
         public virtual DbSet<TblFIRMA> TblFIRMA { get; set; }
+        public virtual DbSet<TblFIRMAHAREKET> TblFIRMAHAREKET { get; set; }
+        public virtual DbSet<TblFIRMAODEME> TblFIRMAODEME { get; set; }
         public virtual DbSet<TblGELIR> TblGELIR { get; set; }
         public virtual DbSet<TblGIDER> TblGIDER { get; set; }
         public virtual DbSet<TblGUNLUKHARCAMA> TblGUNLUKHARCAMA { get; set; }

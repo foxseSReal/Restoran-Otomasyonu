@@ -17,11 +17,11 @@
         <StackPanel Orientation="Vertical">
             <!--Firma DataGrid-->
             <TextBlock Text="Firmalar" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black" FontSize="24" Foreground="Aqua"/>
-            <DataGrid IsReadOnly="True" x:Name="firma_DataGrid" Margin="0 10 0 0" CanUserAddRows="False" CanUserDeleteRows="False" Focusable="True" Width="400" Height="250"/>
+            <DataGrid IsReadOnly="True" x:Name="firma_DataGrid" Margin="0 10 0 0" CanUserAddRows="False" CanUserDeleteRows="False" Focusable="True" Width="400" Height="250" SelectedCellsChanged="firma_DataGrid_SelectedCellsChanged" />
 
             <!--Urunler DataGrid-->
             <TextBlock Text="Ürünler" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black" FontSize="24" Foreground="Aqua"/>
-            <DataGrid IsReadOnly="True" x:Name="urun_DataGrid" Margin="0 10 0 0" CanUserAddRows="False" CanUserDeleteRows="False" Focusable="True" Width="400" Height="250"/>
+            <DataGrid IsReadOnly="True" x:Name="urun_DataGrid" Margin="0 10 0 0" CanUserAddRows="False" CanUserDeleteRows="False" Focusable="True" Width="400" Height="250" SelectedCellsChanged="urun_DataGrid_SelectedCellsChanged" />
         </StackPanel>
 
         <!--Sag StackPanel-->
@@ -76,7 +76,7 @@ FontSize="20" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Ma
                     <ComboBoxItem Content="Soslar" />
                     <ComboBoxItem Content="Ekstralar" />
                 </ComboBox>
-                <materialDesign:NumericUpDown x:Name="urun_Adet" Foreground="White" Width="190" FontSize="24" Margin="0 0 10 15" Style="{StaticResource MaterialDesignFilledNumericUpDown}"/>
+                <materialDesign:NumericUpDown x:Name="urun_Adet"  ValueChanged="urun_Adet_ValueChanged" Foreground="White" Width="190" FontSize="24" Margin="0 0 10 15" Style="{StaticResource MaterialDesignFilledNumericUpDown}"/>
 
                 <TextBox x:Name="urunFiyat" Width="200" Margin="10 15 20 15" materialDesign:TextFieldAssist.PrefixText="₺" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Fiyat" AcceptsReturn="True" IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}" Style="{StaticResource MaterialDesignFilledTextBox}" TextWrapping="Wrap" Foreground="WhiteSmoke" FontSize="16" MaxLength="8"/>
                 <ComboBox x:Name="cbxUrun_Firma" Width="200" Margin="10 10 20 0"
@@ -94,7 +94,7 @@ FontSize="20" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Ma
             <!--Buttonlar-->
             <StackPanel Margin="29 38 0 0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
                 <Button x:Name="urun_ekleButton" Width="180" materialDesign:ButtonAssist.CornerRadius="25 25 0 0" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
-                    ToolTip="Ürün Ekle">
+                    ToolTip="Ürün Ekle" Click="urun_ekleButton_Click">
                     <TextBlock Text="Ekle" />
                 </Button>
                 <Button x:Name="urun_temizleButton" Width="180" materialDesign:ButtonAssist.CornerRadius="25 25 0 0" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Style="{StaticResource MaterialDesignRaisedSecondaryButton}"

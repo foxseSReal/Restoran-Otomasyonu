@@ -5,6 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="RESTORANDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="TblBORDROLAR">
           <Key>
             <PropertyRef Name="BordroID" />
@@ -53,6 +63,28 @@
           <Property Name="HesapNo" Type="nvarchar(max)" />
           <Property Name="Durumu" Type="bit" />
         </EntityType>
+        <EntityType Name="TblFIRMAHAREKET">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UrunId" Type="int" />
+          <Property Name="Aciklama" Type="nvarchar" MaxLength="100" />
+          <Property Name="FirmaId" Type="int" />
+          <Property Name="Tutar" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Adet" Type="int" />
+          <Property Name="Tarih" Type="date" />
+        </EntityType>
+        <EntityType Name="TblFIRMAODEME">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirmaId" Type="int" />
+          <Property Name="Aciklama" Type="nvarchar" MaxLength="100" />
+          <Property Name="Tutar" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Tarih" Type="date" />
+        </EntityType>
         <EntityType Name="TblGELIR">
           <Key>
             <PropertyRef Name="GelirId" />
@@ -76,7 +108,7 @@
           <Property Name="Tutar" Type="decimal" Precision="12" Scale="2" Nullable="false" />
           <Property Name="Tarih" Type="datetime" />
           <Property Name="Aciklama" Type="nvarchar" MaxLength="500" />
-          <Property Name="PersonelId" Type="int" Nullable="false" />
+          <Property Name="PersonelId" Type="int" />
           <Property Name="FirmaId" Type="int" />
           <Property Name="ReferansTablo" Type="nvarchar" MaxLength="50" />
           <Property Name="ReferansId" Type="int" />
@@ -344,7 +376,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Gider_Personel">
-          <End Role="TblPERSONELLER" Type="Self.TblPERSONELLER" Multiplicity="1" />
+          <End Role="TblPERSONELLER" Type="Self.TblPERSONELLER" Multiplicity="0..1" />
           <End Role="TblGIDER" Type="Self.TblGIDER" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblPERSONELLER">
@@ -487,6 +519,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TblFIRMAHAREKET_TblFIRMA">
+          <End Role="TblFIRMA" Type="Self.TblFIRMA" Multiplicity="0..1" />
+          <End Role="TblFIRMAHAREKET" Type="Self.TblFIRMAHAREKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblFIRMA">
+              <PropertyRef Name="FirmaId" />
+            </Principal>
+            <Dependent Role="TblFIRMAHAREKET">
+              <PropertyRef Name="FirmaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblFIRMAHAREKET_TblURUN">
+          <End Role="TblURUN" Type="Self.TblURUN" Multiplicity="0..1" />
+          <End Role="TblFIRMAHAREKET" Type="Self.TblFIRMAHAREKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblURUN">
+              <PropertyRef Name="UrunId" />
+            </Principal>
+            <Dependent Role="TblFIRMAHAREKET">
+              <PropertyRef Name="UrunId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblFIRMAODEME_TblFIRMA">
+          <End Role="TblFIRMA" Type="Self.TblFIRMA" Multiplicity="0..1" />
+          <End Role="TblFIRMAODEME" Type="Self.TblFIRMAODEME" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblFIRMA">
+              <PropertyRef Name="FirmaId" />
+            </Principal>
+            <Dependent Role="TblFIRMAODEME">
+              <PropertyRef Name="FirmaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TblMaas_Personel">
           <End Role="TblPERSONELLER" Type="Self.TblPERSONELLER" Multiplicity="1" />
           <End Role="TblMAAS" Type="Self.TblMAAS" Multiplicity="*" />
@@ -548,9 +616,12 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="RESTORANDBModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblBORDROLAR" EntityType="Self.TblBORDROLAR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblCEKSENET" EntityType="Self.TblCEKSENET" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblFIRMA" EntityType="Self.TblFIRMA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblFIRMAHAREKET" EntityType="Self.TblFIRMAHAREKET" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblFIRMAODEME" EntityType="Self.TblFIRMAODEME" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblGELIR" EntityType="Self.TblGELIR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblGIDER" EntityType="Self.TblGIDER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblGUNLUKHARCAMA" EntityType="Self.TblGUNLUKHARCAMA" Schema="dbo" store:Type="Tables" />
@@ -647,6 +718,18 @@
             <End Role="TblURUN" EntitySet="TblURUN" />
             <End Role="TblSTOKHAREKET" EntitySet="TblSTOKHAREKET" />
           </AssociationSet>
+          <AssociationSet Name="FK_TblFIRMAHAREKET_TblFIRMA" Association="Self.FK_TblFIRMAHAREKET_TblFIRMA">
+            <End Role="TblFIRMA" EntitySet="TblFIRMA" />
+            <End Role="TblFIRMAHAREKET" EntitySet="TblFIRMAHAREKET" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblFIRMAHAREKET_TblURUN" Association="Self.FK_TblFIRMAHAREKET_TblURUN">
+            <End Role="TblURUN" EntitySet="TblURUN" />
+            <End Role="TblFIRMAHAREKET" EntitySet="TblFIRMAHAREKET" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblFIRMAODEME_TblFIRMA" Association="Self.FK_TblFIRMAODEME_TblFIRMA">
+            <End Role="TblFIRMA" EntitySet="TblFIRMA" />
+            <End Role="TblFIRMAODEME" EntitySet="TblFIRMAODEME" />
+          </AssociationSet>
           <AssociationSet Name="FK_TblMaas_Personel" Association="Self.FK_TblMaas_Personel">
             <End Role="TblPERSONELLER" EntitySet="TblPERSONELLER" />
             <End Role="TblMAAS" EntitySet="TblMAAS" />
@@ -673,6 +756,16 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RESTORANDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="TblBORDROLAR">
           <Key>
             <PropertyRef Name="BordroID" />
@@ -729,8 +822,35 @@
           <NavigationProperty Name="TblGIDER" Relationship="Self.FK_Gider_Firma" FromRole="TblFIRMA" ToRole="TblGIDER" />
           <NavigationProperty Name="TblGUNLUKHARCAMA" Relationship="Self.FK_GunlukHarcama_Firma" FromRole="TblFIRMA" ToRole="TblGUNLUKHARCAMA" />
           <NavigationProperty Name="TblSTOKHAREKET" Relationship="Self.FK_StokHareket_Firma" FromRole="TblFIRMA" ToRole="TblSTOKHAREKET" />
+          <NavigationProperty Name="TblFIRMAHAREKET" Relationship="Self.FK_TblFIRMAHAREKET_TblFIRMA" FromRole="TblFIRMA" ToRole="TblFIRMAHAREKET" />
+          <NavigationProperty Name="TblFIRMAODEME" Relationship="Self.FK_TblFIRMAODEME_TblFIRMA" FromRole="TblFIRMA" ToRole="TblFIRMAODEME" />
           <NavigationProperty Name="TblMODEME" Relationship="Self.FK_TblMusteriOdeme_TblFIRMA" FromRole="TblFIRMA" ToRole="TblMODEME" />
           <NavigationProperty Name="TblURUN" Relationship="Self.FK_TblUrun_Firma" FromRole="TblFIRMA" ToRole="TblURUN" />
+        </EntityType>
+        <EntityType Name="TblFIRMAHAREKET">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UrunId" Type="Int32" />
+          <Property Name="Aciklama" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FirmaId" Type="Int32" />
+          <Property Name="Tutar" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Adet" Type="Int32" />
+          <Property Name="Tarih" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TblFIRMA" Relationship="Self.FK_TblFIRMAHAREKET_TblFIRMA" FromRole="TblFIRMAHAREKET" ToRole="TblFIRMA" />
+          <NavigationProperty Name="TblURUN" Relationship="Self.FK_TblFIRMAHAREKET_TblURUN" FromRole="TblFIRMAHAREKET" ToRole="TblURUN" />
+        </EntityType>
+        <EntityType Name="TblFIRMAODEME">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirmaId" Type="Int32" />
+          <Property Name="Aciklama" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Tutar" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Tarih" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TblFIRMA" Relationship="Self.FK_TblFIRMAODEME_TblFIRMA" FromRole="TblFIRMAODEME" ToRole="TblFIRMA" />
         </EntityType>
         <EntityType Name="TblGELIR">
           <Key>
@@ -757,7 +877,7 @@
           <Property Name="Tutar" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
           <Property Name="Tarih" Type="DateTime" Precision="3" />
           <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="PersonelId" Type="Int32" Nullable="false" />
+          <Property Name="PersonelId" Type="Int32" />
           <Property Name="FirmaId" Type="Int32" />
           <Property Name="ReferansTablo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ReferansId" Type="Int32" />
@@ -961,6 +1081,7 @@
           <Property Name="ResimYolu" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="EklenmeTarihi" Type="DateTime" Precision="3" />
           <NavigationProperty Name="TblFIRMA" Relationship="Self.FK_TblUrun_Firma" FromRole="TblURUN" ToRole="TblFIRMA" />
+          <NavigationProperty Name="TblFIRMAHAREKET" Relationship="Self.FK_TblFIRMAHAREKET_TblURUN" FromRole="TblURUN" ToRole="TblFIRMAHAREKET" />
           <NavigationProperty Name="TblKATEGORI" Relationship="Self.FK_UrunKategori" FromRole="TblURUN" ToRole="TblKATEGORI" />
           <NavigationProperty Name="TblSIPARISDETAY" Relationship="Self.FK_SiparisDetay_Urun" FromRole="TblURUN" ToRole="TblSIPARISDETAY" />
           <NavigationProperty Name="TblSTOKHAREKET" Relationship="Self.FK_StokHareket_Urun" FromRole="TblURUN" ToRole="TblSTOKHAREKET" />
@@ -1061,6 +1182,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TblFIRMAHAREKET_TblFIRMA">
+          <End Role="TblFIRMA" Type="Self.TblFIRMA" Multiplicity="0..1" />
+          <End Role="TblFIRMAHAREKET" Type="Self.TblFIRMAHAREKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblFIRMA">
+              <PropertyRef Name="FirmaId" />
+            </Principal>
+            <Dependent Role="TblFIRMAHAREKET">
+              <PropertyRef Name="FirmaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblFIRMAODEME_TblFIRMA">
+          <End Role="TblFIRMA" Type="Self.TblFIRMA" Multiplicity="0..1" />
+          <End Role="TblFIRMAODEME" Type="Self.TblFIRMAODEME" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblFIRMA">
+              <PropertyRef Name="FirmaId" />
+            </Principal>
+            <Dependent Role="TblFIRMAODEME">
+              <PropertyRef Name="FirmaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TblMusteriOdeme_TblFIRMA">
           <End Role="TblFIRMA" Type="Self.TblFIRMA" Multiplicity="0..1" />
           <End Role="TblMODEME" Type="Self.TblMODEME" Multiplicity="*" />
@@ -1082,6 +1227,18 @@
             </Principal>
             <Dependent Role="TblURUN">
               <PropertyRef Name="FirmaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblFIRMAHAREKET_TblURUN">
+          <End Role="TblURUN" Type="Self.TblURUN" Multiplicity="0..1" />
+          <End Role="TblFIRMAHAREKET" Type="Self.TblFIRMAHAREKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblURUN">
+              <PropertyRef Name="UrunId" />
+            </Principal>
+            <Dependent Role="TblFIRMAHAREKET">
+              <PropertyRef Name="UrunId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1110,7 +1267,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Gider_Personel">
-          <End Role="TblPERSONELLER" Type="Self.TblPERSONELLER" Multiplicity="1" />
+          <End Role="TblPERSONELLER" Type="Self.TblPERSONELLER" Multiplicity="0..1" />
           <End Role="TblGIDER" Type="Self.TblGIDER" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblPERSONELLER">
@@ -1266,9 +1423,12 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="RESTORANDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="TblBORDROLAR" EntityType="Self.TblBORDROLAR" />
           <EntitySet Name="TblCEKSENET" EntityType="Self.TblCEKSENET" />
           <EntitySet Name="TblFIRMA" EntityType="Self.TblFIRMA" />
+          <EntitySet Name="TblFIRMAHAREKET" EntityType="Self.TblFIRMAHAREKET" />
+          <EntitySet Name="TblFIRMAODEME" EntityType="Self.TblFIRMAODEME" />
           <EntitySet Name="TblGELIR" EntityType="Self.TblGELIR" />
           <EntitySet Name="TblGIDER" EntityType="Self.TblGIDER" />
           <EntitySet Name="TblGUNLUKHARCAMA" EntityType="Self.TblGUNLUKHARCAMA" />
@@ -1317,6 +1477,14 @@
             <End Role="TblFIRMA" EntitySet="TblFIRMA" />
             <End Role="TblSTOKHAREKET" EntitySet="TblSTOKHAREKET" />
           </AssociationSet>
+          <AssociationSet Name="FK_TblFIRMAHAREKET_TblFIRMA" Association="Self.FK_TblFIRMAHAREKET_TblFIRMA">
+            <End Role="TblFIRMA" EntitySet="TblFIRMA" />
+            <End Role="TblFIRMAHAREKET" EntitySet="TblFIRMAHAREKET" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblFIRMAODEME_TblFIRMA" Association="Self.FK_TblFIRMAODEME_TblFIRMA">
+            <End Role="TblFIRMA" EntitySet="TblFIRMA" />
+            <End Role="TblFIRMAODEME" EntitySet="TblFIRMAODEME" />
+          </AssociationSet>
           <AssociationSet Name="FK_TblMusteriOdeme_TblFIRMA" Association="Self.FK_TblMusteriOdeme_TblFIRMA">
             <End Role="TblFIRMA" EntitySet="TblFIRMA" />
             <End Role="TblMODEME" EntitySet="TblMODEME" />
@@ -1324,6 +1492,10 @@
           <AssociationSet Name="FK_TblUrun_Firma" Association="Self.FK_TblUrun_Firma">
             <End Role="TblFIRMA" EntitySet="TblFIRMA" />
             <End Role="TblURUN" EntitySet="TblURUN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblFIRMAHAREKET_TblURUN" Association="Self.FK_TblFIRMAHAREKET_TblURUN">
+            <End Role="TblURUN" EntitySet="TblURUN" />
+            <End Role="TblFIRMAHAREKET" EntitySet="TblFIRMAHAREKET" />
           </AssociationSet>
           <AssociationSet Name="FK_Gelir_Musteri" Association="Self.FK_Gelir_Musteri">
             <End Role="TblMUSTERILER" EntitySet="TblMUSTERILER" />
@@ -1392,6 +1564,17 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="RESTORANDBModelStoreContainer" CdmEntityContainer="RESTORANDBEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="RESTORANDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TblBORDROLAR">
             <EntityTypeMapping TypeName="RESTORANDBModel.TblBORDROLAR">
               <MappingFragment StoreEntitySet="TblBORDROLAR">
@@ -1440,6 +1623,30 @@
                 <ScalarProperty Name="VergiDairesi" ColumnName="VergiDairesi" />
                 <ScalarProperty Name="HesapNo" ColumnName="HesapNo" />
                 <ScalarProperty Name="Durumu" ColumnName="Durumu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblFIRMAHAREKET">
+            <EntityTypeMapping TypeName="RESTORANDBModel.TblFIRMAHAREKET">
+              <MappingFragment StoreEntitySet="TblFIRMAHAREKET">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="FirmaId" ColumnName="FirmaId" />
+                <ScalarProperty Name="Tutar" ColumnName="Tutar" />
+                <ScalarProperty Name="Adet" ColumnName="Adet" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblFIRMAODEME">
+            <EntityTypeMapping TypeName="RESTORANDBModel.TblFIRMAODEME">
+              <MappingFragment StoreEntitySet="TblFIRMAODEME">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirmaId" ColumnName="FirmaId" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="Tutar" ColumnName="Tutar" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
