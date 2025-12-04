@@ -38,34 +38,28 @@
 
         <!--Sag-->
         <StackPanel Orientation="Vertical" Grid.Column="1">
-            <TextBox x:Name="stokUrun" Width="300" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Stoklanacak Ürün" AcceptsReturn="True" IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}" Style="{StaticResource MaterialDesignFilledTextBox}"
+            <TextBox x:Name="firma_adi" Width="300" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Firma Adı" AcceptsReturn="True" IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}" Style="{StaticResource MaterialDesignFilledTextBox}"
             TextWrapping="Wrap"
             Margin="0 100 0 0"
             Foreground="WhiteSmoke"
             FontSize="18"
-            MaxLength="36"/>
-            <TextBox x:Name="stokMiktari" Width="300" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Stok Miktarı" AcceptsReturn="True" IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}" Style="{StaticResource MaterialDesignFilledTextBox}"
+            />
+            <TextBox x:Name="urun_adi" Width="300" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Ürün Adı" AcceptsReturn="True" IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}" Style="{StaticResource MaterialDesignFilledTextBox}"
             TextWrapping="Wrap"
             Margin="0 20 0 0"
             Foreground="WhiteSmoke"
             FontSize="18"
-            MaxLength="8"/>
+           />
+           
+            
+            <TextBox x:Name="stokMiktari"  Width="300" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Stok Miktarı" AcceptsReturn="True" IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}" Style="{StaticResource MaterialDesignFilledTextBox}"
+            TextWrapping="Wrap"
+            Margin="0 20 0 0"
+            Foreground="WhiteSmoke"
+            FontSize="18"
+            MaxLength="8" TextChanged="stokMiktari_TextChanged"/>
 
-            <ComboBox x:Name="cbxBirim" Margin="0 10 0 15" Width="300" 
-materialDesign:ColorZoneAssist.Mode="SecondaryLight"
-materialDesign:HintAssist.HelperText="Birim"
-materialDesign:HintAssist.Hint="Birim Seçin" Foreground="White"
-materialDesign:TextFieldAssist.HasClearButton="True"
-FontSize="18" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource MaterialDesign.Brush.Primary}" Style="{StaticResource MaterialDesignFloatingHintComboBox}" >
-                <ComboBoxItem Content="Adet" />
-                <ComboBoxItem Content="Koli" />
-                <ComboBoxItem Content="Litre" />
-                <ComboBoxItem Content="Kilo" />
-                <ComboBoxItem Content="Palet" />
-                <ComboBoxItem Content="Diğer..." />
-            </ComboBox>
-
-            <TextBox x:Name="stokFiyat" Width="300" materialDesign:TextFieldAssist.PrefixText="₺" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Fiyat" AcceptsReturn="True" IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}" Style="{StaticResource MaterialDesignFilledTextBox}"
+            <TextBox x:Name="stokFiyat"  Width="300" materialDesign:TextFieldAssist.PrefixText="₺" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Fiyat" AcceptsReturn="True" IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}" Style="{StaticResource MaterialDesignFilledTextBox}"
 TextWrapping="Wrap"
 Margin="0 20 0 0"
 Foreground="WhiteSmoke"
@@ -80,7 +74,6 @@ VerticalScrollBarVisibility="Auto" Foreground="White"/>
 
             <!--Tarih&Saat-->
             <DatePicker x:Name="stokTarih" Foreground="Red" materialDesign:HintAssist.Hint="Tarih Seç"  FontSize="18" Margin="0 20 0 0" Width="300" Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
-            <materialDesign:TimePicker materialDesign:HintAssist.Hint="Saat Seç" Foreground="Red" x:Name="stokSaat" FontSize="18" Is24Hours="True" Margin="0 20 0 0" Width="300"/>
             <!---->
             <Separator Width="400" Height="20" Margin="0 10 0 20"/>
             <StackPanel Orientation="Horizontal">

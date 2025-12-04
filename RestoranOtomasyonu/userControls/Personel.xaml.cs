@@ -553,7 +553,16 @@ namespace RestoranOtomasyonu.userControls
                 yeniOdeme.PERSONEL = seciliPersonelId;
 
                 ResDB.TblPERSONELODEME.Add(yeniOdeme);
-                ResDB.SaveChanges();
+
+                //2 kasaya gider kaydı oluşturma
+                TblGIDER gider = new TblGIDER();
+                gider.PersonelId = seciliPersonelId;
+                gider.Aciklama = aciklama.Text;
+                gider.Tarih = DateTime.Parse(odemeTarih.Text);
+                gider.Tutar = Convert.ToDecimal(odemeTutar.Text);
+                gider.GiderTuru = cbxOdemeTuru.Text;
+                ResDB.TblGIDER.Add(gider);
+               ResDB.SaveChanges();
 
                 MessageBox.Show("Personele ödeme başarıyla yapıldı.");
             }
