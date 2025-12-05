@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ff6167f6d2464edd9db7717553e5f007" Name="Diagram1">
+      <Diagram DiagramId="3239567d7345434892f158f77eefb7c5" Name="Diagram1">
         <EntityTypeShape EntityType="RESTORANDBModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RESTORANDBModel.TblBORDROLAR" Width="1.5" PointX="3" PointY="14.625" IsExpanded="true" />
         <EntityTypeShape EntityType="RESTORANDBModel.TblCEKSENET" Width="1.5" PointX="3" PointY="19.25" IsExpanded="true" />

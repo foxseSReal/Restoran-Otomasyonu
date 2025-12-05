@@ -17,11 +17,11 @@
         <StackPanel Orientation="Vertical">
             <!--Firma DataGrid-->
             <TextBlock Text="Firmalar" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black" FontSize="24" Foreground="Aqua"/>
-            <DataGrid IsReadOnly="True" x:Name="firma_DataGrid" Margin="0 10 0 0" CanUserAddRows="False" CanUserDeleteRows="False" Focusable="True" Width="400" Height="250" SelectedCellsChanged="firma_DataGrid_SelectedCellsChanged" />
+            <DataGrid IsReadOnly="True" x:Name="firma_DataGrid" Margin="0 10 0 0" CanUserAddRows="False" CanUserDeleteRows="False" Focusable="True" Width="400" Height="250"  SelectionChanged="firma_DataGrid_SelectionChanged" />
 
             <!--Urunler DataGrid-->
             <TextBlock Text="Ürünler" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black" FontSize="24" Foreground="Aqua"/>
-            <DataGrid IsReadOnly="True" x:Name="urun_DataGrid" Margin="0 10 0 0" CanUserAddRows="False" CanUserDeleteRows="False" Focusable="True" Width="400" Height="250" SelectedCellsChanged="urun_DataGrid_SelectedCellsChanged" />
+            <DataGrid IsReadOnly="True" x:Name="urun_DataGrid" Margin="0 10 0 0" CanUserAddRows="False" CanUserDeleteRows="False" Focusable="True" Width="400" Height="250"  SelectionChanged="urun_DataGrid_SelectionChanged" />
         </StackPanel>
 
         <!--Sag StackPanel-->
@@ -36,14 +36,7 @@
             </Grid.RowDefinitions>
             <!--1-->
             <StackPanel Orientation="Vertical" Grid.Column="0">
-                <StackPanel Orientation="Horizontal">
-                    <Ellipse Width="200" Height="200" HorizontalAlignment="Left" Margin="10 50 0 0">
-                        <Ellipse.Fill>
-                            <ImageBrush x:Name="urun_resimKutusu"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
-                </StackPanel>
-                <Button Margin="0 50 0 0" Content="Resim Ekle"/>
+                <StackPanel Orientation="Horizontal"/>
                 <!--Adres-->
 
             </StackPanel>
@@ -88,6 +81,9 @@ FontSize="20" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Ma
                     <ComboBoxItem Content="Anadolu Et ve Süt Ürünleri A.Ş." />
                     <ComboBoxItem Content="Yeşilbahçe Sebze Meyve Hali" />
                     <ComboBoxItem Content="Toptan İçecek Dağıtım Merkezi" />
+                    <ComboBoxItem Content="Temizlik ve Hijyen Çözümleri Ltd." />
+                    <ComboBoxItem Content="Mutfak Ekipmanları A.Ş." />
+                    <ComboBoxItem Content="Karaca" />
                 </ComboBox>
             </StackPanel>
 

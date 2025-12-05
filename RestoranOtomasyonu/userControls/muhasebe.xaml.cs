@@ -53,8 +53,9 @@ namespace RestoranOtomasyonu.userControls
                           .Select(x => new
                           {
                               ID = x.GiderId,
-                              Personel = x.TblPERSONELLER != null ? x.TblPERSONELLER.Ad + " " + x.TblPERSONELLER.Soyad : "Bilinmiyor",
                               Firma = x.TblFIRMA != null ? x.TblFIRMA.FirmaAdi : "Bilinmiyor",
+                              GiderTürü = x.GiderTuru,
+                              Personel = x.TblPERSONELLER != null ? x.TblPERSONELLER.Ad + " " + x.TblPERSONELLER.Soyad : "Bilinmiyor",
                               Tarih = x.Tarih,
                               Açıklama = x.Aciklama,
                               Tutar = x.Tutar,
@@ -79,8 +80,10 @@ namespace RestoranOtomasyonu.userControls
                           .Select(x => new
                           {
                               ID = x.GiderId,
-                              Personel = x.TblPERSONELLER != null ? x.TblPERSONELLER.Ad + " " + x.TblPERSONELLER.Soyad : "Bilinmiyor",
                               Firma = x.TblFIRMA != null ? x.TblFIRMA.FirmaAdi : "Bilinmiyor",
+                              GiderTürü =x.GiderTuru,
+                             
+                              Personel = x.TblPERSONELLER != null ? x.TblPERSONELLER.Ad + " " + x.TblPERSONELLER.Soyad : "Bilinmiyor",
                               Tarih = x.Tarih,
                               Açıklama = x.Aciklama,
                               Tutar = x.Tutar,
@@ -115,6 +118,11 @@ namespace RestoranOtomasyonu.userControls
                           }
                           );
             muhasebeGelir_DataGrid.ItemsSource = sonuc;
+        }
+
+        private void muhasebeGider_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

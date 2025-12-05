@@ -67,28 +67,32 @@ namespace RestoranOtomasyonu.userControls
 
 
         }
+        int musterifirma;
         private void musteri_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var secilmis = musteri_DataGrid.SelectedItem;
             if (secilmis != null)
             {
                 dynamic item = secilmis;
-                int musterifirma = item.ID;
+                musterifirma = item.ID; // FirmaId
                 FirmaGetir(musterifirma);
+                FMusteriGetir(musterifirma);
+
+                // Borçları doğru şekilde filtrele
+                var odeme = db.TblMODEME
+                    .Where(b => b.FmusteriID == musterifirma)
+                    .Select(b => new
+                    {
+                        ID = b.OdemeId,
+                        MüşteriFirma = b.TblFIRMA.FirmaAdi,
+                        BorcTutar = b.BorcTutar,
+                        OdenecekTutar = b.OdenenTutar,
+                        Tarih = b.Tarih,
+                        Aciklama = b.Aciklama
+                    }).ToList();
+
+                Modeme_DataGrid.ItemsSource = odeme;
             }
-            var musteri = musteri_DataGrid.SelectedItem;
-            var sec = musteri_DataGrid.SelectedItem;
-            if (sec != null)
-            {
-                dynamic item = secilmis;
-                int id = item.ID;
-                FMusteriGetir(id);
-            }
-            var musteri1 = musteri_DataGrid.SelectedItem;
-            
-
-
-
         }
 
         private void musteri_ekleButton_Click(object sender, RoutedEventArgs e)
