@@ -104,7 +104,5 @@ namespace RestoranOtomasyonu
             ContentArea.Children.Clear();
             ContentArea.Children.Add(new rezervasyon());
         }
-
-
     }
 }

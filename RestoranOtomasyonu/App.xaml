@@ -301,18 +301,23 @@
                 </Setter>
             </Style>
 
-            <!--Account Button-->
-            <Style x:Name="Account" TargetType="Button">
+            <Style x:Key="AccountButton" TargetType="Button">
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Width" Value="80"/>
+                <Setter Property="Height" Value="80"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <EventSetter Event="Click" Handler="ProfileButton_Click"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
-                            <Border Margin="0 0 20 0" Width="80" Height="80" ToolTip="Admin">
+                            <Grid>
                                 <Ellipse>
                                     <Ellipse.Fill>
-                                        <ImageBrush ImageSource="/indir.jpeg"/>
+                                        <ImageBrush ImageSource="/indir.jpeg" Stretch="UniformToFill"/>
                                     </Ellipse.Fill>
                                 </Ellipse>
-                            </Border>
+                            </Grid>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>

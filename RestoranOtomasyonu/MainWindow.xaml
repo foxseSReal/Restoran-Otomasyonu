@@ -110,9 +110,18 @@
         <!--Ust Bar-->
         <Border Style="{StaticResource ustBorder}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Border>
-                    <Button Style="{StaticResource Account}"/>
-                </Border>
+                <!--Burasi Değişecek-->
+                <Button x:Name="Button" Style="{StaticResource AccountButton}">
+                    <Button.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Profilim" />
+                            <MenuItem Header="Ayarlar" />
+                            <Separator />
+                            <MenuItem Header="Çıkış Yap" Foreground="Red" Click="appClose_Click"/>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+                <!---->
                 <Button Click="Minimize_Click" Style="{StaticResource ustBarButton}">
                     <materialDesign:PackIcon Kind="MinusBox" Style="{StaticResource ustBar_buttonIcon}"/>
                 </Button>
