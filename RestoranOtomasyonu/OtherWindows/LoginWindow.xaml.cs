@@ -26,7 +26,7 @@ namespace RestoranOtomasyonu.OtherWindows
 
         private void btnGiris_Click(object sender, RoutedEventArgs e)
         {
-            if (txtUsername.Text == "a" && PasswordBox.Text == "a")
+            if (txtUsername.Text == "a" && PasswordBox.Password == "a")
             {
                 // Ana pencereyi aç
                 MainWindow main = new MainWindow();
