@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:RestoranOtomasyonu"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             StartupUri="MainWindow.xaml">
+             ShutdownMode="OnLastWindowClose"
+             StartupUri="OtherWindows/LoginWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -17,6 +18,18 @@
             <Style TargetType="Window" x:Key="MaterialDesignWindow">
 
                 <Setter Property="Background" Value="{DynamicResource MaterialDesignLightSeparatorBackground}"/>
+            </Style>
+
+            <Style x:Key="Login_arkaPlan" TargetType="Grid">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#FF1F62" Offset="1.0"/>
+                            <GradientStop Color="#FF4B1F" Offset="0.5"/>
+                            <GradientStop Color="#FFBC1F" Offset="0.0"/>
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
             </Style>
 
             <!--ArkaPlan-->
