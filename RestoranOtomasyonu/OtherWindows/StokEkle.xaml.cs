@@ -23,7 +23,7 @@ namespace RestoranOtomasyonu.OtherWindows
 
     public partial class StokEkle : Window
     {
-        RESTORANDBEntities db = new RESTORANDBEntities();
+        RESTORANDBEntities1 db = new RESTORANDBEntities1();
         public StokEkle()
         {
             InitializeComponent();

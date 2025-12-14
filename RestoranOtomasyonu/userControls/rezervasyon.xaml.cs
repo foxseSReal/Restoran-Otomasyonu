@@ -21,7 +21,7 @@ namespace RestoranOtomasyonu.userControls
     /// </summary>
     public partial class rezervasyon : UserControl
     {
-        RESTORANDBEntities db = new RESTORANDBEntities();
+        RESTORANDBEntities1 db = new RESTORANDBEntities1();
         public rezervasyon()
         {
             InitializeComponent();

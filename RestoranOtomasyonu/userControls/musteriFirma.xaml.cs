@@ -23,7 +23,7 @@ namespace RestoranOtomasyonu.userControls
 
     public partial class musteriFirma : UserControl
     {
-        RESTORANDBEntities db = new RESTORANDBEntities();
+        RESTORANDBEntities1 db = new RESTORANDBEntities1();
         public musteriFirma()
         {
             InitializeComponent();

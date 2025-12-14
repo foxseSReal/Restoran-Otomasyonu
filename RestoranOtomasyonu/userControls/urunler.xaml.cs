@@ -23,7 +23,7 @@ namespace RestoranOtomasyonu.userControls
     /// </summary>
     public partial class urunler : UserControl
     {
-        RESTORANDBEntities db = new RESTORANDBEntities();
+        RESTORANDBEntities1 db = new RESTORANDBEntities1();
         private string seciliResimYolu = null; // <--- YENİ SATIR: Seçilen resmin dosya yolunu tutmak için
 
         public urunler()

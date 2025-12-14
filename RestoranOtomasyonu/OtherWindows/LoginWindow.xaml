@@ -13,13 +13,18 @@
         <StackPanel Orientation="Vertical">
 
             <TextBlock x:Name="Saat" Text="9:02" Margin="0 30 0 0" FontSize="48" FontFamily="Arial" Foreground="Black" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-
+            <Separator Width="500" Height="20" Background="White"/>
             <StackPanel Margin="0 100 0 0"  Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBox x:Name="txtUsername" Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="White" materialDesign:TextFieldAssist.UnderlineBrush="White" materialDesign:HintAssist.Hint="Kullanıcı Adı" materialDesign:TextFieldAssist.HasClearButton="True" FontSize="24" Width="300"/>
+                <TextBox x:Name="txtUsername" Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="White" materialDesign:TextFieldAssist.UnderlineBrush="White" materialDesign:HintAssist.Foreground="White" MaxLength="18" materialDesign:HintAssist.Hint="Kullanıcı Adı" materialDesign:TextFieldAssist.HasClearButton="True" FontSize="24" Width="300"/>
             </StackPanel>
             <StackPanel Margin="0 30 0 0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
 
-                <PasswordBox x:Name="PasswordBox" materialDesign:HintAssist.Hint="Şifre" Foreground="White" materialDesign:TextFieldAssist.HasClearButton="True" FontSize="24" Width="300" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox x:Name="PasswordBox" Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="White" materialDesign:TextFieldAssist.UnderlineBrush="White" materialDesign:HintAssist.Foreground="White" MaxLength="18" materialDesign:HintAssist.Hint="Şifre" materialDesign:TextFieldAssist.HasClearButton="True" FontSize="24" Width="300"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0 10 0 0 ">
+                <Button Margin="100 20 0 0" Click="btnGiris_Click" Content="Giriş Yap" FontSize="24" FontWeight="Bold" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="200" Height="50" materialDesign:ButtonAssist.CornerRadius="20"/>
+                <Button Margin="100 20 0 0" Click="AppClose" Content="Çıkış Yap" FontSize="24" FontWeight="Bold" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="200" Height="50" materialDesign:ButtonAssist.CornerRadius="20"/>
             </StackPanel>
         </StackPanel>
     </Grid>

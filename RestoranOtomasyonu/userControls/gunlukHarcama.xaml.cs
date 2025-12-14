@@ -22,11 +22,10 @@ namespace RestoranOtomasyonu.userControls
     /// </summary>
     public partial class gunlukHarcama : UserControl
     {
-        RESTORANDBEntities db = new RESTORANDBEntities();
+        RESTORANDBEntities1 db = new RESTORANDBEntities1();
         public gunlukHarcama()
         {
             InitializeComponent();
-            HarcamaListele();
         }
         public void HarcamaListele()
         {
@@ -139,6 +138,11 @@ namespace RestoranOtomasyonu.userControls
 
             harcamalar_DataGrid.ItemsSource = sonuc;
 
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            HarcamaListele();
         }
     }
 }

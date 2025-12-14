@@ -11,7 +11,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using RestoranOtomasyonu;
 
 namespace RestoranOtomasyonu.OtherWindows
 {
@@ -27,20 +26,26 @@ namespace RestoranOtomasyonu.OtherWindows
 
         private void btnGiris_Click(object sender, RoutedEventArgs e)
         {
-            if (txtUsername.Text == "a" && PasswordBox.Password == "a")
+            if (txtUsername.Text == "a" && PasswordBox.Text == "a")
             {
                 // Ana pencereyi aç
                 MainWindow main = new MainWindow();
                 main.Show();
 
                 // Login penceresini kapat
-                this.Close();
+                this.Hide();
             }
             else
             {
                 MessageBox.Show("Hatalı giriş");
             }
         }
+
+        private void AppClose(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
 
     }
 }

@@ -27,7 +27,7 @@ namespace RestoranOtomasyonu.userControls
     {
 
         //==================================================//
-        RESTORANDBEntities ResDB = new RESTORANDBEntities();
+        RESTORANDBEntities1 ResDB = new RESTORANDBEntities1();
         //==================================================//
 
         public Personel()

@@ -22,7 +22,7 @@ namespace RestoranOtomasyonu.userControls
     /// </summary>
     public partial class cekSenet : UserControl
     {
-        RESTORANDBEntities db = new RESTORANDBEntities();
+        RESTORANDBEntities1 db = new RESTORANDBEntities1();
         public cekSenet()
         {
             InitializeComponent();

@@ -51,7 +51,7 @@ namespace RestoranOtomasyonu
                 );
             if (cevap == MessageBoxResult.Yes)
             {
-                this.Close();
+                Application.Current.Shutdown();
             }
         }
         private void Minimize_Click(object sender, RoutedEventArgs e)
