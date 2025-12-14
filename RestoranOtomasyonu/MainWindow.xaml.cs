@@ -105,6 +105,6 @@ namespace RestoranOtomasyonu
             ContentArea.Children.Add(new rezervasyon());
         }
 
-        
+
     }
 }

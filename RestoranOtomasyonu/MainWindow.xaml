@@ -110,6 +110,9 @@
         <!--Ust Bar-->
         <Border Style="{StaticResource ustBorder}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Border>
+                    <Button Style="{StaticResource Account}"/>
+                </Border>
                 <Button Click="Minimize_Click" Style="{StaticResource ustBarButton}">
                     <materialDesign:PackIcon Kind="MinusBox" Style="{StaticResource ustBar_buttonIcon}"/>
                 </Button>

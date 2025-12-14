@@ -301,7 +301,22 @@
                 </Setter>
             </Style>
 
-
+            <!--Account Button-->
+            <Style x:Name="Account" TargetType="Button">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Margin="0 0 20 0" Width="80" Height="80" ToolTip="Admin">
+                                <Ellipse>
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="/indir.jpeg"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
