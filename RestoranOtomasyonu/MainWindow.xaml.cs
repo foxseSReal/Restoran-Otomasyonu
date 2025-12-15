@@ -1,4 +1,5 @@
 ﻿using RestoranOtomasyonu.Entity;
+using RestoranOtomasyonu.OtherWindows;
 using RestoranOtomasyonu.userControls;
 using System;
 using System.Collections.Generic;
@@ -104,5 +105,14 @@ namespace RestoranOtomasyonu
             ContentArea.Children.Clear();
             ContentArea.Children.Add(new rezervasyon());
         }
+
+        //Admin Yetkindirme Formunu öne çıkarma komutu.
+
+        private void yetkilendir(object sender, RoutedEventArgs e)
+        {
+            Erisimizni yetkilendirme = new Erisimizni();
+            yetkilendirme.Show();
+        }
+
     }
 }

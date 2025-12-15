@@ -114,8 +114,8 @@
                 <Button x:Name="Button" Style="{StaticResource AccountButton}">
                     <Button.ContextMenu>
                         <ContextMenu>
-                            <MenuItem Header="Profilim" />
-                            <MenuItem Header="Ayarlar" />
+                            <MenuItem Header="Kullanıcı Değiştir" />
+                            <MenuItem Header="Yetkilendirme Yap" Click="yetkilendir"/>
                             <Separator />
                             <MenuItem Header="Çıkış Yap" Foreground="Red" Click="appClose_Click"/>
                         </ContextMenu>

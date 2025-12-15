@@ -23,5 +23,15 @@ namespace RestoranOtomasyonu.OtherWindows
         {
             InitializeComponent();
         }
+
+        private void thisClose(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void kaydetButtonu_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

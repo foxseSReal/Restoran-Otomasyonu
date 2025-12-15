@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
+        ResizeMode="NoResize"
         Title="LoginWindow" Height="600" Width="700">
     <Grid Style="{StaticResource Login_arkaPlan}">
         <StackPanel Orientation="Vertical">
