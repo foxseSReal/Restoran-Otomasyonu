@@ -322,6 +322,21 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+
+            <!--Yetkilendirme Background-->
+            <Style x:Key="YetkilendirmeBG" TargetType="Grid">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#141E30" Offset="0.0"/>
+                            <GradientStop Color="#243B55" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+
+            </Style>
+
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

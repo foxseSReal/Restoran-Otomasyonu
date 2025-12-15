@@ -1,0 +1,33 @@
+﻿<Window x:Class="RestoranOtomasyonu.OtherWindows.Erisimizni"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:RestoranOtomasyonu.OtherWindows"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Title="Erisimizni" Height="800" Width="1200">
+    <Grid Style="{StaticResource YetkilendirmeBG}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--Ust Kisim-->
+
+        <StackPanel Margin="0 0 10 0" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <Button Width="70" Height="70" Style="{StaticResource MaterialDesignFlatLightButton}">
+                <materialDesign:PackIcon Kind="CloseBold" Width="60" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Button>
+        </StackPanel>
+
+        <!---->
+
+        <StackPanel Orientation="Vertical">
+
+        </StackPanel>
+
+    </Grid>
+</Window>
