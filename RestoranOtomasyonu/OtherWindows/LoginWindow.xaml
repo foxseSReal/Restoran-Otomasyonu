@@ -13,7 +13,7 @@
     <Grid Style="{StaticResource Login_arkaPlan}">
         <StackPanel Orientation="Vertical">
 
-            <TextBlock x:Name="Saat" Text="9:02" Margin="0 30 0 0" FontSize="48" FontFamily="Arial" Foreground="Black" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="Saat" Margin="0 30 0 0" FontSize="48" FontFamily="Arial" Foreground="Black" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <Separator Width="500" Height="20" Background="White"/>
             <StackPanel Margin="0 100 0 0"  Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBox x:Name="txtUsername" Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="White" materialDesign:TextFieldAssist.UnderlineBrush="White" materialDesign:HintAssist.Foreground="White" MaxLength="18" materialDesign:HintAssist.Hint="Kullanıcı Adı" materialDesign:TextFieldAssist.HasClearButton="True" FontSize="24" Width="300"/>

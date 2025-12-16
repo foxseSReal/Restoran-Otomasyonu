@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestoranOtomasyonu.userControls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace RestoranOtomasyonu.OtherWindows
 {
@@ -19,9 +21,13 @@ namespace RestoranOtomasyonu.OtherWindows
     /// </summary>
     public partial class LoginWindow : Window
     {
+        DispatcherTimer timer = new DispatcherTimer();
         public LoginWindow()
         {
             InitializeComponent();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += Timer_Tick;
+            timer.Start();
         }
 
         private void btnGiris_Click(object sender, RoutedEventArgs e)
@@ -46,6 +52,9 @@ namespace RestoranOtomasyonu.OtherWindows
             this.Close();
         }
 
-
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            Saat.Text = DateTime.Now.ToString("HH:mm");
+        }
     }
 }
