@@ -124,13 +124,13 @@
                         <TextBlock Margin="10 5 10 0" Text="STOK" FontFamily="Arial" FontWeight="Bold" FontSize="24"/>
                     </StackPanel>
                     <StackPanel Margin="0 10 10 0" Orientation="Horizontal">
-                        <ToggleButton x:Name="toggle_urunler" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Red" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                        <ToggleButton IsChecked="True" x:Name="toggle_urunler" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Red" Style="{StaticResource MaterialDesignFlatToggleButton}">
                             <materialDesign:PackIcon Width="21" Height="21" Kind="Tick"/>
                         </ToggleButton>
                         <TextBlock Margin="10 5 10 0" Text="ÜRÜNLER" FontFamily="Arial" FontWeight="Bold" FontSize="24"/>
                     </StackPanel>
                     <StackPanel Margin="0 10 10 0" Orientation="Horizontal">
-                        <ToggleButton x:Name="toggle_rezervasyon" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Red" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                        <ToggleButton IsChecked="True" x:Name="toggle_rezervasyon" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Red" Style="{StaticResource MaterialDesignFlatToggleButton}">
                             <materialDesign:PackIcon Width="21" Height="21" Kind="Tick"/>
                         </ToggleButton>
                         <TextBlock Margin="10 5 10 0" Text="REZERVASYON" FontFamily="Arial" FontWeight="Bold" FontSize="24"/>

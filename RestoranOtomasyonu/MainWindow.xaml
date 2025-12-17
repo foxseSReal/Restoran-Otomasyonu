@@ -116,6 +116,7 @@
                         <ContextMenu>
                             <MenuItem Header="Kullanıcı Değiştir" />
                             <MenuItem Header="Yetkilendirme Yap" Click="yetkilendir"/>
+                            <MenuItem Header="Veri Tabanı Yedek Al" />
                             <Separator />
                             <MenuItem Header="Çıkış Yap" Foreground="Red" Click="appClose_Click"/>
                         </ContextMenu>
