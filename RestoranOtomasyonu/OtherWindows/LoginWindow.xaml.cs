@@ -39,7 +39,7 @@ namespace RestoranOtomasyonu.OtherWindows
 
             if (user != null)
             {
-                if (kullanici != null)
+                if (user != null)
                 {
                     // 1. Bilgileri Hafızaya Al
                     AktifKullanici.KullaniciID = user.KullaniciId;
@@ -60,7 +60,11 @@ namespace RestoranOtomasyonu.OtherWindows
                     main.Show();
                     this.Hide();
                 }
-                else MessageBox.Show("Hatalı kullanıcı adı veya şifre.");
+
+                else
+                {
+                    MessageBox.Show("Hatalı kullanıcı adı veya şifre.");
+                }
             }
         }
 

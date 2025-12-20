@@ -115,8 +115,86 @@ namespace RestoranOtomasyonu
         }
 
         private void UserControls_Loaded(object sender, RoutedEventArgs e)
-        {
+        { 
 
         }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Window_Loaded_1(object sender, RoutedEventArgs e)
+        {
+            // Giriş yapan kullanıcının bilgilerini AktifKullanici sınıfından alıyoruz.
+
+            // YETKİ KONTROLÜ
+            // Eğer yetki "k" (Kullanıcı) ise kısıtlamaları uygula
+            if (AktifKullanici.Yetki == "k")
+            {
+                // 1. Yönetici Özel Menüsünü Gizle
+                // Kullanıcılar yetkilendirme yapamaz, bu yüzden bu menüyü siliyoruz.
+                menuItemYetkilendirme.Visibility = Visibility.Collapsed;
+
+                // 2. Sol Menü Butonlarını Veritabanı İznine Göre Ayarla
+
+                // Günlük Harcama
+                // Eğer veritabanında True ise Görünür yap, değilse Gizle (Collapsed)
+                btnGunlukHarcama.Visibility = (AktifKullanici.GunlukHarcamaYetki == true)
+                                              ? Visibility.Visible : Visibility.Collapsed;
+
+                // Muhasebe
+                btnMuhasebe.Visibility = (AktifKullanici.MuhasebeYetki == true)
+                                         ? Visibility.Visible : Visibility.Collapsed;
+
+                // Çek/Senet
+                btnCekSenet.Visibility = (AktifKullanici.CekSenetYetki == true)
+                                         ? Visibility.Visible : Visibility.Collapsed;
+
+                // Satış Durumu
+                btnSatisDurumu.Visibility = (AktifKullanici.SatisDurumuYetki == true)
+                                            ? Visibility.Visible : Visibility.Collapsed;
+
+                // Personel
+                btnPersonel.Visibility = (AktifKullanici.PersonelYetki == true)
+                                         ? Visibility.Visible : Visibility.Collapsed;
+
+                // Müşteri / Firma (Veritabanında buna karşılık gelen sütunu MusteriFirmaYetki varsaydım)
+                btnMusteri.Visibility = (AktifKullanici.MusteriFirmaYetki == true)
+                                        ? Visibility.Visible : Visibility.Collapsed;
+
+                // Stok
+                btnStok.Visibility = (AktifKullanici.StokYetki == true)
+                                     ? Visibility.Visible : Visibility.Collapsed;
+
+                // Ürünler
+                btnUrun.Visibility = (AktifKullanici.UrunlerYetki == true)
+                                     ? Visibility.Visible : Visibility.Collapsed;
+
+                // Rezervasyon (Eğer db'de sütunu varsa ekle, yoksa varsayılan açık/kapalı bırak)
+                // btnRezervasyon.Visibility = ...
+            }
+            // Eğer yetki "a" (Admin) ise
+            else if (AktifKullanici.Yetki == "a")
+            {
+                // Admin her şeyi görebilir
+                menuItemYetkilendirme.Visibility = Visibility.Visible;
+
+                // Tüm butonları aç
+                btnGunlukHarcama.Visibility = Visibility.Visible;
+                btnMuhasebe.Visibility = Visibility.Visible;
+                btnCekSenet.Visibility = Visibility.Visible;
+                btnSatisDurumu.Visibility = Visibility.Visible;
+                btnPersonel.Visibility = Visibility.Visible;
+                btnMusteri.Visibility = Visibility.Visible;
+                btnStok.Visibility = Visibility.Visible;
+                btnUrun.Visibility = Visibility.Visible;
+                btnRezervasyon.Visibility = Visibility.Visible;
+            }
+
+            // Sağ üstteki Bilgi Kartlarını Doldur
+            lblTarih.Content = DateTime.Now.ToString("dd MMMM yyyy");
+            lblSaat.Content = DateTime.Now.ToString("HH:mm");
+        }
     }
+    
 }

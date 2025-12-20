@@ -7,6 +7,7 @@
            xmlns:local="clr-namespace:RestoranOtomasyonu"
            Style="{StaticResource MaterialDesignWindow}"
            mc:Ignorable="d"
+        Loaded="Window_Loaded_1"
            Title="Personel || Hizmet Bölümü" WindowStyle="None" ResizeMode="NoResize" Width="1537" Height="864" WindowState="Maximized">
     <Grid Style="{StaticResource arkaPlan}">
         <Grid.ColumnDefinitions>
@@ -31,63 +32,63 @@
         <!--Sol Bar-->
         <Border Grid.Column="0" Grid.Row="1" Grid.RowSpan="1" Grid.ColumnSpan="1" Style="{StaticResource solBorder}">
             <StackPanel x:Name="Solpanel">
-                <RadioButton IsChecked="True" Click="gunlukHarcama" Style="{StaticResource RadioAnimasyon}">
+                <RadioButton IsChecked="True" x:Name="btnGunlukHarcama" Click="gunlukHarcama" Style="{StaticResource RadioAnimasyon}">
                     <StackPanel Width="100" Height="75" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
                         <materialDesign:PackIcon Kind="Wallet" Style="{StaticResource iconMaterialDesign}"/>
                         <TextBlock TextAlignment="Center" Padding="0 0 0 0" Text="GÜNLÜK HARCAMA" Style="{StaticResource textBlock}" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </RadioButton>
                 <Separator Background="#FF424242" Width="120" Margin="15 0 0 0"/>
-                <RadioButton Click="muhasebe" Style="{StaticResource RadioAnimasyon}">
+                <RadioButton x:Name="btnMuhasebe" Click="muhasebe" Style="{StaticResource RadioAnimasyon}">
                     <StackPanel Width="100" Height="75" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
                         <materialDesign:PackIcon Kind="NoteBook" Style="{StaticResource iconMaterialDesign}"/>
                         <TextBlock TextAlignment="Center" Padding="0 0 0 0" Text="MUHASEBE" Style="{StaticResource textBlock}" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </RadioButton>
                 <Separator Background="#FF424242" Width="120" Margin="15 0 0 0"/>
-                <RadioButton Click="cekSenet" Style="{StaticResource RadioAnimasyon}">
+                <RadioButton x:Name="btnCekSenet" Click="cekSenet" Style="{StaticResource RadioAnimasyon}">
                     <StackPanel Width="100" Height="75" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
                         <materialDesign:PackIcon Kind="NewspaperVariant" Style="{StaticResource iconMaterialDesign}"/>
                         <TextBlock TextAlignment="Center" Padding="0 0 0 0" Text="ÇEK\SENET" Style="{StaticResource textBlock}" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </RadioButton>
                 <Separator Background="#FF424242" Width="120" Margin="15 0 0 0"/>
-                <RadioButton Click="satisDurumu" Style="{StaticResource RadioAnimasyon}">
+                <RadioButton x:Name="btnSatisDurumu" Click="satisDurumu" Style="{StaticResource RadioAnimasyon}">
                     <StackPanel Width="100" Height="75" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
                         <materialDesign:PackIcon Kind="Finance" Style="{StaticResource iconMaterialDesign}"/>
                         <TextBlock TextAlignment="Center" Padding="0 0 0 0" Text="SATIŞ DURUMU" Style="{StaticResource textBlock}" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </RadioButton>
                 <Separator Background="#FF424242" Width="120" Margin="15 0 0 0"/>
-                <RadioButton Click="Personel" Style="{StaticResource RadioAnimasyon}">
+                <RadioButton x:Name="btnPersonel" Click="Personel" Style="{StaticResource RadioAnimasyon}">
                     <StackPanel Width="100" Height="75" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
                         <materialDesign:PackIcon Kind="AccountGroup" Style="{StaticResource iconMaterialDesign}"/>
                         <TextBlock TextAlignment="Center" Padding="0 0 0 0" Text="PERSONEL" Style="{StaticResource textBlock}" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </RadioButton>
                 <Separator Background="#FF424242" Width="120" Margin="15 0 0 0"/>
-                <RadioButton Click="musteri" Style="{StaticResource RadioAnimasyon}">
+                <RadioButton x:Name="btnMusteri" Click="musteri" Style="{StaticResource RadioAnimasyon}">
                     <StackPanel Width="100" Height="75" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
                         <materialDesign:PackIcon Kind="AccountCash" Style="{StaticResource iconMaterialDesign}"/>
                         <TextBlock TextAlignment="Center" Padding="0 0 0 0" Text="MÜŞTERİ FİRMA" Style="{StaticResource textBlock}" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </RadioButton>
                 <Separator Background="#FF424242" Width="120" Margin="15 0 0 0"/>
-                <RadioButton Click="stok" Style="{StaticResource RadioAnimasyon}">
+                <RadioButton x:Name="btnStok" Click="stok" Style="{StaticResource RadioAnimasyon}">
                     <StackPanel Width="100" Height="75" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
                         <materialDesign:PackIcon Kind="PackageVariantClosed" Style="{StaticResource iconMaterialDesign}"/>
                         <TextBlock TextAlignment="Center" Padding="0 0 0 0" Text="STOK" Style="{StaticResource textBlock}" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </RadioButton>
                 <Separator Background="#FF424242" Width="120" Margin="15 0 0 0"/>
-                <RadioButton Click="urun" Style="{StaticResource RadioAnimasyon}">
+                <RadioButton x:Name="btnUrun" Click="urun" Style="{StaticResource RadioAnimasyon}">
                     <StackPanel Width="100" Height="75" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
                         <materialDesign:PackIcon Kind="SilverwareClean" Style="{StaticResource iconMaterialDesign}"/>
                         <TextBlock TextAlignment="Center" Padding="0 0 0 0" Text="ÜRÜNLER" Style="{StaticResource textBlock}" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </RadioButton>
                 <Separator Background="#FF424242" Width="120" Margin="15 0 0 0"/>
-                <RadioButton Click="rezervasyon" Style="{StaticResource RadioAnimasyon}">
+                <RadioButton x:Name="btnRezervasyon" Click="rezervasyon" Style="{StaticResource RadioAnimasyon}">
                     <StackPanel Width="100" Height="75" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
                         <materialDesign:PackIcon Kind="CustomerService" Style="{StaticResource iconMaterialDesign}"/>
                         <TextBlock TextAlignment="Center" Padding="0 0 0 0" Text="REZERVASYON" Style="{StaticResource textBlock}" HorizontalAlignment="Center"/>
@@ -102,7 +103,7 @@
 
         <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource menuBorder}">
             <DockPanel x:Name="ContentArea">
-                <ContentControl x:Name="UserControls"/>
+                <ContentControl x:Name="UserControls" Loaded="UserControls_Loaded"/>
             </DockPanel>
         </Border>
 
@@ -115,7 +116,7 @@
                     <Button.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="Kullanıcı Değiştir" />
-                            <MenuItem Header="Yetkilendirme Yap" Click="yetkilendir"/>
+                            <MenuItem Header="Yetkilendirme Yap" x:Name="menuItemYetkilendirme" Click="yetkilendir"/>
                             <MenuItem Header="Veri Tabanı Yedek Al" />
                             <Separator />
                             <MenuItem Header="Çıkış Yap" Foreground="Red" Click="appClose_Click"/>
