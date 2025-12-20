@@ -43,6 +43,7 @@ namespace RestoranOtomasyonu.OtherWindows
             userAdd.KullaniciEmail = kullanici_email.Text;
             userAdd.KullaniciAdi = kullanici_Adi.Text;
             userAdd.Sifre = PasswordBox.Password;
+            userAdd.Yetki = "k";
 
             /***********************************/
 #warning    //Resim kaydi yapilmadi simdilik

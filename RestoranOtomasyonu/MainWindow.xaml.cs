@@ -114,5 +114,9 @@ namespace RestoranOtomasyonu
             yetkilendirme.Show();
         }
 
+        private void UserControls_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
