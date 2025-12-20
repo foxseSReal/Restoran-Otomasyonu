@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestoranOtomasyonu.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,7 @@ namespace RestoranOtomasyonu.OtherWindows
     /// </summary>
     public partial class Erisimizni : Window
     {
+        RESTORANDBEntities1 db = new RESTORANDBEntities1();
         public Erisimizni()
         {
             InitializeComponent();
@@ -31,7 +33,50 @@ namespace RestoranOtomasyonu.OtherWindows
 
         private void kaydetButtonu_Click(object sender, RoutedEventArgs e)
         {
+            var newUser = db.TBLKULLANICI;
+            TBLKULLANICI userAdd = new TBLKULLANICI();
+            userAdd.KullaniciAdSoyad = kullanici_adSoyad.Text;
+            userAdd.KullaniciEmail = kullanici_email.Text;
+            userAdd.KullaniciAdi = kullanici_Adi.Text;
+            userAdd.Sifre = PasswordBox.Password;
 
+            /***********************************/
+#warning    //Resim kaydi yapilmadi simdilik
+            /***********************************/
+
+            //Erişim Yetkileri
+            userAdd.GUNLUKHARCAMA = toggle_gunlukHarcama.IsChecked == true;
+            userAdd.MUHASEBE = toggle_muhasebe.IsChecked == true;
+            userAdd.CEKSENET = toggle_cekSenet.IsChecked == true;
+            userAdd.SATISDURUMU = toggle_satisDurumu.IsChecked == true;
+            userAdd.PERSONEL = toggle_personel.IsChecked == true;
+            userAdd.MUSTERIFIRMA = toggle_musteriFirma.IsChecked == true;
+            userAdd.STOK = toggle_stok.IsChecked == true;
+            userAdd.URUNLER = toggle_urunler.IsChecked == true;
+            userAdd.REZERVASYON = toggle_rezervasyon.IsChecked == true;
+            userAdd.VERITABANI = toggle_veriTabani.IsChecked == true;
+            userAdd.YETKILENDIRMEYAP = toggle_yetkilendirmeYap.IsChecked == true;
+
+            db.TBLKULLANICI.Add(userAdd);
+            db.SaveChanges();
+            Temizle();
         }
+
+        private void Temizle()
+        {
+            kullanici_adSoyad.Clear();
+            kullanici_email.Clear();
+            kullanici_Adi.Clear();
+            PasswordBox.Clear();
+            toggle_gunlukHarcama.IsChecked = false;
+            toggle_muhasebe.IsChecked = false;
+            toggle_cekSenet.IsChecked = false;
+            toggle_satisDurumu.IsChecked = false;
+            toggle_personel.IsChecked = false;
+            toggle_musteriFirma.IsChecked = false;
+            toggle_stok.IsChecked = false;
+            toggle_veriTabani.IsChecked = false;
+        }
+
     }
 }
