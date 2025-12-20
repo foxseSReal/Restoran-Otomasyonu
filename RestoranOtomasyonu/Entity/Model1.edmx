@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RESTORANDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RESTORANDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -132,6 +132,29 @@
           </Key>
           <Property Name="KategoriId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="KategoriAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBLKULLANICI">
+          <Key>
+            <PropertyRef Name="KullaniciId" />
+          </Key>
+          <Property Name="KullaniciId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciAdSoyad" Type="nvarchar" MaxLength="100" />
+          <Property Name="KullaniciEmail" Type="nvarchar" MaxLength="150" />
+          <Property Name="KullaniciAdi" Type="nvarchar" MaxLength="18" />
+          <Property Name="Sifre" Type="nvarchar" MaxLength="18" />
+          <Property Name="KullaniciResim" Type="nvarchar(max)" />
+          <Property Name="Yetki" Type="nvarchar" MaxLength="1" />
+          <Property Name="GUNLUKHARCAMA" Type="bit" />
+          <Property Name="MUHASEBE" Type="bit" />
+          <Property Name="CEKSENET" Type="bit" />
+          <Property Name="SATISDURUMU" Type="bit" />
+          <Property Name="PERSONEL" Type="bit" />
+          <Property Name="MUSTERIFIRMA" Type="bit" />
+          <Property Name="STOK" Type="bit" />
+          <Property Name="URUNLER" Type="bit" />
+          <Property Name="REZERVASYON" Type="bit" />
+          <Property Name="VERITABANI" Type="bit" />
+          <Property Name="YETKILENDIRMEYAP" Type="bit" />
         </EntityType>
         <EntityType Name="TblMAAS">
           <Key>
@@ -657,6 +680,7 @@
           <EntitySet Name="TblGIDER" EntityType="Self.TblGIDER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblGUNLUKHARCAMA" EntityType="Self.TblGUNLUKHARCAMA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblKATEGORI" EntityType="Self.TblKATEGORI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLKULLANICI" EntityType="Self.TBLKULLANICI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblMAAS" EntityType="Self.TblMAAS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblMASA" EntityType="Self.TblMASA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblMODEME" EntityType="Self.TblMODEME" Schema="dbo" store:Type="Tables" />
@@ -782,8 +806,7 @@
             <End Role="TblURUN" EntitySet="TblURUN" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RESTORANDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1618,7 +1641,31 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="TBLKULLANICI" EntityType="RESTORANDBModel.TBLKULLANICI" />
         </EntityContainer>
+        <EntityType Name="TBLKULLANICI">
+          <Key>
+            <PropertyRef Name="KullaniciId" />
+          </Key>
+          <Property Name="KullaniciId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciAdSoyad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciEmail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciAdi" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="Sifre" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciResim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Yetki" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="GUNLUKHARCAMA" Type="Boolean" />
+          <Property Name="MUHASEBE" Type="Boolean" />
+          <Property Name="CEKSENET" Type="Boolean" />
+          <Property Name="SATISDURUMU" Type="Boolean" />
+          <Property Name="PERSONEL" Type="Boolean" />
+          <Property Name="MUSTERIFIRMA" Type="Boolean" />
+          <Property Name="STOK" Type="Boolean" />
+          <Property Name="URUNLER" Type="Boolean" />
+          <Property Name="REZERVASYON" Type="Boolean" />
+          <Property Name="VERITABANI" Type="Boolean" />
+          <Property Name="YETKILENDIRMEYAP" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1928,6 +1975,30 @@
           <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="RESTORANDBModel.Store.sp_helpdiagrams" />
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="RESTORANDBModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="RESTORANDBModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="TBLKULLANICI">
+            <EntityTypeMapping TypeName="RESTORANDBModel.TBLKULLANICI">
+              <MappingFragment StoreEntitySet="TBLKULLANICI">
+                <ScalarProperty Name="YETKILENDIRMEYAP" ColumnName="YETKILENDIRMEYAP" />
+                <ScalarProperty Name="VERITABANI" ColumnName="VERITABANI" />
+                <ScalarProperty Name="REZERVASYON" ColumnName="REZERVASYON" />
+                <ScalarProperty Name="URUNLER" ColumnName="URUNLER" />
+                <ScalarProperty Name="STOK" ColumnName="STOK" />
+                <ScalarProperty Name="MUSTERIFIRMA" ColumnName="MUSTERIFIRMA" />
+                <ScalarProperty Name="PERSONEL" ColumnName="PERSONEL" />
+                <ScalarProperty Name="SATISDURUMU" ColumnName="SATISDURUMU" />
+                <ScalarProperty Name="CEKSENET" ColumnName="CEKSENET" />
+                <ScalarProperty Name="MUHASEBE" ColumnName="MUHASEBE" />
+                <ScalarProperty Name="GUNLUKHARCAMA" ColumnName="GUNLUKHARCAMA" />
+                <ScalarProperty Name="Yetki" ColumnName="Yetki" />
+                <ScalarProperty Name="KullaniciResim" ColumnName="KullaniciResim" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+                <ScalarProperty Name="KullaniciEmail" ColumnName="KullaniciEmail" />
+                <ScalarProperty Name="KullaniciAdSoyad" ColumnName="KullaniciAdSoyad" />
+                <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
