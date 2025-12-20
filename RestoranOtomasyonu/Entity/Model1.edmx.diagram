@@ -56,6 +56,7 @@
         <AssociationConnector Association="RESTORANDBModel.FK_SiparisDetay_Siparis" ManuallyRouted="false" />
         <AssociationConnector Association="RESTORANDBModel.FK_SiparisDetay_Urun" ManuallyRouted="false" />
         <AssociationConnector Association="RESTORANDBModel.FK_StokHareket_Urun" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RESTORANDBModel.TBLKULLANICI" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
