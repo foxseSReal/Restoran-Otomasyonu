@@ -1634,31 +1634,7 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <EntitySet Name="TBLKULLANICI" EntityType="RESTORANDBModel.TBLKULLANICI" />
         </EntityContainer>
-        <EntityType Name="TBLKULLANICI">
-          <Key>
-            <PropertyRef Name="KullaniciId" />
-          </Key>
-          <Property Name="KullaniciId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="KullaniciAdSoyad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="KullaniciEmail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="KullaniciAdi" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
-          <Property Name="Sifre" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
-          <Property Name="KullaniciResim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Yetki" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="GUNLUKHARCAMA" Type="Boolean" />
-          <Property Name="MUHASEBE" Type="Boolean" />
-          <Property Name="CEKSENET" Type="Boolean" />
-          <Property Name="SATISDURUMU" Type="Boolean" />
-          <Property Name="PERSONEL" Type="Boolean" />
-          <Property Name="MUSTERIFIRMA" Type="Boolean" />
-          <Property Name="STOK" Type="Boolean" />
-          <Property Name="URUNLER" Type="Boolean" />
-          <Property Name="REZERVASYON" Type="Boolean" />
-          <Property Name="VERITABANI" Type="Boolean" />
-          <Property Name="YETKILENDIRMEYAP" Type="Boolean" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1985,13 +1961,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="RESTORANDBModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="RESTORANDBModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="RESTORANDBModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="RESTORANDBModel.Store.sp_helpdiagramdefinition" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="RESTORANDBModel.Store.sp_helpdiagrams" />
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="RESTORANDBModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="RESTORANDBModel.Store.sp_upgraddiagrams" />
           <EntitySetMapping Name="TBLKULLANICI">
             <EntityTypeMapping TypeName="RESTORANDBModel.TBLKULLANICI">
               <MappingFragment StoreEntitySet="TBLKULLANICI">
