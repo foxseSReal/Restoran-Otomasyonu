@@ -98,7 +98,7 @@ namespace RestoranOtomasyonu.userControls
             db.SaveChanges();
             MessageBox.Show("Günlük Harcama Eklendi.");
             HarcamaListele();
-
+            HarcamaGetir();
 
         }
 
