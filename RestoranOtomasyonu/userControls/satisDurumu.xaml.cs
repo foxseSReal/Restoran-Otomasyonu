@@ -29,7 +29,6 @@ namespace RestoranOtomasyonu.userControls
             SatisListele();
             var terslistele=db.TblURUN.OrderByDescending(x=>x.UrunId).FirstOrDefault();
         }
-
         public void SatisListele()
         {
             var listele =db.TblURUN.OrderByDescending(x=>x.UrunId).ToList()
@@ -46,12 +45,8 @@ namespace RestoranOtomasyonu.userControls
             satis_DataGrid.ItemsSource = listele;
 
         }
-
-    
-
         private void satisara_TextChanged(object sender, TextChangedEventArgs e)
         {
-          
             var satisara = txtatisara.Text;
             var listele = db.TblURUN.OrderByDescending(x => x.UrunId).Where(x => x.UrunAdi.ToLower().Contains(satisara))
                          .Select(x => new

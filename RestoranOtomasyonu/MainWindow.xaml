@@ -102,7 +102,7 @@
 
         <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource menuBorder}">
             <DockPanel x:Name="ContentArea">
-                <ContentControl x:Name="Content"/>
+                <ContentControl x:Name="UserControls"/>
             </DockPanel>
         </Border>
 
@@ -116,6 +116,7 @@
                         <ContextMenu>
                             <MenuItem Header="Kullanıcı Değiştir" />
                             <MenuItem Header="Yetkilendirme Yap" Click="yetkilendir"/>
+                            <MenuItem Header="Veri Tabanı Yedek Al" />
                             <Separator />
                             <MenuItem Header="Çıkış Yap" Foreground="Red" Click="appClose_Click"/>
                         </ContextMenu>

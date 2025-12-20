@@ -122,6 +122,9 @@
     <Compile Include="Entity\TblKATEGORI.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entity\TBLKULLANICI.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\TblMAAS.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

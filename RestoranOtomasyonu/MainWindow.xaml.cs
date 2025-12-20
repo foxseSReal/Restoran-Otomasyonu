@@ -34,7 +34,7 @@ namespace RestoranOtomasyonu
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
             timer.Start();
-            Content.Content = new gunlukHarcama();
+            UserControls.Content = new gunlukHarcama();
         }
         private void Timer_Tick(object sender, EventArgs e)
         {

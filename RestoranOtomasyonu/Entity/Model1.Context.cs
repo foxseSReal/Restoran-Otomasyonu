@@ -35,6 +35,7 @@ namespace RestoranOtomasyonu.Entity
         public virtual DbSet<TblGIDER> TblGIDER { get; set; }
         public virtual DbSet<TblGUNLUKHARCAMA> TblGUNLUKHARCAMA { get; set; }
         public virtual DbSet<TblKATEGORI> TblKATEGORI { get; set; }
+        public virtual DbSet<TBLKULLANICI> TBLKULLANICI { get; set; }
         public virtual DbSet<TblMAAS> TblMAAS { get; set; }
         public virtual DbSet<TblMASA> TblMASA { get; set; }
         public virtual DbSet<TblMODEME> TblMODEME { get; set; }

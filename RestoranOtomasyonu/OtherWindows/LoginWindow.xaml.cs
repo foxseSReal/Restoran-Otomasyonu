@@ -1,4 +1,5 @@
-﻿using RestoranOtomasyonu.userControls;
+﻿using RestoranOtomasyonu.Entity;
+using RestoranOtomasyonu.userControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace RestoranOtomasyonu.OtherWindows
     public partial class LoginWindow : Window
     {
         DispatcherTimer timer = new DispatcherTimer();
+        RESTORANDBEntities1 db = new RESTORANDBEntities1();
         public LoginWindow()
         {
             InitializeComponent();
@@ -32,19 +34,15 @@ namespace RestoranOtomasyonu.OtherWindows
 
         private void btnGiris_Click(object sender, RoutedEventArgs e)
         {
-            if (txtUsername.Text == "a" && PasswordBox.Password == "a")
+            var user = db.TBLKULLANICI.FirstOrDefault(k => k.KullaniciAdi == txtUsername.Text && k.Sifre == PasswordBox.Password);
+
+            if (user != null)
             {
-                // Ana pencereyi aç
                 MainWindow main = new MainWindow();
                 main.Show();
-
-                // Login penceresini kapat
                 this.Hide();
             }
-            else
-            {
-                MessageBox.Show("Hatalı giriş");
-            }
+            else MessageBox.Show("Hatalı kullanıcı adı veya şifre.");
         }
 
         private void AppClose(object sender, RoutedEventArgs e)
