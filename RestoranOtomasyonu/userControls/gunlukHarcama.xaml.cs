@@ -47,12 +47,12 @@ namespace RestoranOtomasyonu.userControls
         {
             try
             {
-                // 1. Tarihleri DatePicker'lardan al (Seçili değilse bugünü baz al)
-                // (Formundaki tarih kutularının adını buraya yaz: baslangicTarihi, bitisTarihi vb.)
+                
+                
                 DateTime baslangic = gunlukDataGridAralik.SelectedDate ?? DateTime.Now.Date;
                 DateTime bitis = gunlukDataGridAralik2.SelectedDate ?? DateTime.Now.Date;
 
-                // 2. Veritabanından o tarih aralığındaki toplamı çek
+                
                 // (decimal?) ve ?? 0 kullanımı: Eğer sonuç NULL dönerse (hiç kayıt yoksa) 0 kabul et demektir.
                 decimal toplam = db.TblGUNLUKHARCAMA
                                    .Where(x => x.Tarih >= baslangic && x.Tarih <= bitis)
