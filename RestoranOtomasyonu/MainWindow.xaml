@@ -102,7 +102,7 @@
 
         <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource menuBorder}">
             <DockPanel x:Name="ContentArea">
-                <ContentControl x:Name="Content"/>
+                <ContentControl x:Name="UserControls"/>
             </DockPanel>
         </Border>
 
