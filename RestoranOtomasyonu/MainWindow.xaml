@@ -112,7 +112,7 @@
         <Border Style="{StaticResource ustBorder}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <!--Burasi Değişecek-->
-                <Button x:Name="Button" Style="{StaticResource AccountButton}">
+                <Button x:Name="resimButton" Style="{StaticResource AccountButton}">
                     <Button.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="Kullanıcı Değiştir" />
