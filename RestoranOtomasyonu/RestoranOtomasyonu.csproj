@@ -161,6 +161,7 @@
     <Compile Include="Entity\TblURUN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="OtherWindows\AktifKullanici.cs" />
     <Compile Include="OtherWindows\Erisimizni.xaml.cs">
       <DependentUpon>Erisimizni.xaml</DependentUpon>
     </Compile>

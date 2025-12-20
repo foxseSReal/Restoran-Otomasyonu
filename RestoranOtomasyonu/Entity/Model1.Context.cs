@@ -12,8 +12,6 @@ namespace RestoranOtomasyonu.Entity
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Data.Entity.Core.Objects;
-    using System.Linq;
     
     public partial class RESTORANDBEntities1 : DbContext
     {
@@ -37,6 +35,7 @@ namespace RestoranOtomasyonu.Entity
         public virtual DbSet<TblGIDER> TblGIDER { get; set; }
         public virtual DbSet<TblGUNLUKHARCAMA> TblGUNLUKHARCAMA { get; set; }
         public virtual DbSet<TblKATEGORI> TblKATEGORI { get; set; }
+        public virtual DbSet<TBLKULLANICI> TBLKULLANICI { get; set; }
         public virtual DbSet<TblMAAS> TblMAAS { get; set; }
         public virtual DbSet<TblMASA> TblMASA { get; set; }
         public virtual DbSet<TblMODEME> TblMODEME { get; set; }
@@ -49,7 +48,6 @@ namespace RestoranOtomasyonu.Entity
         public virtual DbSet<TblSIPARISDETAY> TblSIPARISDETAY { get; set; }
         public virtual DbSet<TblSTOKHAREKET> TblSTOKHAREKET { get; set; }
         public virtual DbSet<TblURUN> TblURUN { get; set; }
-        public virtual DbSet<TBLKULLANICI> TBLKULLANICI { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

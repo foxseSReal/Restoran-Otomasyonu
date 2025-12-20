@@ -36,13 +36,36 @@ namespace RestoranOtomasyonu.OtherWindows
         {
             var user = db.TBLKULLANICI.FirstOrDefault(k => k.KullaniciAdi == txtUsername.Text && k.Sifre == PasswordBox.Password);
 
+
             if (user != null)
             {
-                MainWindow main = new MainWindow();
-                main.Show();
-                this.Hide();
+                if (user != null)
+                {
+                    // 1. Bilgileri Hafızaya Al
+                    AktifKullanici.KullaniciID = user.KullaniciId;
+                    AktifKullanici.AdSoyad = user.KullaniciAdSoyad;
+                    AktifKullanici.Yetki = user.Yetki;
+
+                    // Yetkileri ata (Veritabanındaki sütun isimlerinle eşleştir)
+                    AktifKullanici.GunlukHarcamaYetki = user.GUNLUKHARCAMA;
+                    AktifKullanici.MuhasebeYetki = user.MUHASEBE;
+                    AktifKullanici.CekSenetYetki = user.CEKSENET;
+                    AktifKullanici.SatisDurumuYetki = user.SATISDURUMU;
+                    AktifKullanici.MusteriFirmaYetki = user.MUSTERIFIRMA;
+                    AktifKullanici.PersonelYetki = user.PERSONEL;
+                    AktifKullanici.RezarvasyonYetki = user.REZERVASYON;
+                    AktifKullanici.StokYetki = user.STOK;
+                    AktifKullanici.UrunlerYetki = user.URUNLER;
+                    MainWindow main = new MainWindow();
+                    main.Show();
+                    this.Hide();
+                }
+
+                else
+                {
+                    MessageBox.Show("Hatalı kullanıcı adı veya şifre.");
+                }
             }
-            else MessageBox.Show("Hatalı kullanıcı adı veya şifre.");
         }
 
         private void AppClose(object sender, RoutedEventArgs e)

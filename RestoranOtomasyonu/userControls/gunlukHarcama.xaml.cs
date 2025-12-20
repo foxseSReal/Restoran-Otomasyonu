@@ -42,11 +42,30 @@ namespace RestoranOtomasyonu.userControls
                             });
             harcamalar_DataGrid.ItemsSource = listele;
             //günlük harcama toplamını bugünke göre al
+        }
+        private void HarcamaGetir()
+        {
+            try
+            {
+                
+                
+                DateTime baslangic = gunlukDataGridAralik.SelectedDate ?? DateTime.Now.Date;
+                DateTime bitis = gunlukDataGridAralik2.SelectedDate ?? DateTime.Now.Date;
 
+                
+                // (decimal?) ve ?? 0 kullanımı: Eğer sonuç NULL dönerse (hiç kayıt yoksa) 0 kabul et demektir.
+                decimal toplam = db.TblGUNLUKHARCAMA
+                                   .Where(x => x.Tarih >= baslangic && x.Tarih <= bitis)
+                                   .Sum(x => (decimal?)x.Tutar) ?? 0;
 
-
-            harcamaGunlukToplam.Text = db.TblGUNLUKHARCAMA.Sum(x => x.Tutar).ToString();
-            
+                // 3. Ekrana yazdır (C2: TL formatında yazar, örneğin: ₺0,00)
+                harcamaGunlukToplam.Text = toplam.ToString("C2");
+            }
+            catch (Exception)
+            {
+                // Olası bir hatada 0 yaz
+                harcamaGunlukToplam.Text = "₺0,00";
+            }
         }
         private void harcamaButton_Click(object sender, RoutedEventArgs e)
         {
@@ -79,7 +98,7 @@ namespace RestoranOtomasyonu.userControls
             db.SaveChanges();
             MessageBox.Show("Günlük Harcama Eklendi.");
             HarcamaListele();
-
+            HarcamaGetir();
 
         }
 
@@ -137,12 +156,14 @@ namespace RestoranOtomasyonu.userControls
                 .ToList();
 
             harcamalar_DataGrid.ItemsSource = sonuc;
+            HarcamaGetir();
 
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             HarcamaListele();
+            HarcamaGetir();
         }
     }
 }

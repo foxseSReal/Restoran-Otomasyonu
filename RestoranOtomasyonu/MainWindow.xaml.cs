@@ -114,5 +114,65 @@ namespace RestoranOtomasyonu
             yetkilendirme.Show();
         }
 
+        private void UserControls_Loaded(object sender, RoutedEventArgs e)
+        { 
+
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Window_Loaded_1(object sender, RoutedEventArgs e)
+        {
+            if (AktifKullanici.Yetki == "k")
+            {
+                menuItemYetkilendirme.Visibility = Visibility.Collapsed;
+
+                resimButton.Visibility = (AktifKullanici.Yetki == "a") ? Visibility.Visible : Visibility.Collapsed;
+             
+                btnGunlukHarcama.Visibility = (AktifKullanici.GunlukHarcamaYetki == true)
+                                              ? Visibility.Visible : Visibility.Collapsed;
+
+            
+                btnMuhasebe.Visibility = (AktifKullanici.MuhasebeYetki == true)
+                                         ? Visibility.Visible : Visibility.Collapsed;
+
+                btnCekSenet.Visibility = (AktifKullanici.CekSenetYetki == true)
+                                         ? Visibility.Visible : Visibility.Collapsed;
+
+                btnSatisDurumu.Visibility = (AktifKullanici.SatisDurumuYetki == true)
+                                            ? Visibility.Visible : Visibility.Collapsed;
+
+                btnPersonel.Visibility = (AktifKullanici.PersonelYetki == true)
+                                         ? Visibility.Visible : Visibility.Collapsed;
+
+                btnMusteri.Visibility = (AktifKullanici.MusteriFirmaYetki == true)
+                                        ? Visibility.Visible : Visibility.Collapsed;
+
+                btnStok.Visibility = (AktifKullanici.StokYetki == true)
+                                     ? Visibility.Visible : Visibility.Collapsed;
+
+                btnUrun.Visibility = (AktifKullanici.UrunlerYetki == true)
+                                     ? Visibility.Visible : Visibility.Collapsed;
+
+            }
+            else if (AktifKullanici.Yetki == "a")
+            { 
+                menuItemYetkilendirme.Visibility = Visibility.Visible;
+                btnGunlukHarcama.Visibility = Visibility.Visible;
+                btnMuhasebe.Visibility = Visibility.Visible;
+                btnCekSenet.Visibility = Visibility.Visible;
+                btnSatisDurumu.Visibility = Visibility.Visible;
+                btnPersonel.Visibility = Visibility.Visible;
+                btnMusteri.Visibility = Visibility.Visible;
+                btnStok.Visibility = Visibility.Visible;
+                btnUrun.Visibility = Visibility.Visible;
+                btnRezervasyon.Visibility = Visibility.Visible;
+            }
+            lblTarih.Content = DateTime.Now.ToString("dd MMMM yyyy");
+            lblSaat.Content = DateTime.Now.ToString("HH:mm");
+        }
     }
+    
 }
