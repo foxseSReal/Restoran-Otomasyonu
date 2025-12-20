@@ -10,147 +10,149 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Title="Erisimizni" Height="800" Width="1200">
-    <Grid Style="{StaticResource YetkilendirmeBG}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="70"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <materialDesign:DialogHost Identifier="RootDialog" CloseOnClickAway="True">
+        <Grid Style="{StaticResource YetkilendirmeBG}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <!--Ust Kisim-->
+            <!--Ust Kisim-->
 
-        <StackPanel Margin="0 0 10 0" VerticalAlignment="Center" HorizontalAlignment="Right">
-            <Button Click="thisClose" Width="70" Height="70" Style="{StaticResource MaterialDesignFlatLightButton}">
-                <materialDesign:PackIcon Kind="CloseBold" Width="60" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </Button>
-        </StackPanel>
-
-        <!---->
-
-
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-
-            <StackPanel Orientation="Vertical">
-                <!--Resim-->
-                <StackPanel Margin="0 80 0 0" Orientation="Horizontal">
-                    <Ellipse Margin="230 0 0 0" Width="120" Height="120" >
-                        <Ellipse.Fill>
-                            <ImageBrush ImageSource="/indir.jpeg"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
-                    <Button x:Name="ResimButton" Content="o o o" Margin="10 70 0 0" Width="65" Height="25" FontFamily="Arial" FontWeight="Bold"/>
-                </StackPanel>
-                <!---->
-                <Separator Margin="0 15 0 0" Width="400" Background="White"/>
-
-                <TextBox x:Name="kullanici_adSoyad" Margin="0 20 0 20" Width="300" Height="40" Foreground="White" materialDesign:HintAssist.HintOpacity="0.3" materialDesign:HintAssist.Hint="Ad Soyad" FontSize="18" materialDesign:HintAssist.HelperText="Kullanıcının Adı ve Soyadı" materialDesign:HintAssist.HelperTextFontSize="16" materialDesign:TextFieldAssist.LeadingIcon="Sack" materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:TextFieldAssist.UnderlineBrush="White"/>
-                <TextBox x:Name="kullanici_email" Margin="0 20 0 20" Width="300" Height="40" Foreground="White" materialDesign:HintAssist.HintOpacity="0.3" materialDesign:HintAssist.Hint="örn:ahmet123@hotmail.com" FontSize="18" materialDesign:HintAssist.HelperText="Email" materialDesign:HintAssist.HelperTextFontSize="16" materialDesign:TextFieldAssist.LeadingIcon="Sack" materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:TextFieldAssist.UnderlineBrush="White"/>
-                <TextBox x:Name="kullanici_Adi" Margin="0 20 0 20" Width="300" Height="40" Foreground="White" materialDesign:HintAssist.HintOpacity="0.3" materialDesign:HintAssist.Hint="örn:ahmet123" FontSize="18" MaxLength="18" materialDesign:HintAssist.HelperText="Kullanıcı Adı/Username" materialDesign:HintAssist.HelperTextFontSize="16" materialDesign:TextFieldAssist.LeadingIcon="Sack" materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:TextFieldAssist.UnderlineBrush="White"/>
-                <PasswordBox x:Name="PasswordBox" Margin="0 20 0 20" Foreground="White" materialDesign:HintAssist.HintOpacity="0.3" materialDesign:HintAssist.Hint="Şifre" materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:TextFieldAssist.UnderlineBrush="White" materialDesign:HintAssist.Foreground="White" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Width="300" MaxLength="18" FontSize="18"/>
-
-                <Button x:Name="kaydetButtonu" Click="kaydetButtonu_Click" Content="Kaydet" Height="50" Width="300" materialDesign:ButtonAssist.CornerRadius="20" FontSize="24" Style="{StaticResource MaterialDesignFlatSecondaryDarkBgButton}"/>
+            <StackPanel Margin="0 0 10 0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <Button Click="thisClose" Width="70" Height="70" Style="{StaticResource MaterialDesignFlatLightButton}">
+                    <materialDesign:PackIcon Kind="CloseBold" Width="60" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Button>
             </StackPanel>
 
-            <Grid  Grid.Row="1" Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="200"/>
-                    <RowDefinition Height="200"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+            <!---->
 
-                <!--Bilgilendirme-->
-                <StackPanel Margin="40 0 0 0" Orientation="Horizontal">
-                    <materialDesign:PackIcon Margin="0 50 0 0" Opacity="0.5" Kind="Information" Foreground="Yellow" Width="50" Height="60"/>
-                    <TextBlock Opacity="0.6" Width="420" TextDecorations="None" Margin="0 60 0 0" TextWrapping="WrapWithOverflow" FontSize="16">
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Vertical">
+                    <!--Resim-->
+                    <StackPanel Margin="0 80 0 0" Orientation="Horizontal">
+                        <Ellipse Margin="230 0 0 0" Width="120" Height="120" >
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="/indir.jpeg"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <Button x:Name="ResimButton" Content="o o o" Margin="10 70 0 0" Width="65" Height="25" FontFamily="Arial" FontWeight="Bold"/>
+                    </StackPanel>
+                    <!---->
+                    <Separator Margin="0 15 0 0" Width="400" Background="White"/>
+
+                    <TextBox x:Name="kullanici_adSoyad" Margin="0 20 0 20" Width="300" Height="40" Foreground="White" materialDesign:HintAssist.HintOpacity="0.3" materialDesign:HintAssist.Hint="Ad Soyad" FontSize="18" materialDesign:HintAssist.HelperText="Kullanıcının Adı ve Soyadı" materialDesign:HintAssist.HelperTextFontSize="16" materialDesign:TextFieldAssist.LeadingIcon="Sack" materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:TextFieldAssist.UnderlineBrush="White"/>
+                    <TextBox x:Name="kullanici_email" Margin="0 20 0 20" Width="300" Height="40" Foreground="White" materialDesign:HintAssist.HintOpacity="0.3" materialDesign:HintAssist.Hint="örn:ahmet123@hotmail.com" FontSize="18" materialDesign:HintAssist.HelperText="Email" materialDesign:HintAssist.HelperTextFontSize="16" materialDesign:TextFieldAssist.LeadingIcon="Sack" materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:TextFieldAssist.UnderlineBrush="White"/>
+                    <TextBox x:Name="kullanici_Adi" Margin="0 20 0 20" Width="300" Height="40" Foreground="White" materialDesign:HintAssist.HintOpacity="0.3" materialDesign:HintAssist.Hint="örn:ahmet123" FontSize="18" MaxLength="18" materialDesign:HintAssist.HelperText="Kullanıcı Adı/Username" materialDesign:HintAssist.HelperTextFontSize="16" materialDesign:TextFieldAssist.LeadingIcon="Sack" materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:TextFieldAssist.UnderlineBrush="White"/>
+                    <PasswordBox x:Name="PasswordBox" Margin="0 20 0 20" Foreground="White" materialDesign:HintAssist.HintOpacity="0.3" materialDesign:HintAssist.Hint="Şifre" materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:TextFieldAssist.UnderlineBrush="White" materialDesign:HintAssist.Foreground="White" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Width="300" MaxLength="18" FontSize="18"/>
+
+                    <Button x:Name="kaydetButtonu" Click="kaydetButtonu_Click" Content="Kaydet" Height="50" Width="300" materialDesign:ButtonAssist.CornerRadius="20" FontSize="24" Style="{StaticResource MaterialDesignFlatSecondaryDarkBgButton}"/>
+                </StackPanel>
+
+                <Grid  Grid.Row="1" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200"/>
+                        <RowDefinition Height="200"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Bilgilendirme-->
+                    <StackPanel Margin="40 0 0 0" Orientation="Horizontal">
+                        <materialDesign:PackIcon Margin="0 50 0 0" Opacity="0.5" Kind="Information" Foreground="Yellow" Width="50" Height="60"/>
+                        <TextBlock Opacity="0.6" Width="420" TextDecorations="None" Margin="0 60 0 0" TextWrapping="WrapWithOverflow" FontSize="16">
                     <AccessText>Burada yapabileceğiniz işlemler sadece</AccessText> <AccessText TextDecorations="Underline" Foreground="Red">Kullanıcı ekleme </AccessText><AccessText>_ ve eklenecek kullanıcıya gerekli</AccessText>
                     <AccessText Foreground="Red" TextDecorations="Underline">yetkilendirme</AccessText><AccessText>_ işlemleridir.</AccessText>
                     <AccessText>Yapacağınız işlem tek seferliktir geri dönüşü olmacaktır.</AccessText>
                     <AccessText Foreground="AliceBlue">Lütfen yetkilendirme yaparken dikkatli olun!</AccessText>
-                    </TextBlock>
-                </StackPanel>
-                <!---->
+                        </TextBlock>
+                    </StackPanel>
+                    <!---->
 
 
-                <StackPanel Margin="40 0 0 0" Grid.Row="1" Orientation="Horizontal">
-                    <materialDesign:PackIcon Margin="0 50 0 0" Opacity="0.5" Kind="InformationSerifSymbol" Foreground="Red" Width="50" Height="60"/>
-                    <TextBlock Foreground="AliceBlue" Margin="0 0 0 0" Width="300" Height="80" Opacity="0.7" FontSize="16" TextWrapping="WrapWithOverflow" Text="Kullanıcının nerelere erişebileceğini aşağıdaki ilgili yerleri işaretleyerek seçebilirsiniz."/>
-                </StackPanel>
+                    <StackPanel Margin="40 0 0 0" Grid.Row="1" Orientation="Horizontal">
+                        <materialDesign:PackIcon Margin="0 50 0 0" Opacity="0.5" Kind="InformationSerifSymbol" Foreground="Red" Width="50" Height="60"/>
+                        <TextBlock Foreground="AliceBlue" Margin="0 0 0 0" Width="300" Height="80" Opacity="0.7" FontSize="16" TextWrapping="WrapWithOverflow" Text="Kullanıcının nerelere erişebileceğini aşağıdaki ilgili yerleri işaretleyerek seçebilirsiniz."/>
+                    </StackPanel>
 
 
-                <WrapPanel Orientation="Horizontal" Grid.Row="2" Width="580">
-                    <StackPanel Margin="0 10 10 0" Orientation="Horizontal">
-                        <ToggleButton x:Name="toggle_gunlukHarcama" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Red" Style="{StaticResource MaterialDesignFlatToggleButton}">
-                            <materialDesign:PackIcon Width="21" Height="21" Kind="Tick"/>
-                        </ToggleButton>
-                        <TextBlock Margin="10 5 10 0" Text="GÜNLÜK HARCAMA" FontFamily="Arial" FontWeight="Bold" FontSize="24"/>
-                    </StackPanel>
-                    <StackPanel Margin="0 10 10 0" Orientation="Horizontal">
-                        <ToggleButton x:Name="toggle_muhasebe" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Red" Style="{StaticResource MaterialDesignFlatToggleButton}">
-                            <materialDesign:PackIcon Width="21" Height="21" Kind="Tick"/>
-                        </ToggleButton>
-                        <TextBlock Margin="10 5 10 0" Text="MUHASEBE" FontFamily="Arial" FontWeight="Bold" FontSize="24"/>
-                    </StackPanel>
-                    <StackPanel Margin="0 10 10 0" Orientation="Horizontal">
-                        <ToggleButton x:Name="toggle_cekSenet" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Red" Style="{StaticResource MaterialDesignFlatToggleButton}">
-                            <materialDesign:PackIcon Width="21" Height="21" Kind="Tick"/>
-                        </ToggleButton>
-                        <TextBlock Margin="10 5 10 0" Text="ÇEK\SENET" FontFamily="Arial" FontWeight="Bold" FontSize="24"/>
-                    </StackPanel>
-                    <StackPanel Margin="0 10 10 0" Orientation="Horizontal">
-                        <ToggleButton x:Name="toggle_satisDurumu" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Red" Style="{StaticResource MaterialDesignFlatToggleButton}">
-                            <materialDesign:PackIcon Width="21" Height="21" Kind="Tick"/>
-                        </ToggleButton>
-                        <TextBlock Margin="10 5 10 0" Text="SATIŞ DURUMU" FontFamily="Arial" FontWeight="Bold" FontSize="24"/>
-                    </StackPanel>
-                    <StackPanel Margin="0 10 10 0" Orientation="Horizontal">
-                        <ToggleButton x:Name="toggle_personel" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Red" Style="{StaticResource MaterialDesignFlatToggleButton}">
-                            <materialDesign:PackIcon Width="21" Height="21" Kind="Tick"/>
-                        </ToggleButton>
-                        <TextBlock Margin="10 5 10 0" Text="PERSONEL" FontFamily="Arial" FontWeight="Bold" FontSize="24"/>
-                    </StackPanel>
-                    <StackPanel Margin="0 10 10 0" Orientation="Horizontal">
-                        <ToggleButton x:Name="toggle_musteriFirma" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Red" Style="{StaticResource MaterialDesignFlatToggleButton}">
-                            <materialDesign:PackIcon Width="21" Height="21" Kind="Tick"/>
-                        </ToggleButton>
-                        <TextBlock Margin="10 5 10 0" Text="MÜŞTERİ\FİRMA" FontFamily="Arial" FontWeight="Bold" FontSize="24"/>
-                    </StackPanel>
-                    <StackPanel Margin="0 10 10 0" Orientation="Horizontal">
-                        <ToggleButton x:Name="toggle_stok" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Red" Style="{StaticResource MaterialDesignFlatToggleButton}">
-                            <materialDesign:PackIcon Width="21" Height="21" Kind="Tick"/>
-                        </ToggleButton>
-                        <TextBlock Margin="10 5 10 0" Text="STOK" FontFamily="Arial" FontWeight="Bold" FontSize="24"/>
-                    </StackPanel>
-                    <StackPanel Margin="0 10 10 0" Orientation="Horizontal">
-                        <ToggleButton IsChecked="True" x:Name="toggle_urunler" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Red" Style="{StaticResource MaterialDesignFlatToggleButton}">
-                            <materialDesign:PackIcon Width="21" Height="21" Kind="Tick"/>
-                        </ToggleButton>
-                        <TextBlock Margin="10 5 10 0" Text="ÜRÜNLER" FontFamily="Arial" FontWeight="Bold" FontSize="24"/>
-                    </StackPanel>
-                    <StackPanel Margin="0 10 10 0" Orientation="Horizontal">
-                        <ToggleButton IsChecked="True" x:Name="toggle_rezervasyon" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Red" Style="{StaticResource MaterialDesignFlatToggleButton}">
-                            <materialDesign:PackIcon Width="21" Height="21" Kind="Tick"/>
-                        </ToggleButton>
-                        <TextBlock Margin="10 5 10 0" Text="REZERVASYON" FontFamily="Arial" FontWeight="Bold" FontSize="24"/>
-                    </StackPanel>
-                    <StackPanel Margin="0 10 10 0" Orientation="Horizontal">
-                        <ToggleButton x:Name="toggle_veriTabani" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Red" Style="{StaticResource MaterialDesignFlatToggleButton}">
-                            <materialDesign:PackIcon Width="21" Height="21" Kind="Tick"/>
-                        </ToggleButton>
-                        <TextBlock Margin="10 5 10 0" Text="VERİ TABANI" FontFamily="Arial" FontWeight="Bold" FontSize="24"/>
-                    </StackPanel>
-                    <StackPanel Margin="0 10 10 0" Orientation="Horizontal">
-                        <ToggleButton x:Name="toggle_yetkilendirmeYap" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Red" Style="{StaticResource MaterialDesignFlatToggleButton}">
-                            <materialDesign:PackIcon Width="21" Height="21" Kind="Tick"/>
-                        </ToggleButton>
-                        <TextBlock Margin="10 5 10 0" Text="YETKİLENDİRME YAP" FontFamily="Arial" FontWeight="Bold" FontSize="24"/>
-                    </StackPanel>
-                </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Grid.Row="2" Width="580">
+                        <StackPanel Margin="0 10 10 0" Orientation="Horizontal">
+                            <ToggleButton x:Name="toggle_gunlukHarcama" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Red" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                                <materialDesign:PackIcon Width="21" Height="21" Kind="Tick"/>
+                            </ToggleButton>
+                            <TextBlock Margin="10 5 10 0" Text="GÜNLÜK HARCAMA" FontFamily="Arial" FontWeight="Bold" FontSize="24"/>
+                        </StackPanel>
+                        <StackPanel Margin="0 10 10 0" Orientation="Horizontal">
+                            <ToggleButton x:Name="toggle_muhasebe" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Red" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                                <materialDesign:PackIcon Width="21" Height="21" Kind="Tick"/>
+                            </ToggleButton>
+                            <TextBlock Margin="10 5 10 0" Text="MUHASEBE" FontFamily="Arial" FontWeight="Bold" FontSize="24"/>
+                        </StackPanel>
+                        <StackPanel Margin="0 10 10 0" Orientation="Horizontal">
+                            <ToggleButton x:Name="toggle_cekSenet" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Red" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                                <materialDesign:PackIcon Width="21" Height="21" Kind="Tick"/>
+                            </ToggleButton>
+                            <TextBlock Margin="10 5 10 0" Text="ÇEK\SENET" FontFamily="Arial" FontWeight="Bold" FontSize="24"/>
+                        </StackPanel>
+                        <StackPanel Margin="0 10 10 0" Orientation="Horizontal">
+                            <ToggleButton x:Name="toggle_satisDurumu" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Red" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                                <materialDesign:PackIcon Width="21" Height="21" Kind="Tick"/>
+                            </ToggleButton>
+                            <TextBlock Margin="10 5 10 0" Text="SATIŞ DURUMU" FontFamily="Arial" FontWeight="Bold" FontSize="24"/>
+                        </StackPanel>
+                        <StackPanel Margin="0 10 10 0" Orientation="Horizontal">
+                            <ToggleButton x:Name="toggle_personel" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Red" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                                <materialDesign:PackIcon Width="21" Height="21" Kind="Tick"/>
+                            </ToggleButton>
+                            <TextBlock Margin="10 5 10 0" Text="PERSONEL" FontFamily="Arial" FontWeight="Bold" FontSize="24"/>
+                        </StackPanel>
+                        <StackPanel Margin="0 10 10 0" Orientation="Horizontal">
+                            <ToggleButton x:Name="toggle_musteriFirma" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Red" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                                <materialDesign:PackIcon Width="21" Height="21" Kind="Tick"/>
+                            </ToggleButton>
+                            <TextBlock Margin="10 5 10 0" Text="MÜŞTERİ\FİRMA" FontFamily="Arial" FontWeight="Bold" FontSize="24"/>
+                        </StackPanel>
+                        <StackPanel Margin="0 10 10 0" Orientation="Horizontal">
+                            <ToggleButton x:Name="toggle_stok" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Red" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                                <materialDesign:PackIcon Width="21" Height="21" Kind="Tick"/>
+                            </ToggleButton>
+                            <TextBlock Margin="10 5 10 0" Text="STOK" FontFamily="Arial" FontWeight="Bold" FontSize="24"/>
+                        </StackPanel>
+                        <StackPanel Margin="0 10 10 0" Orientation="Horizontal">
+                            <ToggleButton IsChecked="True" x:Name="toggle_urunler" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Red" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                                <materialDesign:PackIcon Width="21" Height="21" Kind="Tick"/>
+                            </ToggleButton>
+                            <TextBlock Margin="10 5 10 0" Text="ÜRÜNLER" FontFamily="Arial" FontWeight="Bold" FontSize="24"/>
+                        </StackPanel>
+                        <StackPanel Margin="0 10 10 0" Orientation="Horizontal">
+                            <ToggleButton IsChecked="True" x:Name="toggle_rezervasyon" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Red" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                                <materialDesign:PackIcon Width="21" Height="21" Kind="Tick"/>
+                            </ToggleButton>
+                            <TextBlock Margin="10 5 10 0" Text="REZERVASYON" FontFamily="Arial" FontWeight="Bold" FontSize="24"/>
+                        </StackPanel>
+                        <StackPanel Margin="0 10 10 0" Orientation="Horizontal">
+                            <ToggleButton x:Name="toggle_veriTabani" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Red" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                                <materialDesign:PackIcon Width="21" Height="21" Kind="Tick"/>
+                            </ToggleButton>
+                            <TextBlock Margin="10 5 10 0" Text="VERİ TABANI" FontFamily="Arial" FontWeight="Bold" FontSize="24"/>
+                        </StackPanel>
+                        <StackPanel Margin="0 10 10 0" Orientation="Horizontal">
+                            <ToggleButton x:Name="toggle_yetkilendirmeYap" materialDesign:ToggleButtonAssist.SwitchTrackOffBackground="Green" materialDesign:ToggleButtonAssist.SwitchTrackOnBackground="Red" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                                <materialDesign:PackIcon Width="21" Height="21" Kind="Tick"/>
+                            </ToggleButton>
+                            <TextBlock Margin="10 5 10 0" Text="YETKİLENDİRME YAP" FontFamily="Arial" FontWeight="Bold" FontSize="24"/>
+                        </StackPanel>
+                    </WrapPanel>
+
+                </Grid>
 
             </Grid>
-
         </Grid>
-    </Grid>
+    </materialDesign:DialogHost>
 </Window>

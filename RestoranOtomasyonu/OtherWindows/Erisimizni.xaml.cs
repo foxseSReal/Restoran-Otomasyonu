@@ -1,4 +1,7 @@
-﻿using RestoranOtomasyonu.Entity;
+﻿using MaterialDesignColors;
+using MaterialDesignThemes;
+using MaterialDesignThemes.Wpf;
+using RestoranOtomasyonu.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace RestoranOtomasyonu.OtherWindows
 {
@@ -31,7 +35,7 @@ namespace RestoranOtomasyonu.OtherWindows
             this.Close();
         }
 
-        private void kaydetButtonu_Click(object sender, RoutedEventArgs e)
+        private async void kaydetButtonu_Click(object sender, RoutedEventArgs e)
         {
             var newUser = db.TBLKULLANICI;
             TBLKULLANICI userAdd = new TBLKULLANICI();
@@ -60,6 +64,16 @@ namespace RestoranOtomasyonu.OtherWindows
             db.TBLKULLANICI.Add(userAdd);
             db.SaveChanges();
             Temizle();
+
+            var card = new Card
+            {
+                Width = 300,
+                Padding = new Thickness(32),
+                Content = new TextBlock { Text = "Kayıt Başarılı!", FontSize = 24, },
+                Foreground = Brushes.Black,
+                Background = Brushes.DarkOliveGreen
+            };
+            await DialogHost.Show(card, "RootDialog");
         }
 
         private void Temizle()
