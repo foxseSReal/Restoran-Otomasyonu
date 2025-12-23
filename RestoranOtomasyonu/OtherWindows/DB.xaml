@@ -7,12 +7,18 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         WindowStyle="None"
+        ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Background="{StaticResource MaterialDesignLightSeparatorBackground}"
         Title="DB" Height="450" Width="800">
     <Grid>
         <StackPanel Orientation="Vertical">
-            <TextBlock Text="Veri Tabanı Yedekleme" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,20,0,20"/>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                <TextBlock Foreground="White" Margin="250 20 0 20" HorizontalAlignment="Center" Text="Veri Tabanı Yedekleme" FontSize="30" FontWeight="Bold"/>
+                <Button Click="thisClose" Margin="160 0 0 0" Width="70" Height="70" Style="{StaticResource MaterialDesignFlatLightButton}">
+                    <materialDesign:PackIcon Kind="CloseBold" Width="60" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Button>
+            </StackPanel>
             <Separator Width="700" Margin="0 10 0 20"/>
             <StackPanel Orientation="Vertical" Margin="0 0 0 50">
                 <!--Yedekleme-->

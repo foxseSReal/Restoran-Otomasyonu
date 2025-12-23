@@ -114,27 +114,18 @@ namespace RestoranOtomasyonu
             yetkilendirme.Show();
         }
 
-        private void UserControls_Loaded(object sender, RoutedEventArgs e)
-        { 
-
-        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
             if (AktifKullanici.Yetki == "k")
             {
                 menuItemYetkilendirme.Visibility = Visibility.Collapsed;
 
                 resimButton.Visibility = (AktifKullanici.Yetki == "a") ? Visibility.Visible : Visibility.Collapsed;
-             
+
                 btnGunlukHarcama.Visibility = (AktifKullanici.GunlukHarcamaYetki == true)
                                               ? Visibility.Visible : Visibility.Collapsed;
 
-            
+
                 btnMuhasebe.Visibility = (AktifKullanici.MuhasebeYetki == true)
                                          ? Visibility.Visible : Visibility.Collapsed;
 
@@ -158,7 +149,7 @@ namespace RestoranOtomasyonu
 
             }
             else if (AktifKullanici.Yetki == "a")
-            { 
+            {
                 menuItemYetkilendirme.Visibility = Visibility.Visible;
                 btnGunlukHarcama.Visibility = Visibility.Visible;
                 btnMuhasebe.Visibility = Visibility.Visible;
@@ -173,6 +164,12 @@ namespace RestoranOtomasyonu
             lblTarih.Content = DateTime.Now.ToString("dd MMMM yyyy");
             lblSaat.Content = DateTime.Now.ToString("HH:mm");
         }
+
+        private void dbWindow(object sender, RoutedEventArgs e)
+        {
+            DB db= new DB();
+            db.Show();
+        }
     }
-    
+
 }
