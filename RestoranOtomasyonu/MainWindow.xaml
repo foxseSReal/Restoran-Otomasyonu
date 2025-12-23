@@ -7,7 +7,7 @@
            xmlns:local="clr-namespace:RestoranOtomasyonu"
            Style="{StaticResource MaterialDesignWindow}"
            mc:Ignorable="d"
-        Loaded="Window_Loaded_1"
+           Loaded="Window_Loaded_1"
            Title="Personel || Hizmet Bölümü" WindowStyle="None" ResizeMode="NoResize" Width="1537" Height="864" WindowState="Maximized">
     <Grid Style="{StaticResource arkaPlan}">
         <Grid.ColumnDefinitions>
