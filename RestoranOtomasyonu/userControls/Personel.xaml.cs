@@ -42,8 +42,6 @@ namespace RestoranOtomasyonu.userControls
                                      .Where(x => x.PersonelID == sonPersonel.PersonelID)
                                      .OrderByDescending(x => x.NetTutar)
                                      .FirstOrDefault();
-
-
                 adSoyad.Text = sonPersonel.Ad + " " + sonPersonel.Soyad;
                 maas.Text = maasKaydi != null ? maasKaydi.NetTutar.ToString() : "Maaş Yok";
                 adres.Text = sonPersonel.Adres;
@@ -51,17 +49,11 @@ namespace RestoranOtomasyonu.userControls
                 email.Text = sonPersonel.Email;
                 if (sonPersonel.Tarih != null)
                 {
-                    // <-- DÜZELTME: DatePicker'a değer atama
                     Tarih.SelectedDate = sonPersonel.Tarih;
                 }
-
                 cbxPosizyon.Text = sonPersonel.Pozisyon;
                 tckimlik.Text = sonPersonel.TCKimlikNo;
-
-
                 IsTakip_ToggleButton.IsChecked = sonPersonel.Durum;
-
-                // <-- DÜZELTME: Son personelin resmini yükle
                 ResimYukle(sonPersonel.Resim);
             }
             else
@@ -69,15 +61,9 @@ namespace RestoranOtomasyonu.userControls
                 MessageBox.Show("Sistemde kayıtlı personel bulunamadı.");
             }
         }
-        private string secilenResimYolu; // Kullanıcının seçtiği dosyanın tam yolu
-
-        //==================================================//
-        ////////// *** Prosedurelerin kullanimi *** //////////
-        //==================================================//
-
+        private string secilenResimYolu; 
         public void personelListele()
         {
-            //personel_DataGrid.ItemsSource = ResDB.PERSONELLIST();
             var personel = from x in ResDB.TblPERSONELLER.OrderByDescending(x => x.PersonelID)
                            select new
                            {
@@ -92,24 +78,18 @@ namespace RestoranOtomasyonu.userControls
                                DURUMU = x.Durum == true ? "Aktif" : "Pasif"
                            };
             personel_DataGrid.ItemsSource = personel.ToList();
-
-            // ... (DataGrid header yorumlarınız)
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             personelListele();
         }
-
-        // <-- YENİ METOT: Resmi klasörden bulup Image kontrolüne yükler
         private void ResimYukle(string dosyaAdi)
         {
-            // dosyaAdi veritabanından gelen addır 
             if (string.IsNullOrEmpty(dosyaAdi))
             {
-                dosyaAdi = "resimyok.png"; // Varsayılan resim
+                dosyaAdi = "resimyok.png"; 
             }
-
             try
             {
                 string klasorYolu = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resimler");
@@ -120,55 +100,41 @@ namespace RestoranOtomasyonu.userControls
                     BitmapImage bitmap = new BitmapImage();
                     bitmap.BeginInit();
                     bitmap.UriSource = new Uri(resimTamYolu, UriKind.Absolute);
-                    // Bu satır, resim dosyasının uygulama tarafından kilitlenmesini engeller
                     bitmap.CacheOption = BitmapCacheOption.OnLoad;
                     bitmap.EndInit();
-                    resim.ImageSource = bitmap; // 'resim' XAML'deki ImageBrush'ınızın adıdır
+                    resim.ImageSource = bitmap;
                 }
                 else
                 {
-                    // resimyok.png bile bulunamazsa diye
                     resim.ImageSource = null;
                 }
             }
             catch (Exception)
             {
-                resim.ImageSource = null; // Hata durumunda resmi temizle
+                resim.ImageSource = null; 
             }
         }
 
 
         private void personel_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // <-- DÜZELTME: Kullanıcı listeden yeni birini seçtiğinde, 
-            // hafızadaki 'secilenResimYolu'nu temizle.
             secilenResimYolu = null;
-
             if (personel_DataGrid.SelectedItem == null)
                 return;
-
-            // Seçili satırdan ID'yi al (anonim tip olduğu için reflection ile)
             var selectedRow = personel_DataGrid.SelectedItem;
             var idProp = selectedRow.GetType().GetProperty("PersonelID");
             if (idProp == null)
                 return;
-
             int calisanId = (int)idProp.GetValue(selectedRow);
-
-
             var bukim = ResDB.TblPERSONELLER.Find(calisanId);
-
             if (bukim != null)
             {
                 var maasKaydi = ResDB.TblMAAS.Where(x => x.PersonelID == bukim.PersonelID).OrderByDescending(x => x.NetTutar).FirstOrDefault();
-
                 adSoyad.Text = bukim.Ad + " " + bukim.Soyad;
                 maas.Text = maasKaydi != null ? maasKaydi.NetTutar.ToString() : "Yok";
                 adres.Text = bukim.Adres;
                 telefon.Text = bukim.Telefon;
                 email.Text = bukim.Email;
-
-                // <-- DÜZELTME: DatePicker'a değer atama
                 Tarih.SelectedDate = bukim.Tarih;
 
                 cbxPosizyon.Text = bukim.Pozisyon;
@@ -182,8 +148,6 @@ namespace RestoranOtomasyonu.userControls
                 {
                     IsTakip_ToggleButton.IsChecked = false;
                 }
-
-                // <-- DÜZELTME: Seçilen personelin resmini yükle
                 ResimYukle(bukim.Resim);
             }
 
@@ -229,100 +193,63 @@ namespace RestoranOtomasyonu.userControls
         }
         private int seciliPersonelId = -1;
 
-
         private void personel_DataGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
 
         }
 
-        // Bu metot zaten doğru çalışıyordu, dokunulmadı.
         private void Resimekleme(object sender, RoutedEventArgs e)
         {
             OpenFileDialog resimSec = new OpenFileDialog();
-
             resimSec.Filter = "Resim Dosyaları (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png";
-
-
             if (resimSec.ShowDialog() == true)
             {
-
                 secilenResimYolu = resimSec.FileName;
-
-
                 BitmapImage bitmap = new BitmapImage(new Uri(secilenResimYolu));
                 resim.ImageSource = bitmap;
             }
         }
 
-        // <-- YENİ METOT: Resmi kopyalar ve veritabanına yazılacak adını döndürür
         private string ResmiKaydetVeAdiniGetir(string mevcutDosyaAdi)
         {
-            // Durum 1: Kullanıcı yeni bir resim seçmediyse
             if (string.IsNullOrEmpty(secilenResimYolu))
             {
-                // Eğer bu bir güncelleme ise (mevcutDosyaAdi var), eski adı koru
-                // Eğer bu yeni kayıt ise (mevcutDosyaAdi null), varsayılan resmi ata
                 return string.IsNullOrEmpty(mevcutDosyaAdi) ? "resimyok.png" : mevcutDosyaAdi;
             }
-
-            // Durum 2: Kullanıcı yeni bir resim seçtiyse
             try
             {
                 string klasorYolu = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resimler");
                 if (!Directory.Exists(klasorYolu))
                     Directory.CreateDirectory(klasorYolu);
-
-                // Dosya adını al (örn: "profil.jpg")
                 string dosyaAdi = System.IO.Path.GetFileName(secilenResimYolu);
-
-                // (İsteğe bağlı: Dosya adını benzersiz yapabilirsiniz)
-                // string dosyaAdi = Guid.NewGuid().ToString() + Path.GetExtension(secilenResimYolu);
-
                 string hedefYol = System.IO.Path.Combine(klasorYolu, dosyaAdi);
 
-                File.Copy(secilenResimYolu, hedefYol, true); // Resmi kopyala (üzerine yaz)
+                File.Copy(secilenResimYolu, hedefYol, true);
 
-                return dosyaAdi; // Veritabanına kaydedilecek YENİ dosya adını döndür
+                return dosyaAdi; 
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Resim kopyalanırken hata: {ex.Message}", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
-                // Hata olursa, eski resmi (veya varsayılanı) koru
                 return string.IsNullOrEmpty(mevcutDosyaAdi) ? "resimyok.png" : mevcutDosyaAdi;
             }
         }
 
-
         private void btnekle(object sender, RoutedEventArgs e)
         {
-
-            // Ad Soyad alanını diziyle ayırdık
             var adSoyadDizi = adSoyad.Text.Split(' ');
             string ad = adSoyadDizi.Length > 0 ? adSoyadDizi[0] : "";
             string soyad = adSoyadDizi.Length > 1 ? string.Join(" ", adSoyadDizi.Skip(1)) : "";
-
-            // Departman seçimini aldık
             var selectedItem = cbxPosizyon.SelectedItem as ComboBoxItem;
-
-            // <-- DÜZELTME BAŞLANGIÇ
-            // Tarih seçilip seçilmediğini kontrol et
             if (!Tarih.SelectedDate.HasValue)
             {
                 MessageBox.Show("Lütfen bir giriş tarihi seçin.", "Uyarı", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return; // İşlemi durdur
+                return; 
             }
-            // Artık .HasValue true ise, .Value ile güvenle 'DateTime' değerini alabiliriz
             DateTime girisTarihi = Tarih.SelectedDate.Value;
-            // <-- DÜZELTME BİTİŞ
-
-            // çalışan maaşı aldım
             decimal odeme = 0;
             decimal.TryParse(maas.Text, out odeme);
-
-            // Resim işlemleri SaveChanges'ten ÖNCE yapılmalı
             string resimDosyaAdi = ResmiKaydetVeAdiniGetir(null);
-
-            // Yeni personeli kayıt kısmı
             TblPERSONELLER yeniCalisan = new TblPERSONELLER
             {
                 Ad = ad,
@@ -331,13 +258,11 @@ namespace RestoranOtomasyonu.userControls
                 Adres = adres.Text,
                 Email = email.Text,
                 Pozisyon = cbxPosizyon.Text,
-                Tarih = girisTarihi, // <-- DÜZELTME: Artık 'DateTime' türünde
+                Tarih = girisTarihi,
                 Durum = IsTakip_ToggleButton.IsChecked == true,
                 TCKimlikNo = tckimlik.Text,
                 Resim = resimDosyaAdi
             };
-
-            // ... (try-catch bloğunuzun kalanı aynı) ...
             ResDB.TblPERSONELLER.Add(yeniCalisan);
             try
             {
@@ -372,7 +297,6 @@ namespace RestoranOtomasyonu.userControls
                 MessageBox.Show($"Genel Hata: {ex.Message}", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
         private void guncelleButton_Click(object sender, RoutedEventArgs e)
         {
             if (personel_DataGrid.SelectedItem is null)
@@ -384,28 +308,17 @@ namespace RestoranOtomasyonu.userControls
             int id = (int)((dynamic)personel_DataGrid.SelectedItem).PersonelID;
             var p = ResDB.TblPERSONELLER.Find(id);
             if (p == null) return;
-
-
             var adSoyadParca = adSoyad.Text.Split(' ');
             p.Ad = adSoyadParca[0];
             p.Soyad = adSoyadParca.Length > 1 ? string.Join(" ", adSoyadParca.Skip(1)) : "";
-
-
             p.Pozisyon = cbxPosizyon.Text;
             p.Telefon = telefon.Text;
             p.Adres = adres.Text;
             p.Email = email.Text;
             p.TCKimlikNo = tckimlik.Text;
-
-
             p.Tarih = Tarih.SelectedDate ?? DateTime.Now;
-
-
             p.Durum = IsTakip_ToggleButton.IsChecked == true;
-
-
             p.Resim = ResmiKaydetVeAdiniGetir(p.Resim);
-
             if (decimal.TryParse(maas.Text, out decimal odeme))
             {
                 var maasKaydi = ResDB.TblMAAS.FirstOrDefault(x => x.PersonelID == id);
@@ -414,8 +327,6 @@ namespace RestoranOtomasyonu.userControls
                 else
                     ResDB.TblMAAS.Add(new TblMAAS { PersonelID = id, NetTutar = odeme });
             }
-
-
             try
             {
                 ResDB.SaveChanges();
@@ -463,14 +374,9 @@ namespace RestoranOtomasyonu.userControls
 
             if (guncellenecekPersonel != null)
             {
-                // Personeli silme, durumu 'false' (pasif) yap
                 guncellenecekPersonel.Durum = false;
-
                 ResDB.SaveChanges();
-
                 personelListele();
-
-                // <-- DÜZELTME: Mesaj isteğinize göre değiştirildi
                 MessageBox.Show("Personel başarıyla silindi.", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
@@ -488,11 +394,9 @@ namespace RestoranOtomasyonu.userControls
             adres.Text = "";
             telefon.Text = "";
             email.Text = "";
-            Tarih.SelectedDate = null; // <-- DÜZELTME
+            Tarih.SelectedDate = null;
             cbxPosizyon.Text = "";
             IsTakip_ToggleButton.IsChecked = false;
-
-            // <-- DÜZELTME: Resim kutusunu ve hafızayı temizle
             resim.ImageSource = null;
             secilenResimYolu = null;
         }
@@ -501,7 +405,6 @@ namespace RestoranOtomasyonu.userControls
         {
             temizle();
         }
-
         private void personelOdeme_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var secilen = personelOdeme_DataGrid.SelectedItem;
@@ -519,7 +422,6 @@ namespace RestoranOtomasyonu.userControls
                 }
             }
         }
-
         private void odemegetir()
         {
             var odemeler = from x in ResDB.TblPERSONELODEME
@@ -554,7 +456,6 @@ namespace RestoranOtomasyonu.userControls
 
                 ResDB.TblPERSONELODEME.Add(yeniOdeme);
 
-                //2 kasaya gider kaydı oluşturma
                 TblGIDER gider = new TblGIDER();
                 gider.PersonelId = seciliPersonelId;
                 gider.Aciklama = aciklama.Text;
@@ -569,15 +470,11 @@ namespace RestoranOtomasyonu.userControls
             odemegetir();
 
 
-        }//
+        }
         private void odemegrtdoldur()
         {
-            //ödemeyi texbox a tıklayınca doldur
             var secilenOdeme = personelOdeme_DataGrid.SelectedItem;
-
         }
-
-
 
         private void txtPersonelAra_TextChanged(object sender, TextChangedEventArgs e)
         {

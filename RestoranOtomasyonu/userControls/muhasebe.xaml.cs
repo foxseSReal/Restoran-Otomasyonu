@@ -62,7 +62,6 @@ namespace RestoranOtomasyonu.userControls
                           });
             muhasebeGider_DataGrid.ItemsSource = listele;
         }
-
         private void btnGiderFitrele_Click(object sender, RoutedEventArgs e)
         {
             DateTime? baslangic = muhasebe_BaslanicTarih.SelectedDate;
@@ -91,7 +90,6 @@ namespace RestoranOtomasyonu.userControls
                           );
             muhasebeGider_DataGrid.ItemsSource = sonuc;
         }
-
         private void btnGelirFitrele_Click(object sender, RoutedEventArgs e)
         {
             DateTime? baslangic = muhasebe_BaslanicTarih.SelectedDate;

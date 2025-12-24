@@ -57,7 +57,7 @@
             Margin="0 20 0 0"
             Foreground="WhiteSmoke"
             FontSize="18"
-            MaxLength="8" TextChanged="stokMiktari_TextChanged"/>
+            MaxLength="8" />
 
             <TextBox x:Name="stokFiyat"  Width="300" materialDesign:TextFieldAssist.PrefixText="₺" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Fiyat" AcceptsReturn="True" IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}" Style="{StaticResource MaterialDesignFilledTextBox}"
 TextWrapping="Wrap"

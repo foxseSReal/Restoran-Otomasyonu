@@ -87,35 +87,34 @@ namespace RestoranOtomasyonu.OtherWindows
    
         private void urun_ekleButton_Click(object sender, RoutedEventArgs e)
         {
-            var firma = db.TblFIRMA.Find(firmaid);
+            string secilenFirmaAdi = cbxUrun_Firma.Text;
+            var firma = db.TblFIRMA.FirstOrDefault(x => x.FirmaAdi == secilenFirmaAdi);
+
             if (firma == null)
             {
-                MessageBox.Show("Firma bulunamadı: " + firmaid);
+                MessageBox.Show("Lütfen geçerli bir firma seçiniz.");
                 return;
             }
-
+            var urun = db.TblURUN.Find(urunid);
+            if (urun == null) return;
             TblFIRMAHAREKET uekle = new TblFIRMAHAREKET();
             uekle.UrunId = urunid;
-            uekle.FirmaId = cbxUrun_Firma.SelectedIndex;
+            uekle.FirmaId = firma.FirmaId;
             uekle.Adet = Convert.ToInt16(urun_Adet.Value);
             uekle.Tarih = DateTime.Now;
-            uekle.Tutar = uekle.Adet * db.TblURUN.Find(urunid).Fiyat;
+            uekle.Tutar = uekle.Adet * urun.Fiyat;
             db.TblFIRMAHAREKET.Add(uekle);
-
-            //2 kasaya gider kaydı oluşturma
             TblGIDER gider = new TblGIDER();
-            gider.FirmaId = cbxUrun_Firma.SelectedIndex ;
-            gider.Aciklama = db.TblFIRMA.Find(firmaid).FirmaAdi + " Firmasından" + db.TblURUN.Find(urunid).UrunAdi + " Ürünü İçin Ödeme";
+            gider.FirmaId = firma.FirmaId;
+            var mudur = db.TblPERSONELLER.FirstOrDefault(x => x.Pozisyon == "Müdür");
+            gider.PersonelId = (mudur != null) ? mudur.PersonelID : 1;
+            gider.Aciklama = $"{firma.FirmaAdi} firmasından {urun.UrunAdi} alımı.";
             gider.Tarih = DateTime.Now;
-            gider.Tutar = (decimal)(uekle.Tutar);
+            gider.Tutar =(decimal) uekle.Tutar; 
             gider.GiderTuru = "Stok Alım";
-           
-
-           
-            MessageBox.Show("Stok Ekleme İşlemi Başarılı");
-            
             db.TblGIDER.Add(gider);
             db.SaveChanges();
+            MessageBox.Show("Stok Ekleme İşlemi Başarılı ve Gidere İşlendi.", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
             UrunListele();
             FirmaListele();
             temizle();
@@ -128,7 +127,6 @@ namespace RestoranOtomasyonu.OtherWindows
 
         private void firma_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //firmahareket doldur
             firmaid = (int)(firma_DataGrid.SelectedItem as dynamic).ID;
             var firmahareket = db.TblFIRMA.Find(firmaid);
             cbxUrun_Firma.Text = firmahareket.FirmaAdi;
@@ -137,7 +135,6 @@ namespace RestoranOtomasyonu.OtherWindows
 
         private void urun_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //urun doldur
             urunid = (int)(urun_DataGrid.SelectedItem as dynamic).ID;
             var urun = db.TblURUN.Find(urunid);
             urun_isim.Text = urun.UrunAdi;

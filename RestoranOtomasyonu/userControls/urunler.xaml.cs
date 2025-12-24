@@ -24,7 +24,7 @@ namespace RestoranOtomasyonu.userControls
     public partial class urunler : UserControl
     {
         RESTORANDBEntities1 db = new RESTORANDBEntities1();
-        private string seciliResimYolu = null; // <--- YENİ SATIR: Seçilen resmin dosya yolunu tutmak için
+        private string seciliResimYolu = null; 
 
         public urunler()
         {
@@ -42,7 +42,6 @@ namespace RestoranOtomasyonu.userControls
             }
             if (!string.IsNullOrEmpty(sonurun.ResimYolu) && File.Exists(sonurun.ResimYolu))
             {
-                // 2. Dosya varsa, yüklemeyi DENE (Dosya bozuk olabilir)
                 try
                 {
                     BitmapImage bitmap = new BitmapImage(new Uri(sonurun.ResimYolu, UriKind.Absolute));
@@ -50,13 +49,11 @@ namespace RestoranOtomasyonu.userControls
                 }
                 catch (Exception)
                 {
-                    // Resim dosyası bozuksa veya bir sebepten okunamadıysa, kutuyu boşalt
                     urun_resimKutusu.ImageSource = null;
                 }
             }
             else
             {
-                // 1. koşul sağlanmadıysa (yol boşsa veya dosya yoksa) kutuyu boşalt
                 urun_resimKutusu.ImageSource = null;
             }
 
@@ -66,6 +63,7 @@ namespace RestoranOtomasyonu.userControls
         {
           
             var listele = db.TblURUN.OrderByDescending(x=>x.UrunId)
+                           .Where(x=>x.Durum==true)
                             .Select(x => new
                             {
                                 ID = x.UrunId,
@@ -85,62 +83,57 @@ namespace RestoranOtomasyonu.userControls
 
             if (resim.ShowDialog() == true)
             {
-                // <--- DEĞİŞİKLİK BAŞLANGIÇ ---
-                // Seçilen resmin dosya yolunu değişkene kaydet
                 seciliResimYolu = resim.FileName;
-
-                // Resmi önizleme kutusunda göster
                 BitmapImage bitmap = new BitmapImage(new Uri(seciliResimYolu, UriKind.Absolute));
                 urun_resimKutusu.ImageSource = bitmap;
-                // <--- DEĞİŞİKLİK BİTİŞ ---
             }
         }
 
         private void urun_ekleButton_Click(object sender, RoutedEventArgs e)
         {
-            //int? kategoriId = db.TblKATEGORI.FirstOrDefault(x => x.KategoriAdi == cbxUrun_Kategori.Text)?.KategoriId;
-            //int? firmaId = db.TblFIRMA.FirstOrDefault(x => x.FirmaAdi == cbxUrun_Firma.Text)?.FirmaId;
+            int? kategoriId = db.TblKATEGORI.FirstOrDefault(x => x.KategoriAdi == cbxUrun_Kategori.Text)?.KategoriId;
+            int? firmaId = db.TblFIRMA.FirstOrDefault(x => x.FirmaAdi == cbxUrun_Firma.Text)?.FirmaId;
 
-            //if (kategoriId == null || kategoriId == 0)
-            //{
-            //    MessageBox.Show("Lütfen geçerli bir kategori seçin.", "Hata", MessageBoxButton.OK, MessageBoxImage.Warning);
-            //    return;
-            //}
+            if (kategoriId == null || kategoriId == 0)
+            {
+                MessageBox.Show("Lütfen geçerli bir kategori seçin.", "Hata", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
-            //if (firmaId == null || firmaId == 0)
-            //{
-            //    MessageBox.Show("Lütfen geçerli bir firma seçin. (Seçilen firma TblFIRMA'da bulunamadı)", "Hata", MessageBoxButton.OK, MessageBoxImage.Warning);
-            //    return;
-            //}
+            if (firmaId == null || firmaId == 0)
+            {
+                MessageBox.Show("Lütfen geçerli bir firma seçin. (Seçilen firma TblFIRMA'da bulunamadı)", "Hata", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
-            //try
-            //{
-            //    var yeniUrun = new TblURUN
-            //    {
-            //        UrunAdi = urun_isim.Text,
-            //        Fiyat = decimal.Parse(urunFiyat.Text),
-            //        Durum = urun_ToggleButton.IsChecked ?? true,
-            //        KategoriId = kategoriId.Value,
-            //        FirmaId = firmaId.Value,
-            //        ResimYolu= seciliResimYolu // <--- YENİ SATIR: Resim yolunu veritabanına ekle
-            //    };
+            try
+            {
+                var yeniUrun = new TblURUN
+                {
+                    UrunAdi = urun_isim.Text,
+                    Fiyat = decimal.Parse(urunFiyat.Text),
+                    Durum = urun_ToggleButton.IsChecked ?? true,
+                    KategoriId = kategoriId.Value,
+                    FirmaId = firmaId.Value,
+                    ResimYolu = seciliResimYolu 
+                };
 
-            //    db.TblURUN.Add(yeniUrun);
-            //    db.SaveChanges();
-            //    MessageBox.Show("Ürün başarıyla eklendi.");
-            //    UrunListele();
-            //    urun_temizleButton_Click(null, null); // <--- YENİ SATIR: Ekleme sonrası formu temizle
-            //}
-            //catch (FormatException)
-            //{
-            //    MessageBox.Show("Lütfen fiyat alanına geçerli bir sayı girin (örn: 12,50).", "Geçersiz Fiyat", MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Ürün eklenirken bir hata oluştu:\n" + ex.Message, "Veritabanı Hatası", MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
-            //// UrunListele(); // <--- Bu satır try bloğunun içinde zaten var, tekrar gerekmez
-            ///
+                db.TblURUN.Add(yeniUrun);
+                db.SaveChanges();
+                MessageBox.Show("Ürün başarıyla eklendi.");
+                UrunListele();
+                urun_temizleButton_Click(null, null); 
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Lütfen fiyat alanına geçerli bir sayı girin (örn: 12,50).", "Geçersiz Fiyat", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ürün eklenirken bir hata oluştu:\n" + ex.Message, "Veritabanı Hatası", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            UrunListele();
+            
 
 
         }
@@ -153,40 +146,31 @@ namespace RestoranOtomasyonu.userControls
             int urunId = ((dynamic)urungetir).ID;
             var urun = db.TblURUN.Find(urunId);
 
-            if (urun == null) return; // <--- YENİ SATIR: Güvenlik kontrolü
+            if (urun == null) return; 
 
             urun_isim.Text = urun.UrunAdi;
             cbxUrun_Kategori.Text = urun.TblKATEGORI.KategoriAdi;
             urunFiyat.Text = urun.Fiyat.ToString();
             urun_ToggleButton.IsChecked = urun.Durum;
             cbxUrun_Firma.Text = urun.TblFIRMA.FirmaAdi;
-
-            // <--- DEĞİŞİKLİK BAŞLANGIÇ: Ürünün resmini yükleme ---
-            // Veritabanından gelen Resim (string) kolonunu kontrol et
             if (!string.IsNullOrEmpty(urun.ResimYolu) && File.Exists(urun.ResimYolu))
             {
                 try
                 {
-                    // Veritabanından gelen dosya yolundan resmi yükle
                     BitmapImage bitmap = new BitmapImage(new Uri(urun.ResimYolu, UriKind.Absolute));
-                    urun_resimKutusu.ImageSource = bitmap;
-                    // Bu yolu sakla, olur da kullanıcı resmi değiştirmeden güncelle'ye basar
                     seciliResimYolu = urun.ResimYolu;
                 }
                 catch (Exception)
                 {
-                    // Resim dosyası bozuksa veya yol hatalıysa
                     urun_resimKutusu.ImageSource = null;
                     seciliResimYolu = null;
                 }
             }
             else
             {
-                // Ürünün resmi yoksa veya dosya yolu artık geçersizse
                 urun_resimKutusu.ImageSource = null;
                 seciliResimYolu = null;
             }
-            // <--- DEĞİŞİKLİK BİTİŞ ---
         }
 
         private void urun_silButton_Click(object sender, RoutedEventArgs e)
@@ -194,7 +178,7 @@ namespace RestoranOtomasyonu.userControls
             var seciliOge = urunDataGrid.SelectedItem;
             if (seciliOge == null)
             {
-                MessageBox.Show("Lütfen pasif hale getirmek için bir ürün seçin.", "Uyarı", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Lütfen silmek için bir ürün seçin.", "Uyarı", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
             try
@@ -207,14 +191,14 @@ namespace RestoranOtomasyonu.userControls
 
                     db.SaveChanges();
 
-                    MessageBox.Show("Ürün başarıyla pasif hale getirildi.", "İşlem Başarılı");
+                    MessageBox.Show("Ürün başarıyla silindi.", "İşlem Başarılı");
 
                     UrunListele();
-                    urun_temizleButton_Click(null, null); // <--- YENİ SATIR: Silme sonrası formu temizle
+                    urun_temizleButton_Click(null, null); 
                 }
                 else
                 {
-                    MessageBox.Show("Pasifleştirme işlemi için ürün bulunamadı.", "Hata", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Silmek istediğniz ürün bulunamadı.", "Hata", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException)
@@ -225,7 +209,6 @@ namespace RestoranOtomasyonu.userControls
             {
                 MessageBox.Show("İşlem sırasında beklenmedik bir hata oluştu: " + ex.Message, "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            // UrunListele(); // <--- Bu satır try bloğunun içinde zaten var, tekrar gerekmez
         }
 
         private void urun_guncelleButton_Click(object sender, RoutedEventArgs e)
@@ -248,10 +231,6 @@ namespace RestoranOtomasyonu.userControls
                         urun.UrunAdi = urun_isim.Text;
                         urun.Fiyat = decimal.Parse(urunFiyat.Text);
                         urun.Durum = urun_ToggleButton.IsChecked ?? true;
-
-                        // <--- YENİ SATIR: Güncel resim yolunu kaydet ---
-                        // seciliResimYolu, ya grid'den seçildiğinde ya da "Resim"
-                        // butonuna basıldığında güncellenmişti.
                         urun.ResimYolu = seciliResimYolu;
 
                         var kategori = db.TblKATEGORI.FirstOrDefault(x => x.KategoriAdi == cbxUrun_Kategori.Text);
@@ -279,7 +258,7 @@ namespace RestoranOtomasyonu.userControls
                         db.SaveChanges();
                         MessageBox.Show("Ürün başarıyla güncellendi.", "İşlem Başarılı");
                         UrunListele();
-                        urun_temizleButton_Click(null, null); // <--- YENİ SATIR: Güncelleme sonrası formu temizle
+                        urun_temizleButton_Click(null, null);
                     }
                     else
                     {
@@ -299,7 +278,6 @@ namespace RestoranOtomasyonu.userControls
                     MessageBox.Show("İşlem sırasında beklenmedik bir hata oluştu: " + ex.Message, "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            // UrunListele(); // <--- Bu satır try bloğunun içinde zaten var, tekrar gerekmez
         }
 
         private void urun_temizleButton_Click(object sender, RoutedEventArgs e)
@@ -308,10 +286,10 @@ namespace RestoranOtomasyonu.userControls
             urunFiyat.Clear();
             cbxUrun_Kategori.SelectedIndex = -1;
             cbxUrun_Firma.SelectedIndex = -1;
-            urun_ToggleButton.IsChecked = false; // <--- false olarak ayarlamak daha doğru
+            urun_ToggleButton.IsChecked = false; 
             urun_resimKutusu.ImageSource = null;
-            seciliResimYolu = null; // <--- YENİ SATIR: Hafızadaki resim yolunu da temizle
-            urunDataGrid.SelectedItem = null; // <--- YENİ SATIR: DataGrid seçimini kaldır
+            seciliResimYolu = null;
+            urunDataGrid.SelectedItem = null; 
         }
 
         private void urunAra_TextChanged(object sender, TextChangedEventArgs e)

@@ -41,7 +41,7 @@ namespace RestoranOtomasyonu.userControls
         }
         public void Stoklistele()
         {
-            var liste = from s in db.TblFIRMAHAREKET.OrderByDescending(x => x.FirmaId)
+            var liste = from s in db.TblFIRMAHAREKET.OrderByDescending(x => x.ID)
                         select new
                         {
                             ID = s.ID,
@@ -56,13 +56,12 @@ namespace RestoranOtomasyonu.userControls
                         };
             stokDataGrid.ItemsSource = liste.ToList();
         }
-        int secilenid;
+        int secilenid,urunid;
         private void stokDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var secilen = stokDataGrid.SelectedItem;
             if (secilen == null)
-                return; // veya uygun bir kullanıcı mesajı gösterin
-
+            return; 
             var secilenid = (int)(secilen as dynamic).ID;
             var secilenStok = db.TblFIRMAHAREKET.Find(secilenid);
 
@@ -95,33 +94,40 @@ namespace RestoranOtomasyonu.userControls
 
             StokEkle stokEkle = new StokEkle();
 
-            //ShowDialog metodu ile pencereyi modal olarak açıyoruz Kullici kapatmadan altta kalan forma gecis yapamayacak
+           
 
             stokEkle.ShowDialog();
+            db = new RESTORANDBEntities1();
 
+          
+            Stoklistele();
 
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
-        {// güncelle
+        {
             var secilen = stokDataGrid.SelectedItem;
-            var secilenid = (int)(stokDataGrid.SelectedItem as dynamic).ID;
+            if (secilen == null) return; 
 
+            var secilenid = (int)(stokDataGrid.SelectedItem as dynamic).ID;
             var secilenStok = db.TblFIRMAHAREKET.Find(secilenid);
+
             if (secilenStok != null)
             {
-                
-                var firma = db.TblFIRMA.FirstOrDefault(x => x.FirmaAdi == firma_adi.Text);
-                var urun = db.TblURUN.FirstOrDefault(x => x.UrunAdi == urun_adi.Text);
-
+                int yeniAdet = 0;
+                int.TryParse(stokMiktari.Text, out yeniAdet);
+                var urun = db.TblURUN.Find(secilenStok.UrunId);
+                decimal birimFiyat = 0;
+                if (urun != null)
+                {
+                    birimFiyat = (decimal)urun.Fiyat;
+                }
+                secilenStok.Adet = yeniAdet;
+                secilenStok.Tutar = yeniAdet * birimFiyat; 
                 secilenStok.Aciklama = stokAciklama.Text;
-                secilenStok.Adet = int.Parse(stokMiktari.Text);
-                secilenStok.Tutar = decimal.Parse(stokFiyat.Text);
                 secilenStok.Tarih = DateTime.Parse(stokTarih.Text);
-
+                stokFiyat.Text = secilenStok.Tutar.ToString();
                 db.SaveChanges();
-
-                
                 var kasa = db.TblGIDER.FirstOrDefault(x => x.GiderId == secilenStok.ID);
 
                 if (kasa != null)
@@ -133,16 +139,10 @@ namespace RestoranOtomasyonu.userControls
                     kasa.Tarih = secilenStok.Tarih;
                     db.SaveChanges();
                 }
-                else
-                {
-                   
-                }
-
-                MessageBox.Show("Stok Güncelleme İşlemi Başarılı", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
+               
+                MessageBox.Show("Adet güncellendi ve tutar yeniden hesaplandı.", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
                 Stoklistele();
             }
-            
-
         }
         private void stokAra_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -151,7 +151,6 @@ namespace RestoranOtomasyonu.userControls
                 .Where(x => x.TblFIRMA.FirmaAdi.ToLower().Contains(firmaara))
                 .Select(x => new
                 {
-
                     ID = x.ID,
                     FirmaAdı = x.TblFIRMA.FirmaAdi,
                     ÜrünAdı = x.TblURUN.UrunAdi,
@@ -166,7 +165,7 @@ namespace RestoranOtomasyonu.userControls
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            //Tarih Fitrele
+
             DateTime ilktarih = stokAralık.SelectedDate.HasValue ? stokAralık.SelectedDate.Value : DateTime.MinValue;
             DateTime sontarih = stokAralık2.SelectedDate.HasValue ? stokAralık2.SelectedDate.Value : DateTime.MinValue;
             var liste = from s in db.TblFIRMAHAREKET.OrderByDescending(x => x.FirmaId)
@@ -187,7 +186,6 @@ namespace RestoranOtomasyonu.userControls
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            //Temizle
             firma_adi.Text = "";
             urun_adi.Text = "";
             stokAciklama.Text = "";
@@ -197,14 +195,8 @@ namespace RestoranOtomasyonu.userControls
             stokTarih.Text = "";
             stokAralık.Text = "";
             stokAralık2.Text = "";
-            
             Stoklistele();
         }
-        int urunid;
-        private void stokMiktari_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
-          
-        }
+        
     }
 }

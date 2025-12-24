@@ -38,8 +38,6 @@ namespace RestoranOtomasyonu.userControls
 
             }
         }
-        //          OLUŞTURULAN METHODLAR         //    
-
         public void RezarvasyonListele()
         {
             var listele = db.TblREZARVASYON.OrderByDescending(x=>x.RezarvasyonId).ToList()
@@ -87,8 +85,6 @@ namespace RestoranOtomasyonu.userControls
         private void rezervasyon_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             RezarvasyonListele();
-
-            // Seçili satırdan RezarvasyonId alınmalı
             var secilmis = rezervasyon_DataGrid.SelectedItem;
             if (secilmis != null)
             {
@@ -102,10 +98,7 @@ namespace RestoranOtomasyonu.userControls
         {
             var guncellenecek = db.TblREZARVASYON.Find(((dynamic)rezervasyon_DataGrid.SelectedItem).ID);
             if (guncellenecek == null) return;
-
             var musteri = db.TblMUSTERILER.FirstOrDefault(x => x.Ad + " " + x.Soyad == rezervasyon_Adsoyad.Text);
-
-            // 2. Müşteri bulundu mu diye KONTROL ET
             if (musteri == null)
             {
                 MessageBox.Show("Bu isimde bir müşteri bulunamadı!", "Hata", MessageBoxButton.OK, MessageBoxImage.Warning);

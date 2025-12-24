@@ -75,7 +75,6 @@ namespace RestoranOtomasyonu.userControls
                 MessageBox.Show("Lütfen bir tarih seçin.");
                 return;
             }
-
             decimal tutar;
             if (!decimal.TryParse(harcamaTutari.Text, out tutar))
             {
@@ -89,8 +88,6 @@ namespace RestoranOtomasyonu.userControls
                 MessageBox.Show("Lütfen geçerli bir saat formatı girin (örneğin: 14:30).");
                 return;
             }
-
-     
             TblGUNLUKHARCAMA harcama = new TblGUNLUKHARCAMA();
             harcama.HarcananYer = harcamaYer.Text;
             harcama.Tarih = harcamaTarih.SelectedDate.Value;

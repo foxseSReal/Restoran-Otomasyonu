@@ -38,12 +38,9 @@ namespace RestoranOtomasyonu.OtherWindows
           
                 if (user != null)
                 {
-                    // 1. Bilgileri Hafızaya Al
                     AktifKullanici.KullaniciID = user.KullaniciId;
                     AktifKullanici.AdSoyad = user.KullaniciAdSoyad;
                     AktifKullanici.Yetki = user.Yetki;
-
-                    // Yetkileri ata (Veritabanındaki sütun isimlerinle eşleştir)
                     AktifKullanici.GunlukHarcamaYetki = user.GUNLUKHARCAMA;
                     AktifKullanici.MuhasebeYetki = user.MUHASEBE;
                     AktifKullanici.CekSenetYetki = user.CEKSENET;

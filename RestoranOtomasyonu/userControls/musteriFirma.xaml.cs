@@ -46,7 +46,6 @@ namespace RestoranOtomasyonu.userControls
                             HesapNo = x.HesapNo
                         });
             musteri_DataGrid.ItemsSource = listele;
-
         }
         public void FirmaGetir(int firmaId)
         {
@@ -61,9 +60,6 @@ namespace RestoranOtomasyonu.userControls
             musteriAdres.Text = bukim.Adres;
             musteri_vergiDairesi.Text = bukim.VergiDairesi;
             musteri_vergiDairesi_HesapNo.Text = bukim.HesapNo;
-
-
-
         }
         int musterifirma;
         private void musteri_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -90,7 +86,6 @@ namespace RestoranOtomasyonu.userControls
                 Modeme_DataGrid.ItemsSource = odeme;
             }
         }
-
         private void musteri_ekleButton_Click(object sender, RoutedEventArgs e)
         {
             var yeniFirma = new TblFIRMA();
