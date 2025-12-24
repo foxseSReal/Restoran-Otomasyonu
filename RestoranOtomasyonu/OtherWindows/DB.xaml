@@ -22,7 +22,7 @@
             <Separator Width="700" Margin="0 10 0 20"/>
             <StackPanel Orientation="Vertical" Margin="0 0 0 50">
                 <!--Yedekleme-->
-                <Button x:Name="_DB" Content="Veri Tabanı yedeğini al" FontSize="24" Width="320" Height="50" materialDesign:ButtonAssist.CornerRadius="20"/>
+                <Button x:Name="_DB" Content="Veri Tabanı yedeğini al" FontSize="24" Width="320" Height="50" materialDesign:ButtonAssist.CornerRadius="20" Click="_DB_Click"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 10 0 0">
                     <materialDesign:PackIcon Margin="0 0 10 0" Kind="DatabaseAlert" Foreground="Red" Opacity="0.5" Width="40" Height="40"/>
                     <TextBlock Opacity="0.5" Foreground="Black" FontSize="16" HorizontalAlignment="Center" Margin="0,10,0,0">
