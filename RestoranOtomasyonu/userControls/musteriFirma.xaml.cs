@@ -30,7 +30,6 @@ namespace RestoranOtomasyonu.userControls
             MusteriListele();
             var rezarvasyon = db.TblFIRMA.OrderByDescending(x => x.FirmaId).FirstOrDefault();
         }
-        //Müşteri Listele
         public void MusteriListele()
         {
 
@@ -49,7 +48,6 @@ namespace RestoranOtomasyonu.userControls
             musteri_DataGrid.ItemsSource = listele;
 
         }
-        //=================Veri Getir=======================/
         public void FirmaGetir(int firmaId)
         {
             var bukim = db.TblFIRMA.Find(firmaId);
@@ -74,11 +72,9 @@ namespace RestoranOtomasyonu.userControls
             if (secilmis != null)
             {
                 dynamic item = secilmis;
-                musterifirma = item.ID; // FirmaId
+                musterifirma = item.ID; 
                 FirmaGetir(musterifirma);
                 FMusteriGetir(musterifirma);
-
-                // Borçları doğru şekilde filtrele
                 var odeme = db.TblMODEME
                     .Where(b => b.FmusteriID == musterifirma)
                     .Select(b => new
@@ -116,7 +112,6 @@ namespace RestoranOtomasyonu.userControls
 
         private void musteri_silButton_Click(object sender, RoutedEventArgs e)
         {
-
             var sildurum = MessageBox.Show("Seçili Müşteri/Firmayı Silmek İstediğinize Emin Misiniz?", "Uyarı", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (sildurum == MessageBoxResult.Yes)
             {
@@ -131,7 +126,6 @@ namespace RestoranOtomasyonu.userControls
                     MessageBox.Show("Seçili Müşteri/Firma Başarıyla Silindi", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
                     MusteriListele();
                 }
-
             }
         }
 
@@ -159,13 +153,11 @@ namespace RestoranOtomasyonu.userControls
                     MessageBox.Show("Seçili Müşteri/Firma Başarıyla Güncellendi", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
                     MusteriListele();
                 }
-
             }
         }
 
         private void musteri_temizleButton_Click(object sender, RoutedEventArgs e)
         {
-
             musteriFirma_isim.Clear();
             cbxMusteri_Firma.SelectedIndex = -1;
             musteriTelefon.Clear();
@@ -175,7 +167,6 @@ namespace RestoranOtomasyonu.userControls
             musteriAdres.Clear();
             musteri_vergiDairesi.Clear();
             musteri_vergiDairesi_HesapNo.Clear();
-
         }
 
         private void musteriFirma_Ara_TextChanged(object sender, TextChangedEventArgs e)
@@ -198,8 +189,7 @@ namespace RestoranOtomasyonu.userControls
             musteri_DataGrid.ItemsSource = filtreliListe;
         }
         public void BorcListele()
-        {//müşteri borç getir
-
+        {
             var listele = db.TblMODEME.OrderByDescending(x => x.OdemeId)
                          .Where(x=>x.FmusteriID==x.TblFIRMA.FirmaId)
                          .Select(x => new
@@ -212,13 +202,10 @@ namespace RestoranOtomasyonu.userControls
                              Aciklama = x.Aciklama
                          }).ToList();
             Modeme_DataGrid.ItemsSource = listele;
-
-
         }
 
         private void btnBorcListele_Click(object sender, RoutedEventArgs e)
-        {//borc listeleme ekranı açılacak
-
+        {
             BorcListele();
         }
         public void MusteriGetir(int mId)
@@ -230,9 +217,6 @@ namespace RestoranOtomasyonu.userControls
             txtOdenecekTutar.Text = bukim.OdenenTutar.ToString();
             txtAciklama.Text = bukim.Aciklama;
             BorcTarih.Text = bukim.Tarih.ToString();
-
-
-
         }
         public void FMusteriGetir(int mId)
         {
@@ -249,52 +233,73 @@ namespace RestoranOtomasyonu.userControls
                 dynamic item = secilmis;
                 int mId = item.ID;
                 MusteriGetir(mId);
-
             }
 
         }
 
         private void btnBorcEkle_Click(object sender, RoutedEventArgs e)
         {
-            //borc ekleme
             var yeniBorc = new TblMODEME();
             yeniBorc.FmusteriID = db.TblFIRMA.Where(x => x.FirmaAdi == txtMusteri.Text).Select(x => x.FirmaId).FirstOrDefault();
             yeniBorc.OdemeId = db.TblFIRMA.Where(x => x.FirmaAdi == txtMusteri.Text).Select(x => x.FirmaId).FirstOrDefault();
             yeniBorc.BorcTutar = decimal.Parse(txtBorcTutar.Text);
-            yeniBorc.OdenenTutar = decimal.Parse(txtOdenecekTutar.Text);
+            yeniBorc.OdenenTutar = decimal.TryParse(txtOdenecekTutar.Text, out decimal odenen) ? odenen : 0; ;
             yeniBorc.Tarih = DateTime.Parse(BorcTarih.Text);
             yeniBorc.Aciklama = txtAciklama.Text;
             db.TblMODEME.Add(yeniBorc);
             db.SaveChanges();
             MessageBox.Show("Yeni Borç Kaydı Başarıyla Eklendi", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
             BorcListele();
-
         }
 
         private void btnBorcGuncelle_Click(object sender, RoutedEventArgs e)
         {
-            // Borç Ödeme
             var secilmis = Modeme_DataGrid.SelectedItem;
-            dynamic item = secilmis;
-            int mId = item.ID;
-            var bukim = db.TblMODEME.Find(mId);
-            bukim.BorcTutar = decimal.Parse(txtBorcTutar.Text);
-            bukim.OdenenTutar = decimal.Parse(txtOdenecekTutar.Text);
-            bukim.Tarih = DateTime.Parse(BorcTarih.Text);
-            bukim.Aciklama = txtAciklama.Text;
-            db.SaveChanges();
-            MessageBox.Show("Ödeme İşlemi Başarılı", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
-           
-            BorcListele();
-            
 
+            if (secilmis != null)
+            {
+                dynamic item = secilmis;
+                int mId = item.ID; 
+                var bukim = db.TblMODEME.Include("TblFIRMA").FirstOrDefault(x => x.OdemeId == mId);
 
-
+                if (bukim != null)
+                {
+                    decimal borc, odenen;
+                    DateTime tarih;
+                    if (!decimal.TryParse(txtBorcTutar.Text, out borc)) borc = 0;
+                    if (!decimal.TryParse(txtOdenecekTutar.Text, out odenen)) odenen = 0;
+                    if (!DateTime.TryParse(BorcTarih.Text, out tarih)) tarih = DateTime.Now;
+                    bukim.BorcTutar = borc;
+                    bukim.OdenenTutar = odenen;
+                    bukim.Tarih = tarih;
+                    bukim.Aciklama = txtAciklama.Text;
+                    string isim = "Bilinmiyor";
+                    if (bukim.TblFIRMA != null)
+                    {
+                        isim = bukim.TblFIRMA.FirmaAdi;
+                    }
+                    var mudur = db.TblPERSONELLER.FirstOrDefault(x => x.Pozisyon == "Müdür");
+                    int atananPersonelId = (mudur != null) ? mudur.PersonelID : 1;
+                    TblGELIR yeniGelir = new TblGELIR();
+                    yeniGelir.Tarih = DateTime.Now;
+                    yeniGelir.Tutar = odenen;
+                    yeniGelir.PersonelId = atananPersonelId;
+                    yeniGelir.Aciklama = $"{isim} - Tahsilat - {txtAciklama.Text}";
+                    yeniGelir.GelirTuru = "Müşteri Tahsilatı";
+                    db.TblGELIR.Add(yeniGelir);
+                    db.SaveChanges();
+                    MessageBox.Show($"Sayın {isim} için ödeme alındı ve işlendi.", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
+                    BorcListele();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Lütfen listeden bir kayıt seçiniz.", "Uyarı", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void btnBorcSil_Click(object sender, RoutedEventArgs e)
         {
-            //borç silme drumu true ise sil
             var secilmis = Modeme_DataGrid.SelectedItem;
             dynamic item = secilmis;
             int mId = item.ID;
@@ -303,15 +308,11 @@ namespace RestoranOtomasyonu.userControls
             db.SaveChanges();
             MessageBox.Show("Seçili Borç Kaydı Başarıyla Silindi", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
             BorcListele();
-            //temizle
             txtMusteri.Clear();
             txtBorcTutar.Clear();
             txtOdenecekTutar.Clear();
             txtAciklama.Clear();
             BorcTarih.Text = "";
-
         }
-
-        
     }
 }
