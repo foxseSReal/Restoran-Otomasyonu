@@ -41,7 +41,7 @@ namespace RestoranOtomasyonu.userControls
                                 Tutar = x.Tutar
                             });
             harcamalar_DataGrid.ItemsSource = listele;
-            //günlük harcama toplamını bugünke göre al
+        
         }
         private void HarcamaGetir()
         {
@@ -53,57 +53,70 @@ namespace RestoranOtomasyonu.userControls
                 DateTime bitis = gunlukDataGridAralik2.SelectedDate ?? DateTime.Now.Date;
 
                 
-                // (decimal?) ve ?? 0 kullanımı: Eğer sonuç NULL dönerse (hiç kayıt yoksa) 0 kabul et demektir.
+               
                 decimal toplam = db.TblGUNLUKHARCAMA
                                    .Where(x => x.Tarih >= baslangic && x.Tarih <= bitis)
                                    .Sum(x => (decimal?)x.Tutar) ?? 0;
 
-                // 3. Ekrana yazdır (C2: TL formatında yazar, örneğin: ₺0,00)
+             
                 harcamaGunlukToplam.Text = toplam.ToString("C2");
             }
             catch (Exception)
             {
-                // Olası bir hatada 0 yaz
+            
                 harcamaGunlukToplam.Text = "₺0,00";
             }
         }
         private void harcamaButton_Click(object sender, RoutedEventArgs e)
         {
-           //harcama ekle
-            TblGUNLUKHARCAMA harcama = new TblGUNLUKHARCAMA();
-            harcama.HarcananYer = harcamaYer.Text;
-            harcama.Tarih = harcamaTarih.SelectedDate.Value;
-            TimeSpan saat;
-            if (TimeSpan.TryParse(harcamaSaat.Text, out saat))
+      
+            if (harcamaTarih.SelectedDate == null)
             {
-                harcama.Saat = saat;
-            }
-            else
-            {
-                MessageBox.Show("Lütfen geçerli bir saat formatı girin (örneğin: 14:30).");
+                MessageBox.Show("Lütfen bir tarih seçin.");
                 return;
             }
-            harcama.Aciklama = haracamaAciklama.Text;
+
             decimal tutar;
-            if (decimal.TryParse(harcamaTutari.Text, out tutar))
-            {
-                harcama.Tutar = tutar;
-            }
-            else
+            if (!decimal.TryParse(harcamaTutari.Text, out tutar))
             {
                 MessageBox.Show("Lütfen geçerli bir tutar girin.");
                 return;
             }
+
+            TimeSpan saat;
+            if (!TimeSpan.TryParse(harcamaSaat.Text, out saat))
+            {
+                MessageBox.Show("Lütfen geçerli bir saat formatı girin (örneğin: 14:30).");
+                return;
+            }
+
+     
+            TblGUNLUKHARCAMA harcama = new TblGUNLUKHARCAMA();
+            harcama.HarcananYer = harcamaYer.Text;
+            harcama.Tarih = harcamaTarih.SelectedDate.Value;
+            harcama.Saat = saat;
+            harcama.Aciklama = haracamaAciklama.Text;
+            harcama.Tutar = tutar;
+
             db.TblGUNLUKHARCAMA.Add(harcama);
-            db.SaveChanges();
-            MessageBox.Show("Günlük Harcama Eklendi.");
+
+            TblGIDER yeniGider = new TblGIDER();
+            yeniGider.Tarih = harcamaTarih.SelectedDate.Value;
+            yeniGider.Tutar = tutar;
+            yeniGider.Aciklama = $"{harcamaYer.Text} - {haracamaAciklama.Text}";
+            yeniGider.GiderTuru = "Günlük Harcama"; 
+            var mudur = db.TblPERSONELLER.FirstOrDefault(x => x.Pozisyon == "Müdür");
+            yeniGider.PersonelId = (mudur != null) ? mudur.PersonelID : 1;
+            db.TblGIDER.Add(yeniGider);
+            db.SaveChanges(); 
+            MessageBox.Show("Günlük Harcama eklendi ve Gider tablosuna işlendi.", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
             HarcamaListele();
             HarcamaGetir();
 
         }
 
         private void harcamalar_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {//harcama doldur
+        {
             var secilenHarcama = harcamalar_DataGrid.SelectedItem;
             if (secilenHarcama != null)
             {
@@ -126,13 +139,9 @@ namespace RestoranOtomasyonu.userControls
         {
             DateTime? baslangic = gunlukDataGridAralik.SelectedDate;
             DateTime? bitis = gunlukDataGridAralik2.SelectedDate;
-
-            // Önce temel sorgu
             var listele = db.TblGUNLUKHARCAMA
                 .OrderByDescending(x => x.GunlukId)
                 .AsQueryable();
-
-            // Tarih aralığı filtreleri
             if (baslangic.HasValue)
             {
                 listele = listele.Where(x => x.Tarih >= baslangic.Value);
@@ -142,7 +151,6 @@ namespace RestoranOtomasyonu.userControls
                 listele = listele.Where(x => x.Tarih <= bitis.Value);
             }
 
-            // Veritabanından çek ve formatla
             var sonuc = listele
                 .ToList()
                 .Select(x => new
@@ -159,7 +167,6 @@ namespace RestoranOtomasyonu.userControls
             HarcamaGetir();
 
         }
-
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             HarcamaListele();
