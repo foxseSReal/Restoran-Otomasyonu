@@ -35,10 +35,7 @@ namespace RestoranOtomasyonu.OtherWindows
         private void btnGiris_Click(object sender, RoutedEventArgs e)
         {
             var user = db.TBLKULLANICI.FirstOrDefault(k => k.KullaniciAdi == txtUsername.Text && k.Sifre == PasswordBox.Password);
-
-
-            if (user != null)
-            {
+          
                 if (user != null)
                 {
                     // 1. Bilgileri Hafızaya Al
@@ -65,7 +62,7 @@ namespace RestoranOtomasyonu.OtherWindows
                 {
                     MessageBox.Show("Hatalı kullanıcı adı veya şifre.");
                 }
-            }
+            
         }
 
         private void AppClose(object sender, RoutedEventArgs e)

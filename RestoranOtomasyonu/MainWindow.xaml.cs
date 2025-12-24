@@ -134,7 +134,6 @@ namespace RestoranOtomasyonu
                 btnGunlukHarcama.Visibility = (AktifKullanici.GunlukHarcamaYetki == true)
                                               ? Visibility.Visible : Visibility.Collapsed;
 
-            
                 btnMuhasebe.Visibility = (AktifKullanici.MuhasebeYetki == true)
                                          ? Visibility.Visible : Visibility.Collapsed;
 
