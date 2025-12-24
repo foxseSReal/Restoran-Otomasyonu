@@ -7,7 +7,7 @@
            xmlns:local="clr-namespace:RestoranOtomasyonu"
            Style="{StaticResource MaterialDesignWindow}"
            mc:Ignorable="d"
-        Loaded="Window_Loaded_1"
+           Loaded="Window_Loaded"
            Title="Personel || Hizmet Bölümü" WindowStyle="None" ResizeMode="NoResize" Width="1537" Height="864" WindowState="Maximized">
     <Grid Style="{StaticResource arkaPlan}">
         <Grid.ColumnDefinitions>
@@ -103,7 +103,7 @@
 
         <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource menuBorder}">
             <DockPanel x:Name="ContentArea">
-                <ContentControl x:Name="UserControls" Loaded="UserControls_Loaded"/>
+                <ContentControl x:Name="UserControls"/>
             </DockPanel>
         </Border>
 
@@ -117,7 +117,7 @@
                         <ContextMenu>
                             <MenuItem Header="Kullanıcı Değiştir" />
                             <MenuItem Header="Yetkilendirme Yap" x:Name="menuItemYetkilendirme" Click="yetkilendir"/>
-                            <MenuItem Header="Veri Tabanı Yedek Al" />
+                            <MenuItem Header="Veri Tabanı Yedek Al" Click="dbWindow" />
                             <Separator />
                             <MenuItem Header="Çıkış Yap" Foreground="Red" Click="appClose_Click"/>
                         </ContextMenu>
