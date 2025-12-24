@@ -1,4 +1,5 @@
 ﻿using RestoranOtomasyonu.Entity;
+using RestoranOtomasyonu.OtherWindows;
 using System;
 using System.Collections.Generic;
 using System.IO.Ports;
@@ -203,29 +204,70 @@ namespace RestoranOtomasyonu.userControls
 
             if (secildata != null)
             {
-                // Seçilen satırın ID'sini al
+                // 1. Seçilen satırın ID'sini al
                 int ceksenetId = (secildata as dynamic).ID;
 
-                // Veritabanından ilgili kaydı bul
-                var cekSenet = db.TblCEKSENET.FirstOrDefault(x => x.CeksenetId == ceksenetId);
+                // 2. Veritabanından çeki ve kime ait olduğunu (Firma) bul
+                var cekSenet = db.TblCEKSENET.Include("TblFIRMA").FirstOrDefault(x => x.CeksenetId == ceksenetId);
 
                 if (cekSenet != null)
                 {
-                    // Durumu "ödendi" yap
-                    cekSenet.Durum = true;
+                    // Kontrol: Zaten ödenmiş mi?
+                    if (cekSenet.Durum == true)
+                    {
+                        MessageBox.Show("Bu ödeme zaten yapılmış.", "Uyarı", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
 
-                    // Veritabanında değişikliği kaydet
+                    // --- OTOMATİK MÜDÜR ID BULMA ---
+                    // Gideri yapan personel olarak "Müdür"ü atıyoruz.
+                    var mudur = db.TblPERSONELLER.FirstOrDefault(x => x.Pozisyon == "Müdür");
+
+                    // Müdür yoksa hata vermesin diye varsayılan 1 yapıyoruz (Varsa kendi ID'si)
+                    int atananPersonelId = (mudur != null) ? mudur.PersonelID : 1;
+
+
+                    // --- ÇEK DURUMUNU GÜNCELLE ---
+                    cekSenet.Durum = true; // Ödendi yap
+                    if (cekSenet.OTarih == null) cekSenet.OTarih = DateTime.Now;
+
+
+                    // --- GİDER TABLOSUNA KAYIT (TblGIDER) ---
+                    TblGIDER yeniGider = new TblGIDER();
+
+                    // Önemli: Textbox yerine veritabanındaki gerçek veriyi kullanıyoruz (Daha güvenli)
+                    yeniGider.Tarih = DateTime.Now;
+                    yeniGider.Tutar = cekSenet.Tutar;
+
+                    // Gideri kime ödedik? (Çekin ait olduğu firma)
+                    yeniGider.FirmaId = cekSenet.FirmaId;
+
+                    // İşlemi Yapan Personel (Otomatik Müdür)
+                    yeniGider.PersonelId = atananPersonelId;
+
+                    // Açıklama
+                    string firmaAdi = cekSenet.TblFIRMA != null ? cekSenet.TblFIRMA.FirmaAdi : "Firma Yok";
+                    yeniGider.Aciklama = $"{firmaAdi} firmasına ait {cekSenet.OdemeTuru} ödendi. (No: {ceksenetId})";
+
+                    // Gider Türü (Senet mi Çek mi?)
+                    if (cekSenet.OdemeTuru == "Senet")
+                        yeniGider.GiderTuru = "Senet Ödemesi";
+                    else
+                        yeniGider.GiderTuru = "Çek Ödemesi";
+
+                    // Tabloya Ekle ve Kaydet
+                    db.TblGIDER.Add(yeniGider);
                     db.SaveChanges();
 
-                    MessageBox.Show("Ödeme Başarılı", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Ödeme yapıldı ve Gider olarak işlendi.", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                    // Güncel listeyi yeniden yükle
+                    // --- LİSTEYİ YENİLE ---
                     var odemeler = db.TblCEKSENET
                         .Where(x => x.CeksenetId == ceksenetId)
                         .ToList()
                         .Select(x => new
                         {
-                            FirmaAdı = x.FirmaId == null ? "Firma Yok" : x.TblFIRMA.FirmaAdi,
+                            FirmaAdı = x.TblFIRMA != null ? x.TblFIRMA.FirmaAdi : "Firma Yok",
                             ÖdemeTarihi = x.OTarih.HasValue ? x.OTarih.Value.ToString("dd.MM.yyyy") : "",
                             Tutar = x.Tutar,
                             Durum = (bool)x.Durum ? "Ödendi" : "Ödenmedi"
@@ -233,18 +275,11 @@ namespace RestoranOtomasyonu.userControls
 
                     cekSenetOdeme_DataGrid.ItemsSource = odemeler;
                 }
-                else
-                {
-                    MessageBox.Show("Kayıt bulunamadı.", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
             }
             else
             {
-                MessageBox.Show("Lütfen bir kayıt seçiniz.", "Uyarı", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Lütfen ödemesi yapılacak satırı seçiniz.", "Uyarı", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-
-
-
         }
 
         private void cekSenet_Filtrele_Click(object sender, RoutedEventArgs e)
@@ -302,6 +337,82 @@ namespace RestoranOtomasyonu.userControls
 
             //                    };
             //cekSenet_DataGrid.ItemsSource = filtreliListe.ToList();
+        }
+
+        private void ceksetnet_tahsilet_Click(object sender, RoutedEventArgs e)
+        {
+            var secildata = cekSenet_DataGrid.SelectedItem;
+
+            if (secildata != null)
+            {
+                int ceksenetId = (secildata as dynamic).ID;
+
+                // 1. Çek/Senet bilgisini getir
+                var cekSenet = db.TblCEKSENET.Include("TblFIRMA").FirstOrDefault(x => x.CeksenetId == ceksenetId);
+
+                if (cekSenet != null)
+                {
+                    // Kontrol: Daha önce tahsil edilmiş mi?
+                    if (cekSenet.Durum == true)
+                    {
+                        MessageBox.Show("Bu zaten tahsil edilmiş.", "Uyarı", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+
+                    // --- OTOMATİK MÜDÜR ID BULMA ---
+                    // Ekrana sadece Müdür girebildiği için, veritabanından Pozisyonu 'Müdür' olan ilk kaydı alıyoruz.
+                    var mudur = db.TblPERSONELLER.FirstOrDefault(x => x.Pozisyon == "Müdür");
+
+                    // Eğer veritabanında hiç 'Müdür' yoksa hata vermemesi için önlem:
+                    int atananPersonelId = (mudur != null) ? mudur.PersonelID : 1;
+                    // Not: Eğer müdür bulunamazsa geçici olarak 1 nolu ID'yi atar.
+
+
+                    // --- ÇEK DURUMUNU GÜNCELLE ---
+                    cekSenet.Durum = true;
+                    if (cekSenet.OTarih == null) cekSenet.OTarih = DateTime.Now;
+
+
+                    // --- GELİR TABLOSUNA İŞLEME ---
+                    TblGELIR yeniGelir = new TblGELIR();
+                    yeniGelir.Tarih = DateTime.Now;
+                    yeniGelir.Tutar = cekSenet.Tutar;
+
+                    // !!! BURADA OTOMATİK ATAMA YAPIYORUZ !!!
+                    yeniGelir.PersonelId = atananPersonelId;
+
+                    // Açıklama Hazırlığı
+                    string firmaAdi = cekSenet.TblFIRMA != null ? cekSenet.TblFIRMA.FirmaAdi : "Firma Yok";
+                    yeniGelir.Aciklama = $"{firmaAdi} - Çek/Senet No: {ceksenetId} Tahsilatı (Oto. Kayıt)";
+
+                    // Tür Belirleme
+                    yeniGelir.GelirTuru = (cekSenet.OdemeTuru == "Senet") ? "Senet Tahsilatı" : "Çek Tahsilatı";
+
+                    // Ekle ve Kaydet
+                    db.TblGELIR.Add(yeniGelir);
+                    db.SaveChanges();
+
+                    MessageBox.Show("Tahsilat işlemi başarıyla kaydedildi.", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    // --- LİSTEYİ YENİLE ---
+                    var odemeler = db.TblCEKSENET
+                        .Where(x => x.CeksenetId == ceksenetId)
+                        .ToList()
+                        .Select(x => new
+                        {
+                            FirmaAdı = x.TblFIRMA != null ? x.TblFIRMA.FirmaAdi : "Firma Yok",
+                            ÖdemeTarihi = x.OTarih.HasValue ? x.OTarih.Value.ToString("dd.MM.yyyy") : "",
+                            Tutar = x.Tutar,
+                            Durum = (bool)x.Durum ? "Tahsil Edildi" : "Bekliyor"
+                        });
+
+                    cekSenetOdeme_DataGrid.ItemsSource = odemeler;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seçim yapmadınız.", "Uyarı", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

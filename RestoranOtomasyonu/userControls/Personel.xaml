@@ -90,6 +90,7 @@ FontSize="20" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Ma
                     <ComboBoxItem Content="Aşçı" />
                     <ComboBoxItem Content="Temizlikçi" />
                     <ComboBoxItem Content="Muhasebe" />
+                    <ComboBoxItem Content="Müdür" />
                 </ComboBox>
                 <TextBox x:Name="email" Foreground="Black" Margin="0 10 0 10" Width="200" VerticalAlignment="Center" materialDesign:HintAssist.Hint="E-Mail" FontSize="20" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                 <TextBox x:Name="maas" Foreground="Black" Margin="0 10 0 10" Width="200" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Maaş" FontSize="20" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
@@ -148,7 +149,7 @@ FontSize="15" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Ma
                     <ComboBoxItem Content="Avans" />
                     <ComboBoxItem Content="Prim" />
                     <ComboBoxItem Content="Borç" />
-                    <ComboBoxItem Content="Diğer..." />
+                    <ComboBoxItem Content="Maaş" />
                 </ComboBox>
                 <!--Adres-->
                 <GroupBox Margin="0 20 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="200" materialDesign:ElevationAssist.Elevation="Dp16" BorderThickness="0" Header="Açıklama" >
