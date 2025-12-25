@@ -104,7 +104,7 @@ FontSize="20" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Ma
             </StackPanel>
 
             <!--Buttonlar-->
-            <StackPanel Margin="80 38 0 0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
+            <StackPanel Margin="80 15 0 0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
                 <Button x:Name="urun_ekleButton" Width="90" materialDesign:ButtonAssist.CornerRadius="25 25 0 0" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
                     ToolTip="Ürün Ekle" Click="urun_ekleButton_Click">
                     <TextBlock Text="Ekle" />

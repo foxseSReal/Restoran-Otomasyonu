@@ -160,8 +160,6 @@ namespace RestoranOtomasyonu
                 btnUrun.Visibility = Visibility.Visible;
                 btnRezervasyon.Visibility = Visibility.Visible;
             }
-            lblTarih.Content = DateTime.Now.ToString("dd MMMM yyyy");
-            lblSaat.Content = DateTime.Now.ToString("HH:mm");
         }
 
         private void dbWindow(object sender, RoutedEventArgs e)
