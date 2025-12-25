@@ -9,6 +9,7 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         ResizeMode="NoResize"
+        FocusManager.FocusedElement="{Binding ElementName=txtUsername}"
         Title="LoginWindow" Height="600" Width="700">
     <Grid Style="{StaticResource Login_arkaPlan}">
         <StackPanel Orientation="Vertical">
@@ -22,7 +23,7 @@
                 <PasswordBox x:Name="PasswordBox" materialDesign:HintAssist.Hint="Şifre" materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:TextFieldAssist.UnderlineBrush="White" materialDesign:HintAssist.Foreground="White" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Width="300" Height="50" Foreground="White" MaxLength="18" FontSize="24"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0 10 0 0 ">
-                <Button Margin="100 20 0 0" Click="btnGiris_Click" Content="Giriş Yap" FontSize="24" FontWeight="Bold" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="200" Height="50" materialDesign:ButtonAssist.CornerRadius="20"/>
+                <Button Margin="100 20 0 0" Click="btnGiris_Click" IsDefault="True" Content="Giriş Yap" FontSize="24" FontWeight="Bold" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="200" Height="50" materialDesign:ButtonAssist.CornerRadius="20"/>
                 <Button Margin="100 20 0 0" Click="AppClose" Content="Çıkış Yap" FontSize="24" FontWeight="Bold" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="200" Height="50" materialDesign:ButtonAssist.CornerRadius="20"/>
             </StackPanel>
         </StackPanel>
