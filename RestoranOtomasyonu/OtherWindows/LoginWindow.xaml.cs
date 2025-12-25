@@ -32,11 +32,20 @@ namespace RestoranOtomasyonu.OtherWindows
             timer.Start();
         }
 
-        private void btnGiris_Click(object sender, RoutedEventArgs e)
+        private async void btnGiris_Click(object sender, RoutedEventArgs e)
         {
-            var user = db.TBLKULLANICI.FirstOrDefault(k => k.KullaniciAdi == txtUsername.Text && k.Sifre == PasswordBox.Password);
-          
-                if (user != null)
+            string girilenKadi = txtUsername.Text;
+            string girilenSifre = PasswordBox.Password;
+
+            try
+            {
+                btnGiris.IsEnabled = false;
+                prgBar.Visibility = Visibility.Visible;
+                var user = await Task.Run(() =>
+                {
+                    return db.TBLKULLANICI.FirstOrDefault(k => k.KullaniciAdi == girilenKadi);
+                });
+                if (user != null && user.Sifre.Equals(girilenSifre, StringComparison.Ordinal))
                 {
                     AktifKullanici.KullaniciID = user.KullaniciId;
                     AktifKullanici.AdSoyad = user.KullaniciAdSoyad;
@@ -50,16 +59,24 @@ namespace RestoranOtomasyonu.OtherWindows
                     AktifKullanici.RezarvasyonYetki = user.REZERVASYON;
                     AktifKullanici.StokYetki = user.STOK;
                     AktifKullanici.UrunlerYetki = user.URUNLER;
+
+                    await Task.Delay(2500);
+
                     MainWindow main = new MainWindow();
                     main.Show();
-                    this.Hide();
+                    this.Close();
                 }
-
-                else
-                {
-                    MessageBox.Show("Hatalı kullanıcı adı veya şifre.");
-                }
-            
+                else MessageBox.Show("Hatalı kullanıcı adı veya şifre.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Giriş sırasında bir hata oluştu: " + ex.Message);
+            }
+            finally
+            {
+                btnGiris.IsEnabled = true;
+                prgBar.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void AppClose(object sender, RoutedEventArgs e)
