@@ -111,7 +111,7 @@ namespace RestoranOtomasyonu
         private void yetkilendir(object sender, RoutedEventArgs e)
         {
             Erisimizni yetkilendirme = new Erisimizni();
-            yetkilendirme.Show();
+            yetkilendirme.ShowDialog();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -167,7 +167,7 @@ namespace RestoranOtomasyonu
         private void dbWindow(object sender, RoutedEventArgs e)
         {
             DB db = new DB();
-            db.Show();
+            db.ShowDialog();
         }
     }
 }

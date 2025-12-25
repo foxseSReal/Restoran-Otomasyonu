@@ -115,7 +115,6 @@
                 <Button x:Name="resimButton" Style="{StaticResource AccountButton}">
                     <Button.ContextMenu>
                         <ContextMenu>
-                            <MenuItem Header="Kullanıcı Değiştir" />
                             <MenuItem Header="Yetkilendirme Yap" x:Name="menuItemYetkilendirme" Click="yetkilendir"/>
                             <MenuItem Header="Veri Tabanı Yedek Al" Click="dbWindow" />
                             <Separator />
