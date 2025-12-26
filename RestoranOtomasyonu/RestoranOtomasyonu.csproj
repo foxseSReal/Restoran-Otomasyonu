@@ -490,6 +490,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\Noto\Pacifico-Regular.ttf" />
     <Resource Include="Resources\Noto\NotoSans-Bold.ttf" />
     <Resource Include="Resources\Noto\NotoSans-BoldItalic.ttf" />
     <Resource Include="Resources\Noto\NotoSans-Italic.ttf" />
