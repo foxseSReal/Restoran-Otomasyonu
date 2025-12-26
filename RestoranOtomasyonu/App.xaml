@@ -44,6 +44,30 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            
+            <!--Giris yazisi-->
+            <Style x:Key="FadeStyleTextBlock" TargetType="TextBlock">
+                <Setter Property="OpacityMask">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,0">
+                            <GradientStop Color="Black" Offset="0" />
+                            <GradientStop Color="Transparent" Offset="1" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+
+                <Style.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <PointAnimation Storyboard.TargetProperty="(TextBlock.OpacityMask).(LinearGradientBrush.EndPoint)"
+                            From="0,0" To="5,0" 
+                            Duration="0:0:5" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Style.Triggers>
+            </Style>
 
             <!--Ust Border-->
             <Style x:Key="ustBorder" TargetType="Border">
