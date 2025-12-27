@@ -4,6 +4,7 @@ using RestoranOtomasyonu.userControls;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,7 @@ namespace RestoranOtomasyonu
     {
 
         DispatcherTimer timer = new DispatcherTimer();
+        private readonly CultureInfo _tr = new CultureInfo("tr-TR");
         public MainWindow()
         {
             InitializeComponent();
@@ -39,8 +41,7 @@ namespace RestoranOtomasyonu
         private void Timer_Tick(object sender, EventArgs e)
         {
             lblSaat.Content = DateTime.Now.ToString("HH:mm:ss");
-            lblTarih.Content = DateTime.Now.ToString("dd dddd yyyy", new System.Globalization.CultureInfo("tr-TR"));
-
+            lblTarih.Content = DateTime.Now.ToString("dd dddd yyyy", _tr);
         }
         private void appClose_Click(object sender, RoutedEventArgs e)
         {
@@ -111,7 +112,7 @@ namespace RestoranOtomasyonu
         private void yetkilendir(object sender, RoutedEventArgs e)
         {
             Erisimizni yetkilendirme = new Erisimizni();
-            yetkilendirme.Show();
+            yetkilendirme.ShowDialog();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -160,14 +161,12 @@ namespace RestoranOtomasyonu
                 btnUrun.Visibility = Visibility.Visible;
                 btnRezervasyon.Visibility = Visibility.Visible;
             }
-            lblTarih.Content = DateTime.Now.ToString("dd MMMM yyyy");
-            lblSaat.Content = DateTime.Now.ToString("HH:mm");
         }
 
         private void dbWindow(object sender, RoutedEventArgs e)
         {
             DB db = new DB();
-            db.Show();
+            db.ShowDialog();
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)

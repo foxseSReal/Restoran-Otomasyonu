@@ -93,10 +93,10 @@ VerticalScrollBarVisibility="Auto"/>
             <DatePicker x:Name="cekSenet_OdemeTarih" Foreground="Red" materialDesign:HintAssist.Hint="Ödeme Tarihi" Margin="0 20 0 0" Width="300" Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
             <!---->
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="cekSenet_Ekle" Content="Ekle" Width="90" Height="50" Margin="20 50 0 0" Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}" Click="cekSenet_Ekle_Click"/>
-                <Button x:Name="ceksetnet_OdemeYap" Content="Ödeme Yap" Width="90" Height="50" Margin="35 50 0 0" Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}" Click="ceksetnet_OdemeYap_Click"/>
-                <Button x:Name="ceksetnet_Temizle" Content="Temizle" Width="90" Height="50" Margin="35 50 0 0" Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}" Click="ceksetnet_Temizle_Click"/>
-                <Button x:Name="ceksetnet_tahsilet" Content="Ödeme Al" Width="90" Height="50"  Margin="35 50 0 0" Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}" Click="ceksetnet_tahsilet_Click"/>
+                <Button x:Name="cekSenet_Ekle" Content="Ekle" Width="90" Height="50" Margin="10 50 0 0" Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}" Click="cekSenet_Ekle_Click"/>
+                <Button x:Name="ceksetnet_Temizle" Content="Temizle" Width="90" Height="50" Margin="25 50 0 0" Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}" Click="ceksetnet_Temizle_Click"/>
+                <Button x:Name="ceksetnet_OdemeYap" Content="Ödeme Yap" Width="110" Height="50" Foreground="White" Background="Red" BorderBrush="Red" Margin="25 50 0 0" Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}" Click="ceksetnet_OdemeYap_Click"/>
+                <Button x:Name="ceksetnet_tahsilet" Content="Ödeme Al" Width="110" Height="50" Foreground="Black" Background="GreenyELLOW" BorderBrush="GreenyELLOW" Margin="25 50 0 0" Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}" Click="ceksetnet_tahsilet_Click"/>
             </StackPanel>
         </StackPanel>
 
