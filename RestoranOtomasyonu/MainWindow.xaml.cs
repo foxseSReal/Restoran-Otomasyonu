@@ -169,5 +169,12 @@ namespace RestoranOtomasyonu
             DB db = new DB();
             db.Show();
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+           
+            LoginWindow db = new LoginWindow();
+            db.Show();
+        }
     }
 }
