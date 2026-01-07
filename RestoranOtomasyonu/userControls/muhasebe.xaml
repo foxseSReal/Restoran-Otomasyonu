@@ -27,7 +27,7 @@
                 Padding="10" Margin="20 10 20 0" Effect="{DynamicResource MaterialDesignShadowElevation3}">
                 <StackPanel>
                     <TextBlock Text="Toplam Gelir" Foreground="Black" FontSize="16" FontWeight="Bold"/>
-                    <TextBlock x:Name="muhasebe_ToplamGelir" Text="₺ 124,500" Foreground="Black" FontSize="22" FontWeight="SemiBold" Margin="0,5,0,0"/>
+                    <TextBlock x:Name="muhasebe_ToplamGelir" Text="" Foreground="Black" FontSize="22" FontWeight="SemiBold" Margin="0,5,0,0"/>
                 </StackPanel>
             </Border>
 
@@ -35,7 +35,7 @@
                 Padding="10" Margin="20 10 20 0" Effect="{DynamicResource MaterialDesignShadowElevation3}">
                 <StackPanel>
                     <TextBlock Text="Net Kâr" Foreground="White" FontSize="16" FontWeight="Bold"/>
-                    <TextBlock x:Name="muhasebe_NetKar" Text="₺ 34,800" Foreground="White" FontSize="22" FontWeight="SemiBold" Margin="0,5,0,0"/>
+                    <TextBlock x:Name="muhasebe_NetKar" Text="" Foreground="White" FontSize="22" FontWeight="SemiBold" Margin="0,5,0,0"/>
                 </StackPanel>
             </Border>
 
@@ -43,7 +43,7 @@
                 Padding="10" Margin="20 10 20 0" Effect="{DynamicResource MaterialDesignShadowElevation3}">
                 <StackPanel>
                     <TextBlock Text="Toplam Gider" Foreground="White" FontSize="16" FontWeight="Bold"/>
-                    <TextBlock x:Name="muhasebe_ToplamGider" Text="₺ 89,700" Foreground="White" FontSize="22" FontWeight="SemiBold" Margin="0,5,0,0"/>
+                    <TextBlock x:Name="muhasebe_ToplamGider" Text="" Foreground="White" FontSize="22" FontWeight="SemiBold" Margin="0,5,0,0"/>
                 </StackPanel>
             </Border>
 

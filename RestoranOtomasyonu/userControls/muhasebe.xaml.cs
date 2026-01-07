@@ -46,6 +46,7 @@ namespace RestoranOtomasyonu.userControls
             muhasebe_ToplamGelir.Text = db.TblGELIR.Sum(x => x.Tutar).ToString();
            muhasebe_ToplamGider.Text = db.TblGIDER.Sum(x => x.Tutar).ToString();
            muhasebe_NetKar.Text = (db.TblGELIR.Sum(x => x.Tutar) - db.TblGIDER.Sum(x => x.Tutar)).ToString();
+            muhasebe_ToplamGelir.Text = db.TblGELIR.Sum(x => x.Tutar).ToString();
         }
         public void GiderListele()
         {
@@ -61,6 +62,7 @@ namespace RestoranOtomasyonu.userControls
                               Tutar = x.Tutar,
                           });
             muhasebeGider_DataGrid.ItemsSource = listele;
+            muhasebe_ToplamGider.Text = db.TblGIDER.Sum(x => x.Tutar).ToString();
         }
         private void btnGiderFitrele_Click(object sender, RoutedEventArgs e)
         {
