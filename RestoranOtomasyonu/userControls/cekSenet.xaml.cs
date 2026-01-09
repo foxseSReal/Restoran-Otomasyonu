@@ -27,41 +27,102 @@ namespace RestoranOtomasyonu.userControls
         public cekSenet()
         {
             InitializeComponent();
-            
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            cekSenetListele();
-            var ceksenet = db.TblCEKSENET.OrderByDescending(x => x.CeksenetId).FirstOrDefault();
-            if (ceksenet != null)
+            // 1. Listeyi doldur (Beklemeden UI açılır)
+            await cekSenetListeleAsync();
+
+            try
             {
-                cbxCekSenet_Firma.Text = ceksenet.TblFIRMA.FirmaAdi;
-                cekSenet_Tutar.Text = ceksenet.Tutar.ToString();
-                cbxCekSenet.Text = ceksenet.OdemeTuru.ToString();
-                cekSenet_Aciklama.Text = ceksenet.Aciklama;
-                cekSenet_YazmaTarih.Text = ceksenet.YTarih.ToString("dd.MM.yyyy");
-                cekSenet_OdemeTarih.Text = ceksenet.OTarih.ToString();
+                // 2. Son eklenen kaydı form alanlarına doldurmak için çekiyoruz
+                var sonKayitVerisi = await Task.Run(() =>
+                {
+                    using (var db = new RESTORANDBEntities1())
+                    {
+                        var sonKayit = db.TblCEKSENET
+                                         .OrderByDescending(x => x.CeksenetId)
+                                         .FirstOrDefault();
+
+                        if (sonKayit != null)
+                        {
+                            // DİKKAT: db context kapanmadan önce verileri düz metne çevirip alıyoruz.
+                            // Eğer doğrudan "sonKayit" nesnesini döndürürsek, aşağıda "FirmaAdi"na ulaşırken hata alabiliriz.
+                            return new
+                            {
+                                FirmaAdi = sonKayit.TblFIRMA != null ? sonKayit.TblFIRMA.FirmaAdi : "",
+                                Tutar = sonKayit.Tutar,
+                                OdemeTuru = sonKayit.OdemeTuru,
+                                Aciklama = sonKayit.Aciklama,
+                                YTarih = sonKayit.YTarih,
+                                OTarih = sonKayit.OTarih
+                            };
+                        }
+                        return null;
+                    }
+                });
+
+                // 3. Veri geldiyse kutucukları doldur
+                if (sonKayitVerisi != null)
+                {
+                    cbxCekSenet_Firma.Text = sonKayitVerisi.FirmaAdi;
+                    cekSenet_Tutar.Text = sonKayitVerisi.Tutar.ToString();
+                    cbxCekSenet.Text = sonKayitVerisi.OdemeTuru; // ToString()'e gerek yok string ise
+                    cekSenet_Aciklama.Text = sonKayitVerisi.Aciklama;
+
+                    cekSenet_YazmaTarih.Text = sonKayitVerisi.YTarih.ToString("dd.MM.yyyy");
+                    cekSenet_OdemeTarih.Text = sonKayitVerisi.OTarih?.ToString(); // Null olabilir diye ? koyduk
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Son kayıt getirilirken hata: " + ex.Message);
             }
         }
 
-        public void cekSenetListele()
+        // Metodun ismini Async ile bitirmek standarttır
+        public async Task cekSenetListeleAsync()
         {
-            var liste = db.TblCEKSENET.OrderByDescending(x => x.CeksenetId).ToList().Select
-                (x => new
+            try
+            {
+                // UI donmasın diye veriyi arka planda hazırlıyoruz
+                var liste = await Task.Run(() =>
                 {
-                    ID = x.CeksenetId,
-                    FirmaAdı = x.FirmaId == null ? "Firma Yok" : x.TblFIRMA.FirmaAdi,
-                    Tutar = x.Tutar,
-                    OdemeTuru = x.OdemeTuru,
-                    Açıklama = x.Aciklama,
-                    YazılmaTarihi = x.YTarih.ToString("dd.MM.yyyy"),
-                    OdemeTarihi = x.OTarih
+                    // Yeni ve temiz bir bağlantı açıyoruz
+                    using (var db = new RESTORANDBEntities1())
+                    {
+                        // ToList() ile veriyi çekip, bellekte (RAM) Select ile şekillendiriyoruz
+                        return db.TblCEKSENET
+                                 .OrderByDescending(x => x.CeksenetId)
+                                 .ToList()
+                                 .Select(x => new
+                                 {
+                                     ID = x.CeksenetId,
+                                     // Null kontrolü yaparak Firma adını alıyoruz
+                                     FirmaAdı = x.TblFIRMA != null ? x.TblFIRMA.FirmaAdi : "Firma Yok",
+                                     Tutar = x.Tutar,
+                                     OdemeTuru = x.OdemeTuru,
+                                     Açıklama = x.Aciklama,
+                                     YazılmaTarihi = x.YTarih.ToString("dd.MM.yyyy"),
+                                     OdemeTarihi = x.OTarih
+                                 })
+                                 .ToList();
+                    }
+                });
 
-                })
-                ;
-            cekSenet_DataGrid.ItemsSource = liste;
-
+                // Veri hazır, şimdi ekrana basabiliriz
+                cekSenet_DataGrid.ItemsSource = liste;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Listeleme hatası: " + ex.Message);
+            }
+        }
+        private async void cekSenetOdeme_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Listeyi asenkron yenile
+            await cekSenetListeleAsync();
         }
 
         private void cekSenet_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -115,7 +176,7 @@ namespace RestoranOtomasyonu.userControls
             db.TblCEKSENET.Add(yeniCekSenet);
             db.SaveChanges();
             MessageBox.Show("Çek/Senet Eklendi.");
-            cekSenetListele();
+            cekSenetListeleAsync();
         }
 
         private void ceksetnet_Temizle_Click(object sender, RoutedEventArgs e)
@@ -129,7 +190,7 @@ namespace RestoranOtomasyonu.userControls
             cekSenet_YazmaTarih.SelectedDate = null;
             cekSenet_OdemeTarih.SelectedDate = null;
         }
-        private void cekSenet_Ara_TextChanged(object sender, TextChangedEventArgs e)
+        private async void cekSenet_Ara_TextChanged(object sender, TextChangedEventArgs e)
         {
             var aranacak = cekSenet_Ara.Text;
             var liste = db.TblCEKSENET.OrderByDescending(x => x.CeksenetId).Where(x => x.SatisNo.ToString().Contains(aranacak) ||
@@ -152,11 +213,6 @@ namespace RestoranOtomasyonu.userControls
                 ;
             cekSenet_DataGrid.ItemsSource = liste;
 
-        }
-
-        private void cekSenetOdeme_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            cekSenetListele();
         }
 
         private void cbxCekSenet_TurSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -239,7 +295,7 @@ namespace RestoranOtomasyonu.userControls
             }
         }
 
-        private void cekSenet_Filtrele_Click(object sender, RoutedEventArgs e)
+        private async void cekSenet_Filtrele_Click(object sender, RoutedEventArgs e)
         {
             DateTime ilktarih = CeksenetDataGridAralik.SelectedDate ?? DateTime.MinValue;
             DateTime sontarih = CeksenetDataGridAralik2.SelectedDate ?? DateTime.MaxValue;
@@ -285,7 +341,7 @@ namespace RestoranOtomasyonu.userControls
             //cekSenet_DataGrid.ItemsSource = filtreliListe.ToList();
         }
 
-        private void ceksetnet_tahsilet_Click(object sender, RoutedEventArgs e)
+        private async void ceksetnet_tahsilet_Click(object sender, RoutedEventArgs e)
         {
             var secildata = cekSenet_DataGrid.SelectedItem;
 
