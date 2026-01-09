@@ -32,38 +32,35 @@ Aşağıda belirtilen özellikleri kontrol eder;
 
 - Visual Studio Community 2022
 
-## ⚙️ Çalıştırma
-> Projeyi indirdikten sonra içerisinde bulunan `Veri Tabanı` dosyasından `DBRestoranProje.bak` ya da `DBRestoranProje.mdf` ve `DBRestoranProje_log.mdf` dosyalarını SSMS'e veri tabanı olarak ekliyoruz.
-> Projemizde halihazırda olan `Entity` dosyasının içerisindeki `Model1.edmx` adlı dosyayı silin.
->`Entity` dosyasını sağ tıklayarak;
-`Ekle` --> `Yeni Öğe` --> `Veri` --> `ADO.NET Entity Data Model` ekliyoruz.
+## ⚙️ Kurulum ve Çalıştırma
 
-* `App.config` içerisinde aşağidakine benzer bir yapı vardır. name=[`...`] kısmında Veri Tabanının ismi alıyoruz.
-> [!NOTE]
->Burada birden fazla isim olabilir; her yeni eklenen model ismi alt alta sıralanır ya da halihazırda olan `<add name [...]` kodunun yanına eklenir.
+Projeyi kendi bilgisayarınızda çalıştırmak için lütfen aşağıdaki adımları uygulayın:
+
+### 1. Veritabanı Kurulumu
+Proje dosyaları içerisindeki `Veri Tabanı` klasörüne gidin.
+* SSMS (SQL Server Management Studio) üzerinden `DBRestoranProje.bak` dosyasını **Restore** ederek veritabanını oluşturun.
+* *Alternatif:* `.mdf` ve `_log.mdf` dosyalarını "Attach" yöntemiyle de ekleyebilirsiniz.
+
+### 2. Bağlantı Ayarları (App.config)
+Veritabanını kurduktan sonra projenin veritabanına erişebilmesi için bağlantı dizesini (connection string) kendi bilgisayarınıza göre düzenlemeniz gerekebilir.
+
+1.  Visual Studio'da **`App.config`** dosyasını açın.
+2.  `<connectionStrings>` etiketi altındaki satırı bulun.
+3.  `connectionString` parametresini kendi yerel sunucu isminize (Server Name) göre güncelleyin.
+
+Örnek `App.config` yapısı:
 ```xml
- <connectionStrings>
-   <add name="DBRestoranProje" connectionString="[...]"/>
-   <add name="DBRestoranProje1" connectionString="[...]"/>
- </connectionStrings>
+<connectionStrings>
+  <add name="DBRestoranProjeEntities" 
+       connectionString="[...] provider connection string=&quot;data source=BILGISAYAR-ADI\SQLEXPRESS;initial [...]" 
+       providerName="System.Data.EntityClient" />
+</connectionStrings>
 ```
-
-> Sonrasında Projemizdeki UserControls klasöründeki bütün UserControllerin C# dosyalarına girerek yeni Modelimizi UserControle tanıtıyoruz.
-
-* `Örnek= Personel.xaml.cs` 
-```c#
-public partial class Personel : UserControl
-{
-    DBRestoranProjeEntities db = new DBRestoranProjeEntities();
-    [...]
-}
-```
-* Bütün UserContollere bu işlemi uyguladıktan sonra projemizi çalıştırabiliriz.
-
 ---
 
 ## 📚 Kullanılan Nuget Paketleri & Diğer
 * 📦 MaterialDesignTheme
+* 📦Microsoft.SqlServer.SqlManagementObjects
 * 🧩 Entity Framework 5 ya da Entity Framework 6
 
 ---
@@ -71,4 +68,3 @@ public partial class Personel : UserControl
 
 - <a href=https://github.com/foxseSReal> **Yusuf Erdoğan** </a>— Proje Yönetimi, Arayüz Tasarımı, Veritabanı, Test, C#
 - <a href=https://github.com/GencayCeliker> **Gencay Çeliker** </a>— Proje Yönetimi, Veritabanı, Hata Ayıklama, C#
-- **Emrah Çapkan** — Test , C#
