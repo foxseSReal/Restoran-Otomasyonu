@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="RestoranOtomasyonu.userControls.LoadingTables"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RestoranOtomasyonu.userControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="784" d:DesignWidth="1036">
+    <Grid>
+        <DataGrid x:Name="MyDataGrid" 
+              Visibility="Collapsed" 
+              AutoGenerateColumns="True" />
+
+        <StackPanel x:Name="LoadingPanel" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                Visibility="Visible">
+            <ProgressBar Foreground="Green" Background="Gray" BorderBrush="Transparent" Style="{DynamicResource MaterialDesignLinearProgressBar}" IsIndeterminate="True" 
+                     Width="500" 
+                     Height="20" 
+                     Margin="0,0,0,10"/>
+            <StackPanel Orientation="Vertical">
+                <materialDesign:PackIcon Kind="DatabaseSync" 
+                                 Width="50" 
+                                 Height="50" 
+                                 HorizontalAlignment="Center" 
+                                 Foreground="Green"/>
+                <TextBlock FontSize="24" FontFamily="/Resources/Noto/Pacifico-Regular.ttf#Pacifico" Text="Veriler yükleniyor, lütfen bekleyin..." 
+                   HorizontalAlignment="Center" 
+                   Foreground="Green"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
