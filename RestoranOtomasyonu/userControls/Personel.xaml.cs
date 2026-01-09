@@ -32,20 +32,17 @@ namespace RestoranOtomasyonu.userControls
             InitializeComponent();
         }
         private string secilenResimYolu;
-        // 1. ADIM: Listeleme metodunu Task döndüren hale getirdik
         public async Task PersonelListeleAsync()
         {
             try
             {
-                // Arayüz donmasın diye işi arka plana (Task.Run) atıyoruz
                 var personelListesi = await Task.Run(() =>
                 {
-                    // Yeni bir bağlantı açıyoruz (Global ResDB yerine yerel context)
                     using (var db = new RESTORANDBEntities1())
                     {
                         return db.TblPERSONELLER
                                  .OrderByDescending(x => x.PersonelID)
-                                 .ToList() // Veriyi burada çekiyoruz
+                                 .ToList()
                                  .Select(x => new
                                  {
                                      x.PersonelID,
@@ -61,8 +58,6 @@ namespace RestoranOtomasyonu.userControls
                                  .ToList();
                     }
                 });
-
-                // Veri geldi, şimdi arayüze basabiliriz
                 personel_DataGrid.ItemsSource = personelListesi;
             }
             catch (Exception ex)
@@ -70,17 +65,11 @@ namespace RestoranOtomasyonu.userControls
                 MessageBox.Show("Liste çekilirken hata: " + ex.Message);
             }
         }
-
-        // 2. ADIM: Loaded Olayı
         private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            // Önce listeyi doldur (Beklemeden UI açılır, veri arkadan gelir)
             await PersonelListeleAsync();
-
-            // Şimdi "Son Personel" bilgilerini çekelim (Bunu da asenkron yapıyoruz)
             try
             {
-                // Detay verilerini arka planda hazırla
                 var detayVeriler = await Task.Run(() =>
                 {
                     using (var db = new RESTORANDBEntities1())
@@ -91,7 +80,6 @@ namespace RestoranOtomasyonu.userControls
 
                         if (sonPersonel != null)
                         {
-                            // Maaş bilgisini de burada çekiyoruz
                             var maasKaydi = db.TblMAAS
                                               .Where(x => x.PersonelID == sonPersonel.PersonelID)
                                               .OrderByDescending(x => x.NetTutar)
@@ -107,11 +95,9 @@ namespace RestoranOtomasyonu.userControls
                         return null;
                     }
                 });
-
-                // Veri geldikten sonra Textbox'ları doldur
                 if (detayVeriler != null)
                 {
-                    var p = detayVeriler.Personel; // Kısaltma
+                    var p = detayVeriler.Personel;
 
                     adSoyad.Text = p.Ad + " " + p.Soyad;
                     maas.Text = detayVeriler.MaasTutar;
@@ -124,15 +110,9 @@ namespace RestoranOtomasyonu.userControls
                     cbxPosizyon.Text = p.Pozisyon;
                     tckimlik.Text = p.TCKimlikNo;
                     IsTakip_ToggleButton.IsChecked = p.Durum;
-
-                    // Resim yükleme işlemi UI thread'inde olmalı
                     ResimYukle(p.Resim);
                 }
-                else
-                {
-                    // Eğer veritabanı boşsa hata vermek yerine sessiz kalabilir veya log yazabilirsin
-                    // MessageBox.Show("Sistemde kayıtlı personel bulunamadı.");
-                }
+                else MessageBox.Show("Sistemde kayıtlı personel bulunamadı.");
             }
             catch (Exception ex)
             {
@@ -408,7 +388,7 @@ namespace RestoranOtomasyonu.userControls
             }
         }
 
-        private void btnsil(object sender, RoutedEventArgs e)
+        private async void btnsil(object sender, RoutedEventArgs e)
         {
             if (personel_DataGrid.SelectedItem == null)
             {
@@ -431,7 +411,7 @@ namespace RestoranOtomasyonu.userControls
             {
                 guncellenecekPersonel.Durum = false;
                 ResDB.SaveChanges();
-                PersonelListeleAsync();
+                await PersonelListeleAsync();
                 MessageBox.Show("Personel başarıyla silindi.", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else

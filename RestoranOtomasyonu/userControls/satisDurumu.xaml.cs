@@ -27,27 +27,41 @@ namespace RestoranOtomasyonu.userControls
         {
             InitializeComponent();
         }
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            SatisListele();
-            var terslistele = db.TblURUN.OrderByDescending(x => x.UrunId).FirstOrDefault();
+            await SatisListeleAsync();
         }
 
-        public void SatisListele()
+        public async Task SatisListeleAsync()
         {
-            var listele =db.TblURUN.OrderByDescending(x=>x.UrunId).ToList()
-                          .Select(x => new
-                          {
-                              ID = x.UrunId,
-                              ÜrünAdı= x.UrunAdi,
-                              Tutar = x.Fiyat,
-                              Kategori=x.TblKATEGORI.KategoriAdi,
-                              SatılanAdet= x.StokMiktari,
-                              Birim=x.Birim,
-                              Tarih = x.EklenmeTarihi,
-                          });
-            satis_DataGrid.ItemsSource = listele;
+            try
+            {
+                var listele = await Task.Run(() =>
+                {
+                    using (var db = new RESTORANDBEntities1())
+                    {
+                        return db.TblURUN
+                                 .OrderByDescending(x => x.UrunId)
+                                 .ToList()
+                                 .Select(x => new
+                                 {
+                                     ID = x.UrunId,
+                                     ÜrünAdı = x.UrunAdi,
+                                     Tutar = x.Fiyat,
+                                     Kategori = x.TblKATEGORI != null ? x.TblKATEGORI.KategoriAdi : "Kategori Yok",
+                                     SatılanAdet = x.StokMiktari,
+                                     Birim = x.Birim,
+                                     Tarih = x.EklenmeTarihi.HasValue ? x.EklenmeTarihi.Value.ToString("dd.MM.yyyy") : "-"
+                                 }).ToList();
+                    }
+                });
 
+                satis_DataGrid.ItemsSource = listele;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Listeleme hatası: " + ex.Message);
+            }
         }
         private void satisara_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -92,7 +106,7 @@ namespace RestoranOtomasyonu.userControls
             satis_BaslanicTarih.Text = "";
             satis_BitisTarih.Text = "";
             txtatisara.Text = "";
-            SatisListele();
+            SatisListeleAsync();
         }
     }   
 }

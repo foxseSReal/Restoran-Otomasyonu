@@ -27,44 +27,48 @@ namespace RestoranOtomasyonu.userControls
         {
             InitializeComponent();
         }
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            Stoklistele();
-            var stok = db.TblFIRMAHAREKET.OrderByDescending(x => x.FirmaId).FirstOrDefault();
-            if (stok != null)
+            await StokListeleAsync();
+        }
+        public async Task StokListeleAsync()
+        {
+            try
             {
-                firma_adi.Text = stok.TblFIRMA.FirmaAdi;
-                urun_adi.Text = stok.TblURUN.UrunAdi;
-                stokMiktari.Text = stok.Adet.ToString();
-                stokFiyat.Text = stok.Tutar.ToString();
-                stokAciklama.Text = stok.Aciklama;
-                stokTarih.Text = stok.Tarih.ToString();
+                var listele = await Task.Run(() =>
+                {
+                    using (var db = new RESTORANDBEntities1())
+                    {
+                        return db.TblFIRMAHAREKET
+                                 .OrderByDescending(x => x.ID)
+                                 .ToList()
+                                 .Select(s => new
+                                 {
+                                     ID = s.ID,
+                                     FirmaAdı = s.TblFIRMA != null ? s.TblFIRMA.FirmaAdi : "Firma Silinmiş",
+                                     ÜrünAdı = s.TblURUN != null ? s.TblURUN.UrunAdi : "Ürün Silinmiş",
+                                     Miktarı = s.Adet ?? 0,
+                                     Fiyat = s.Tutar ?? 0,
+                                     Aciklama = s.Aciklama,
+                                     Tarih = s.Tarih.HasValue ? s.Tarih.Value.ToString("dd.MM.yyyy") : "-"
+                                 })
+                                 .ToList();
+                    }
+                });
+
+                stokDataGrid.ItemsSource = listele;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Stok listesi yüklenirken hata: " + ex.Message);
             }
         }
-
-        public void Stoklistele()
-        {
-            var liste = from s in db.TblFIRMAHAREKET.OrderByDescending(x => x.ID)
-                        select new
-                        {
-                            ID = s.ID,
-                            FirmaAdı = s.TblFIRMA.FirmaAdi,
-                            ÜrünAdı = s.TblURUN.UrunAdi,
-                            Miktarı = s.Adet,
-                            Fiyat=s.Tutar,
-                            Aciklama = s.Aciklama,
-                            Tarih = s.Tarih,
-                           
-
-                        };
-            stokDataGrid.ItemsSource = liste.ToList();
-        }
-        int secilenid,urunid;
+        int secilenid, urunid;
         private void stokDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var secilen = stokDataGrid.SelectedItem;
             if (secilen == null)
-            return; 
+                return;
             var secilenid = (int)(secilen as dynamic).ID;
             var secilenStok = db.TblFIRMAHAREKET.Find(secilenid);
 
@@ -96,21 +100,16 @@ namespace RestoranOtomasyonu.userControls
             // *** Stok Ekleme Komutu artik baska bir windowda yapilacak *** //
 
             StokEkle stokEkle = new StokEkle();
-
-           
-
             stokEkle.ShowDialog();
             db = new RESTORANDBEntities1();
-
-          
-            Stoklistele();
+            StokListeleAsync();
 
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             var secilen = stokDataGrid.SelectedItem;
-            if (secilen == null) return; 
+            if (secilen == null) return;
 
             var secilenid = (int)(stokDataGrid.SelectedItem as dynamic).ID;
             var secilenStok = db.TblFIRMAHAREKET.Find(secilenid);
@@ -126,7 +125,7 @@ namespace RestoranOtomasyonu.userControls
                     birimFiyat = (decimal)urun.Fiyat;
                 }
                 secilenStok.Adet = yeniAdet;
-                secilenStok.Tutar = yeniAdet * birimFiyat; 
+                secilenStok.Tutar = yeniAdet * birimFiyat;
                 secilenStok.Aciklama = stokAciklama.Text;
                 secilenStok.Tarih = DateTime.Parse(stokTarih.Text);
                 stokFiyat.Text = secilenStok.Tutar.ToString();
@@ -142,9 +141,9 @@ namespace RestoranOtomasyonu.userControls
                     kasa.Tarih = secilenStok.Tarih;
                     db.SaveChanges();
                 }
-               
+
                 MessageBox.Show("Adet güncellendi ve tutar yeniden hesaplandı.", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
-                Stoklistele();
+                StokListeleAsync();
             }
         }
         private void stokAra_TextChanged(object sender, TextChangedEventArgs e)
@@ -198,8 +197,8 @@ namespace RestoranOtomasyonu.userControls
             stokTarih.Text = "";
             stokAralık.Text = "";
             stokAralık2.Text = "";
-            Stoklistele();
+            StokListeleAsync();
         }
-        
+
     }
 }

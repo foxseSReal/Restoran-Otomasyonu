@@ -1,159 +1,474 @@
 ﻿using RestoranOtomasyonu.Entity;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using System.Data.Entity; // Include metodu için gerekli
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace RestoranOtomasyonu.userControls
 {
     /// <summary>
     /// musteriFirma.xaml etkileşim mantığı
     /// </summary>
-
     public partial class musteriFirma : UserControl
     {
-        RESTORANDBEntities1 db = new RESTORANDBEntities1();
+        private int _seciliFirmaId = 0;
+
         public musteriFirma()
         {
             InitializeComponent();
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            MusteriListele();
-            var rezarvasyon = db.TblFIRMA.OrderByDescending(x => x.FirmaId).FirstOrDefault();
+            await MusteriListeleAsync();
+            await SonFirmayiGetirAsync();
         }
 
-        public void MusteriListele()
+        public async Task MusteriListeleAsync()
         {
+            try
+            {
+                var listele = await Task.Run(() =>
+                {
+                    using (var db = new RESTORANDBEntities1())
+                    {
+                        return db.TblFIRMA.OrderByDescending(x => x.FirmaId)
+                                 .Select(x => new
+                                 {
+                                     ID = x.FirmaId,
+                                     MüşteriFirma = x.FirmaAdi,
+                                     Adres = x.Adres,
+                                     Telefon = x.Telefon,
+                                     Telefonİki = x.Telefonİki,
+                                     WebSitesi = x.WebSitesi,
+                                     VergiDairesi = x.VergiDairesi,
+                                     HesapNo = x.HesapNo
+                                 }).ToList();
+                    }
+                });
 
-            var listele = db.TblFIRMA.OrderByDescending(x => x.FirmaId).ToList()
-                        .Select(x => new
+                musteri_DataGrid.ItemsSource = listele;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Listeleme hatası: " + ex.Message);
+            }
+        }
+
+        public async Task BorcListeleAsync()
+        {
+            try
+            {
+                var listele = await Task.Run(() =>
+                {
+                    using (var db = new RESTORANDBEntities1())
+                    {
+                        return db.TblMODEME.OrderByDescending(x => x.OdemeId)
+                                 .Where(x => x.TblFIRMA != null)
+                                 .Select(x => new
+                                 {
+                                     ID = x.OdemeId,
+                                     MüşteriFirma = x.TblFIRMA.FirmaAdi,
+                                     BorcTutar = x.BorcTutar ?? 0,
+                                     OdenecekTutar = x.OdenenTutar ?? 0,
+                                     Tarih = x.Tarih,
+                                     Aciklama = x.Aciklama
+                                 }).ToList();
+                    }
+                });
+                Modeme_DataGrid.ItemsSource = listele;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Borç listeleme hatası: " + ex.Message);
+            }
+        }
+        public async Task FirmaGetirAsync(int firmaId)
+        {
+            try
+            {
+                var firmaDetay = await Task.Run(() =>
+                {
+                    using (var db = new RESTORANDBEntities1())
+                    {
+                        var bukim = db.TblFIRMA.FirstOrDefault(x => x.FirmaId == firmaId);
+                        if (bukim != null)
                         {
-                            ID = x.FirmaId,
-                            MüşteriFirma = x.FirmaAdi,
-                            Adres = x.Adres,
-                            Telefon = x.Telefon,
-                            Telefonİki = x.Telefonİki,
-                            WebSitesi = x.WebSitesi,
-                            VergiDairesi = x.VergiDairesi,
-                            HesapNo = x.HesapNo
-                        });
-            musteri_DataGrid.ItemsSource = listele;
+                            return new
+                            {
+                                bukim.FirmaAdi,
+                                bukim.Telefon,
+                                bukim.Unvan,
+                                bukim.WebSitesi,
+                                bukim.Email,
+                                bukim.Telefonİki,
+                                bukim.Adres,
+                                bukim.VergiDairesi,
+                                bukim.HesapNo
+                            };
+                        }
+                        return null;
+                    }
+                });
+
+                if (firmaDetay != null)
+                {
+                    musteriFirma_isim.Text = firmaDetay.FirmaAdi;
+                    musteriTelefon.Text = firmaDetay.Telefon;
+                    cbxMusteri_Firma.Text = firmaDetay.Unvan;
+                    musteriWeb.Text = firmaDetay.WebSitesi;
+                    musteriEmail.Text = firmaDetay.Email;
+                    musteriTelefon2.Text = firmaDetay.Telefonİki;
+                    musteriAdres.Text = firmaDetay.Adres;
+                    musteri_vergiDairesi.Text = firmaDetay.VergiDairesi;
+                    musteri_vergiDairesi_HesapNo.Text = firmaDetay.HesapNo;
+                }
+            }
+            catch (Exception ex) { MessageBox.Show("Firma Getir Hata: " + ex.Message); }
         }
-        public void FirmaGetir(int firmaId)
+
+        public async Task FMusteriGetirAsync(int mId)
         {
-            var bukim = db.TblFIRMA.Find(firmaId);
-            musteriFirma_isim.Text = bukim.FirmaAdi;
-            musteriTelefon.Text = bukim.Telefon.ToString();
-            cbxMusteri_Firma.Text = bukim.Unvan;
-            musteriWeb.Text = bukim.WebSitesi;
-            musteriEmail.Text = bukim.Email;
-            musteriTelefon.Text = bukim.Telefon;
-            musteriTelefon2.Text = bukim.Telefonİki;
-            musteriAdres.Text = bukim.Adres;
-            musteri_vergiDairesi.Text = bukim.VergiDairesi;
-            musteri_vergiDairesi_HesapNo.Text = bukim.HesapNo;
+            try
+            {
+                var firmaData = await Task.Run(() =>
+                {
+                    using (var db = new RESTORANDBEntities1())
+                    {
+                        var bukim = db.TblFIRMA.FirstOrDefault(x => x.FirmaId == mId);
+                        return bukim != null ? new { bukim.FirmaId, bukim.FirmaAdi } : null;
+                    }
+                });
+
+                if (firmaData != null)
+                {
+                    gizliText.Text = firmaData.FirmaId.ToString();
+                    txtMusteri.Text = firmaData.FirmaAdi;
+                    _seciliFirmaId = firmaData.FirmaId;
+                }
+            }
+            catch (Exception ex) { MessageBox.Show("Hata: " + ex.Message); }
         }
-        int musterifirma;
-        private void musteri_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        public async Task MusteriGetirAsync(int mId)
         {
-            var secilmis = musteri_DataGrid.SelectedItem;
+            try
+            {
+                var odemeDetay = await Task.Run(() =>
+                {
+                    using (var db = new RESTORANDBEntities1())
+                    {
+                        var bukim = db.TblMODEME.FirstOrDefault(x => x.OdemeId == mId);
+                        if (bukim != null)
+                        {
+                            return new
+                            {
+                                bukim.OdemeId,
+                                FirmaAdi = bukim.TblFIRMA != null ? bukim.TblFIRMA.FirmaAdi : "",
+                                BorcTutar = bukim.BorcTutar ?? 0,
+                                OdenenTutar = bukim.OdenenTutar ?? 0,
+
+                                bukim.Aciklama,
+                                bukim.Tarih
+                            };
+                        }
+                        return null;
+                    }
+                });
+
+                if (odemeDetay != null)
+                {
+                    gizliText.Text = odemeDetay.OdemeId.ToString();
+                    txtMusteri.Text = odemeDetay.FirmaAdi;
+                    txtBorcTutar.Text = odemeDetay.BorcTutar.ToString();
+                    txtOdenecekTutar.Text = odemeDetay.OdenenTutar.ToString();
+                    txtAciklama.Text = odemeDetay.Aciklama;
+                    BorcTarih.Text = odemeDetay.Tarih.ToString();
+                }
+            }
+            catch (Exception ex) { MessageBox.Show("Hata: " + ex.Message); }
+        }
+
+        private async Task SonFirmayiGetirAsync()
+        {
+            int? sonId = await Task.Run(() =>
+            {
+                using (var db = new RESTORANDBEntities1())
+                {
+                    return db.TblFIRMA.OrderByDescending(x => x.FirmaId)
+                                    .Select(x => (int?)x.FirmaId)
+                                    .FirstOrDefault();
+                }
+            });
+
+            if (sonId.HasValue)
+                await FirmaGetirAsync(sonId.Value);
+        }
+
+        private async void musteri_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var secilmis = musteri_DataGrid.SelectedItem as dynamic;
             if (secilmis != null)
             {
-                dynamic item = secilmis;
-                musterifirma = item.ID; 
-                FirmaGetir(musterifirma);
-                FMusteriGetir(musterifirma);
-                var odeme = db.TblMODEME
-                    .Where(b => b.FmusteriID == musterifirma)
-                    .Select(b => new
+                int id = secilmis.ID;
+                _seciliFirmaId = id;
+                await FirmaGetirAsync(id);
+                await FMusteriGetirAsync(id);
+                await BorclariGetirByFirmaAsync(id);
+            }
+        }
+
+        private async Task BorclariGetirByFirmaAsync(int firmaId)
+        {
+            try
+            {
+                var borclar = await Task.Run(() =>
+                {
+                    using (var db = new RESTORANDBEntities1())
                     {
-                        ID = b.OdemeId,
-                        MüşteriFirma = b.TblFIRMA.FirmaAdi,
-                        BorcTutar = b.BorcTutar,
-                        OdenecekTutar = b.OdenenTutar,
-                        Tarih = b.Tarih,
-                        Aciklama = b.Aciklama
-                    }).ToList();
-
-                Modeme_DataGrid.ItemsSource = odeme;
+                        return db.TblMODEME.Where(b => b.FmusteriID == firmaId)
+                                 .Select(b => new
+                                 {
+                                     ID = b.OdemeId,
+                                     MüşteriFirma = b.TblFIRMA.FirmaAdi,
+                                     BorcTutar = b.BorcTutar,
+                                     OdenecekTutar = b.OdenenTutar,
+                                     Tarih = b.Tarih,
+                                     Aciklama = b.Aciklama
+                                 }).ToList();
+                    }
+                });
+                Modeme_DataGrid.ItemsSource = borclar;
             }
-        }
-        private void musteri_ekleButton_Click(object sender, RoutedEventArgs e)
-        {
-            var yeniFirma = new TblFIRMA();
-            yeniFirma.FirmaAdi = musteriFirma_isim.Text;
-            yeniFirma.Unvan = cbxMusteri_Firma.Text;
-            yeniFirma.Telefon = musteriTelefon.Text;
-            yeniFirma.Telefonİki = musteriTelefon2.Text;
-            yeniFirma.WebSitesi = musteriWeb.Text;
-            yeniFirma.Email = musteriEmail.Text;
-            yeniFirma.Adres = musteriAdres.Text;
-            yeniFirma.VergiDairesi = musteri_vergiDairesi.Text;
-            yeniFirma.HesapNo = musteri_vergiDairesi_HesapNo.Text;
-            db.TblFIRMA.Add(yeniFirma);
-            db.SaveChanges();
-            MessageBox.Show("Yeni Müşteri/Firma Başarıyla Eklendi", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
-            MusteriListele();
-
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
-        private void musteri_silButton_Click(object sender, RoutedEventArgs e)
+        private async void Modeme_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var sildurum = MessageBox.Show("Seçili Müşteri/Firmayı Silmek İstediğinize Emin Misiniz?", "Uyarı", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (sildurum == MessageBoxResult.Yes)
+            var secilmis = Modeme_DataGrid.SelectedItem as dynamic;
+            if (secilmis != null)
             {
-                var secilmis = musteri_DataGrid.SelectedItem;
-                if (secilmis != null)
-                {
-                    dynamic item = secilmis;
-                    int musterifirma = item.ID;
-                    var bukim = db.TblFIRMA.Find(musterifirma);
-                    db.TblFIRMA.Remove(bukim);
-                    db.SaveChanges();
-                    MessageBox.Show("Seçili Müşteri/Firma Başarıyla Silindi", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
-                    MusteriListele();
-                }
+                int mId = secilmis.ID;
+                await MusteriGetirAsync(mId);
             }
         }
 
-        private void musteri_guncelleButton_Click(object sender, RoutedEventArgs e)
+        private async void musteriFirma_Ara_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var güncelle = MessageBox.Show("Seçili Müşteri/Firmayı Güncellemek İstediğinize Emin Misiniz?", "Uyarı", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (güncelle == MessageBoxResult.Yes)
+            string urunara = musteriFirma_Ara.Text.ToLower();
+            try
             {
-                var secilmis = musteri_DataGrid.SelectedItem;
-                if (secilmis != null)
+                var filtreliListe = await Task.Run(() =>
                 {
-                    dynamic item = secilmis;
-                    int musterifirma = item.ID;
-                    var bukim = db.TblFIRMA.Find(musterifirma);
-                    bukim.FirmaAdi = musteriFirma_isim.Text;
-                    bukim.Unvan = cbxMusteri_Firma.Text;
-                    bukim.Telefon = musteriTelefon.Text;
-                    bukim.Telefonİki = musteriTelefon2.Text;
-                    bukim.WebSitesi = musteriWeb.Text;
-                    bukim.Email = musteriEmail.Text;
-                    bukim.Adres = musteriAdres.Text;
-                    bukim.VergiDairesi = musteri_vergiDairesi.Text;
-                    bukim.HesapNo = musteri_vergiDairesi_HesapNo.Text;
-                    db.SaveChanges();
-                    MessageBox.Show("Seçili Müşteri/Firma Başarıyla Güncellendi", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
-                    MusteriListele();
-                }
+                    using (var db = new RESTORANDBEntities1())
+                    {
+                        return db.TblFIRMA.OrderByDescending(x => x.FirmaId)
+                                .Where(x => x.FirmaAdi.ToLower().Contains(urunara))
+                                .Select(x => new
+                                {
+                                    ID = x.FirmaId,
+                                    MüşteriFirma = x.FirmaAdi,
+                                    Adres = x.Adres,
+                                    Telefon = x.Telefon,
+                                    Telefonİki = x.Telefonİki,
+                                    WebSitesi = x.WebSitesi,
+                                    VergiDairesi = x.VergiDairesi,
+                                    HesapNo = x.HesapNo
+                                }).ToList();
+                    }
+                });
+                musteri_DataGrid.ItemsSource = filtreliListe;
             }
+            catch { }
+        }
+        private async void musteri_ekleButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (var db = new RESTORANDBEntities1())
+                {
+                    var yeniFirma = new TblFIRMA();
+                    yeniFirma.FirmaAdi = musteriFirma_isim.Text;
+                    yeniFirma.Unvan = cbxMusteri_Firma.Text;
+                    yeniFirma.Telefon = musteriTelefon.Text;
+                    yeniFirma.Telefonİki = musteriTelefon2.Text;
+                    yeniFirma.WebSitesi = musteriWeb.Text;
+                    yeniFirma.Email = musteriEmail.Text;
+                    yeniFirma.Adres = musteriAdres.Text;
+                    yeniFirma.VergiDairesi = musteri_vergiDairesi.Text;
+                    yeniFirma.HesapNo = musteri_vergiDairesi_HesapNo.Text;
+                    db.TblFIRMA.Add(yeniFirma);
+                    await db.SaveChangesAsync();
+                }
+                MessageBox.Show("Yeni Müşteri/Firma Başarıyla Eklendi", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
+                await MusteriListeleAsync();
+            }
+            catch (Exception ex) { MessageBox.Show("Hata: " + ex.Message); }
+        }
+
+        private async void musteri_silButton_Click(object sender, RoutedEventArgs e)
+        {
+            var secilmis = musteri_DataGrid.SelectedItem as dynamic;
+            if (secilmis == null) return;
+
+            if (MessageBox.Show("Silmek İstediğinize Emin Misiniz?", "Uyarı", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    int id = secilmis.ID;
+                    using (var db = new RESTORANDBEntities1())
+                    {
+                        var bukim = db.TblFIRMA.Find(id);
+                        if (bukim != null)
+                        {
+                            db.TblFIRMA.Remove(bukim);
+                            await db.SaveChangesAsync();
+                        }
+                    }
+                    MessageBox.Show("Silindi.");
+                    await MusteriListeleAsync();
+                }
+                catch (Exception ex) { MessageBox.Show("Hata: " + ex.Message); }
+            }
+        }
+
+        private async void musteri_guncelleButton_Click(object sender, RoutedEventArgs e)
+        {
+            var secilmis = musteri_DataGrid.SelectedItem as dynamic;
+            if (secilmis == null) return;
+
+            if (MessageBox.Show("Güncellemek İstediğinize Emin Misiniz?", "Uyarı", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    int id = secilmis.ID;
+                    using (var db = new RESTORANDBEntities1())
+                    {
+                        var bukim = db.TblFIRMA.Find(id);
+                        if (bukim != null)
+                        {
+                            bukim.FirmaAdi = musteriFirma_isim.Text;
+                            bukim.Unvan = cbxMusteri_Firma.Text;
+                            bukim.Telefon = musteriTelefon.Text;
+                            bukim.Telefonİki = musteriTelefon2.Text;
+                            bukim.WebSitesi = musteriWeb.Text;
+                            bukim.Email = musteriEmail.Text;
+                            bukim.Adres = musteriAdres.Text;
+                            bukim.VergiDairesi = musteri_vergiDairesi.Text;
+                            bukim.HesapNo = musteri_vergiDairesi_HesapNo.Text;
+                            await db.SaveChangesAsync();
+                        }
+                    }
+                    MessageBox.Show("Güncellendi.");
+                    await MusteriListeleAsync();
+                }
+                catch (Exception ex) { MessageBox.Show("Hata: " + ex.Message); }
+            }
+        }
+        private async void btnBorcListele_Click(object sender, RoutedEventArgs e)
+        {
+            await BorcListeleAsync();
+        }
+
+        private async void btnBorcEkle_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (var db = new RESTORANDBEntities1())
+                {
+                    var yeniBorc = new TblMODEME();
+                    int hedefFirmaId = _seciliFirmaId;
+                    if (hedefFirmaId == 0)
+                    {
+                        var firma = db.TblFIRMA.FirstOrDefault(x => x.FirmaAdi == txtMusteri.Text);
+                        if (firma != null) hedefFirmaId = firma.FirmaId;
+                        else { MessageBox.Show("Geçerli bir firma bulunamadı."); return; }
+                    }
+                    yeniBorc.FmusteriID = hedefFirmaId;
+                    yeniBorc.BorcTutar = decimal.TryParse(txtBorcTutar.Text, out decimal b) ? b : 0;
+                    yeniBorc.OdenenTutar = decimal.TryParse(txtOdenecekTutar.Text, out decimal o) ? o : 0;
+                    yeniBorc.Tarih = DateTime.TryParse(BorcTarih.Text, out DateTime t) ? t : DateTime.Now;
+                    yeniBorc.Aciklama = txtAciklama.Text;
+                    db.TblMODEME.Add(yeniBorc);
+                    await db.SaveChangesAsync();
+                }
+                MessageBox.Show("Borç Eklendi.");
+                await BorcListeleAsync();
+            }
+            catch (Exception ex) { MessageBox.Show("Hata: " + ex.Message); }
+        }
+
+        private async void btnBorcGuncelle_Click(object sender, RoutedEventArgs e)
+        {
+            var secilmis = Modeme_DataGrid.SelectedItem as dynamic;
+            if (secilmis == null) { MessageBox.Show("Seçim yapınız."); return; }
+            try
+            {
+                int mId = secilmis.ID;
+                using (var db = new RESTORANDBEntities1())
+                {
+                    var bukim = db.TblMODEME.Include("TblFIRMA").FirstOrDefault(x => x.OdemeId == mId);
+
+                    if (bukim != null)
+                    {
+                        bukim.BorcTutar = decimal.TryParse(txtBorcTutar.Text, out decimal b) ? b : 0;
+                        bukim.OdenenTutar = decimal.TryParse(txtOdenecekTutar.Text, out decimal o) ? o : 0;
+                        bukim.Tarih = DateTime.TryParse(BorcTarih.Text, out DateTime t) ? t : DateTime.Now;
+                        bukim.Aciklama = txtAciklama.Text;
+                        string firmaAdi = bukim.TblFIRMA != null ? bukim.TblFIRMA.FirmaAdi : "Bilinmiyor";
+                        var mudur = db.TblPERSONELLER.FirstOrDefault(x => x.Pozisyon == "Müdür");
+                        int personelId = (mudur != null) ? mudur.PersonelID : 1;
+                        TblGELIR yeniGelir = new TblGELIR
+                        {
+                            Tarih = DateTime.Now,
+                            Tutar = bukim.OdenenTutar ?? 0,
+                            PersonelId = personelId,
+                            Aciklama = $"{firmaAdi} - Tahsilat - {txtAciklama.Text}",
+                            GelirTuru = "Müşteri Tahsilatı"
+                        };
+
+                        db.TblGELIR.Add(yeniGelir);
+                        await db.SaveChangesAsync();
+                        MessageBox.Show("Ödeme alındı ve işlendi.");
+                    }
+                }
+                await BorcListeleAsync();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hata: " + ex.Message);
+            }
+        }
+
+        private async void btnBorcSil_Click(object sender, RoutedEventArgs e)
+        {
+            var secilmis = Modeme_DataGrid.SelectedItem as dynamic;
+            if (secilmis == null) return;
+
+            try
+            {
+                int mId = secilmis.ID;
+                using (var db = new RESTORANDBEntities1())
+                {
+                    var bukim = db.TblMODEME.Find(mId);
+                    if (bukim != null)
+                    {
+                        db.TblMODEME.Remove(bukim);
+                        await db.SaveChangesAsync();
+                    }
+                }
+                MessageBox.Show("Silindi.");
+                await BorcListeleAsync();
+                txtMusteri.Clear();
+                txtBorcTutar.Clear();
+                txtOdenecekTutar.Clear();
+                txtAciklama.Clear();
+                BorcTarih.Text = "";
+            }
+            catch (Exception ex) { MessageBox.Show("Hata: " + ex.Message); }
         }
 
         private void musteri_temizleButton_Click(object sender, RoutedEventArgs e)
@@ -167,152 +482,7 @@ namespace RestoranOtomasyonu.userControls
             musteriAdres.Clear();
             musteri_vergiDairesi.Clear();
             musteri_vergiDairesi_HesapNo.Clear();
-        }
-
-        private void musteriFirma_Ara_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            var urunara = musteriFirma_Ara.Text.ToLower();
-            var filtreliListe = db.TblFIRMA.OrderByDescending(x => x.FirmaId)
-                .Where(x => x.FirmaAdi.ToLower().Contains(urunara))
-                .Select(x => new
-                {
-                    ID = x.FirmaId,
-                    MüşteriFirma = x.FirmaAdi,
-                    Adres = x.Adres,
-                    Telefon = x.Telefon,
-                    Telefonİki = x.Telefonİki,
-                    WebSitesi = x.WebSitesi,
-                    VergiDairesi = x.VergiDairesi,
-                    HesapNo = x.HesapNo
-                })
-                .ToList();
-            musteri_DataGrid.ItemsSource = filtreliListe;
-        }
-        public void BorcListele()
-        {
-            var listele = db.TblMODEME.OrderByDescending(x => x.OdemeId)
-                         .Where(x=>x.FmusteriID==x.TblFIRMA.FirmaId)
-                         .Select(x => new
-                         {
-                             ID = x.OdemeId,
-                             MüşteriFirma = x.TblFIRMA.FirmaAdi,
-                             BorcTutar = x.BorcTutar,
-                             OdenecekTutar = x.OdenenTutar,
-                             Tarih = x.Tarih,
-                             Aciklama = x.Aciklama
-                         }).ToList();
-            Modeme_DataGrid.ItemsSource = listele;
-        }
-
-        private void btnBorcListele_Click(object sender, RoutedEventArgs e)
-        {
-            BorcListele();
-        }
-        public void MusteriGetir(int mId)
-        {
-            var bukim = db.TblMODEME.Find(mId);
-            gizliText.Text = bukim.OdemeId.ToString();
-            txtMusteri.Text = bukim.TblFIRMA.FirmaAdi;
-            txtBorcTutar.Text = bukim.BorcTutar.ToString();
-            txtOdenecekTutar.Text = bukim.OdenenTutar.ToString();
-            txtAciklama.Text = bukim.Aciklama;
-            BorcTarih.Text = bukim.Tarih.ToString();
-        }
-        public void FMusteriGetir(int mId)
-        {
-            var bukim = db.TblFIRMA.Find(mId);
-            gizliText.Text = bukim.FirmaId.ToString();
-            txtMusteri.Text = bukim.FirmaAdi;
-        }
-
-        private void Modeme_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var secilmis = Modeme_DataGrid.SelectedItem;
-            if (secilmis != null)
-            {
-                dynamic item = secilmis;
-                int mId = item.ID;
-                MusteriGetir(mId);
-            }
-
-        }
-
-        private void btnBorcEkle_Click(object sender, RoutedEventArgs e)
-        {
-            var yeniBorc = new TblMODEME();
-            yeniBorc.FmusteriID = db.TblFIRMA.Where(x => x.FirmaAdi == txtMusteri.Text).Select(x => x.FirmaId).FirstOrDefault();
-            yeniBorc.OdemeId = db.TblFIRMA.Where(x => x.FirmaAdi == txtMusteri.Text).Select(x => x.FirmaId).FirstOrDefault();
-            yeniBorc.BorcTutar = decimal.Parse(txtBorcTutar.Text);
-            yeniBorc.OdenenTutar = decimal.TryParse(txtOdenecekTutar.Text, out decimal odenen) ? odenen : 0; ;
-            yeniBorc.Tarih = DateTime.Parse(BorcTarih.Text);
-            yeniBorc.Aciklama = txtAciklama.Text;
-            db.TblMODEME.Add(yeniBorc);
-            db.SaveChanges();
-            MessageBox.Show("Yeni Borç Kaydı Başarıyla Eklendi", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
-            BorcListele();
-        }
-
-        private void btnBorcGuncelle_Click(object sender, RoutedEventArgs e)
-        {
-            var secilmis = Modeme_DataGrid.SelectedItem;
-
-            if (secilmis != null)
-            {
-                dynamic item = secilmis;
-                int mId = item.ID; 
-                var bukim = db.TblMODEME.Include("TblFIRMA").FirstOrDefault(x => x.OdemeId == mId);
-
-                if (bukim != null)
-                {
-                    decimal borc, odenen;
-                    DateTime tarih;
-                    if (!decimal.TryParse(txtBorcTutar.Text, out borc)) borc = 0;
-                    if (!decimal.TryParse(txtOdenecekTutar.Text, out odenen)) odenen = 0;
-                    if (!DateTime.TryParse(BorcTarih.Text, out tarih)) tarih = DateTime.Now;
-                    bukim.BorcTutar = borc;
-                    bukim.OdenenTutar = odenen;
-                    bukim.Tarih = tarih;
-                    bukim.Aciklama = txtAciklama.Text;
-                    string isim = "Bilinmiyor";
-                    if (bukim.TblFIRMA != null)
-                    {
-                        isim = bukim.TblFIRMA.FirmaAdi;
-                    }
-                    var mudur = db.TblPERSONELLER.FirstOrDefault(x => x.Pozisyon == "Müdür");
-                    int atananPersonelId = (mudur != null) ? mudur.PersonelID : 1;
-                    TblGELIR yeniGelir = new TblGELIR();
-                    yeniGelir.Tarih = DateTime.Now;
-                    yeniGelir.Tutar = odenen;
-                    yeniGelir.PersonelId = atananPersonelId;
-                    yeniGelir.Aciklama = $"{isim} - Tahsilat - {txtAciklama.Text}";
-                    yeniGelir.GelirTuru = "Müşteri Tahsilatı";
-                    db.TblGELIR.Add(yeniGelir);
-                    db.SaveChanges();
-                    MessageBox.Show($"Sayın {isim} için ödeme alındı ve işlendi.", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
-                    BorcListele();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Lütfen listeden bir kayıt seçiniz.", "Uyarı", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-
-        private void btnBorcSil_Click(object sender, RoutedEventArgs e)
-        {
-            var secilmis = Modeme_DataGrid.SelectedItem;
-            dynamic item = secilmis;
-            int mId = item.ID;
-            var bukim = db.TblMODEME.Find(mId);
-            db.TblMODEME.Remove(bukim);
-            db.SaveChanges();
-            MessageBox.Show("Seçili Borç Kaydı Başarıyla Silindi", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
-            BorcListele();
-            txtMusteri.Clear();
-            txtBorcTutar.Clear();
-            txtOdenecekTutar.Clear();
-            txtAciklama.Clear();
-            BorcTarih.Text = "";
+            _seciliFirmaId = 0;
         }
     }
 }

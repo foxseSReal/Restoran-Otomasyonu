@@ -26,35 +26,90 @@ namespace RestoranOtomasyonu.userControls
         {
             InitializeComponent();
         }
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            RezarvasyonListele();
-            var rezarvasyon = db.TblREZARVASYON.OrderByDescending(x => x.RezarvasyonId).FirstOrDefault();
-            if (rezarvasyon != null)
-            {
-                rezervasyon_Adsoyad.Text = rezarvasyon.TblMUSTERILER.Ad + " " + rezarvasyon.TblMUSTERILER.Soyad;
-                rezervasyon_MasaNo.Text = rezarvasyon.MasaNoId.ToString();
-                rezervasyonKisi_Sayisi.Value = rezarvasyon.KisiSayisi;
-                rezervasyonAciklama.Text = rezarvasyon.Aciklama.ToString();
-                rezervasyonTarih.Text = rezarvasyon.Tarih.ToString("dd.MM.yyyy");
-                rezervasyonSaat.Text = rezarvasyon.Saat.ToString(@"hh\:mm");
-            }
+            await RezarvasyonListeleAsync();
+            await SonRezervasyonuGetirAsync();
         }
 
-        public void RezarvasyonListele()
+        public async Task RezarvasyonListeleAsync()
         {
-            var listele = db.TblREZARVASYON.OrderByDescending(x=>x.RezarvasyonId).ToList()
-                 .Select(x => new
-                 {
-                     ID = x.RezarvasyonId,
-                     Müşteri = x.TblMUSTERILER.Ad + " " + x.TblMUSTERILER.Soyad,
-                     MasaNo = x.MasaNoId,
-                     KişiS = x.KisiSayisi,
-                     Tarih = x.Tarih.ToString("dd.MM.yyyy"),
-                     Saat = x.Saat.ToString(@"hh\:mm"),
-                     Açıklama = x.Aciklama
-                 });
-            rezervasyon_DataGrid.ItemsSource = listele;
+            try
+            {
+                var listele = await Task.Run(() =>
+                {
+                    using (var db = new RESTORANDBEntities1())
+                    {
+                        return db.TblREZARVASYON
+                                 .Include("TblMUSTERILER") 
+                                 .OrderByDescending(x => x.RezarvasyonId)
+                                 .ToList()
+                                 .Select(x => new
+                                 {
+                                     ID = x.RezarvasyonId,
+                                     Müşteri = x.TblMUSTERILER != null ? x.TblMUSTERILER.Ad + " " + x.TblMUSTERILER.Soyad : "Bilinmiyor",
+                                     MasaNo = x.MasaNoId,
+                                     KişiS = x.KisiSayisi,
+                                     Tarih = x.Tarih.ToString("dd.MM.yyyy"),
+                                     Saat = x.Saat.ToString(@"hh\:mm"),
+                                     Açıklama = x.Aciklama
+                                 })
+                                 .ToList();
+                    }
+                });
+
+                rezervasyon_DataGrid.ItemsSource = listele;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Listeleme hatası: " + ex.Message);
+            }
+        }
+        private async Task SonRezervasyonuGetirAsync()
+        {
+            try
+            {
+                var sonRezervasyon = await Task.Run(() =>
+                {
+                    using (var db = new RESTORANDBEntities1())
+                    {
+                        var kayit = db.TblREZARVASYON
+                                      .Include("TblMUSTERILER")
+                                      .OrderByDescending(x => x.RezarvasyonId)
+                                      .FirstOrDefault();
+
+                        if (kayit != null)
+                        {
+                            // Veriyi UI'a taşımak için güvenli bir pakete koyuyoruz
+                            return new
+                            {
+                                AdSoyad = kayit.TblMUSTERILER != null ? kayit.TblMUSTERILER.Ad + " " + kayit.TblMUSTERILER.Soyad : "Müşteri Silinmiş",
+                                MasaNo = kayit.MasaNoId.ToString(),
+                                KisiSayisi = kayit.KisiSayisi,
+                                Aciklama = kayit.Aciklama,
+                                Tarih = kayit.Tarih.ToString("dd.MM.yyyy"),
+                                Saat = kayit.Saat.ToString(@"hh\:mm")
+                            };
+                        }
+                        return null;
+                    }
+                });
+
+                // Veri geldiyse ekrana bas
+                if (sonRezervasyon != null)
+                {
+                    rezervasyon_Adsoyad.Text = sonRezervasyon.AdSoyad;
+                    rezervasyon_MasaNo.Text = sonRezervasyon.MasaNo;
+                    rezervasyonKisi_Sayisi.Value = sonRezervasyon.KisiSayisi;
+                    rezervasyonAciklama.Text = sonRezervasyon.Aciklama;
+                    rezervasyonTarih.Text = sonRezervasyon.Tarih;
+                    rezervasyonSaat.Text = sonRezervasyon.Saat;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Son kayıt getirilirken hata: " + ex.Message);
+            }
         }
 
         public void RezarvasyonBilgileriDoldur(int rezarvasyonId)
@@ -82,12 +137,12 @@ namespace RestoranOtomasyonu.userControls
             db.TblREZARVASYON.Add(yeniRezervasyon);
             MessageBox.Show("Yeni Rezarvasyon Başarıyla Eklendi", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
             db.SaveChanges();
-            RezarvasyonListele();
+            RezarvasyonListeleAsync();
         }
 
         private void rezervasyon_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            RezarvasyonListele();
+            RezarvasyonListeleAsync();
             var secilmis = rezervasyon_DataGrid.SelectedItem;
             if (secilmis != null)
             {
@@ -119,7 +174,7 @@ namespace RestoranOtomasyonu.userControls
 
             db.SaveChanges();
             MessageBox.Show("Rezervasyon Güncelleme İşlemi Başarılı", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
-            RezarvasyonListele();
+            RezarvasyonListeleAsync();
         }
 
         private void rezervasyonButton_Sil_Click(object sender, RoutedEventArgs e)
@@ -130,7 +185,7 @@ namespace RestoranOtomasyonu.userControls
             MessageBox.Show("Rezarvasyon Başarıyla Silinmiştir", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
             db.SaveChanges();
             AlanlariTemizle();
-            RezarvasyonListele();
+            RezarvasyonListeleAsync();
         }
         public void AlanlariTemizle()
         {
