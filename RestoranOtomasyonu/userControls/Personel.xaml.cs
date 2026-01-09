@@ -31,60 +31,119 @@ namespace RestoranOtomasyonu.userControls
         {
             InitializeComponent();
         }
-        private string secilenResimYolu; 
-        public void personelListele()
+        private string secilenResimYolu;
+        // 1. ADIM: Listeleme metodunu Task döndüren hale getirdik
+        public async Task PersonelListeleAsync()
         {
-            var personel = from x in ResDB.TblPERSONELLER.OrderByDescending(x => x.PersonelID)
-                           select new
-                           {
-                               x.PersonelID,
-                               x.Ad,
-                               x.Soyad,
-                               x.Telefon,
-                               x.Adres,
-                               x.Pozisyon,
-                               x.Email,
-                               x.Tarih,
-                               DURUMU = x.Durum == true ? "Aktif" : "Pasif"
-                           };
-            personel_DataGrid.ItemsSource = personel.ToList();
+            try
+            {
+                // Arayüz donmasın diye işi arka plana (Task.Run) atıyoruz
+                var personelListesi = await Task.Run(() =>
+                {
+                    // Yeni bir bağlantı açıyoruz (Global ResDB yerine yerel context)
+                    using (var db = new RESTORANDBEntities1())
+                    {
+                        return db.TblPERSONELLER
+                                 .OrderByDescending(x => x.PersonelID)
+                                 .ToList() // Veriyi burada çekiyoruz
+                                 .Select(x => new
+                                 {
+                                     x.PersonelID,
+                                     x.Ad,
+                                     x.Soyad,
+                                     x.Telefon,
+                                     x.Adres,
+                                     x.Pozisyon,
+                                     x.Email,
+                                     x.Tarih,
+                                     DURUMU = x.Durum == true ? "Aktif" : "Pasif"
+                                 })
+                                 .ToList();
+                    }
+                });
+
+                // Veri geldi, şimdi arayüze basabiliriz
+                personel_DataGrid.ItemsSource = personelListesi;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Liste çekilirken hata: " + ex.Message);
+            }
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        // 2. ADIM: Loaded Olayı
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            personelListele();
-            var sonPersonel = ResDB.TblPERSONELLER.OrderByDescending(x => x.PersonelID).FirstOrDefault();
+            // Önce listeyi doldur (Beklemeden UI açılır, veri arkadan gelir)
+            await PersonelListeleAsync();
 
-            if (sonPersonel != null)
+            // Şimdi "Son Personel" bilgilerini çekelim (Bunu da asenkron yapıyoruz)
+            try
             {
-                var maasKaydi = ResDB.TblMAAS
-                                     .Where(x => x.PersonelID == sonPersonel.PersonelID)
-                                     .OrderByDescending(x => x.NetTutar)
-                                     .FirstOrDefault();
-                adSoyad.Text = sonPersonel.Ad + " " + sonPersonel.Soyad;
-                maas.Text = maasKaydi != null ? maasKaydi.NetTutar.ToString() : "Maaş Yok";
-                adres.Text = sonPersonel.Adres;
-                telefon.Text = sonPersonel.Telefon;
-                email.Text = sonPersonel.Email;
-                if (sonPersonel.Tarih != null)
+                // Detay verilerini arka planda hazırla
+                var detayVeriler = await Task.Run(() =>
                 {
-                    Tarih.SelectedDate = sonPersonel.Tarih;
+                    using (var db = new RESTORANDBEntities1())
+                    {
+                        var sonPersonel = db.TblPERSONELLER
+                                            .OrderByDescending(x => x.PersonelID)
+                                            .FirstOrDefault();
+
+                        if (sonPersonel != null)
+                        {
+                            // Maaş bilgisini de burada çekiyoruz
+                            var maasKaydi = db.TblMAAS
+                                              .Where(x => x.PersonelID == sonPersonel.PersonelID)
+                                              .OrderByDescending(x => x.NetTutar)
+                                              .FirstOrDefault();
+
+                            // UI'a taşımak için anonim bir paket yapıp döndürüyoruz
+                            return new
+                            {
+                                Personel = sonPersonel,
+                                MaasTutar = maasKaydi != null ? maasKaydi.NetTutar.ToString() : "Maaş Yok"
+                            };
+                        }
+                        return null;
+                    }
+                });
+
+                // Veri geldikten sonra Textbox'ları doldur
+                if (detayVeriler != null)
+                {
+                    var p = detayVeriler.Personel; // Kısaltma
+
+                    adSoyad.Text = p.Ad + " " + p.Soyad;
+                    maas.Text = detayVeriler.MaasTutar;
+                    adres.Text = p.Adres;
+                    telefon.Text = p.Telefon;
+                    email.Text = p.Email;
+
+                    if (p.Tarih != null) Tarih.SelectedDate = p.Tarih;
+
+                    cbxPosizyon.Text = p.Pozisyon;
+                    tckimlik.Text = p.TCKimlikNo;
+                    IsTakip_ToggleButton.IsChecked = p.Durum;
+
+                    // Resim yükleme işlemi UI thread'inde olmalı
+                    ResimYukle(p.Resim);
                 }
-                cbxPosizyon.Text = sonPersonel.Pozisyon;
-                tckimlik.Text = sonPersonel.TCKimlikNo;
-                IsTakip_ToggleButton.IsChecked = sonPersonel.Durum;
-                ResimYukle(sonPersonel.Resim);
+                else
+                {
+                    // Eğer veritabanı boşsa hata vermek yerine sessiz kalabilir veya log yazabilirsin
+                    // MessageBox.Show("Sistemde kayıtlı personel bulunamadı.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Sistemde kayıtlı personel bulunamadı.");
+                MessageBox.Show("Detaylar yüklenirken hata: " + ex.Message);
             }
         }
         private void ResimYukle(string dosyaAdi)
         {
             if (string.IsNullOrEmpty(dosyaAdi))
             {
-                dosyaAdi = "resimyok.png"; 
+                dosyaAdi = "resimyok.png";
             }
             try
             {
@@ -107,7 +166,7 @@ namespace RestoranOtomasyonu.userControls
             }
             catch (Exception)
             {
-                resim.ImageSource = null; 
+                resim.ImageSource = null;
             }
         }
 
@@ -222,7 +281,7 @@ namespace RestoranOtomasyonu.userControls
 
                 File.Copy(secilenResimYolu, hedefYol, true);
 
-                return dosyaAdi; 
+                return dosyaAdi;
             }
             catch (Exception ex)
             {
@@ -240,7 +299,7 @@ namespace RestoranOtomasyonu.userControls
             if (!Tarih.SelectedDate.HasValue)
             {
                 MessageBox.Show("Lütfen bir giriş tarihi seçin.", "Uyarı", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return; 
+                return;
             }
             DateTime girisTarihi = Tarih.SelectedDate.Value;
             decimal odeme = 0;
@@ -271,7 +330,7 @@ namespace RestoranOtomasyonu.userControls
                 ResDB.TblMAAS.Add(yeniMaas);
                 ResDB.SaveChanges();
 
-                personelListele();
+                PersonelListeleAsync();
                 MessageBox.Show("Yeni Personel Eklendi", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
                 temizle();
             }
@@ -327,7 +386,7 @@ namespace RestoranOtomasyonu.userControls
             {
                 ResDB.SaveChanges();
                 MessageBox.Show("Personel Güncelleme İşlemi Başarılı", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
-                personelListele();
+                PersonelListeleAsync();
                 temizle();
             }
             catch (DbEntityValidationException ex)
@@ -372,7 +431,7 @@ namespace RestoranOtomasyonu.userControls
             {
                 guncellenecekPersonel.Durum = false;
                 ResDB.SaveChanges();
-                personelListele();
+                PersonelListeleAsync();
                 MessageBox.Show("Personel başarıyla silindi.", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
@@ -418,7 +477,7 @@ namespace RestoranOtomasyonu.userControls
                 }
             }
         }
-        private void odemegetir()
+        private async void odemegetir()
         {
             var odemeler = from x in ResDB.TblPERSONELODEME
                            where x.PERSONEL == seciliPersonelId
@@ -459,7 +518,7 @@ namespace RestoranOtomasyonu.userControls
                 gider.Tutar = Convert.ToDecimal(odemeTutar.Text);
                 gider.GiderTuru = cbxOdemeTuru.Text;
                 ResDB.TblGIDER.Add(gider);
-               ResDB.SaveChanges();
+                ResDB.SaveChanges();
 
                 MessageBox.Show("Personele ödeme başarıyla yapıldı.");
             }
@@ -467,12 +526,12 @@ namespace RestoranOtomasyonu.userControls
 
 
         }
-        private void odemegrtdoldur()
+        private async void odemegrtdoldur()
         {
             var secilenOdeme = personelOdeme_DataGrid.SelectedItem;
         }
 
-        private void txtPersonelAra_TextChanged(object sender, TextChangedEventArgs e)
+        private async void txtPersonelAra_TextChanged(object sender, TextChangedEventArgs e)
         {
             var personelara = txtPersonelAra.Text;
             var personel = from x in ResDB.TblPERSONELLER.OrderByDescending(x => x.PersonelID)
