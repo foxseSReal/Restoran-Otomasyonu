@@ -27,6 +27,11 @@ namespace RestoranOtomasyonu.userControls
         public cekSenet()
         {
             InitializeComponent();
+            
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
             cekSenetListele();
             var ceksenet = db.TblCEKSENET.OrderByDescending(x => x.CeksenetId).FirstOrDefault();
             if (ceksenet != null)
@@ -39,6 +44,7 @@ namespace RestoranOtomasyonu.userControls
                 cekSenet_OdemeTarih.Text = ceksenet.OTarih.ToString();
             }
         }
+
         public void cekSenetListele()
         {
             var liste = db.TblCEKSENET.OrderByDescending(x => x.CeksenetId).ToList().Select
@@ -328,5 +334,7 @@ namespace RestoranOtomasyonu.userControls
                 MessageBox.Show("Seçim yapmadınız.", "Uyarı", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
+ 
     }
 }

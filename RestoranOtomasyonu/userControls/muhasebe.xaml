@@ -6,6 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:RestoranOtomasyonu.userControls"
              mc:Ignorable="d" 
+             Loaded="UserControl_Loaded"
              d:DesignHeight="784" d:DesignWidth="1036">
     <Grid Margin="20">
         <Grid.RowDefinitions>
@@ -80,7 +81,7 @@
                     <DataGrid x:Name="muhasebeGider_DataGrid" Height="440" Width="470" Grid.Row="2" AutoGenerateColumns="True" CanUserAddRows="False" Margin="0 0 0 0"
               Style="{StaticResource MaterialDesignDataGrid}"
               SelectionMode="Single" RowHeight="38"
-              Foreground="Black" SelectionChanged="muhasebeGider_DataGrid_SelectionChanged"/>
+              Foreground="Black"/>
                 </StackPanel>
             </Grid>
         </StackPanel>

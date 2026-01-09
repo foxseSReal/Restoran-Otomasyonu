@@ -25,6 +25,9 @@ namespace RestoranOtomasyonu.userControls
         public rezervasyon()
         {
             InitializeComponent();
+        }
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
             RezarvasyonListele();
             var rezarvasyon = db.TblREZARVASYON.OrderByDescending(x => x.RezarvasyonId).FirstOrDefault();
             if (rezarvasyon != null)
@@ -35,9 +38,9 @@ namespace RestoranOtomasyonu.userControls
                 rezervasyonAciklama.Text = rezarvasyon.Aciklama.ToString();
                 rezervasyonTarih.Text = rezarvasyon.Tarih.ToString("dd.MM.yyyy");
                 rezervasyonSaat.Text = rezarvasyon.Saat.ToString(@"hh\:mm");
-
             }
         }
+
         public void RezarvasyonListele()
         {
             var listele = db.TblREZARVASYON.OrderByDescending(x=>x.RezarvasyonId).ToList()

@@ -25,9 +25,14 @@ namespace RestoranOtomasyonu.userControls
         public muhasebe()
         {
             InitializeComponent();
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
             GelirListele();
             GiderListele();
         }
+
         public void GelirListele()
         {
             var listele = db.TblGELIR.OrderByDescending(x => x.GelirId).ToList()
@@ -120,9 +125,5 @@ namespace RestoranOtomasyonu.userControls
             muhasebeGelir_DataGrid.ItemsSource = sonuc;
         }
 
-        private void muhasebeGider_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }

@@ -6,6 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:RestoranOtomasyonu.userControls"
              mc:Ignorable="d" 
+             Loaded="UserControl_Loaded"
              d:DesignHeight="784" d:DesignWidth="1036">
     <Grid>
         <Grid.ColumnDefinitions>

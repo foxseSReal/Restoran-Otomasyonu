@@ -27,9 +27,14 @@ namespace RestoranOtomasyonu.userControls
         public musteriFirma()
         {
             InitializeComponent();
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
             MusteriListele();
             var rezarvasyon = db.TblFIRMA.OrderByDescending(x => x.FirmaId).FirstOrDefault();
         }
+
         public void MusteriListele()
         {
 

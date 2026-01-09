@@ -26,9 +26,13 @@ namespace RestoranOtomasyonu.userControls
         public satisDurumu()
         {
             InitializeComponent();
-            SatisListele();
-            var terslistele=db.TblURUN.OrderByDescending(x=>x.UrunId).FirstOrDefault();
         }
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            SatisListele();
+            var terslistele = db.TblURUN.OrderByDescending(x => x.UrunId).FirstOrDefault();
+        }
+
         public void SatisListele()
         {
             var listele =db.TblURUN.OrderByDescending(x=>x.UrunId).ToList()

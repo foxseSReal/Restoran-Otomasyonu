@@ -362,6 +362,9 @@
     <Compile Include="userControls\gunlukHarcama.xaml.cs">
       <DependentUpon>gunlukHarcama.xaml</DependentUpon>
     </Compile>
+    <Compile Include="userControls\LoadingTables.xaml.cs">
+      <DependentUpon>LoadingTables.xaml</DependentUpon>
+    </Compile>
     <Compile Include="userControls\muhasebe.xaml.cs">
       <DependentUpon>muhasebe.xaml</DependentUpon>
     </Compile>
@@ -428,6 +431,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="userControls\gunlukHarcama.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="userControls\LoadingTables.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

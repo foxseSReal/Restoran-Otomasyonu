@@ -29,6 +29,9 @@ namespace RestoranOtomasyonu.userControls
         public urunler()
         {
             InitializeComponent();
+        }
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
             UrunListele();
             var sonurun = db.TblURUN.OrderByDescending(x => x.UrunId).FirstOrDefault();
             if (sonurun != null)
@@ -38,7 +41,6 @@ namespace RestoranOtomasyonu.userControls
                 urun_ToggleButton.IsChecked = sonurun.Durum;
                 cbxUrun_Kategori.Text = sonurun.TblKATEGORI.KategoriAdi;
                 cbxUrun_Firma.Text = sonurun.TblFIRMA.FirmaAdi;
-               
             }
             if (!string.IsNullOrEmpty(sonurun.ResimYolu) && File.Exists(sonurun.ResimYolu))
             {
@@ -52,16 +54,11 @@ namespace RestoranOtomasyonu.userControls
                     urun_resimKutusu.ImageSource = null;
                 }
             }
-            else
-            {
-                urun_resimKutusu.ImageSource = null;
-            }
-
+            else urun_resimKutusu.ImageSource = null;
         }
 
-         void UrunListele()
+        void UrunListele()
         {
-          
             var listele = db.TblURUN.OrderByDescending(x=>x.UrunId)
                            .Where(x=>x.Durum==true)
                             .Select(x => new

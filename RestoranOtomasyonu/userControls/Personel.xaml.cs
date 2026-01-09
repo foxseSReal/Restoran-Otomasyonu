@@ -25,15 +25,34 @@ namespace RestoranOtomasyonu.userControls
     /// </summary>
     public partial class Personel : UserControl
     {
-
-        //==================================================//
         RESTORANDBEntities1 ResDB = new RESTORANDBEntities1();
-        //==================================================//
 
         public Personel()
         {
             InitializeComponent();
+        }
+        private string secilenResimYolu; 
+        public void personelListele()
+        {
+            var personel = from x in ResDB.TblPERSONELLER.OrderByDescending(x => x.PersonelID)
+                           select new
+                           {
+                               x.PersonelID,
+                               x.Ad,
+                               x.Soyad,
+                               x.Telefon,
+                               x.Adres,
+                               x.Pozisyon,
+                               x.Email,
+                               x.Tarih,
+                               DURUMU = x.Durum == true ? "Aktif" : "Pasif"
+                           };
+            personel_DataGrid.ItemsSource = personel.ToList();
+        }
 
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            personelListele();
             var sonPersonel = ResDB.TblPERSONELLER.OrderByDescending(x => x.PersonelID).FirstOrDefault();
 
             if (sonPersonel != null)
@@ -60,29 +79,6 @@ namespace RestoranOtomasyonu.userControls
             {
                 MessageBox.Show("Sistemde kayıtlı personel bulunamadı.");
             }
-        }
-        private string secilenResimYolu; 
-        public void personelListele()
-        {
-            var personel = from x in ResDB.TblPERSONELLER.OrderByDescending(x => x.PersonelID)
-                           select new
-                           {
-                               x.PersonelID,
-                               x.Ad,
-                               x.Soyad,
-                               x.Telefon,
-                               x.Adres,
-                               x.Pozisyon,
-                               x.Email,
-                               x.Tarih,
-                               DURUMU = x.Durum == true ? "Aktif" : "Pasif"
-                           };
-            personel_DataGrid.ItemsSource = personel.ToList();
-        }
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            personelListele();
         }
         private void ResimYukle(string dosyaAdi)
         {

@@ -26,6 +26,9 @@ namespace RestoranOtomasyonu.userControls
         public stok()
         {
             InitializeComponent();
+        }
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
             Stoklistele();
             var stok = db.TblFIRMAHAREKET.OrderByDescending(x => x.FirmaId).FirstOrDefault();
             if (stok != null)
@@ -36,9 +39,9 @@ namespace RestoranOtomasyonu.userControls
                 stokFiyat.Text = stok.Tutar.ToString();
                 stokAciklama.Text = stok.Aciklama;
                 stokTarih.Text = stok.Tarih.ToString();
-                
             }
         }
+
         public void Stoklistele()
         {
             var liste = from s in db.TblFIRMAHAREKET.OrderByDescending(x => x.ID)
