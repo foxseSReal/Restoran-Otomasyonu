@@ -63,48 +63,39 @@ namespace RestoranOtomasyonu
 
         private void gunlukHarcama(object sender, RoutedEventArgs e)
         {
-            ContentArea.Children.Clear();
-            ContentArea.Children.Add(new gunlukHarcama());
+            UserControls.Content = new gunlukHarcama();
         }
         private void muhasebe(object sender, RoutedEventArgs e)
         {
-            ContentArea.Children.Clear();
-            ContentArea.Children.Add(new muhasebe());
+            UserControls.Content = new muhasebe();
         }
         private void cekSenet(object sender, RoutedEventArgs e)
         {
-            ContentArea.Children.Clear();
-            ContentArea.Children.Add(new cekSenet());
+            UserControls.Content = new cekSenet();
         }
         private void satisDurumu(object sender, RoutedEventArgs e)
         {
-            ContentArea.Children.Clear();
-            ContentArea.Children.Add(new satisDurumu());
+            UserControls.Content = new satisDurumu();
         }
         private void Personel(object sender, RoutedEventArgs e)
         {
-            ContentArea.Children.Clear();
-            ContentArea.Children.Add(new Personel());
+            UserControls.Content = new Personel();
         }
         private void musteri(object sender, RoutedEventArgs e)
         {
-            ContentArea.Children.Clear();
-            ContentArea.Children.Add(new musteriFirma());
+            UserControls.Content = new musteriFirma();
         }
         private void stok(object sender, RoutedEventArgs e)
         {
-            ContentArea.Children.Clear();
-            ContentArea.Children.Add(new stok());
+            UserControls.Content = new stok();
         }
         private void urun(object sender, RoutedEventArgs e)
         {
-            ContentArea.Children.Clear();
-            ContentArea.Children.Add(new urunler());
+            UserControls.Content = new urunler();
         }
         private void rezervasyon(object sender, RoutedEventArgs e)
         {
-            ContentArea.Children.Clear();
-            ContentArea.Children.Add(new rezervasyon());
+            UserControls.Content = new rezervasyon();
         }
 
         //Admin Yetkindirme Formunu öne çıkarma komutu.
@@ -171,7 +162,7 @@ namespace RestoranOtomasyonu
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-           
+
             LoginWindow db = new LoginWindow();
             db.Show();
         }
