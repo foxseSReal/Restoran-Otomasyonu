@@ -70,7 +70,14 @@
                 <RadioButton x:Name="btnMusteri" Click="musteri" Style="{StaticResource RadioAnimasyon}">
                     <StackPanel Width="100" Height="75" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
                         <materialDesign:PackIcon Kind="AccountCash" Style="{StaticResource iconMaterialDesign}"/>
-                        <TextBlock TextAlignment="Center" Padding="0 0 0 0" Text="MÜŞTERİ FİRMA" Style="{StaticResource textBlock}" HorizontalAlignment="Center"/>
+                        <TextBlock TextAlignment="Center" Padding="0 0 0 0" Text="MÜŞTERİ" Style="{StaticResource textBlock}" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </RadioButton>
+                <Separator Background="#FF424242" Width="120" Margin="15 0 0 0"/>
+                <RadioButton x:Name="btnFirma" Click="musteri" Style="{StaticResource RadioAnimasyon}">
+                    <StackPanel Width="100" Height="75" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="Handshake" Style="{StaticResource iconMaterialDesign}"/>
+                        <TextBlock TextAlignment="Center" Padding="0 0 0 0" Text="FİRMA" Style="{StaticResource textBlock}" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </RadioButton>
                 <Separator Background="#FF424242" Width="120" Margin="15 0 0 0"/>
