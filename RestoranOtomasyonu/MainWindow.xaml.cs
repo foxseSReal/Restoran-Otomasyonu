@@ -85,6 +85,10 @@ namespace RestoranOtomasyonu
         {
             UserControls.Content = new musteriFirma();
         }
+        private void Firma(object sender, RoutedEventArgs e)
+        {
+            UserControls.Content = new Firmalar();
+        }
         private void stok(object sender, RoutedEventArgs e)
         {
             UserControls.Content = new stok();
@@ -105,7 +109,6 @@ namespace RestoranOtomasyonu
             Erisimizni yetkilendirme = new Erisimizni();
             yetkilendirme.ShowDialog();
         }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             if (AktifKullanici.Yetki == "k")

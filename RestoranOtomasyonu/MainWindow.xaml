@@ -74,7 +74,7 @@
                     </StackPanel>
                 </RadioButton>
                 <Separator Background="#FF424242" Width="120" Margin="15 0 0 0"/>
-                <RadioButton x:Name="btnFirma" Click="musteri" Style="{StaticResource RadioAnimasyon}">
+                <RadioButton x:Name="btnFirma" Click="Firma" Style="{StaticResource RadioAnimasyon}">
                     <StackPanel Width="100" Height="75" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
                         <materialDesign:PackIcon Kind="Handshake" Style="{StaticResource iconMaterialDesign}"/>
                         <TextBlock TextAlignment="Center" Padding="0 0 0 0" Text="FİRMA" Style="{StaticResource textBlock}" HorizontalAlignment="Center"/>
