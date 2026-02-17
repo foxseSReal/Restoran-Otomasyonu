@@ -1,4 +1,5 @@
 ﻿using RestoranOtomasyonu.Entity;
+using RestoranOtomasyonu.OtherWindows;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity; // Include metodu için gerekli
@@ -470,7 +471,11 @@ namespace RestoranOtomasyonu.userControls
             }
             catch (Exception ex) { MessageBox.Show("Hata: " + ex.Message); }
         }
-
+        private void MusteriDetaylar(object sender, RoutedEventArgs e)
+        {
+            MusteriDetay MusteriDetaylar = new MusteriDetay();
+            MusteriDetaylar.ShowDialog();
+        }
         private void musteri_temizleButton_Click(object sender, RoutedEventArgs e)
         {
             musteriFirma_isim.Clear();
@@ -483,6 +488,11 @@ namespace RestoranOtomasyonu.userControls
             musteri_vergiDairesi.Clear();
             musteri_vergiDairesi_HesapNo.Clear();
             _seciliFirmaId = 0;
+        }
+
+        private void DetaylarClick(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

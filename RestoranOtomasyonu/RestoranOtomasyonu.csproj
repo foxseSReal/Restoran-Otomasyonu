@@ -350,14 +350,23 @@
     <Compile Include="OtherWindows\Erisimizni.xaml.cs">
       <DependentUpon>Erisimizni.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OtherWindows\FirmaDetaylar.xaml.cs">
+      <DependentUpon>FirmaDetaylar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OtherWindows\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OtherWindows\MusteriDetay.xaml.cs">
+      <DependentUpon>MusteriDetay.xaml</DependentUpon>
     </Compile>
     <Compile Include="OtherWindows\StokEkle.xaml.cs">
       <DependentUpon>StokEkle.xaml</DependentUpon>
     </Compile>
     <Compile Include="userControls\cekSenet.xaml.cs">
       <DependentUpon>cekSenet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="userControls\Firmalar.xaml.cs">
+      <DependentUpon>Firmalar.xaml</DependentUpon>
     </Compile>
     <Compile Include="userControls\gunlukHarcama.xaml.cs">
       <DependentUpon>gunlukHarcama.xaml</DependentUpon>
@@ -403,7 +412,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="OtherWindows\FirmaDetaylar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OtherWindows\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OtherWindows\MusteriDetay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -424,6 +441,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="userControls\cekSenet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="userControls\Firmalar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
