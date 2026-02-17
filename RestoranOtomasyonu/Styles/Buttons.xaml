@@ -47,4 +47,373 @@
         </Setter>
     </Style>
 
+    <Style x:Key="CloseButton" TargetType="Button">
+        <Setter Property="Background" Value="Orange"/>
+        <Setter Property="Width" Value="50"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="BorderBrush" Value="Orange"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Margin" Value="0 0 0 0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" 
+                         BorderBrush="{TemplateBinding BorderBrush}" 
+                         BorderThickness="0" 
+                         >
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="Red"/>
+                            <Setter Property="BorderBrush" Value="Orange"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="Red"/>
+                            <Setter Property="BorderBrush" Value="Orange"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="MinimizeButton" TargetType="Button">
+        <Setter Property="Background" Value="Orange"/>
+        <Setter Property="Width" Value="50"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="BorderBrush" Value="Orange"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Margin" Value="0 0 0 0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" 
+                         BorderBrush="{TemplateBinding BorderBrush}" 
+                         BorderThickness="0" 
+                         CornerRadius="0 0 0 20"
+                         >
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="BorderBrush" Value="white"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="BorderBrush" Value="White"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="MaximizeButton" TargetType="Button">
+        <Setter Property="Background" Value="Orange"/>
+        <Setter Property="Width" Value="50"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="BorderBrush" Value="Orange"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Margin" Value="0 0 0 0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" 
+                         BorderBrush="{TemplateBinding BorderBrush}" 
+                         BorderThickness="0" 
+                         >
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="BorderBrush" Value="white"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="BorderBrush" Value="White"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--Sol-->
+    <Style x:Key="TemelButtonSol" TargetType="Button">
+        <Setter Property="Width" Value="250"/>
+        <Setter Property="Height" Value="150"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="BorderBrush" Value="{StaticResource AmberBrush}"/>
+        <Setter Property="Background" Value="{StaticResource AmberBrush}"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="mainBorder"
+                     Background="{TemplateBinding Background}" 
+                     BorderBrush="{TemplateBinding BorderBrush}"
+                     BorderThickness="0" 
+                     CornerRadius="5">
+
+                        <Border.Effect>
+                            <DropShadowEffect x:Name="buttonShadow" 
+                                       Color="Black"
+                                       Direction="300"
+                                       BlurRadius="5" 
+                                       ShadowDepth="30" 
+                                       Opacity="0"/>
+                        </Border.Effect>
+
+                        <Border.RenderTransform>
+                            <TranslateTransform x:Name="buttonTransform" X="0"/>
+                        </Border.RenderTransform>
+
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="buttonTransform"
+                                              Storyboard.TargetProperty="X"
+                                              To="-15" Duration="0:0:0.3">
+                                        <DoubleAnimation.EasingFunction>
+                                            <QuadraticEase EasingMode="EaseInOut"/>
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
+                                    <DoubleAnimation Storyboard.TargetName="buttonShadow"
+                                              Storyboard.TargetProperty="BlurRadius"
+                                              To="15" Duration="0:0:0.3"/>
+                                    <DoubleAnimation Storyboard.TargetName="buttonShadow"
+                                              Storyboard.TargetProperty="Opacity"
+                                              To="0.3" Duration="0:0:0.3"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="buttonTransform"
+                                              Storyboard.TargetProperty="X"
+                                              To="0" Duration="0:0:0.2"/>
+                                    <DoubleAnimation Storyboard.TargetName="buttonShadow"
+                                              Storyboard.TargetProperty="BlurRadius"
+                                              To="0" Duration="0:0:0.2"/>
+                                    <DoubleAnimation Storyboard.TargetName="buttonShadow"
+                                              Storyboard.TargetProperty="Opacity"
+                                              To="0" Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{StaticResource AmberBrush}"/>
+                            <Setter TargetName="mainBorder" Property="RenderTransform">
+                                <Setter.Value>
+                                    <TranslateTransform X="-15"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect Color="Black" BlurRadius="5" Direction="300" ShadowDepth="30" Opacity="0.2"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!---->
+
+    <!--TemelButtonOrta-->
+    <Style x:Key="TemelButtonOrta" TargetType="Button">
+        <Setter Property="Width" Value="250"/>
+        <Setter Property="Height" Value="150"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="BorderBrush" Value="{StaticResource AmberBrush}"/>
+        <Setter Property="Background" Value="{StaticResource AmberBrush}"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="mainBorder"
+                 Background="{TemplateBinding Background}" 
+                 BorderBrush="{TemplateBinding BorderBrush}"
+                 BorderThickness="0" 
+                 CornerRadius="5">
+
+                        <Border.Effect>
+                            <DropShadowEffect x:Name="buttonShadow" 
+                                   Color="Black"
+                                   Direction="270"
+                                   BlurRadius="0" 
+                                   ShadowDepth="30" 
+                                   Opacity="0"/>
+                        </Border.Effect>
+
+                        <Border.RenderTransform>
+                            <TranslateTransform x:Name="buttonTransform" Y="0"/>
+                        </Border.RenderTransform>
+
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="buttonTransform"
+                                          Storyboard.TargetProperty="Y"
+                                          To="-15" Duration="0:0:0.3">
+                                        <DoubleAnimation.EasingFunction>
+                                            <QuadraticEase EasingMode="EaseInOut"/>
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
+                                    <DoubleAnimation Storyboard.TargetName="buttonShadow"
+                                          Storyboard.TargetProperty="BlurRadius"
+                                          To="15" Duration="0:0:0.3"/>
+                                    <DoubleAnimation Storyboard.TargetName="buttonShadow"
+                                          Storyboard.TargetProperty="Opacity"
+                                          To="0.3" Duration="0:0:0.3"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="buttonTransform"
+                                          Storyboard.TargetProperty="Y"
+                                          To="0" Duration="0:0:0.2"/>
+                                    <DoubleAnimation Storyboard.TargetName="buttonShadow"
+                                          Storyboard.TargetProperty="BlurRadius"
+                                          To="0" Duration="0:0:0.2"/>
+                                    <DoubleAnimation Storyboard.TargetName="buttonShadow"
+                                          Storyboard.TargetProperty="Opacity"
+                                          To="0" Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{StaticResource AmberBrush}"/>
+                            <Setter TargetName="mainBorder" Property="RenderTransform">
+                                <Setter.Value>
+                                    <TranslateTransform Y="-15"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect Color="Black" BlurRadius="5" Direction="270" ShadowDepth="30" Opacity="0.2"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!---->
+    <!--TemelButtonSag-->
+    <Style x:Key="TemelButtonSag" TargetType="Button">
+        <Setter Property="Width" Value="250"/>
+        <Setter Property="Height" Value="150"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="BorderBrush" Value="{StaticResource AmberBrush}"/>
+        <Setter Property="Background" Value="{StaticResource AmberBrush}"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="mainBorder"
+                 Background="{TemplateBinding Background}" 
+                 BorderBrush="{TemplateBinding BorderBrush}"
+                 BorderThickness="0" 
+                 CornerRadius="5">
+
+                        <Border.Effect>
+                            <DropShadowEffect x:Name="buttonShadow" 
+                                   Color="Black"
+                                   Direction="240"
+                                   BlurRadius="0" 
+                                   ShadowDepth="30" 
+                                   Opacity="0"/>
+                        </Border.Effect>
+
+                        <Border.RenderTransform>
+                            <TranslateTransform x:Name="buttonTransform" X="0"/>
+                        </Border.RenderTransform>
+
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="buttonTransform"
+                                          Storyboard.TargetProperty="X"
+                                          To="15" Duration="0:0:0.3">
+                                        <DoubleAnimation.EasingFunction>
+                                            <QuadraticEase EasingMode="EaseInOut"/>
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
+                                    <DoubleAnimation Storyboard.TargetName="buttonShadow"
+                                          Storyboard.TargetProperty="BlurRadius"
+                                          To="15" Duration="0:0:0.3"/>
+                                    <DoubleAnimation Storyboard.TargetName="buttonShadow"
+                                          Storyboard.TargetProperty="Opacity"
+                                          To="0.3" Duration="0:0:0.3"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="buttonTransform"
+                                          Storyboard.TargetProperty="X"
+                                          To="0" Duration="0:0:0.2"/>
+                                    <DoubleAnimation Storyboard.TargetName="buttonShadow"
+                                          Storyboard.TargetProperty="BlurRadius"
+                                          To="0" Duration="0:0:0.2"/>
+                                    <DoubleAnimation Storyboard.TargetName="buttonShadow"
+                                          Storyboard.TargetProperty="Opacity"
+                                          To="0" Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{StaticResource AmberBrush}"/>
+                            <Setter TargetName="mainBorder" Property="RenderTransform">
+                                <Setter.Value>
+                                    <TranslateTransform X="15"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect Color="Black" Direction="240" BlurRadius="5" ShadowDepth="30" Opacity="0.2"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!---->
+
 </ResourceDictionary>
