@@ -5,10 +5,108 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RestoranOtomasyonu"
+        Background="{StaticResource MainBackgroundBrush}"
         Style="{StaticResource MaterialDesignWindow}"
         mc:Ignorable="d"
         Title="Masalar" WindowStyle="None" ResizeMode="NoResize" Width="1537" Height="864" WindowState="Maximized">
-    <Grid>
-        
+    <WindowChrome.WindowChrome>
+        <WindowChrome 
+        CaptionHeight="0"  
+        ResizeBorderThickness="5"
+        GlassFrameThickness="0"
+        CornerRadius="10" />
+    </WindowChrome.WindowChrome>
+
+    <Grid x:Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--Title Bar-->
+        <Grid x:Name="TitleBar" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Background="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Margin="0 10 0 0" Orientation="Horizontal" Grid.Row="0">
+                <materialDesign:PackIcon Kind="StorefrontOutline" Width="50" Height="30" Foreground="White"/>
+                <TextBlock Text="RESTORAN  TAKİP" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="White" FontWeight="SemiBold" FontFamily="/NewFonts/Pacifico-Regular.ttf#Pacifico"/>
+
+            </StackPanel>
+            <StackPanel Margin="50 0 0 0" Orientation="Horizontal" Grid.Column="1">
+                <Button Style="{StaticResource MinimizeButton}" Click="MinimizeButton_Click">
+                    <materialDesign:PackIcon Foreground="Black" Kind="Minus" Width="25" Height="25"/>
+                </Button>
+                <Button Style="{StaticResource CloseButton}" Click="CloseButton_Click">
+                    <materialDesign:PackIcon Foreground="Black" Kind="Close" Width="25" Height="25"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <!--Orta Grid-->
+        <Grid Grid.Column="1" Grid.Row="1">
+            <UniformGrid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <Border Padding="25 0 0 0" Width="860" Height="650" CornerRadius="20">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="0">
+                            <Button Background="#85dcdcdc" Margin="10 50 0 0" Style="{DynamicResource TemelButtonSol}">
+                                <StackPanel>
+                                    <materialDesign:PackIcon Kind="PlusBoxMultipleOutline" Width="50" Height="50" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" />
+                                    <TextBlock FontSize="28" Text="İşlem Ekle" FontFamily="/NewFonts/Modak-Regular.ttf#Modak"/>
+                                </StackPanel>
+                            </Button>
+                            <Button Background="#85dcdcdc" Margin="10 50 0 0" Style="{DynamicResource TemelButtonOrta}">
+                                <StackPanel>
+                                    <materialDesign:PackIcon Kind="BookOpenVariantOutline" Width="50" Height="50" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" />
+                                    <TextBlock FontSize="28" Text="Gelir Gider Listele" FontFamily="/NewFonts/Modak-Regular.ttf#Modak"/>
+                                </StackPanel>
+                            </Button>
+                            <Button Background="#85dcdcdc" Margin="10 50 0 0" Style="{DynamicResource TemelButtonSag}">
+                                <StackPanel>
+                                    <materialDesign:PackIcon Kind="ClipboardTextOutline" Width="50" Height="50" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" />
+                                    <TextBlock FontSize="28" Text="Kategoriler" FontFamily="/NewFonts/Modak-Regular.ttf#Modak"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel  Orientation="Horizontal" Grid.Row="1">
+                            <Button Background="#85dcdcdc" Margin="10 -40 0 0" Style="{DynamicResource TemelButtonSol}"/>
+                            <Button Background="#85dcdcdc" Margin="10 -40 0 0" Style="{DynamicResource TemelButtonOrta}"/>
+                            <Button Background="#85dcdcdc" Margin="10 -40 0 0" Style="{DynamicResource TemelButtonSag}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2">
+                            <Button Background="#85dcdcdc" Margin="10 -40 0 0" Style="{DynamicResource TemelButtonSol}"/>
+                            <Button Background="#85dcdcdc" Margin="10 -40 0 0" Style="{DynamicResource TemelButtonOrta}"/>
+                            <Button Background="#90dcdcdc" Margin="10 -40 0 0" Style="{DynamicResource TemelButtonSag}"/>
+                        </StackPanel>
+                        <Border Grid.Row="1" Style="{StaticResource BorderLikeSeperator}"/>
+                    </Grid>
+                </Border>
+            </UniformGrid>
+        </Grid>
+
+        <!--Tarih Saat-->
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="230"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical">
+                <TextBlock x:Name="_saat" FontSize="100" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Center" FontFamily="/NewFonts/Pacifico-Regular.ttf#Pacifico"/>
+                <TextBlock x:Name="_tarih" FontSize="24" VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center" FontFamily="/NewFonts/Pacifico-Regular.ttf#Pacifico"/>
+                <Separator Width="300" Background="White"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
