@@ -1,0 +1,14 @@
+﻿<Window x:Class="RestoranOtomasyonu.MasalarWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RestoranOtomasyonu"
+        Style="{StaticResource MaterialDesignWindow}"
+        mc:Ignorable="d"
+        Title="Masalar" WindowStyle="None" ResizeMode="NoResize" Width="1537" Height="864" WindowState="Maximized">
+    <Grid>
+        
+    </Grid>
+</Window>
