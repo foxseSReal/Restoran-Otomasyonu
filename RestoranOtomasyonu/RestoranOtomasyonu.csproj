@@ -343,6 +343,9 @@
     <Compile Include="Entity\TblURUN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="MasalarWindow.xaml.cs">
+      <DependentUpon>MasalarWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OtherWindows\AktifKullanici.cs" />
     <Compile Include="OtherWindows\DB.xaml.cs">
       <DependentUpon>DB.xaml</DependentUpon>
@@ -404,6 +407,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MasalarWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OtherWindows\DB.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -431,6 +438,10 @@
     <Page Include="Styles\Buttons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\iconDesing.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -506,6 +517,8 @@
     <None Include="Entity\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
+    <Resource Include="NewFonts\Modak-Regular.ttf" />
+    <Resource Include="NewFonts\Pacifico-Regular.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

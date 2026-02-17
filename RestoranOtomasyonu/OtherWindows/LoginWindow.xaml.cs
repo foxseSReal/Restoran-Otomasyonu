@@ -62,8 +62,8 @@ namespace RestoranOtomasyonu.OtherWindows
 
                     await Task.Delay(2500);
 
-                    MainWindow main = new MainWindow();
-                    main.Show();
+                    MasalarWindow MasalarWindow = new MasalarWindow();
+                    MasalarWindow.Show();
                     this.Close();
                 }
                 else MessageBox.Show("Hatalı kullanıcı adı veya şifre.");
