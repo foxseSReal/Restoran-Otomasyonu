@@ -61,7 +61,7 @@
                         <!--Aciklama Kutusu-->
                         <!---->
                         <Separator Margin="0 0 0 0" Width="200" Foreground="White"/>
-                        <Button Click="DetaylarClick" Margin="0 20 0 0" Width="100" Height="40" Content="Detaylar"/>
+                        <Button Click="MusteriDetaylar" Margin="0 20 0 0" Width="100" Height="40" Content="Detaylar"/>
                     </StackPanel>
                     <!--2-->
                     <StackPanel VerticalAlignment="Top" Orientation="Vertical" Grid.Column="1">

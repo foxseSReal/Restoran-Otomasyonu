@@ -471,11 +471,6 @@ namespace RestoranOtomasyonu.userControls
             }
             catch (Exception ex) { MessageBox.Show("Hata: " + ex.Message); }
         }
-        private void MusteriDetaylar(object sender, RoutedEventArgs e)
-        {
-            MusteriDetay MusteriDetaylar = new MusteriDetay();
-            MusteriDetaylar.ShowDialog();
-        }
         private void musteri_temizleButton_Click(object sender, RoutedEventArgs e)
         {
             musteriFirma_isim.Clear();
@@ -489,10 +484,10 @@ namespace RestoranOtomasyonu.userControls
             musteri_vergiDairesi_HesapNo.Clear();
             _seciliFirmaId = 0;
         }
-
-        private void DetaylarClick(object sender, RoutedEventArgs e)
+        private void MusteriDetaylar(object sender, RoutedEventArgs e)
         {
-
+            MusteriDetay MusteriDetaylar = new MusteriDetay();
+            MusteriDetaylar.ShowDialog();
         }
     }
 }
