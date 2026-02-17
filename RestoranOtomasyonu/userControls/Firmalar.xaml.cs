@@ -86,10 +86,5 @@ namespace RestoranOtomasyonu.userControls
         {
 
         }
-
-        private void DetaylarClick(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
