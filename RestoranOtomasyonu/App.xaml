@@ -11,6 +11,7 @@
                 <materialDesign:BundledTheme BaseTheme="Dark" PrimaryColor="LightBlue" SecondaryColor="LightBlue" />
 
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
+                <ResourceDictionary Source="/Styles/Colors.xaml"/>
                 <ResourceDictionary Source="/Styles/iconDesing.xaml"/>
                 <ResourceDictionary Source="/Styles/Buttons.xaml"/>
                 <ResourceDictionary Source="/Styles/UserControlCards.xaml"/>
@@ -43,6 +44,17 @@
                         </LinearGradientBrush>
                     </Setter.Value>
                 </Setter>
+            </Style>
+
+            <!-- Custom Styles -->
+            <Style x:Key="BorderLikeSeperator" TargetType="Border">
+                <Setter Property="Height" Value="3"/>
+                <Setter Property="Width" Value="700"/>
+                <Setter Property="Margin" Value="-50 0 0 10"/>
+                <Setter Property="VerticalAlignment" Value="Bottom"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Background" Value="#85dcdcdc"/>
+                <Setter Property="CornerRadius" Value="10"/>
             </Style>
             
             <!--Giris yazisi-->
