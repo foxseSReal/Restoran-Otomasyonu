@@ -11,7 +11,7 @@
     <Grid>
         <StackPanel Orientation="Vertical">
             <!--Kapatma Buttonu-->
-            <Button HorizontalAlignment="Right" Width="50" Height="30">
+            <Button HorizontalAlignment="Right" Width="50" Height="30" Click="Close_Click">
                 <materialDesign:PackIcon VerticalAlignment="Center" Kind="Close" Width="20" Height="30"/>
             </Button>
             <!---->
