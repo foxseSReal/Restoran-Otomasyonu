@@ -21,7 +21,7 @@ namespace RestoranOtomasyonu.userControls
     /// </summary>
     public partial class muhasebe : UserControl
     {
-        RESTORANDBEntities1 db = new RESTORANDBEntities1();
+        RESTORANDBEntities db = new RESTORANDBEntities();
         public muhasebe()
         {
             InitializeComponent();
@@ -39,7 +39,7 @@ namespace RestoranOtomasyonu.userControls
             {
                 var listele = await Task.Run(() =>
                 {
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         return db.TblGELIR
                                  .OrderByDescending(x => x.GelirId)
@@ -70,7 +70,7 @@ namespace RestoranOtomasyonu.userControls
             {
                 var listele = await Task.Run(() =>
                 {
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         return db.TblGIDER
                                  .OrderByDescending(x => x.GiderId)
@@ -102,7 +102,7 @@ namespace RestoranOtomasyonu.userControls
             {
                 var finansOzeti = await Task.Run(() =>
                 {
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         decimal toplamGelir = db.TblGELIR.Sum(x => (decimal?)x.Tutar) ?? 0;
                         decimal toplamGider = db.TblGIDER.Sum(x => (decimal?)x.Tutar) ?? 0;

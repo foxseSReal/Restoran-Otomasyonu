@@ -22,7 +22,7 @@ namespace RestoranOtomasyonu.userControls
     /// </summary>
     public partial class stok : UserControl
     {
-        RESTORANDBEntities1 db = new RESTORANDBEntities1();
+        RESTORANDBEntities db = new RESTORANDBEntities();
         public stok()
         {
             InitializeComponent();
@@ -37,7 +37,7 @@ namespace RestoranOtomasyonu.userControls
             {
                 var listele = await Task.Run(() =>
                 {
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         return db.TblFIRMAHAREKET
                                  .OrderByDescending(x => x.ID)
@@ -101,7 +101,7 @@ namespace RestoranOtomasyonu.userControls
 
             StokEkle stokEkle = new StokEkle();
             stokEkle.ShowDialog();
-            db = new RESTORANDBEntities1();
+            db = new RESTORANDBEntities();
             StokListeleAsync();
 
         }

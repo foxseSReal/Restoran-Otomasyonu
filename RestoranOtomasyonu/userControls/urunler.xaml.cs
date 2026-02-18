@@ -32,7 +32,7 @@ namespace RestoranOtomasyonu.userControls
             {
                 var listele = await Task.Run(() =>
                 {
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         return db.TblURUN
                                  .OrderByDescending(x => x.UrunId)
@@ -62,7 +62,7 @@ namespace RestoranOtomasyonu.userControls
             {
                 var sonUrunVerisi = await Task.Run(() =>
                 {
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         var sonurun = db.TblURUN.OrderByDescending(x => x.UrunId).FirstOrDefault();
 
@@ -108,7 +108,7 @@ namespace RestoranOtomasyonu.userControls
                 int id = seciliOge.ID;
                 var urunDetay = await Task.Run(() =>
                 {
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         var urun = db.TblURUN.Find(id);
                         if (urun != null)
@@ -188,7 +188,7 @@ namespace RestoranOtomasyonu.userControls
         {
             try
             {
-                using (var db = new RESTORANDBEntities1())
+                using (var db = new RESTORANDBEntities())
                 {
                     int? kategoriId = db.TblKATEGORI.FirstOrDefault(x => x.KategoriAdi == cbxUrun_Kategori.Text)?.KategoriId;
                     int? firmaId = db.TblFIRMA.FirstOrDefault(x => x.FirmaAdi == cbxUrun_Firma.Text)?.FirmaId;
@@ -240,7 +240,7 @@ namespace RestoranOtomasyonu.userControls
                 try
                 {
                     int id = seciliOge.ID;
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         var urun = db.TblURUN.Find(id);
                         if (urun != null)
@@ -275,7 +275,7 @@ namespace RestoranOtomasyonu.userControls
             try
             {
                 int id = seciliOge.ID;
-                using (var db = new RESTORANDBEntities1())
+                using (var db = new RESTORANDBEntities())
                 {
                     var urun = db.TblURUN.Find(id);
                     if (urun != null)
@@ -311,7 +311,7 @@ namespace RestoranOtomasyonu.userControls
             {
                 var filtreli = await Task.Run(() =>
                 {
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         return db.TblURUN.OrderByDescending(x => x.UrunId)
                                  .Where(x => x.UrunAdi.ToLower().Contains(aranan) ||

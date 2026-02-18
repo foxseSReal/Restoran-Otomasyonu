@@ -34,7 +34,7 @@ namespace RestoranOtomasyonu.userControls
             {
                 var listele = await Task.Run(() =>
                 {
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         return db.TblFIRMA.OrderByDescending(x => x.FirmaId)
                                  .Select(x => new
@@ -65,7 +65,7 @@ namespace RestoranOtomasyonu.userControls
             {
                 var listele = await Task.Run(() =>
                 {
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         return db.TblMODEME.OrderByDescending(x => x.OdemeId)
                                  .Where(x => x.TblFIRMA != null)
@@ -93,7 +93,7 @@ namespace RestoranOtomasyonu.userControls
             {
                 var firmaDetay = await Task.Run(() =>
                 {
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         var bukim = db.TblFIRMA.FirstOrDefault(x => x.FirmaId == firmaId);
                         if (bukim != null)
@@ -137,7 +137,7 @@ namespace RestoranOtomasyonu.userControls
             {
                 var firmaData = await Task.Run(() =>
                 {
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         var bukim = db.TblFIRMA.FirstOrDefault(x => x.FirmaId == mId);
                         return bukim != null ? new { bukim.FirmaId, bukim.FirmaAdi } : null;
@@ -160,7 +160,7 @@ namespace RestoranOtomasyonu.userControls
             {
                 var odemeDetay = await Task.Run(() =>
                 {
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         var bukim = db.TblMODEME.FirstOrDefault(x => x.OdemeId == mId);
                         if (bukim != null)
@@ -197,7 +197,7 @@ namespace RestoranOtomasyonu.userControls
         {
             int? sonId = await Task.Run(() =>
             {
-                using (var db = new RESTORANDBEntities1())
+                using (var db = new RESTORANDBEntities())
                 {
                     return db.TblFIRMA.OrderByDescending(x => x.FirmaId)
                                     .Select(x => (int?)x.FirmaId)
@@ -228,7 +228,7 @@ namespace RestoranOtomasyonu.userControls
             {
                 var borclar = await Task.Run(() =>
                 {
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         return db.TblMODEME.Where(b => b.FmusteriID == firmaId)
                                  .Select(b => new
@@ -264,7 +264,7 @@ namespace RestoranOtomasyonu.userControls
             {
                 var filtreliListe = await Task.Run(() =>
                 {
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         return db.TblFIRMA.OrderByDescending(x => x.FirmaId)
                                 .Where(x => x.FirmaAdi.ToLower().Contains(urunara))
@@ -289,7 +289,7 @@ namespace RestoranOtomasyonu.userControls
         {
             try
             {
-                using (var db = new RESTORANDBEntities1())
+                using (var db = new RESTORANDBEntities())
                 {
                     var yeniFirma = new TblFIRMA();
                     yeniFirma.FirmaAdi = musteriFirma_isim.Text;
@@ -320,7 +320,7 @@ namespace RestoranOtomasyonu.userControls
                 try
                 {
                     int id = secilmis.ID;
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         var bukim = db.TblFIRMA.Find(id);
                         if (bukim != null)
@@ -346,7 +346,7 @@ namespace RestoranOtomasyonu.userControls
                 try
                 {
                     int id = secilmis.ID;
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         var bukim = db.TblFIRMA.Find(id);
                         if (bukim != null)
@@ -378,7 +378,7 @@ namespace RestoranOtomasyonu.userControls
         {
             try
             {
-                using (var db = new RESTORANDBEntities1())
+                using (var db = new RESTORANDBEntities())
                 {
                     var yeniBorc = new TblMODEME();
                     int hedefFirmaId = _seciliFirmaId;
@@ -409,7 +409,7 @@ namespace RestoranOtomasyonu.userControls
             try
             {
                 int mId = secilmis.ID;
-                using (var db = new RESTORANDBEntities1())
+                using (var db = new RESTORANDBEntities())
                 {
                     var bukim = db.TblMODEME.Include("TblFIRMA").FirstOrDefault(x => x.OdemeId == mId);
 
@@ -452,7 +452,7 @@ namespace RestoranOtomasyonu.userControls
             try
             {
                 int mId = secilmis.ID;
-                using (var db = new RESTORANDBEntities1())
+                using (var db = new RESTORANDBEntities())
                 {
                     var bukim = db.TblMODEME.Find(mId);
                     if (bukim != null)

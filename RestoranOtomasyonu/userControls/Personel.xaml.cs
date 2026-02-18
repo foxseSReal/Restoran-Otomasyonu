@@ -25,7 +25,7 @@ namespace RestoranOtomasyonu.userControls
     /// </summary>
     public partial class Personel : UserControl
     {
-        RESTORANDBEntities1 ResDB = new RESTORANDBEntities1();
+        RESTORANDBEntities ResDB = new RESTORANDBEntities();
 
         public Personel()
         {
@@ -38,7 +38,7 @@ namespace RestoranOtomasyonu.userControls
             {
                 var personelListesi = await Task.Run(() =>
                 {
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         return db.TblPERSONELLER
                                  .OrderByDescending(x => x.PersonelID)
@@ -72,7 +72,7 @@ namespace RestoranOtomasyonu.userControls
             {
                 var detayVeriler = await Task.Run(() =>
                 {
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         var sonPersonel = db.TblPERSONELLER
                                             .OrderByDescending(x => x.PersonelID)

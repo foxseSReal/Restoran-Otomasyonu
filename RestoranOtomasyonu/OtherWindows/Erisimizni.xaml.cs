@@ -24,7 +24,7 @@ namespace RestoranOtomasyonu.OtherWindows
     /// </summary>
     public partial class Erisimizni : Window
     {
-        RESTORANDBEntities1 db = new RESTORANDBEntities1();
+        RESTORANDBEntities db = new RESTORANDBEntities();
         public Erisimizni()
         {
             InitializeComponent();

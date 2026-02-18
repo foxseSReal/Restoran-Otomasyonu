@@ -8,6 +8,7 @@
         Background="{StaticResource MainBackgroundBrush}"
         Style="{StaticResource MaterialDesignWindow}"
         mc:Ignorable="d"
+        Loaded="Window_Loaded"
         Title="Masalar" WindowStyle="None" ResizeMode="NoResize" Width="1537" Height="864" WindowState="Maximized">
     <WindowChrome.WindowChrome>
         <WindowChrome 
@@ -52,124 +53,12 @@
         <Grid Grid.Column="1" Grid.Row="1">
             <Border Padding="50 0 0 0">
                 <ScrollViewer VerticalScrollBarVisibility="Visible">
-                    <WrapPanel Orientation="Horizontal" UseLayoutRounding="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}">
+                    <WrapPanel Margin="0 20 0 0" x:Name="MasaPanel" Orientation="Horizontal" UseLayoutRounding="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                        <Button  Margin="10" Style="{DynamicResource MasaButton}">
                             <StackPanel>
                                 <TextBlock FontSize="28" Text="Masa 1" FontFamily="/NewFonts/Modak-Regular.ttf#Modak"/>
                             </StackPanel>
                         </Button>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}">
-                            <StackPanel>
-                                <TextBlock FontSize="28" Text="Masa 1" FontFamily="/NewFonts/Modak-Regular.ttf#Modak"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}">
-                            <StackPanel>
-                                <TextBlock FontSize="28" Text="Masa 2" FontFamily="/NewFonts/Modak-Regular.ttf#Modak"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}">
-                            <StackPanel>
-                                <TextBlock FontSize="28" Text="Masa 3" FontFamily="/NewFonts/Modak-Regular.ttf#Modak"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}"/>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}">
-                            <StackPanel>
-                                <TextBlock FontSize="28" Text="Masa 1" FontFamily="/NewFonts/Modak-Regular.ttf#Modak"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}">
-                            <StackPanel>
-                                <TextBlock FontSize="28" Text="Masa 2" FontFamily="/NewFonts/Modak-Regular.ttf#Modak"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}">
-                            <StackPanel>
-                                <TextBlock FontSize="28" Text="Masa 3" FontFamily="/NewFonts/Modak-Regular.ttf#Modak"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}"/>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}">
-                            <StackPanel>
-                                <TextBlock FontSize="28" Text="Masa 1" FontFamily="/NewFonts/Modak-Regular.ttf#Modak"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}">
-                            <StackPanel>
-                                <TextBlock FontSize="28" Text="Masa 2" FontFamily="/NewFonts/Modak-Regular.ttf#Modak"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}">
-                            <StackPanel>
-                                <TextBlock FontSize="28" Text="Masa 3" FontFamily="/NewFonts/Modak-Regular.ttf#Modak"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}"/>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}">
-                            <StackPanel>
-                                <TextBlock FontSize="28" Text="Masa 1" FontFamily="/NewFonts/Modak-Regular.ttf#Modak"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}">
-                            <StackPanel>
-                                <TextBlock FontSize="28" Text="Masa 2" FontFamily="/NewFonts/Modak-Regular.ttf#Modak"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}">
-                            <StackPanel>
-                                <TextBlock FontSize="28" Text="Masa 3" FontFamily="/NewFonts/Modak-Regular.ttf#Modak"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}"/>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}">
-                            <StackPanel>
-                                <TextBlock FontSize="28" Text="Masa 1" FontFamily="/NewFonts/Modak-Regular.ttf#Modak"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}">
-                            <StackPanel>
-                                <TextBlock FontSize="28" Text="Masa 2" FontFamily="/NewFonts/Modak-Regular.ttf#Modak"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}">
-                            <StackPanel>
-                                <TextBlock FontSize="28" Text="Masa 3" FontFamily="/NewFonts/Modak-Regular.ttf#Modak"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}"/>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}">
-                            <StackPanel>
-                                <TextBlock FontSize="28" Text="Masa 1" FontFamily="/NewFonts/Modak-Regular.ttf#Modak"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}">
-                            <StackPanel>
-                                <TextBlock FontSize="28" Text="Masa 2" FontFamily="/NewFonts/Modak-Regular.ttf#Modak"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}">
-                            <StackPanel>
-                                <TextBlock FontSize="28" Text="Masa 3" FontFamily="/NewFonts/Modak-Regular.ttf#Modak"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}"/>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}">
-                            <StackPanel>
-                                <TextBlock FontSize="28" Text="Masa 1" FontFamily="/NewFonts/Modak-Regular.ttf#Modak"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}">
-                            <StackPanel>
-                                <TextBlock FontSize="28" Text="Masa 2" FontFamily="/NewFonts/Modak-Regular.ttf#Modak"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}">
-                            <StackPanel>
-                                <TextBlock FontSize="28" Text="Masa 3" FontFamily="/NewFonts/Modak-Regular.ttf#Modak"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="#85dcdcdc" Margin="10" Style="{DynamicResource TemelButtonOrta}"/>
                     </WrapPanel>
                 </ScrollViewer>
             </Border>

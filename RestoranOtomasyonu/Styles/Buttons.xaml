@@ -231,13 +231,13 @@
     </Style>
     <!---->
 
-    <!--TemelButtonOrta-->
-    <Style x:Key="TemelButtonOrta" TargetType="Button">
+    <!--MasaButton-->
+    <Style x:Key="MasaButton" TargetType="Button">
         <Setter Property="Width" Value="250"/>
         <Setter Property="Height" Value="150"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="BorderBrush" Value="{StaticResource AmberBrush}"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Background" Value="{StaticResource AmberBrush}"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>

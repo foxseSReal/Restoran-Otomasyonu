@@ -22,7 +22,7 @@ namespace RestoranOtomasyonu.userControls
     /// </summary>
     public partial class gunlukHarcama : UserControl
     {
-        RESTORANDBEntities1 db = new RESTORANDBEntities1();
+        RESTORANDBEntities db = new RESTORANDBEntities();
         public gunlukHarcama()
         {
             InitializeComponent();
@@ -40,7 +40,7 @@ namespace RestoranOtomasyonu.userControls
 
                 var listele = await Task.Run(() =>
                 {
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         return db.TblGUNLUKHARCAMA
                                  .Where(x => x.Tarih == bugun)
@@ -74,7 +74,7 @@ namespace RestoranOtomasyonu.userControls
 
                 decimal toplam = await Task.Run(() =>
                 {
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         return db.TblGUNLUKHARCAMA
                                  .Where(x => x.Tarih >= baslangic && x.Tarih <= bitis)
@@ -115,7 +115,7 @@ namespace RestoranOtomasyonu.userControls
 
             try
             {
-                using (var db = new RESTORANDBEntities1())
+                using (var db = new RESTORANDBEntities())
                 {
                     TblGUNLUKHARCAMA harcama = new TblGUNLUKHARCAMA();
                     harcama.HarcananYer = harcananYer;

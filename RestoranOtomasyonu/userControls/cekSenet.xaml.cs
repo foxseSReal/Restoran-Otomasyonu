@@ -23,7 +23,7 @@ namespace RestoranOtomasyonu.userControls
     /// </summary>
     public partial class cekSenet : UserControl
     {
-        RESTORANDBEntities1 db = new RESTORANDBEntities1();
+        RESTORANDBEntities db = new RESTORANDBEntities();
         public cekSenet()
         {
             InitializeComponent();
@@ -37,7 +37,7 @@ namespace RestoranOtomasyonu.userControls
             {
                 var sonKayitVerisi = await Task.Run(() =>
                 {
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         var sonKayit = db.TblCEKSENET
                                          .OrderByDescending(x => x.CeksenetId)
@@ -80,7 +80,7 @@ namespace RestoranOtomasyonu.userControls
             {
                 var liste = await Task.Run(() =>
                 {
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         return db.TblCEKSENET
                                  .OrderByDescending(x => x.CeksenetId)

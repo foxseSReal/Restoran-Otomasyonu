@@ -23,7 +23,7 @@ namespace RestoranOtomasyonu.OtherWindows
     public partial class LoginWindow : Window
     {
         DispatcherTimer timer = new DispatcherTimer();
-        RESTORANDBEntities1 db = new RESTORANDBEntities1();
+        RESTORANDBEntities db = new RESTORANDBEntities();
         public LoginWindow()
         {
             InitializeComponent();

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RestoranOtomasyonu.Entity;
+using RestoranOtomasyonu.OtherWindows;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -21,6 +23,7 @@ namespace RestoranOtomasyonu
     /// </summary>
     public partial class MasalarWindow : Window
     {
+        RESTORANDBEntities db = new RESTORANDBEntities();
         DispatcherTimer timer = new DispatcherTimer();
         private readonly CultureInfo _tr = new CultureInfo("tr-TR");
 
@@ -37,15 +40,100 @@ namespace RestoranOtomasyonu
         {
             _saat.Text = DateTime.Now.ToString("HH:mm");
         }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            MasaGoster();
+            MasaRenklendir();
+        }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            MessageBoxResult cevap = MessageBox.Show(
+                "Uygulamayi Kapatmak İstiyor musunuz?",
+                "Uygulamayi Kapatacak mısın?",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+                );
+            if (cevap == MessageBoxResult.Yes)
+            {
+                Application.Current.Shutdown();
+            }
         }
 
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
+        }
+
+        public void MasaGoster()
+        {
+            MasaPanel.Children.Clear();
+            var masalar = (from x in db.TblMASA
+                           where x.Durum == true && x.MasaId != 999
+                           select new
+                           {
+                               x.MasaId,
+                               x.Durum
+                           }).ToList();
+
+            foreach (var item in masalar)
+            {
+                Button btn = new Button();
+                btn.Style = (Style)FindResource("MasaButton");
+                btn.Margin = new Thickness(10);
+                var converter = new System.Windows.Media.BrushConverter();
+                btn.Background = (System.Windows.Media.Brush)converter.ConvertFromString("#85dcdcdc");
+                btn.Tag = item.MasaId;
+                btn.Click += Masa_Click;
+
+                StackPanel sp = new StackPanel();
+
+                TextBlock tb = new TextBlock();
+                tb.Text = "Masa " + item.MasaId;
+                tb.FontSize = 28;
+
+                tb.FontFamily = new System.Windows.Media.FontFamily(new Uri("pack://application:,,,/"), "/NewFonts/Modak-Regular.ttf#Modak");
+
+                sp.Children.Add(tb);
+                btn.Content = sp;
+                MasaPanel.Children.Add(btn);
+            }
+        }
+
+        private void Masa_Click(object sender, RoutedEventArgs e)
+        {
+            Button secilenButon = (Button)sender;
+            int masaId = Convert.ToInt32(secilenButon.Tag);
+
+            MessageBox.Show("Seçilen Masa ID: " + masaId);
+        }
+        public void MasaRenklendir()
+        {
+            var doluMasalar = db.TblMASA.Where(x => x.Durum == true && x.MasaId != 999 && x.Statu == "D").Select(x => x.MasaId).ToList();
+            var rezerveMasalar = db.TblMASA.Where(x => x.Durum == true && x.MasaId != 999 && x.Statu == "R").Select(x => x.MasaId).ToList();
+
+            foreach (var child in MasaPanel.Children)
+            {
+                if (child is Button btn)
+                {
+                    int masaId = Convert.ToInt32(btn.Tag);
+
+                    StackPanel sp = (StackPanel)btn.Content;
+                    TextBlock tb = (TextBlock)sp.Children[0];
+
+                    if (doluMasalar.Contains(masaId))
+                    {
+                        btn.Background = (Brush)FindResource("DoluMasaBrush");
+                        tb.Foreground = Brushes.AntiqueWhite;
+                    }
+                    else if (rezerveMasalar.Contains(masaId))
+                    {
+                        btn.Background = (Brush)FindResource("AmberBrush");
+                        btn.BorderBrush = (Brush)FindResource("AmberBrush");
+                        tb.Text = "Rezerve 12.30";
+                    }
+                }
+            }
         }
 
     }

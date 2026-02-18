@@ -25,6 +25,7 @@ namespace RestoranOtomasyonu.Entity
         public int MasaNo { get; set; }
         public string Aciklama { get; set; }
         public Nullable<decimal> Tutar { get; set; }
+        public string Statu { get; set; }
         public bool Durum { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

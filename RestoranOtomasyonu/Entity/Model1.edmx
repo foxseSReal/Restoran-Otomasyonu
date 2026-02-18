@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="RESTORANDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="RESTORANDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -173,6 +173,7 @@
           <Property Name="MasaNo" Type="int" Nullable="false" />
           <Property Name="Aciklama" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="Tutar" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Statu" Type="char" MaxLength="1" />
           <Property Name="Durum" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="TblMODEME">
@@ -638,6 +639,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="RESTORANDBModelStoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblBORDROLAR" EntityType="Self.TblBORDROLAR" Schema="dbo" store:Type="Tables" />
@@ -775,7 +807,8 @@
             <End Role="TblURUN" EntitySet="TblURUN" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RESTORANDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -971,6 +1004,7 @@
           <Property Name="MasaNo" Type="Int32" Nullable="false" />
           <Property Name="Aciklama" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Tutar" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Statu" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="Durum" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="TblREZARVASYON" Relationship="Self.FK_Rezervasyon_Masa" FromRole="TblMASA" ToRole="TblREZARVASYON" />
           <NavigationProperty Name="TblSIPARIS" Relationship="Self.FK_Siparis_Masa" FromRole="TblMASA" ToRole="TblSIPARIS" />
@@ -1468,7 +1502,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="RESTORANDBEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="RESTORANDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="TblBORDROLAR" EntityType="Self.TblBORDROLAR" />
           <EntitySet Name="TblCEKSENET" EntityType="Self.TblCEKSENET" />
@@ -1640,7 +1674,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="RESTORANDBModelStoreContainer" CdmEntityContainer="RESTORANDBEntities1">
+        <EntityContainerMapping StorageEntityContainer="RESTORANDBModelStoreContainer" CdmEntityContainer="RESTORANDBEntities">
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="RESTORANDBModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -1820,6 +1854,7 @@
                 <ScalarProperty Name="MasaNo" ColumnName="MasaNo" />
                 <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
                 <ScalarProperty Name="Tutar" ColumnName="Tutar" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
                 <ScalarProperty Name="Durum" ColumnName="Durum" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1961,30 +1996,13 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TBLKULLANICI">
-            <EntityTypeMapping TypeName="RESTORANDBModel.TBLKULLANICI">
-              <MappingFragment StoreEntitySet="TBLKULLANICI">
-                <ScalarProperty Name="YETKILENDIRMEYAP" ColumnName="YETKILENDIRMEYAP" />
-                <ScalarProperty Name="VERITABANI" ColumnName="VERITABANI" />
-                <ScalarProperty Name="REZERVASYON" ColumnName="REZERVASYON" />
-                <ScalarProperty Name="URUNLER" ColumnName="URUNLER" />
-                <ScalarProperty Name="STOK" ColumnName="STOK" />
-                <ScalarProperty Name="MUSTERIFIRMA" ColumnName="MUSTERIFIRMA" />
-                <ScalarProperty Name="PERSONEL" ColumnName="PERSONEL" />
-                <ScalarProperty Name="SATISDURUMU" ColumnName="SATISDURUMU" />
-                <ScalarProperty Name="CEKSENET" ColumnName="CEKSENET" />
-                <ScalarProperty Name="MUHASEBE" ColumnName="MUHASEBE" />
-                <ScalarProperty Name="GUNLUKHARCAMA" ColumnName="GUNLUKHARCAMA" />
-                <ScalarProperty Name="Yetki" ColumnName="Yetki" />
-                <ScalarProperty Name="KullaniciResim" ColumnName="KullaniciResim" />
-                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
-                <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
-                <ScalarProperty Name="KullaniciEmail" ColumnName="KullaniciEmail" />
-                <ScalarProperty Name="KullaniciAdSoyad" ColumnName="KullaniciAdSoyad" />
-                <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="RESTORANDBModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="RESTORANDBModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="RESTORANDBModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="RESTORANDBModel.Store.sp_helpdiagramdefinition" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="RESTORANDBModel.Store.sp_helpdiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="RESTORANDBModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="RESTORANDBModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

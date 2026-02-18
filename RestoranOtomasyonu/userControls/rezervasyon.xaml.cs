@@ -21,7 +21,7 @@ namespace RestoranOtomasyonu.userControls
     /// </summary>
     public partial class rezervasyon : UserControl
     {
-        RESTORANDBEntities1 db = new RESTORANDBEntities1();
+        RESTORANDBEntities db = new RESTORANDBEntities();
         public rezervasyon()
         {
             InitializeComponent();
@@ -38,7 +38,7 @@ namespace RestoranOtomasyonu.userControls
             {
                 var listele = await Task.Run(() =>
                 {
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         return db.TblREZARVASYON
                                  .Include("TblMUSTERILER") 
@@ -71,7 +71,7 @@ namespace RestoranOtomasyonu.userControls
             {
                 var sonRezervasyon = await Task.Run(() =>
                 {
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         var kayit = db.TblREZARVASYON
                                       .Include("TblMUSTERILER")

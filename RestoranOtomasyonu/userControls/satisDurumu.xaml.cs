@@ -21,7 +21,7 @@ namespace RestoranOtomasyonu.userControls
     /// </summary>
     public partial class satisDurumu : UserControl
     {
-        RESTORANDBEntities1 db = new RESTORANDBEntities1();
+        RESTORANDBEntities db = new RESTORANDBEntities();
         
         public satisDurumu()
         {
@@ -38,7 +38,7 @@ namespace RestoranOtomasyonu.userControls
             {
                 var listele = await Task.Run(() =>
                 {
-                    using (var db = new RESTORANDBEntities1())
+                    using (var db = new RESTORANDBEntities())
                     {
                         return db.TblURUN
                                  .OrderByDescending(x => x.UrunId)
