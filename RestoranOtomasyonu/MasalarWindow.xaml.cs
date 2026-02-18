@@ -136,5 +136,11 @@ namespace RestoranOtomasyonu
             }
         }
 
+        private void YonetimClick(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.Show();
+            this.Close();
+        }
     }
 }

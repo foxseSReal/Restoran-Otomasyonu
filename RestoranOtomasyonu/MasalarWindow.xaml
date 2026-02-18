@@ -79,11 +79,21 @@
                     <!--Kontrol Paneli-->
                     <Border Padding="0 20 0 0" Style="{StaticResource KontrolBorder}">
                         <StackPanel Orientation="Vertical">
-                            <Button Style="{StaticResource KontrolButtons}"/>
-                            <Button Style="{StaticResource KontrolButtons}"/>
-                            <Button Style="{StaticResource KontrolButtons}"/>
-                            <Button Style="{StaticResource KontrolButtons}"/>
-                            <Button Style="{StaticResource KontrolButtons}"/>
+                            <Button ToolTip="Yönetim Paneline Geç" Style="{StaticResource KontrolButtons}" Click="YonetimClick">
+                                <materialDesign:PackIcon Kind="ArrowRightBold" Width="50" Height="50"/>
+                            </Button>
+                            <Button ToolTip="Masa Ekle" Style="{StaticResource KontrolButtons}">
+                                <materialDesign:PackIcon Kind="TableAdd" Width="50" Height="50"/>
+                            </Button>
+                            <Button ToolTip="Kategori Ekle" Style="{StaticResource KontrolButtons}">
+                                <materialDesign:PackIcon Kind="Food" Width="50" Height="50"/>
+                            </Button>
+                            <Button ToolTip="Ürün EKle" Style="{StaticResource KontrolButtons}">
+                                <materialDesign:PackIcon Kind="AddBold" Width="50" Height="50"/>
+                            </Button>
+                            <Button ToolTip="Fiyat Güncelle" Style="{StaticResource KontrolButtons}">
+                                <materialDesign:PackIcon Kind="CashSync" Width="50" Height="50"/>
+                            </Button>
                         </StackPanel>
                     </Border>
 
