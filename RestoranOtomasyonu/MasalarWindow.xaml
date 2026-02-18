@@ -76,6 +76,16 @@
 
                 <!--Sag Kontrol Paneli-->
                 <StackPanel Grid.Column="1"  Grid.Row="1">
+                    <!--Kontrol Paneli-->
+                    <Border Padding="0 20 0 0" Style="{StaticResource KontrolBorder}">
+                        <StackPanel Orientation="Vertical">
+                            <Button Style="{StaticResource KontrolButtons}"/>
+                            <Button Style="{StaticResource KontrolButtons}"/>
+                            <Button Style="{StaticResource KontrolButtons}"/>
+                            <Button Style="{StaticResource KontrolButtons}"/>
+                            <Button Style="{StaticResource KontrolButtons}"/>
+                        </StackPanel>
+                    </Border>
 
                 </StackPanel>
                 <!---->
