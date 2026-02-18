@@ -54,11 +54,7 @@
             <Border Padding="50 0 0 0">
                 <ScrollViewer VerticalScrollBarVisibility="Visible">
                     <WrapPanel Margin="0 20 0 0" x:Name="MasaPanel" Orientation="Horizontal" UseLayoutRounding="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
-                        <Button  Margin="10" Style="{DynamicResource MasaButton}">
-                            <StackPanel>
-                                <TextBlock FontSize="28" Text="Masa 1" FontFamily="/NewFonts/Modak-Regular.ttf#Modak"/>
-                            </StackPanel>
-                        </Button>
+                        <!--Masalar Buraya Geliyor-->
                     </WrapPanel>
                 </ScrollViewer>
             </Border>
