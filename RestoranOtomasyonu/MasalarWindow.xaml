@@ -77,7 +77,7 @@
                 <!--Sag Kontrol Paneli-->
                 <StackPanel Grid.Column="1"  Grid.Row="1">
                     <!--Kontrol Paneli-->
-                    <Border Padding="0 20 0 0" Style="{StaticResource KontrolBorder}">
+                    <Border Padding="0 20 0 0" Style="{StaticResource KontrolBorderSalon}">
                         <StackPanel Orientation="Vertical">
                             <Button ToolTip="Yönetim Paneline Geç" Style="{StaticResource KontrolButtons}" Click="YonetimClick">
                                 <materialDesign:PackIcon Kind="ArrowRightBold" Width="50" Height="50"/>
