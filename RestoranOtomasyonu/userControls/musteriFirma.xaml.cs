@@ -36,7 +36,7 @@ namespace RestoranOtomasyonu.userControls
                 {
                     using (var db = new RESTORANDBEntities())
                     {
-                        return db.TblFIRMA.OrderByDescending(x => x.FirmaId)
+                        return db.TblFIRMA.OrderByDescending(x => x.FirmaId).Where(x=>x.Unvan=="Müşteri")
                                  .Select(x => new
                                  {
                                      ID = x.FirmaId,
@@ -68,7 +68,7 @@ namespace RestoranOtomasyonu.userControls
                     using (var db = new RESTORANDBEntities())
                     {
                         return db.TblMODEME.OrderByDescending(x => x.OdemeId)
-                                 .Where(x => x.TblFIRMA != null)
+                                 .Where(x => x.TblFIRMA.Unvan != "Firma")
                                  .Select(x => new
                                  {
                                      ID = x.OdemeId,
@@ -199,7 +199,7 @@ namespace RestoranOtomasyonu.userControls
             {
                 using (var db = new RESTORANDBEntities())
                 {
-                    return db.TblFIRMA.OrderByDescending(x => x.FirmaId)
+                    return db.TblFIRMA.OrderByDescending(x => x.FirmaId).Where(x => x.Unvan == "Müşteri")
                                     .Select(x => (int?)x.FirmaId)
                                     .FirstOrDefault();
                 }
