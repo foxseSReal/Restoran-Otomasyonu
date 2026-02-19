@@ -417,7 +417,7 @@
     <!---->
     <!--Kontrol Panel-->
 
-    <Style x:Key="KontrolBorder" TargetType="Border">
+    <Style x:Key="KontrolBorderSalon" TargetType="Border">
         <Setter Property="Width" Value="50"/>
         <Setter Property="Height" Value="300"/>
         <Setter Property="Background" Value="{StaticResource Yellow200Brush}"/>
@@ -425,6 +425,15 @@
         <Setter Property="HorizontalAlignment" Value="Right"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Margin" Value="0 200 0 0"/>
+    </Style>
+    <Style x:Key="KontrolBorderYonetim" TargetType="Border">
+        <Setter Property="Width" Value="50"/>
+        <Setter Property="Height" Value="300"/>
+        <Setter Property="Background" Value="{StaticResource Yellow200Brush}"/>
+        <Setter Property="CornerRadius" Value="20 0 0 20"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0 90 0 0"/>
     </Style>
 
     <Style x:Key="KontrolButtons" TargetType="Button">
