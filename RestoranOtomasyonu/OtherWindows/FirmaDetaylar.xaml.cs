@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestoranOtomasyonu.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,24 +20,95 @@ namespace RestoranOtomasyonu.OtherWindows
     /// </summary>
     public partial class FirmaDetaylar : Window
     {
+        RESTORANDBEntities db = new RESTORANDBEntities();
         public FirmaDetaylar()
         {
             InitializeComponent();
         }
-
-        private void firma_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private int _seciliFirmaId = 0;
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
+            await FirmaListeleAsync();
         }
 
-        private void urun_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void firma_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            var secilmis = FirmaD_DataGrid.SelectedItem as dynamic;
+            if (secilmis != null)
+            {
+                int id = secilmis.ID;
+                _seciliFirmaId = id;
+                await DetayListeleAsync2(id);
+            }
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
+
+        public async Task FirmaListeleAsync()
+        {
+            try
+            {
+                var listele = await Task.Run(() =>
+                {
+                    using (var db = new RESTORANDBEntities())
+                    {
+                        return db.TblFIRMA.OrderByDescending(x => x.FirmaId).Where(x => x.Unvan == "Firma")
+                                 .Select(x => new
+                                 {
+                                     ID = x.FirmaId,
+                                     MüşteriFirma = x.FirmaAdi,
+                                     Adres = x.Adres,
+                                     Telefon = x.Telefon,
+                                     Telefonİki = x.Telefonİki,
+                                     WebSitesi = x.WebSitesi,
+                                     VergiDairesi = x.VergiDairesi,
+                                     HesapNo = x.HesapNo
+                                 }).ToList();
+                    }
+                });
+
+                FirmaD_DataGrid.ItemsSource = listele;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Listeleme hatası: " + ex.Message);
+            }
+        }
+        public async Task DetayListeleAsync2(int id)
+        {
+            try
+            {
+                var listele = await Task.Run(() =>
+                {
+                    using (var db = new RESTORANDBEntities())
+                    {
+                        return db.TblFIRMAHAREKET
+                                 .OrderByDescending(x => x.ID).Where(x => x.TblFIRMA.Unvan == "Firma").Where(x => x.FirmaId == id)
+                                 .ToList()
+                                 .Select(s => new
+                                 {
+                                     ID = s.ID,
+                                     FirmaAdı = s.TblFIRMA != null ? s.TblFIRMA.FirmaAdi : "Firma Silinmiş",
+                                     ÜrünAdı = s.TblURUN != null ? s.TblURUN.UrunAdi : "Ürün Silinmiş",
+                                     Miktarı = s.Adet ?? 0,
+                                     Fiyat = s.Tutar ?? 0,
+                                     Aciklama = s.Aciklama,
+                                     Tarih = s.Tarih.HasValue ? s.Tarih.Value.ToString("dd.MM.yyyy") : "-"
+                                 })
+                                 .ToList();
+                    }
+                });
+
+                Detay_DataGrid.ItemsSource = listele;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Stok listesi yüklenirken hata: " + ex.Message);
+            }
+        }
+
     }
 }

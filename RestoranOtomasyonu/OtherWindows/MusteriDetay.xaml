@@ -7,6 +7,7 @@
         Style="{StaticResource MaterialDesignWindow}"
         xmlns:local="clr-namespace:RestoranOtomasyonu.OtherWindows"
         mc:Ignorable="d"
+        Loaded="Window_Loaded"
         Title="MusteriDetay" Height="614" Width="856" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid>
         <StackPanel Orientation="Vertical">
@@ -17,11 +18,11 @@
             <!---->
             <!--Firma DataGrid-->
             <TextBlock Text="Müşteriler" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black" FontSize="24" Foreground="LimeGreen"/>
-            <DataGrid IsReadOnly="True" x:Name="firma_DataGrid" Margin="0 10 0 0" CanUserAddRows="False" CanUserDeleteRows="False" Focusable="True" Width="830" Height="250"  SelectionChanged="firma_DataGrid_SelectionChanged" />
+            <DataGrid IsReadOnly="True" x:Name="MusteriD_DataGrid" Margin="0 10 0 0" CanUserAddRows="False" CanUserDeleteRows="False" Focusable="True" Width="830" Height="250"  SelectionChanged="Musteri_DataGrid_SelectionChanged" />
             <!---->
             <!--Urunler DataGrid-->
             <TextBlock Text="Detayler" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black" FontSize="24" Foreground="LimeGreen"/>
-            <DataGrid IsReadOnly="True" x:Name="urun_DataGrid" Margin="0 10 0 0" CanUserAddRows="False" CanUserDeleteRows="False" Focusable="True" Width="830" Height="250"  SelectionChanged="urun_DataGrid_SelectionChanged" />
+            <DataGrid IsReadOnly="True" x:Name="Detay_DataGrid" Margin="0 10 0 0" CanUserAddRows="False" CanUserDeleteRows="False" Focusable="True" Width="830" Height="250"/>
             <!---->
         </StackPanel>
     </Grid>
