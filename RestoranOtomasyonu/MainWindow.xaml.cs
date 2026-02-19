@@ -165,9 +165,14 @@ namespace RestoranOtomasyonu
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-
             LoginWindow db = new LoginWindow();
             db.Show();
+        }
+        private void SalonClick(object sender, RoutedEventArgs e)
+        {
+            MasalarWindow Salon = new MasalarWindow();
+            Salon.Show();
+            this.Close();
         }
     }
 }

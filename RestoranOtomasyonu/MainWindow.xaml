@@ -26,6 +26,28 @@
                 <Label x:Name="lblSaat" Style="{StaticResource saat}"/>
                 <Label x:Name="lblTarih" Style="{StaticResource tarih}"/>
                 <Separator Width="250"  Height="2" Background="Black" Opacity="0.5" Margin="20 0 20 0" Foreground="Black"/>
+                <StackPanel>
+                    <!--Kontrol Paneli-->
+                    <Border Padding="0 20 0 0" Style="{StaticResource KontrolBorderYonetim}">
+                        <StackPanel Orientation="Vertical">
+                            <Button ToolTip="Salon Paneline Geç" Style="{StaticResource KontrolButtons}" Click="SalonClick">
+                                <materialDesign:PackIcon Kind="ArrowLeftBold" Width="50" Height="50"/>
+                            </Button>
+                            <Button ToolTip="Masa Ekle" Style="{StaticResource KontrolButtons}">
+                                <materialDesign:PackIcon Kind="TableAdd" Width="50" Height="50"/>
+                            </Button>
+                            <Button ToolTip="Kategori Ekle" Style="{StaticResource KontrolButtons}">
+                                <materialDesign:PackIcon Kind="Food" Width="50" Height="50"/>
+                            </Button>
+                            <Button ToolTip="Ürün EKle" Style="{StaticResource KontrolButtons}">
+                                <materialDesign:PackIcon Kind="AddBold" Width="50" Height="50"/>
+                            </Button>
+                            <Button ToolTip="Fiyat Güncelle" Style="{StaticResource KontrolButtons}">
+                                <materialDesign:PackIcon Kind="CashSync" Width="50" Height="50"/>
+                            </Button>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
             </StackPanel>
         </Border>
 
