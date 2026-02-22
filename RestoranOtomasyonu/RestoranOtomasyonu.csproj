@@ -346,6 +346,9 @@
     <Compile Include="MasalarWindow.xaml.cs">
       <DependentUpon>MasalarWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OtherWindows\Adisyon.xaml.cs">
+      <DependentUpon>Adisyon.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OtherWindows\AktifKullanici.cs" />
     <Compile Include="OtherWindows\DB.xaml.cs">
       <DependentUpon>DB.xaml</DependentUpon>
@@ -411,6 +414,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="OtherWindows\Adisyon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OtherWindows\DB.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -432,6 +439,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OtherWindows\StokEkle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\AdisyonStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
