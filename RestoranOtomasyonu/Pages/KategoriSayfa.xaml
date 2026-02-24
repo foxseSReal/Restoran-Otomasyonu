@@ -9,12 +9,10 @@
       Title="KategoriSayfa">
 
     <Grid>
-        <!--Salon-->
-        <Border Padding="0 0 0 0">
+        <!--Kategori-->
+        <Border VerticalAlignment="Center" HorizontalAlignment="Center">
             <ScrollViewer VerticalScrollBarVisibility="Hidden" ScrollViewer.PanningMode="Both">
-                <WrapPanel Margin="0 20 0 0" x:Name="KategoriPanel" Orientation="Horizontal" UseLayoutRounding="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
-                    <!--Masalar Buraya Geliyor-->
-                </WrapPanel>
+                <WrapPanel Margin="0 20 0 0" x:Name="KategoriPanel" Orientation="Horizontal" UseLayoutRounding="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
             </ScrollViewer>
         </Border>
         <!---->
