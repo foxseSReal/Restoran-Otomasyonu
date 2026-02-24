@@ -368,6 +368,12 @@
     <Compile Include="OtherWindows\StokEkle.xaml.cs">
       <DependentUpon>StokEkle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\KategoriSayfa.xaml.cs">
+      <DependentUpon>KategoriSayfa.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UrunlerSayfa.xaml.cs">
+      <DependentUpon>UrunlerSayfa.xaml</DependentUpon>
+    </Compile>
     <Compile Include="userControls\cekSenet.xaml.cs">
       <DependentUpon>cekSenet.xaml</DependentUpon>
     </Compile>
@@ -439,6 +445,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OtherWindows\StokEkle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\KategoriSayfa.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UrunlerSayfa.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

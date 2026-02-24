@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using RestoranOtomasyonu.Pages;
 
 namespace RestoranOtomasyonu.OtherWindows
 {
@@ -31,6 +32,8 @@ namespace RestoranOtomasyonu.OtherWindows
             {
                 this.DataContext = secilenMasa;
             }
+            // Adisyon sayfası açıldığında KategoriSayfa'ya yönlendirme yap
+            MenuFrame.Navigate(new KategoriSayfa());
         }
 
         private void Adisyon_Loaded(object sender, RoutedEventArgs e)
@@ -41,6 +44,11 @@ namespace RestoranOtomasyonu.OtherWindows
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Frame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+
         }
     }
 }

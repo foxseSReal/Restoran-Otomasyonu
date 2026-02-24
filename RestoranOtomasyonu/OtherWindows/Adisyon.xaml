@@ -63,7 +63,7 @@
             <!--Kategoriler Listelenecek kisim-->
             <StackPanel Grid.Column="2" Grid.Row="1" Margin="0 0 20 0">
                 <Border Style="{StaticResource AdisyonItemsBorder}">
-                    <Frame x:Name="Frame"/>
+                    <Frame x:Name="MenuFrame" NavigationUIVisibility="Hidden"/>
                 </Border>
             </StackPanel>
         </Grid>
