@@ -47,12 +47,12 @@ namespace RestoranOtomasyonu.Pages
                 var converter = new System.Windows.Media.BrushConverter();
                 btn.Background = (System.Windows.Media.Brush)converter.ConvertFromString("#85dcdcdc");
                 btn.Tag = item.KategoriId;
-               // btn.Click += Kategori_Click;
+                btn.Click += Kategori_Click;
 
                 StackPanel sp = new StackPanel();
 
                 TextBlock tb = new TextBlock();
-                tb.Text =  item.KategoriAdi;
+                tb.Text = item.KategoriAdi;
                 tb.FontSize = 28;
 
                 tb.FontFamily = new System.Windows.Media.FontFamily(new Uri("pack://application:,,,/"), "/NewFonts/Modak-Regular.ttf#Modak");
@@ -63,13 +63,13 @@ namespace RestoranOtomasyonu.Pages
             }
         }
 
-        //private void Kategori_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Button secilenKategori = (Button)sender;
-        //    int kategoriId = Convert.ToInt32(secilenKategori.Tag);
+        private void Kategori_Click(object sender, RoutedEventArgs e)
+        {
+            Button SecilenKategori = (Button)sender;
+            int kategoriId = Convert.ToInt32(SecilenKategori.Tag);
 
-        //    // Frame içinde yeni sayfaya gidiyoruz ve ID'yi yolluyoruz
-        //    NavigationService.Navigate(new UrunlerSayfa(kategoriId));
-        //}
+            // Frame içinde yeni sayfaya gidiyoruz ve ID'yi yolluyoruz
+            NavigationService.Navigate(new UrunlerSayfa(kategoriId));
+        }
     }
 }
