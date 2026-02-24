@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestoranOtomasyonu.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,56 @@ namespace RestoranOtomasyonu.Pages
     /// </summary>
     public partial class UrunlerSayfa : Page
     {
-        public UrunlerSayfa()
+        RESTORANDBEntities db = new RESTORANDBEntities();
+        public UrunlerSayfa(int SecilenKategoriID)
         {
             InitializeComponent();
+            UrunleriGoster(SecilenKategoriID);
         }
+        public void UrunleriGoster(int SecilenKategoriID)
+        {
+            UrunlerPanel.Children.Clear();
+            var urunler = (from x in db.TblURUN
+                           where x.KategoriId == SecilenKategoriID
+                           select new
+                           {
+                               x.UrunId,
+                               x.UrunAdi
+                           }).ToList();
+
+            foreach (var item in urunler)
+            {
+                Button btn = new Button();
+                btn.Style = (Style)FindResource("MasaButton");
+                btn.Margin = new Thickness(10);
+                var converter = new System.Windows.Media.BrushConverter();
+                btn.Background = (System.Windows.Media.Brush)converter.ConvertFromString("#85dcdcdc");
+                btn.Tag = item.UrunId;
+                // btn.Click += Kategori_Click;
+
+                StackPanel sp = new StackPanel();
+
+                TextBlock tb = new TextBlock();
+                tb.Text = item.UrunAdi;
+                tb.FontSize = 28;
+
+                tb.FontFamily = new System.Windows.Media.FontFamily(new Uri("pack://application:,,,/"), "/NewFonts/Modak-Regular.ttf#Modak");
+
+                sp.Children.Add(tb);
+                btn.Content = sp;
+                UrunlerPanel.Children.Add(btn);
+            }
+        }
+
+        // Urunler sayfasında ürünlere tıklanırsa yapılacak işlemler
+
+        //private void Kategori_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Button secilenKategori = (Button)sender;
+        //    int kategoriId = Convert.ToInt32(secilenKategori.Tag);
+
+        //    // Frame içinde yeni sayfaya gidiyoruz ve ID'yi yolluyoruz
+        //    NavigationService.Navigate(new UrunlerSayfa(kategoriId));
+        //}
     }
 }

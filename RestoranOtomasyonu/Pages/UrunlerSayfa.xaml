@@ -5,10 +5,17 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:RestoranOtomasyonu.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="824" d:DesignWidth="935"
       Title="UrunlerSayfa">
 
     <Grid>
-        
+        <!--Urunler-->
+        <Border VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ScrollViewer VerticalScrollBarVisibility="Hidden" ScrollViewer.PanningMode="Both">
+                <WrapPanel Margin="0 20 0 0" x:Name="UrunlerPanel" Orientation="Horizontal" UseLayoutRounding="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                </WrapPanel>
+            </ScrollViewer>
+        </Border>
+        <!---->
     </Grid>
 </Page>
