@@ -10,41 +10,45 @@
         Background="{StaticResource MainBackgroundBrush}"
         Loaded="Adisyon_Loaded"
         Title="Adisyon" WindowStyle="None" ResizeMode="NoResize" Width="1537" Height="864" WindowState="Maximized">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="500"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <Border  Style="{StaticResource AdisyonYBorder}" Grid.Column="0" Grid.Row="1">
-            <StackPanel Orientation="Vertical">
-                <!--Burada Fis kesme , urun iptal temizleme , indirim , ikram butonlari olacak-->
-                <Separator Margin="0 40 0 0" Background="#40000000"/>
-                <Separator Margin="0 100 0 0" Background="#40000000"/>
-                <Separator Margin="0 100 0 0" Background="#40000000"/>
-                <Separator Margin="0 100 0 0" Background="#40000000"/>
-                <Separator Margin="0 100 0 0" Background="#40000000"/>
-                <Separator Margin="0 100 0 0" Background="#40000000"/>
-            </StackPanel>
-        </Border>
-
-        <Border Style="{StaticResource AdisyonBorder}" Grid.Column="1" Grid.Row="1">
-            <StackPanel Orientation="Vertical">
-                <!--Siparislerin yazacagi kisim birasi buraya listelenecek-->
-
-            </StackPanel>
-        </Border>
-
-        <!--Kategoriler Listelenecek kisim-->
-        <StackPanel Grid.Column="3" Grid.Row="1" Margin="0 0 20 0">
-            <Border Style="{StaticResource AdisyonItemsBorder}">
-
+    <Viewbox>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="500"/>
+                <ColumnDefinition Width="935"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="824"/>
+            </Grid.RowDefinitions>
+            <Border  Style="{StaticResource AdisyonYBorder}" Grid.Column="0" Grid.Row="1">
+                <StackPanel Orientation="Vertical">
+                    <!--Burada Fis kesme , urun iptal temizleme , indirim , ikram butonlari olacak-->
+                    <Separator Margin="0 40 0 0" Background="#40000000"/>
+                    <Separator Margin="0 100 0 0" Background="#40000000"/>
+                    <Separator Margin="0 100 0 0" Background="#40000000"/>
+                    <Separator Margin="0 100 0 0" Background="#40000000"/>
+                    <Separator Margin="0 100 0 0" Background="#40000000"/>
+                    <Separator Margin="0 100 0 0" Background="#40000000"/>
+                </StackPanel>
             </Border>
-        </StackPanel>
-    </Grid>
+
+            <Border Style="{StaticResource AdisyonBorder}" Grid.Column="1" Grid.Row="1">
+                <StackPanel Orientation="Vertical">
+                    <!--Siparislerin yazacagi kisim birasi buraya listelenecek-->
+                    <ListView x:Name="SiparisList" ItemTemplate="{DynamicResource ListViewItemTemplate1}" ItemsPanel="{DynamicResource ListViewItemsPanel1}" ItemContainerStyle="{DynamicResource ListViewItemContainerStyle1}" >
+
+                    </ListView>
+                    <!--Siparislerin yazacagi kisim birasi buraya listelenecek-->
+                </StackPanel>
+            </Border>
+
+            <!--Kategoriler Listelenecek kisim-->
+            <StackPanel Grid.Column="2" Grid.Row="1" Margin="0 0 20 0">
+                <Border Style="{StaticResource AdisyonItemsBorder}">
+
+                </Border>
+            </StackPanel>
+        </Grid>
+    </Viewbox>
 </Window>
