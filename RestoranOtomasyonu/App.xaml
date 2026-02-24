@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:RestoranOtomasyonu"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              ShutdownMode="OnLastWindowClose"
-             StartupUri="OtherWindows/Adisyon.xaml">
+             StartupUri="MasalarWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

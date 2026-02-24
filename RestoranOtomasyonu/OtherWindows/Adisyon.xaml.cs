@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestoranOtomasyonu.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,14 +20,27 @@ namespace RestoranOtomasyonu.OtherWindows
     /// </summary>
     public partial class Adisyon : Window
     {
-        public Adisyon()
+        public Adisyon(int SecilenMasa)
         {
             InitializeComponent();
+            this.DataContext = SecilenMasa;
+            RESTORANDBEntities _context = new RESTORANDBEntities();
+            var secilenMasa = _context.TblMASA.FirstOrDefault(m => m.MasaNo == SecilenMasa);
+
+            if (secilenMasa != null)
+            {
+                this.DataContext = secilenMasa;
+            }
         }
 
         private void Adisyon_Loaded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

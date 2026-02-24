@@ -45,10 +45,6 @@ namespace RestoranOtomasyonu.OtherWindows
             userAdd.Sifre = PasswordBox.Password;
             userAdd.Yetki = "k";
 
-            /***********************************/
-#warning    //Resim kaydi yapilmadi simdilik
-            /***********************************/
-
             //Erişim Yetkileri
             userAdd.GUNLUKHARCAMA = toggle_gunlukHarcama.IsChecked == true;
             userAdd.MUHASEBE = toggle_muhasebe.IsChecked == true;

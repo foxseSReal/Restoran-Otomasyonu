@@ -103,9 +103,10 @@ namespace RestoranOtomasyonu
         private void Masa_Click(object sender, RoutedEventArgs e)
         {
             Button secilenButon = (Button)sender;
-            int masaId = Convert.ToInt32(secilenButon.Tag);
+            int SecilenMasa = Convert.ToInt32(secilenButon.Tag);
 
-            MessageBox.Show("Seçilen Masa ID: " + masaId);
+            Adisyon adisyon = new Adisyon(SecilenMasa);
+            adisyon.Show();
         }
         public void MasaRenklendir()
         {

@@ -34,7 +34,7 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="40"/>
-                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="350"/>
                     <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
 
@@ -81,6 +81,22 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <!--Masa Yazisi-->
+    <Style x:Key="AdisyonMasaYazisiBorder" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource Brass300Brush}"/>
+        <Setter Property="Height" Value="60"/>
+        <Setter Property="Width" Value="500"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="CornerRadius" Value="0 0 20 20"/>
+    </Style>
+
+    <Style x:Key="MasaYazisiTextBlock" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="36"/>
+        <Setter Property="FontFamily" Value="Segoe UI Black"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Text" Value="{Binding MasaNo, StringFormat='Masa {0}'}"/>
     </Style>
     <!---->
 
