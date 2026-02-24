@@ -7,7 +7,19 @@
       mc:Ignorable="d" 
       d:DesignHeight="824" d:DesignWidth="935"
       Title="UrunlerSayfa">
-
+    <Page.Triggers>
+        <EventTrigger RoutedEvent="Page.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" 
+                             From="0" To="1" Duration="0:0:0.3" />
+                    <ThicknessAnimation Storyboard.TargetProperty="Margin" 
+                                From="0,0,0,800" To="0,0,0,0" Duration="0:0:1" 
+                                DecelerationRatio="0.9" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Page.Triggers>
     <Grid>
         <!--Urunler-->
         <Border VerticalAlignment="Center" HorizontalAlignment="Center">
