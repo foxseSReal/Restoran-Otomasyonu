@@ -58,7 +58,7 @@
                     <Button x:Name="IndirimButton" Style="{StaticResource AdisyonYonetimButtons}">
                         <StackPanel>
                             <TextBlock Text="İndirim" Style="{StaticResource AYonetimText}"/>
-                            <materialDesign:PackIcon Kind="TagArrowDown" Width="40" Height="40" Foreground="White" HorizontalAlignment="Center"/>
+                            <materialDesign:PackIcon Kind="Sale" Width="40" Height="40" Foreground="White" HorizontalAlignment="Center"/>
                         </StackPanel>
                     </Button>
                     <Separator Margin="0 0 0 0" Background="#40000000"/>
