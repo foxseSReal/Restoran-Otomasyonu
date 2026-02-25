@@ -19,6 +19,7 @@ namespace RestoranOtomasyonu.Entity
         {
             this.TblREZARVASYON = new HashSet<TblREZARVASYON>();
             this.TblSIPARIS = new HashSet<TblSIPARIS>();
+            this.TblADISYON = new HashSet<TblADISYON>();
         }
     
         public int MasaId { get; set; }
@@ -32,5 +33,7 @@ namespace RestoranOtomasyonu.Entity
         public virtual ICollection<TblREZARVASYON> TblREZARVASYON { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblSIPARIS> TblSIPARIS { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblADISYON> TblADISYON { get; set; }
     }
 }

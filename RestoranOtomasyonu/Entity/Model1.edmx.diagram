@@ -56,6 +56,11 @@
         <AssociationConnector Association="RESTORANDBModel.FK_SiparisDetay_Siparis" ManuallyRouted="false" />
         <AssociationConnector Association="RESTORANDBModel.FK_SiparisDetay_Urun" ManuallyRouted="false" />
         <AssociationConnector Association="RESTORANDBModel.FK_StokHareket_Urun" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RESTORANDBModel.TblADISYON" Width="1.5" PointX="6.75" PointY="34.875" />
+        <EntityTypeShape EntityType="RESTORANDBModel.TblADISYON_DETAY" Width="1.5" PointX="9" PointY="26.875" />
+        <AssociationConnector Association="RESTORANDBModel.FK_Adisyon_Masa" />
+        <AssociationConnector Association="RESTORANDBModel.FK_Detay_Adisyon" />
+        <AssociationConnector Association="RESTORANDBModel.FK_Detay_Urun" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

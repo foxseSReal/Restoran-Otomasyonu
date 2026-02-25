@@ -50,6 +50,8 @@ namespace RestoranOtomasyonu.Entity
         public virtual DbSet<TblSIPARISDETAY> TblSIPARISDETAY { get; set; }
         public virtual DbSet<TblSTOKHAREKET> TblSTOKHAREKET { get; set; }
         public virtual DbSet<TblURUN> TblURUN { get; set; }
+        public virtual DbSet<TblADISYON> TblADISYON { get; set; }
+        public virtual DbSet<TblADISYON_DETAY> TblADISYON_DETAY { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

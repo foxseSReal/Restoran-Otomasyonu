@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RESTORANDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RESTORANDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -14,6 +14,26 @@
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TblADISYON">
+          <Key>
+            <PropertyRef Name="AdisyonId" />
+          </Key>
+          <Property Name="AdisyonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MasaId" Type="int" />
+          <Property Name="AcilisZamani" Type="datetime" />
+          <Property Name="KapanisZamani" Type="datetime" />
+          <Property Name="Durum" Type="bit" />
+        </EntityType>
+        <EntityType Name="TblADISYON_DETAY">
+          <Key>
+            <PropertyRef Name="DetayId" />
+          </Key>
+          <Property Name="DetayId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdisyonId" Type="int" />
+          <Property Name="UrunId" Type="int" />
+          <Property Name="Adet" Type="int" />
+          <Property Name="Fiyat" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="TblBORDROLAR">
           <Key>
@@ -315,6 +335,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Adisyon_Masa">
+          <End Role="TblMASA" Type="Self.TblMASA" Multiplicity="0..1" />
+          <End Role="TblADISYON" Type="Self.TblADISYON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblMASA">
+              <PropertyRef Name="MasaId" />
+            </Principal>
+            <Dependent Role="TblADISYON">
+              <PropertyRef Name="MasaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CekSenet_Firma">
           <End Role="TblFIRMA" Type="Self.TblFIRMA" Multiplicity="0..1" />
           <End Role="TblCEKSENET" Type="Self.TblCEKSENET" Multiplicity="*" />
@@ -360,6 +392,30 @@
             </Principal>
             <Dependent Role="TblCEKSENET">
               <PropertyRef Name="SatisNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detay_Adisyon">
+          <End Role="TblADISYON" Type="Self.TblADISYON" Multiplicity="0..1" />
+          <End Role="TblADISYON_DETAY" Type="Self.TblADISYON_DETAY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblADISYON">
+              <PropertyRef Name="AdisyonId" />
+            </Principal>
+            <Dependent Role="TblADISYON_DETAY">
+              <PropertyRef Name="AdisyonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detay_Urun">
+          <End Role="TblURUN" Type="Self.TblURUN" Multiplicity="0..1" />
+          <End Role="TblADISYON_DETAY" Type="Self.TblADISYON_DETAY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblURUN">
+              <PropertyRef Name="UrunId" />
+            </Principal>
+            <Dependent Role="TblADISYON_DETAY">
+              <PropertyRef Name="UrunId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -672,6 +728,8 @@
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="RESTORANDBModelStoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblADISYON" EntityType="Self.TblADISYON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblADISYON_DETAY" EntityType="Self.TblADISYON_DETAY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblBORDROLAR" EntityType="Self.TblBORDROLAR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblCEKSENET" EntityType="Self.TblCEKSENET" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblFIRMA" EntityType="Self.TblFIRMA" Schema="dbo" store:Type="Tables" />
@@ -698,6 +756,10 @@
             <End Role="TblPERSONELLER" EntitySet="TblPERSONELLER" />
             <End Role="TblBORDROLAR" EntitySet="TblBORDROLAR" />
           </AssociationSet>
+          <AssociationSet Name="FK_Adisyon_Masa" Association="Self.FK_Adisyon_Masa">
+            <End Role="TblMASA" EntitySet="TblMASA" />
+            <End Role="TblADISYON" EntitySet="TblADISYON" />
+          </AssociationSet>
           <AssociationSet Name="FK_CekSenet_Firma" Association="Self.FK_CekSenet_Firma">
             <End Role="TblFIRMA" EntitySet="TblFIRMA" />
             <End Role="TblCEKSENET" EntitySet="TblCEKSENET" />
@@ -713,6 +775,14 @@
           <AssociationSet Name="FK_CekSenet_Siparis" Association="Self.FK_CekSenet_Siparis">
             <End Role="TblSIPARIS" EntitySet="TblSIPARIS" />
             <End Role="TblCEKSENET" EntitySet="TblCEKSENET" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detay_Adisyon" Association="Self.FK_Detay_Adisyon">
+            <End Role="TblADISYON" EntitySet="TblADISYON" />
+            <End Role="TblADISYON_DETAY" EntitySet="TblADISYON_DETAY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detay_Urun" Association="Self.FK_Detay_Urun">
+            <End Role="TblURUN" EntitySet="TblURUN" />
+            <End Role="TblADISYON_DETAY" EntitySet="TblADISYON_DETAY" />
           </AssociationSet>
           <AssociationSet Name="FK_Gelir_Musteri" Association="Self.FK_Gelir_Musteri">
             <End Role="TblMUSTERILER" EntitySet="TblMUSTERILER" />
@@ -807,8 +877,7 @@
             <End Role="TblURUN" EntitySet="TblURUN" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RESTORANDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1008,6 +1077,7 @@
           <Property Name="Durum" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="TblREZARVASYON" Relationship="Self.FK_Rezervasyon_Masa" FromRole="TblMASA" ToRole="TblREZARVASYON" />
           <NavigationProperty Name="TblSIPARIS" Relationship="Self.FK_Siparis_Masa" FromRole="TblMASA" ToRole="TblSIPARIS" />
+          <NavigationProperty Name="TblADISYON" Relationship="RESTORANDBModel.FK_Adisyon_Masa" FromRole="TblMASA" ToRole="TblADISYON" />
         </EntityType>
         <EntityType Name="TblMODEME">
           <Key>
@@ -1165,6 +1235,7 @@
           <NavigationProperty Name="TblKATEGORI" Relationship="Self.FK_UrunKategori" FromRole="TblURUN" ToRole="TblKATEGORI" />
           <NavigationProperty Name="TblSIPARISDETAY" Relationship="Self.FK_SiparisDetay_Urun" FromRole="TblURUN" ToRole="TblSIPARISDETAY" />
           <NavigationProperty Name="TblSTOKHAREKET" Relationship="Self.FK_StokHareket_Urun" FromRole="TblURUN" ToRole="TblSTOKHAREKET" />
+          <NavigationProperty Name="TblADISYON_DETAY" Relationship="RESTORANDBModel.FK_Detay_Urun" FromRole="TblURUN" ToRole="TblADISYON_DETAY" />
         </EntityType>
         <Association Name="FK__TblBORDRO__Perso__693CA210">
           <End Role="TblPERSONELLER" Type="Self.TblPERSONELLER" Multiplicity="1" />
@@ -1668,7 +1739,81 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="TblADISYON" EntityType="RESTORANDBModel.TblADISYON" />
+          <EntitySet Name="TblADISYON_DETAY" EntityType="RESTORANDBModel.TblADISYON_DETAY" />
+          <AssociationSet Name="FK_Adisyon_Masa" Association="RESTORANDBModel.FK_Adisyon_Masa">
+            <End Role="TblMASA" EntitySet="TblMASA" />
+            <End Role="TblADISYON" EntitySet="TblADISYON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detay_Adisyon" Association="RESTORANDBModel.FK_Detay_Adisyon">
+            <End Role="TblADISYON" EntitySet="TblADISYON" />
+            <End Role="TblADISYON_DETAY" EntitySet="TblADISYON_DETAY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detay_Urun" Association="RESTORANDBModel.FK_Detay_Urun">
+            <End Role="TblURUN" EntitySet="TblURUN" />
+            <End Role="TblADISYON_DETAY" EntitySet="TblADISYON_DETAY" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="TblADISYON">
+          <Key>
+            <PropertyRef Name="AdisyonId" />
+          </Key>
+          <Property Name="AdisyonId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MasaId" Type="Int32" />
+          <Property Name="AcilisZamani" Type="DateTime" Precision="3" />
+          <Property Name="KapanisZamani" Type="DateTime" Precision="3" />
+          <Property Name="Durum" Type="Boolean" />
+          <NavigationProperty Name="TblMASA" Relationship="RESTORANDBModel.FK_Adisyon_Masa" FromRole="TblADISYON" ToRole="TblMASA" />
+          <NavigationProperty Name="TblADISYON_DETAY" Relationship="RESTORANDBModel.FK_Detay_Adisyon" FromRole="TblADISYON" ToRole="TblADISYON_DETAY" />
+        </EntityType>
+        <EntityType Name="TblADISYON_DETAY">
+          <Key>
+            <PropertyRef Name="DetayId" />
+          </Key>
+          <Property Name="DetayId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdisyonId" Type="Int32" />
+          <Property Name="UrunId" Type="Int32" />
+          <Property Name="Adet" Type="Int32" />
+          <Property Name="Fiyat" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="TblADISYON" Relationship="RESTORANDBModel.FK_Detay_Adisyon" FromRole="TblADISYON_DETAY" ToRole="TblADISYON" />
+          <NavigationProperty Name="TblURUN" Relationship="RESTORANDBModel.FK_Detay_Urun" FromRole="TblADISYON_DETAY" ToRole="TblURUN" />
+        </EntityType>
+        <Association Name="FK_Adisyon_Masa">
+          <End Type="RESTORANDBModel.TblMASA" Role="TblMASA" Multiplicity="0..1" />
+          <End Type="RESTORANDBModel.TblADISYON" Role="TblADISYON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblMASA">
+              <PropertyRef Name="MasaId" />
+            </Principal>
+            <Dependent Role="TblADISYON">
+              <PropertyRef Name="MasaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detay_Adisyon">
+          <End Type="RESTORANDBModel.TblADISYON" Role="TblADISYON" Multiplicity="0..1" />
+          <End Type="RESTORANDBModel.TblADISYON_DETAY" Role="TblADISYON_DETAY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblADISYON">
+              <PropertyRef Name="AdisyonId" />
+            </Principal>
+            <Dependent Role="TblADISYON_DETAY">
+              <PropertyRef Name="AdisyonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detay_Urun">
+          <End Type="RESTORANDBModel.TblURUN" Role="TblURUN" Multiplicity="0..1" />
+          <End Type="RESTORANDBModel.TblADISYON_DETAY" Role="TblADISYON_DETAY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblURUN">
+              <PropertyRef Name="UrunId" />
+            </Principal>
+            <Dependent Role="TblADISYON_DETAY">
+              <PropertyRef Name="UrunId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2003,6 +2148,28 @@
           <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="RESTORANDBModel.Store.sp_helpdiagrams" />
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="RESTORANDBModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="RESTORANDBModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="TblADISYON">
+            <EntityTypeMapping TypeName="RESTORANDBModel.TblADISYON">
+              <MappingFragment StoreEntitySet="TblADISYON">
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="KapanisZamani" ColumnName="KapanisZamani" />
+                <ScalarProperty Name="AcilisZamani" ColumnName="AcilisZamani" />
+                <ScalarProperty Name="MasaId" ColumnName="MasaId" />
+                <ScalarProperty Name="AdisyonId" ColumnName="AdisyonId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblADISYON_DETAY">
+            <EntityTypeMapping TypeName="RESTORANDBModel.TblADISYON_DETAY">
+              <MappingFragment StoreEntitySet="TblADISYON_DETAY">
+                <ScalarProperty Name="Fiyat" ColumnName="Fiyat" />
+                <ScalarProperty Name="Adet" ColumnName="Adet" />
+                <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+                <ScalarProperty Name="AdisyonId" ColumnName="AdisyonId" />
+                <ScalarProperty Name="DetayId" ColumnName="DetayId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
