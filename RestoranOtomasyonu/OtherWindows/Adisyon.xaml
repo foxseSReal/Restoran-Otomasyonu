@@ -42,19 +42,31 @@
                     <!--Burada Fis kesme , urun iptal temizleme , indirim , ikram butonlari olacak-->
                     <Separator Margin="0 60 0 0" Background="#40000000"/>
                     <Button x:Name="RezervasyonButton" Style="{StaticResource AdisyonYonetimButtons}">
-                        <TextBlock Text="Rezervasyon" Style="{StaticResource AYonetimText}"/>
+                        <StackPanel>
+                            <TextBlock Text="Rezervasyon" Style="{StaticResource AYonetimText}"/>
+                            <materialDesign:PackIcon Kind="BookEdit" Width="40" Height="40" Foreground="White" HorizontalAlignment="Center"/>
+                        </StackPanel>
                     </Button>
                     <Separator Margin="0 0 0 0" Background="#40000000"/>
                     <Button x:Name="UrunIptalButton" Style="{StaticResource AdisyonYonetimButtons}">
-                        <TextBlock Text="Ürün İptal" Style="{StaticResource AYonetimText}"/>
+                        <StackPanel>
+                            <TextBlock Text="Ürün İptal" Style="{StaticResource AYonetimText}"/>
+                            <materialDesign:PackIcon Kind="MinusCircle" Width="40" Height="40" Foreground="White" HorizontalAlignment="Center"/>
+                        </StackPanel>
                     </Button>
                     <Separator Margin="0 0 0 0" Background="#40000000"/>
                     <Button x:Name="IndirimButton" Style="{StaticResource AdisyonYonetimButtons}">
-                        <TextBlock Text="İndirim" Style="{StaticResource AYonetimText}"/>
+                        <StackPanel>
+                            <TextBlock Text="İndirim" Style="{StaticResource AYonetimText}"/>
+                            <materialDesign:PackIcon Kind="TagArrowDown" Width="40" Height="40" Foreground="White" HorizontalAlignment="Center"/>
+                        </StackPanel>
                     </Button>
                     <Separator Margin="0 0 0 0" Background="#40000000"/>
                     <Button x:Name="MasaTasiButton" Style="{StaticResource AdisyonYonetimButtons}">
-                        <TextBlock Text="Masa Taşı" Style="{StaticResource AYonetimText}"/>
+                        <StackPanel>
+                            <TextBlock Text="Masa Taşı" Style="{StaticResource AYonetimText}"/>
+                            <materialDesign:PackIcon Kind="Arrow" Width="40" Height="40" Foreground="White" HorizontalAlignment="Center"/>
+                        </StackPanel>
                     </Button>
                     <Separator Margin="0 0 0 0" Background="#40000000"/>
                 </StackPanel>

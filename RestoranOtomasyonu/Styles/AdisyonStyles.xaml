@@ -45,7 +45,8 @@
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="ButonCercevesi" Property="Background" Value="{StaticResource Brass300Brush}"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter TargetName="ButonCercevesi" Property="Background" Value="#30dcdcdc"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
