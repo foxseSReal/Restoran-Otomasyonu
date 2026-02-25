@@ -67,7 +67,6 @@ namespace RestoranOtomasyonu.Pages
         private void UrunEkle_Click(object sender, RoutedEventArgs e)
         {
            
-
         }
     }
 }

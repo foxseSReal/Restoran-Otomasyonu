@@ -21,7 +21,7 @@
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="824"/>
             </Grid.RowDefinitions>
-            <Grid x:Name="TitleBar" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Background="Transparent">
+            <Grid x:Name="TitleBar" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Background="Transparent">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="320"/>
                     <ColumnDefinition Width="*"/>
@@ -37,15 +37,26 @@
                     </Button>
                 </StackPanel>
             </Grid>
-            <Border  Style="{StaticResource AdisyonYBorder}" Grid.Column="0" Grid.Row="1">
+            <Border  Style="{StaticResource AdisyonYonetimBorder}" Grid.Column="0" Grid.Row="1">
                 <StackPanel Orientation="Vertical">
                     <!--Burada Fis kesme , urun iptal temizleme , indirim , ikram butonlari olacak-->
-                    <Separator Margin="0 40 0 0" Background="#40000000"/>
-                    <Separator Margin="0 100 0 0" Background="#40000000"/>
-                    <Separator Margin="0 100 0 0" Background="#40000000"/>
-                    <Separator Margin="0 100 0 0" Background="#40000000"/>
-                    <Separator Margin="0 100 0 0" Background="#40000000"/>
-                    <Separator Margin="0 100 0 0" Background="#40000000"/>
+                    <Separator Margin="0 60 0 0" Background="#40000000"/>
+                    <Button x:Name="RezervasyonButton" Style="{StaticResource AdisyonYonetimButtons}">
+                        <TextBlock Text="Rezervasyon" Style="{StaticResource AYonetimText}"/>
+                    </Button>
+                    <Separator Margin="0 0 0 0" Background="#40000000"/>
+                    <Button x:Name="UrunIptalButton" Style="{StaticResource AdisyonYonetimButtons}">
+                        <TextBlock Text="Ürün İptal" Style="{StaticResource AYonetimText}"/>
+                    </Button>
+                    <Separator Margin="0 0 0 0" Background="#40000000"/>
+                    <Button x:Name="IndirimButton" Style="{StaticResource AdisyonYonetimButtons}">
+                        <TextBlock Text="İndirim" Style="{StaticResource AYonetimText}"/>
+                    </Button>
+                    <Separator Margin="0 0 0 0" Background="#40000000"/>
+                    <Button x:Name="MasaTasiButton" Style="{StaticResource AdisyonYonetimButtons}">
+                        <TextBlock Text="Masa Taşı" Style="{StaticResource AYonetimText}"/>
+                    </Button>
+                    <Separator Margin="0 0 0 0" Background="#40000000"/>
                 </StackPanel>
             </Border>
 
