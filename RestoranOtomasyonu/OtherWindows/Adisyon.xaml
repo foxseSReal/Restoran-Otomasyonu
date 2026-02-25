@@ -74,12 +74,29 @@
 
             <Border Style="{StaticResource AdisyonBorder}" Grid.Column="1" Grid.Row="1">
                 <StackPanel Orientation="Vertical">
-                    <Border Style="{StaticResource AdisyonMasaYazisiBorder}">
-                        <TextBlock Style="{StaticResource MasaYazisiTextBlock}"/>
-                    </Border>
-                    <!--Siparislerin yazacagi kisim birasi buraya listelenecek-->
-                    <ListView x:Name="SiparisList" ItemTemplate="{DynamicResource ListViewItemTemplate1}" ItemsPanel="{DynamicResource ListViewItemsPanel1}" ItemContainerStyle="{DynamicResource ListViewItemContainerStyle1}"/>
-                    <!--Siparislerin yazacagi kisim birasi buraya listelenecek-->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="630"/>
+                            <RowDefinition Height="110"/>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" Style="{StaticResource AdisyonMasaYazisiBorder}">
+                            <TextBlock Style="{StaticResource MasaYazisiTextBlock}"/>
+                        </Border>
+                        <!--Siparislerin yazacagi kisim birasi buraya listelenecek-->
+                        <ListView Grid.Row="1" x:Name="SiparisList" ItemTemplate="{DynamicResource ListViewItemTemplate1}" ItemsPanel="{DynamicResource ListViewItemsPanel1}" ItemContainerStyle="{DynamicResource ListViewItemContainerStyle1}"/>
+                        <!--Siparislerin yazacagi kisim birasi buraya listelenecek-->
+                        <Border Grid.Row="2" Background="{StaticResource AmberBrush}" CornerRadius="20 20 0 0" VerticalAlignment="Bottom" Height="100">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Button x:Name="OnaylaButtonu" Content="Onayla/Ödeme Yap" Click="btnOnayla_Click"/>
+                                <TextBlock x:Name="txtGenelToplam" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Foreground="#27AE60" FontWeight="Bold" Text="₺ 0,00"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
                 </StackPanel>
             </Border>
 

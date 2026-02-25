@@ -102,36 +102,55 @@ namespace RestoranOtomasyonu
 
         private void Masa_Click(object sender, RoutedEventArgs e)
         {
-            Button secilenButon = (Button)sender;
-            int SecilenMasa = Convert.ToInt32(secilenButon.Tag);
+            Button secilenMasa = (Button)sender;
+            int masaId = Convert.ToInt32(secilenMasa.Tag);
 
-            Adisyon adisyon = new Adisyon(SecilenMasa);
-            adisyon.Show();
+            Adisyon adisyonPenceresi = new Adisyon(masaId);
+
+            // İŞTE KESİN ÇÖZÜM: Pencerenin "Kapandı" (Closed) olayına kanca atıyoruz!
+            // Bu kod sayesinde, Adisyon penceresi (Onayla veya Çarpı ile) TAMAMEN kapandığı an 
+            // MasaRenklendir metodu otomatik olarak tetiklenecek.
+            adisyonPenceresi.Closed += (s, args) =>
+            {
+                // Arayüzün nefes alıp güncellenmesi için ufak bir Dispatcher (Kuyruk) içine alıyoruz
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    MasaRenklendir();
+                });
+            };
+
+            // Pencereyi açıyoruz. (ShowDialog olması çok önemli!)
+            adisyonPenceresi.ShowDialog();
         }
         public void MasaRenklendir()
         {
-            var doluMasalar = db.TblMASA.Where(x => x.Durum == true && x.MasaId != 999 && x.Statu == "D").Select(x => x.MasaId).ToList();
-            var rezerveMasalar = db.TblMASA.Where(x => x.Durum == true && x.MasaId != 999 && x.Statu == "R").Select(x => x.MasaId).ToList();
-
-            foreach (var child in MasaPanel.Children)
+            // 1. DOKUNUŞ: Veritabanına taze bir bağlantı açıyoruz (using bloğu işi bitince hafızayı temizler)
+            using (RESTORANDBEntities tazeDb = new RESTORANDBEntities())
             {
-                if (child is Button btn)
+                var doluMasalar = tazeDb.TblMASA.AsNoTracking().Where(x => x.Durum == true && x.Statu == "D").Select(x => x.MasaId).ToList();
+                var rezerveMasalar = tazeDb.TblMASA.AsNoTracking().Where(x => x.Durum == true && x.Statu == "R").Select(x => x.MasaId).ToList();
+
+                foreach (var child in MasaPanel.Children)
                 {
-                    int masaId = Convert.ToInt32(btn.Tag);
-
-                    StackPanel sp = (StackPanel)btn.Content;
-                    TextBlock tb = (TextBlock)sp.Children[0];
-
-                    if (doluMasalar.Contains(masaId))
+                    if (child is Button btn)
                     {
-                        btn.Background = (Brush)FindResource("DoluMasaBrush");
-                        tb.Foreground = Brushes.AntiqueWhite;
-                    }
-                    else if (rezerveMasalar.Contains(masaId))
-                    {
-                        btn.Background = (Brush)FindResource("AmberBrush");
-                        btn.BorderBrush = (Brush)FindResource("AmberBrush");
-                        tb.Text = "Rezerve 12.30";
+                        int masaId = Convert.ToInt32(btn.Tag);
+
+                        StackPanel sp = (StackPanel)btn.Content;
+                        TextBlock tb = (TextBlock)sp.Children[0];
+
+                        if (doluMasalar.Contains(masaId))
+                        {
+                            btn.Background = (Brush)FindResource("DoluMasaBrush");
+                            tb.Foreground = Brushes.AntiqueWhite;
+                            // Eğer text değişecekse: tb.Text = "Dolu"; 
+                        }
+                        else if (rezerveMasalar.Contains(masaId))
+                        {
+                            btn.Background = (Brush)FindResource("AmberBrush");
+                            btn.BorderBrush = (Brush)FindResource("AmberBrush");
+                            tb.Text = "Rezerve 12.30";
+                        }
                     }
                 }
             }

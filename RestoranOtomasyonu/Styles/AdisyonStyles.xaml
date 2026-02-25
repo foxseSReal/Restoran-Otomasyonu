@@ -70,7 +70,7 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="40"/>
-                    <ColumnDefinition Width="350"/>
+                    <ColumnDefinition Width="320"/>
                     <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
 
@@ -79,7 +79,7 @@
                Foreground="Red" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" FontFamily="Segoe UI"/>
                 </Border>
 
-                <Grid Grid.Column="1" Margin="15 0 10 0" VerticalAlignment="Center">
+                <Grid Grid.Column="1" Margin="10 0 10 0" VerticalAlignment="Center">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -90,7 +90,7 @@
                FontSize="12" Foreground="Gray" FontFamily="Segoe UI"/>
                 </Grid>
 
-                <TextBlock Grid.Column="2" Text="{Binding Fiyat, StringFormat='{}₺ {0:N2}'}" 
+                <TextBlock Grid.Column="2" Text="{Binding Toplam, StringFormat='{}₺ {0:N2}'}" 
            HorizontalAlignment="Right" FontWeight="Bold" FontSize="20" Foreground="#27AE60" VerticalAlignment="Center" FontFamily="Segoe UI"/>
             </Grid>
         </Border>
