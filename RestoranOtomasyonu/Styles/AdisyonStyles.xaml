@@ -99,5 +99,47 @@
         <Setter Property="Text" Value="{Binding MasaNo, StringFormat='Masa {0}'}"/>
     </Style>
     <!---->
+    
+    
+    <!--Frame-->
+    <Style x:Key="NavigasyonFrame" TargetType="Frame">
+        <Setter Property="NavigationUIVisibility" Value="Hidden"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Frame">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Border Grid.Row="0" Background="#2C3E50" Padding="10,8">
+                            <StackPanel Orientation="Horizontal">
+
+                                <Button Command="NavigationCommands.BrowseBack" 
+                                        Content="◀ Geri" 
+                                        Background="#E74C3C" Foreground="White" 
+                                        FontWeight="Bold" Padding="15,5" Margin="0,0,10,0"
+                                        BorderThickness="0" Cursor="Hand"/>
+
+                                <Button Command="NavigationCommands.BrowseForward" 
+                                        Content="İleri ▶" 
+                                        Background="#3498DB" Foreground="White" 
+                                        FontWeight="Bold" Padding="15,5"
+                                        BorderThickness="0" Cursor="Hand"/>
+
+                                <TextBlock Text="Sipariş Menüsü" 
+                                           Foreground="White" FontSize="16" FontWeight="SemiBold"
+                                           VerticalAlignment="Center" Margin="20,0,0,0"/>
+                            </StackPanel>
+                        </Border>
+
+                        <ContentPresenter Grid.Row="1" ClipToBounds="True"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!---->
 
 </ResourceDictionary>

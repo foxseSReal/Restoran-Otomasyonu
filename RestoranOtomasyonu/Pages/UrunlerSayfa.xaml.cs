@@ -46,7 +46,7 @@ namespace RestoranOtomasyonu.Pages
                 var converter = new System.Windows.Media.BrushConverter();
                 btn.Background = (System.Windows.Media.Brush)converter.ConvertFromString("#85dcdcdc");
                 btn.Tag = item.UrunId;
-                // btn.Click += Kategori_Click;
+                // btn.Click += UrunEkle_Click;
 
                 StackPanel sp = new StackPanel();
 
@@ -64,13 +64,10 @@ namespace RestoranOtomasyonu.Pages
 
         // Urunler sayfasında ürünlere tıklanırsa yapılacak işlemler
 
-        //private void Kategori_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Button secilenKategori = (Button)sender;
-        //    int kategoriId = Convert.ToInt32(secilenKategori.Tag);
+        private void UrunEkle_Click(object sender, RoutedEventArgs e)
+        {
+           
 
-        //    // Frame içinde yeni sayfaya gidiyoruz ve ID'yi yolluyoruz
-        //    NavigationService.Navigate(new UrunlerSayfa(kategoriId));
-        //}
+        }
     }
 }
