@@ -178,7 +178,17 @@ namespace RestoranOtomasyonu.OtherWindows
 
         private void RezervasyonButton_Click(object sender, RoutedEventArgs e)
         {
+            // Rezervasyon penceresini oluştur ve aç
+            RezervasyonWindow rezPenceresi = new RezervasyonWindow(SeciliMasaId);
 
+            // Eğer garson Rezervasyon penceresinde "İptal" demez de "Onayla" (True) derse...
+            if (rezPenceresi.ShowDialog() == true)
+            {
+                MessageBox.Show("Masa başarıyla rezerve edildi!", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                // Adisyon penceresini de kapat ki Masalar ekranı rengi güncellesin!
+                this.Close();
+            }
         }
     }
 }

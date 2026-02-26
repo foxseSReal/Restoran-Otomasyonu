@@ -195,6 +195,7 @@
           <Property Name="Tutar" Type="decimal" Precision="10" Scale="2" />
           <Property Name="Statu" Type="char" MaxLength="1" />
           <Property Name="Durum" Type="bit" Nullable="false" />
+          <Property Name="RezervasyonSaati" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="TblMODEME">
           <Key>
@@ -1078,6 +1079,7 @@
           <NavigationProperty Name="TblREZARVASYON" Relationship="Self.FK_Rezervasyon_Masa" FromRole="TblMASA" ToRole="TblREZARVASYON" />
           <NavigationProperty Name="TblSIPARIS" Relationship="Self.FK_Siparis_Masa" FromRole="TblMASA" ToRole="TblSIPARIS" />
           <NavigationProperty Name="TblADISYON" Relationship="RESTORANDBModel.FK_Adisyon_Masa" FromRole="TblMASA" ToRole="TblADISYON" />
+          <Property Name="RezervasyonSaati" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TblMODEME">
           <Key>
@@ -1995,6 +1997,7 @@
           <EntitySetMapping Name="TblMASA">
             <EntityTypeMapping TypeName="RESTORANDBModel.TblMASA">
               <MappingFragment StoreEntitySet="TblMASA">
+                <ScalarProperty Name="RezervasyonSaati" ColumnName="RezervasyonSaati" />
                 <ScalarProperty Name="MasaId" ColumnName="MasaId" />
                 <ScalarProperty Name="MasaNo" ColumnName="MasaNo" />
                 <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />

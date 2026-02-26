@@ -124,11 +124,18 @@ namespace RestoranOtomasyonu
         }
         public void MasaRenklendir()
         {
-            // 1. DOKUNUŞ: Veritabanına taze bir bağlantı açıyoruz (using bloğu işi bitince hafızayı temizler)
             using (RESTORANDBEntities tazeDb = new RESTORANDBEntities())
             {
-                var doluMasalar = tazeDb.TblMASA.AsNoTracking().Where(x => x.Durum == true && x.Statu == "D").Select(x => x.MasaId).ToList();
-                var rezerveMasalar = tazeDb.TblMASA.AsNoTracking().Where(x => x.Durum == true && x.Statu == "R").Select(x => x.MasaId).ToList();
+                // Dolu masaların sadece ID'si yeterli
+                var doluMasalar = tazeDb.TblMASA.AsNoTracking()
+                                        .Where(x => x.Durum == true && x.Statu == "D")
+                                        .Select(x => x.MasaId).ToList();
+
+                // 1. DÜZELTME: Rezerve masaların sadece ID'sini değil, SAAT dahil her şeyini çekiyoruz! 
+                // (.Select kısmını sildik)
+                var rezerveMasalarListesi = tazeDb.TblMASA.AsNoTracking()
+                                                  .Where(x => x.Durum == true && x.Statu == "R")
+                                                  .ToList();
 
                 foreach (var child in MasaPanel.Children)
                 {
@@ -143,13 +150,30 @@ namespace RestoranOtomasyonu
                         {
                             btn.Background = (Brush)FindResource("DoluMasaBrush");
                             tb.Foreground = Brushes.AntiqueWhite;
-                            // Eğer text değişecekse: tb.Text = "Dolu"; 
                         }
-                        else if (rezerveMasalar.Contains(masaId))
+                        else
                         {
-                            btn.Background = (Brush)FindResource("AmberBrush");
-                            btn.BorderBrush = (Brush)FindResource("AmberBrush");
-                            tb.Text = "Rezerve 12.30";
+                            // 2. DÜZELTME: O anki masayı, rezerve listemizin içinde arayıp "rezerveMasa" değişkenine atıyoruz.
+                            var rezerveMasa = rezerveMasalarListesi.FirstOrDefault(x => x.MasaId == masaId);
+
+                            // Eğer masa gerçekten rezerve listesindeyse (null değilse)
+                            if (rezerveMasa != null)
+                            {
+                                btn.Background = (Brush)FindResource("AmberBrush");
+                                btn.BorderBrush = (Brush)FindResource("AmberBrush");
+
+                                // Artık rezerveMasa'yı tanıdığı için kırmızı çizmeyecek!
+                                string saat = rezerveMasa.RezervasyonSaati;
+
+                                if (!string.IsNullOrEmpty(saat))
+                                {
+                                    tb.Text = $"Rezerve {saat}"; // Ekrana dinamik olarak "Rezerve 14:30" yazar
+                                }
+                                else
+                                {
+                                    tb.Text = "Rezerve"; // Saat boşsa sadece Rezerve yazsın
+                                }
+                            }
                         }
                     }
                 }

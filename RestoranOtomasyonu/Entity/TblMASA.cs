@@ -28,6 +28,7 @@ namespace RestoranOtomasyonu.Entity
         public Nullable<decimal> Tutar { get; set; }
         public string Statu { get; set; }
         public bool Durum { get; set; }
+        public string RezervasyonSaati { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblREZARVASYON> TblREZARVASYON { get; set; }
