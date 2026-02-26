@@ -176,6 +176,9 @@ namespace RestoranOtomasyonu.OtherWindows
             txtGenelToplam.Text = $"₺ {genelToplam:N2}";
         }
 
+        private void RezervasyonButton_Click(object sender, RoutedEventArgs e)
+        {
 
+        }
     }
 }

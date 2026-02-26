@@ -41,7 +41,7 @@
                 <StackPanel Orientation="Vertical">
                     <!--Burada Fis kesme , urun iptal temizleme , indirim , ikram butonlari olacak-->
                     <Separator Margin="0 60 0 0" Background="#40000000"/>
-                    <Button x:Name="RezervasyonButton" Style="{StaticResource AdisyonYonetimButtons}">
+                    <Button x:Name="RezervasyonButton" Click="RezervasyonButton_Click" Style="{StaticResource AdisyonYonetimButtons}">
                         <StackPanel>
                             <TextBlock Text="Rezervasyon" Style="{StaticResource AYonetimText}"/>
                             <materialDesign:PackIcon Kind="BookEdit" Width="40" Height="40" Foreground="White" HorizontalAlignment="Center"/>
@@ -92,7 +92,7 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Button x:Name="OnaylaButtonu" Content="Onayla/Ödeme Yap" Click="btnOnayla_Click"/>
+                                <Button Style="{StaticResource OdemeOnaylamaButtonu}" x:Name="OnaylaButtonu" Content="Onayla/Ödeme Yap" Click="btnOnayla_Click"/>
                                 <TextBlock x:Name="txtGenelToplam" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Foreground="#27AE60" FontWeight="Bold" Text="₺ 0,00"/>
                             </Grid>
                         </Border>
