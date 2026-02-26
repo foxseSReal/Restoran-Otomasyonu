@@ -1,0 +1,36 @@
+﻿<Window x:Class="RestoranOtomasyonu.OtherWindows.RezervasyonWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RestoranOtomasyonu.OtherWindows"
+        mc:Ignorable="d"
+        Title="Masa Rezervasyonu" Height="300" Width="400" 
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="#F5F6FA">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="txtBaslik" Text="Masa Rezervasyonu" FontSize="22" FontWeight="Bold" Foreground="#2C3E50" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+        <StackPanel Grid.Row="1" VerticalAlignment="Center">
+            <TextBlock Text="Müşteri Adı / Not:" FontSize="14" FontWeight="SemiBold" Foreground="#34495E" Margin="0,0,0,5"/>
+            <TextBox x:Name="txtMusteriAdi" FontSize="16" Padding="5" Margin="0,0,0,15"/>
+
+            <TextBlock Text="Rezervasyon Saati:" FontSize="14" FontWeight="SemiBold" Foreground="#34495E" Margin="0,0,0,5"/>
+            <StackPanel Orientation="Horizontal">
+                <ComboBox x:Name="cmbSaat" Width="70" FontSize="16" Padding="5"/>
+                <TextBlock Text=":" FontSize="20" FontWeight="Bold" Margin="10,0" VerticalAlignment="Center"/>
+                <ComboBox x:Name="cmbDakika" Width="70" FontSize="16" Padding="5"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Content="İptal" Width="90" Height="35" Background="#E74C3C" Foreground="White" FontSize="14" FontWeight="Bold" Margin="0,0,10,0" Click="btnIptal_Click"/>
+            <Button Content="Onayla" Width="90" Height="35" Background="#27AE60" BorderBrush="#27AE60" Foreground="White" FontSize="14" FontWeight="Bold" Click="btnOnayla_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
