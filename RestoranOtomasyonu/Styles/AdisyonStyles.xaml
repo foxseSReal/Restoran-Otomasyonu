@@ -90,12 +90,9 @@
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
-    <!--LitView-->
-    <ItemsPanelTemplate x:Key="ListViewItemsPanel1">
-        <StackPanel/>
-    </ItemsPanelTemplate>
+    <!--ListView-->
     <DataTemplate x:Key="ListViewItemTemplate1">
-        <Border BorderBrush="#DFDFDF" BorderThickness="0 0 0 2" Padding="12,8" Background="White">
+        <Border BorderBrush="#DFDFDF" BorderThickness="0 0 0 2" Padding="12,8" Background="Transparent">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="40"/>
@@ -105,7 +102,7 @@
 
                 <Border Grid.Column="0" Background="#FFF1F1" CornerRadius="5" VerticalAlignment="Center" Padding="4,2">
                     <TextBlock Text="{Binding Adet, StringFormat='{}{0}x'}" 
-               Foreground="Red" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" FontFamily="Segoe UI"/>
+                           Foreground="Red" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" FontFamily="Segoe UI"/>
                 </Border>
 
                 <Grid Grid.Column="1" Margin="10 0 10 0" VerticalAlignment="Center">
@@ -114,39 +111,16 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="{Binding UrunAdi}" 
-               TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" FontWeight="SemiBold" FontSize="18" Foreground="#333333" FontFamily="Segoe UI"/>
+                           TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" FontWeight="SemiBold" FontSize="18" Foreground="#333333" FontFamily="Segoe UI"/>
                     <TextBlock Grid.Row="1" Text="{Binding EkstraNot}" TextWrapping="WrapWithOverflow" 
-               FontSize="12" Foreground="Gray" FontFamily="Segoe UI"/>
+                           FontSize="12" Foreground="Gray" FontFamily="Segoe UI"/>
                 </Grid>
 
                 <TextBlock Grid.Column="2" Text="{Binding Toplam, StringFormat='{}₺ {0:N2}'}" 
-           HorizontalAlignment="Right" FontWeight="Bold" FontSize="20" Foreground="#27AE60" VerticalAlignment="Center" FontFamily="Segoe UI"/>
+                       HorizontalAlignment="Right" FontWeight="Bold" FontSize="20" Foreground="#27AE60" VerticalAlignment="Center" FontFamily="Segoe UI"/>
             </Grid>
         </Border>
     </DataTemplate>
-    <Style x:Key="ListViewItemContainerStyle1" TargetType="{x:Type ListBoxItem}">
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Padding" Value="0"/>
-        <Setter Property="Margin" Value="0"/>
-
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <Border Background="{TemplateBinding Background}" 
-            BorderBrush="{TemplateBinding BorderBrush}" 
-            BorderThickness="{TemplateBinding BorderThickness}">
-
-                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
-                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
 
     <!--Masa Yazisi-->
     <Style x:Key="AdisyonMasaYazisiBorder" TargetType="Border">
