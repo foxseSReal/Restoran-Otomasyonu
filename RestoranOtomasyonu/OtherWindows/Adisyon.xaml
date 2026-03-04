@@ -48,7 +48,7 @@
                         </StackPanel>
                     </Button>
                     <Separator Margin="0 0 0 0" Background="#40000000"/>
-                    <Button x:Name="UrunIptalButton" Style="{StaticResource AdisyonYonetimButtons}">
+                    <Button x:Name="UrunIptalButton" Click="btnIptal_Click" Style="{StaticResource AdisyonYonetimButtons}">
                         <StackPanel>
                             <TextBlock Text="Ürün İptal" Style="{StaticResource AYonetimText}"/>
                             <materialDesign:PackIcon Kind="MinusCircle" Width="40" Height="40" Foreground="White" HorizontalAlignment="Center"/>
@@ -84,7 +84,7 @@
                             <TextBlock Style="{StaticResource MasaYazisiTextBlock}"/>
                         </Border>
                         <!--Siparislerin yazacagi kisim birasi buraya listelenecek-->
-                        <ListView SelectionMode="Multiple" Grid.Row="1" x:Name="SiparisList" ItemTemplate="{DynamicResource ListViewItemTemplate1}" ItemsPanel="{DynamicResource ListViewItemsPanel1}" ItemContainerStyle="{DynamicResource ListViewItemContainerStyle1}"/>
+                        <ListView PreviewMouseLeftButtonDown="SiparisList_PreviewMouseLeftButtonDown" Grid.Row="1" x:Name="SiparisList" ItemTemplate="{DynamicResource ListViewItemTemplate1}" ItemsPanel="{DynamicResource ListViewItemsPanel1}" ItemContainerStyle="{DynamicResource ListViewItemContainerStyle1}"/>
                         <!--Siparislerin yazacagi kisim birasi buraya listelenecek-->
                         <Border Grid.Row="2" Background="{StaticResource AmberBrush}" CornerRadius="20 20 0 0" VerticalAlignment="Bottom" Height="100">
                             <Grid>

@@ -124,55 +124,47 @@ namespace RestoranOtomasyonu
         }
         public void MasaRenklendir()
         {
+            // Veritabanını tazeleyerek en güncel statüleri alıyoruz
             using (RESTORANDBEntities tazeDb = new RESTORANDBEntities())
             {
-                // Dolu masaların sadece ID'si yeterli
-                var doluMasalar = tazeDb.TblMASA.AsNoTracking()
-                                        .Where(x => x.Durum == true && x.Statu == "D")
-                                        .Select(x => x.MasaId).ToList();
+                var tumMasalar = tazeDb.TblMASA.AsNoTracking().Where(x => x.Durum == true && x.MasaId != 999).ToList();
 
-                // 1. DÜZELTME: Rezerve masaların sadece ID'sini değil, SAAT dahil her şeyini çekiyoruz! 
-                // (.Select kısmını sildik)
-                var rezerveMasalarListesi = tazeDb.TblMASA.AsNoTracking()
-                                                  .Where(x => x.Durum == true && x.Statu == "R")
-                                                  .ToList();
+                var converter = new System.Windows.Media.BrushConverter();
+                var standartArkaplan = (Brush)converter.ConvertFromString("#85dcdcdc");
 
                 foreach (var child in MasaPanel.Children)
                 {
                     if (child is Button btn)
                     {
                         int masaId = Convert.ToInt32(btn.Tag);
+                        var masaVerisi = tumMasalar.FirstOrDefault(x => x.MasaId == masaId);
 
+                        // Butonun içindeki StackPanel ve TextBlock'a ulaşıyoruz
                         StackPanel sp = (StackPanel)btn.Content;
                         TextBlock tb = (TextBlock)sp.Children[0];
 
-                        if (doluMasalar.Contains(masaId))
+                        if (masaVerisi != null)
                         {
-                            btn.Background = (Brush)FindResource("DoluMasaBrush");
-                            tb.Foreground = Brushes.AntiqueWhite;
-                        }
-                        else
-                        {
-                            // 2. DÜZELTME: O anki masayı, rezerve listemizin içinde arayıp "rezerveMasa" değişkenine atıyoruz.
-                            var rezerveMasa = rezerveMasalarListesi.FirstOrDefault(x => x.MasaId == masaId);
-
-                            // Eğer masa gerçekten rezerve listesindeyse (null değilse)
-                            if (rezerveMasa != null)
+                            if (masaVerisi.Statu == "D") // DOLU
+                            {
+                                btn.Background = (Brush)FindResource("DoluMasaBrush");
+                                tb.Foreground = Brushes.AntiqueWhite;
+                                tb.Text = "Masa " + masaId; // Dolu olsa da numara yazsın
+                            }
+                            else if (masaVerisi.Statu == "R") // REZERVE
                             {
                                 btn.Background = (Brush)FindResource("AmberBrush");
-                                btn.BorderBrush = (Brush)FindResource("AmberBrush");
-
-                                // Artık rezerveMasa'yı tanıdığı için kırmızı çizmeyecek!
-                                string saat = rezerveMasa.RezervasyonSaati;
-
-                                if (!string.IsNullOrEmpty(saat))
-                                {
-                                    tb.Text = $"Rezerve {saat}"; // Ekrana dinamik olarak "Rezerve 14:30" yazar
-                                }
-                                else
-                                {
-                                    tb.Text = "Rezerve"; // Saat boşsa sadece Rezerve yazsın
-                                }
+                                tb.Foreground = Brushes.Black;
+                                tb.Text = !string.IsNullOrEmpty(masaVerisi.RezervasyonSaati)
+                                          ? $"Rezerve {masaVerisi.RezervasyonSaati}"
+                                          : "Rezerve";
+                            }
+                            else // BOŞ (Senin MasaGoster'deki standart halin)
+                            {
+                                btn.Background = standartArkaplan; // #85dcdcdc rengi
+                                btn.BorderBrush = Brushes.Transparent;
+                                tb.Foreground = Brushes.Black; // Varsayılan yazı rengi
+                                tb.Text = "Masa " + masaId; // Standart yazı
                             }
                         }
                     }

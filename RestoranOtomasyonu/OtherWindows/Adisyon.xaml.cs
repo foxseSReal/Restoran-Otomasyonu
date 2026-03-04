@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using RestoranOtomasyonu.Pages;
 using System.ComponentModel;
+using RestoranOtomasyonu;
 
 namespace RestoranOtomasyonu.OtherWindows
 {
@@ -22,17 +23,25 @@ namespace RestoranOtomasyonu.OtherWindows
     /// Adisyon.xaml etkileşim mantığı
     /// </summary>
     /// 
-    public class SepetItem
+    public class SepetItem : INotifyPropertyChanged
     {
         public int UrunId { get; set; }
         public string UrunAdi { get; set; }
-        public int Adet { get; set; }
+        public int Adet { get; set; } // Masadaki toplam adet
         public decimal Fiyat { get; set; }
         public decimal Toplam { get { return Adet * Fiyat; } }
         public string EkstraNot { get; set; }
-
-        // Bu çok kritik: Bu ürün veritabanında zaten var mı, yoksa demin butona basılarak YENİ mi eklendi?
         public bool YeniEklendiMi { get; set; }
+
+        private int _secilenAdet;
+        public int SecilenAdet
+        {
+            get => _secilenAdet;
+            set { _secilenAdet = value; OnPropertyChanged("SecilenAdet"); }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 
     public partial class Adisyon : Window
@@ -70,6 +79,144 @@ namespace RestoranOtomasyonu.OtherWindows
         private void Frame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
 
+        }
+        private void btnIptal_Click(object sender, RoutedEventArgs e)
+{
+    // 1. Seçilen (rozetli) ürünleri filtrele
+    var secilenItems = GuncelSepet.Where(x => x.SecilenAdet > 0).ToList();
+
+    if (secilenItems.Count == 0)
+    {
+        MessageBox.Show("Lütfen iptal etmek istediğiniz adetleri ürünlerin üzerine tıklayarak belirleyin.", "Uyarı", MessageBoxButton.OK, MessageBoxImage.Warning);
+        return;
+    }
+
+    // 2. Mesaj içeriğini (Liste şeklinde) hazırla
+    System.Text.StringBuilder sb = new System.Text.StringBuilder();
+    sb.AppendLine("Aşağıdaki ürünler iptal edilecek. Onaylıyor musunuz?");
+    sb.AppendLine("-----------------------------------------");
+    foreach (var item in secilenItems)
+    {
+        sb.AppendLine($"{item.SecilenAdet}x {item.UrunAdi}");
+    }
+
+    // 3. Kullanıcıya Onay Sor
+    MessageBoxResult result = MessageBox.Show(sb.ToString(), "İptal Onayı", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+    if (result == MessageBoxResult.Yes)
+    {
+        try
+        {
+            var aktifAdisyon = db.TblADISYON.FirstOrDefault(x => x.MasaId == SeciliMasaId && x.Durum == true);
+
+            foreach (var item in secilenItems.ToList()) // ToList() kullanarak koleksiyon değişimi hatasını önlüyoruz
+            {
+                // A. VERİTABANI İŞLEMLERİ (Eskiden eklenmiş ürünler için)
+                if (item.YeniEklendiMi == false && aktifAdisyon != null)
+                {
+                    var dbDetay = db.TblADISYON_DETAY.FirstOrDefault(d => d.AdisyonId == aktifAdisyon.AdisyonId && d.UrunId == item.UrunId);
+
+                    if (dbDetay != null)
+                    {
+                        if (item.SecilenAdet >= item.Adet)
+                            db.TblADISYON_DETAY.Remove(dbDetay); // Satırı tamamen sil
+                        else
+                            dbDetay.Adet -= item.SecilenAdet; // Sadece adedi düşür
+                    }
+                }
+
+                // B. LOKAL LİSTE (GuncelSepet) GÜNCELLEMESİ
+                if (item.SecilenAdet >= item.Adet)
+                {
+                    GuncelSepet.Remove(item); 
+                }
+                else
+                {
+                    item.Adet -= item.SecilenAdet;
+                    item.SecilenAdet = 0; // Yeşil rozeti kapat
+                }
+            }
+
+            // Değişiklikleri SQL'e işle
+            db.SaveChanges();
+
+            // 4. MASA DURUM KONTROLÜ
+            if (GuncelSepet.Count == 0)
+            {
+                var secilenMasa = db.TblMASA.FirstOrDefault(x => x.MasaId == SeciliMasaId);
+                if (secilenMasa != null) 
+                {
+                    secilenMasa.Statu = "B"; // 'B'oş statüsüne çek
+                }
+
+                if (aktifAdisyon != null) 
+                {
+                    aktifAdisyon.Durum = false; // Adisyonu kapat
+                }
+
+                db.SaveChanges(); // Statü değişikliğini SQL'e gönder
+            }
+
+            // 5. ANA EKRAN RENK GÜNCELLEME (En Kritik Kısım)
+            // MasalarWindow'u bul ve içindeki MasaRenklendir'i tetikle
+            var mWindow = Application.Current.Windows.OfType<Window>().FirstOrDefault(w => w.GetType().Name == "MasalarWindow");
+
+            if (mWindow != null)
+            {
+                // Reflection ile 'MasaRenklendir' metoduna kanca atıyoruz
+                var method = mWindow.GetType().GetMethod("MasaRenklendir");
+                method?.Invoke(mWindow, null);
+            }
+
+            // 6. FİNAL İŞLEMLERİ
+            if (GuncelSepet.Count == 0)
+            {
+                MessageBox.Show("Masa boşaltıldı ve tüm siparişler iptal edildi.", "Bilgi");
+                this.DialogResult = true; // Pencereyi açan yere başarı sinyali gönder
+                this.Close();
+            }
+            else
+            {
+                // Hala ürün kaldıysa sadece sayfayı tazele
+                SiparisleriGetir();
+                GenelToplamiHesapla();
+                MessageBox.Show("Seçilen ürünler başarıyla iptal edildi.", "Başarılı");
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show("Bir hata oluştu: " + ex.Message, "Hata");
+        }
+    }
+}
+        private void SiparisList_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            // Tıklanan nesnenin bir ListViewItem (satır) olup olmadığını buluyoruz
+            var item = VisualTreeHelper.HitTest(SiparisList, e.GetPosition(SiparisList))?.VisualHit;
+            while (item != null && !(item is ListViewItem))
+                item = VisualTreeHelper.GetParent(item);
+
+            if (item is ListViewItem listViewItem)
+            {
+                var data = listViewItem.Content as SepetItem;
+                if (data != null)
+                {
+                    // MANTIK: Eğer seçilen miktar toplam miktardan azsa 1 artır.
+                    // Eğer hepsi seçiliyse sıfırla (Başa döner)
+                    if (data.SecilenAdet < data.Adet)
+                    {
+                        data.SecilenAdet++;
+                    }
+                    else
+                    {
+                        data.SecilenAdet = 0;
+                    }
+
+                    // Seçim yapıldığı için standart ListView seçimini iptal edebiliriz 
+                    // veya görsel olarak kalmasını sağlayabiliriz.
+                    e.Handled = true;
+                }
+            }
         }
 
         public void SiparisleriGetir()
