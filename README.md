@@ -60,7 +60,7 @@ Veritabanını kurduktan sonra projenin yerel SQL Server'ınıza erişebilmesi i
 ```xml
 <connectionStrings>
   <add name="DBRestoranProjeEntities" 
-       connectionString="metadata=res://*/Model1.csdl|...;provider=System.Data.SqlClient;provider connection string=&quot;data source=BILGISAYAR-ADI\SQLEXPRESS;initial catalog=DBRestoranProje;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" 
+       connectionString="[...] string=&quot;data source=BILGISAYAR-ADI\SQLEXPRESS;initial catalog=DBRestoranProje;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" 
        providerName="System.Data.EntityClient" />
 </connectionStrings>
 ```
