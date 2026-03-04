@@ -36,23 +36,31 @@ Aşağıda belirtilen özellikleri kontrol eder;
 
 Projeyi kendi bilgisayarınızda çalıştırmak için lütfen aşağıdaki adımları uygulayın:
 
-### 1. Veritabanı Kurulumu
-Proje dosyaları içerisindeki `Veri Tabanı` klasörüne gidin.
-* SSMS (SQL Server Management Studio) üzerinden `DBRestoranProje.bak` dosyasını **Restore** ederek veritabanını oluşturun.
-* *Alternatif:* `.mdf` ve `_log.mdf` dosyalarını "Attach" yöntemiyle de ekleyebilirsiniz.
+### 🛠 1. Veritabanı Kurulumu
 
-### 2. Bağlantı Ayarları (App.config)
-Veritabanını kurduktan sonra projenin veritabanına erişebilmesi için bağlantı dizesini (connection string) kendi bilgisayarınıza göre düzenlemeniz gerekebilir.
+Projenin veritabanı yapısını oluşturmak için artık hantal `.mdf` dosyaları yerine daha hafif, taşınabilir ve güvenli olan **SQL Script** yöntemi kullanılmaktadır. Kurulum için aşağıdaki adımları izleyin:
 
-1.  Visual Studio'da **`App.config`** dosyasını açın.
-2.  `<connectionStrings>` etiketi altındaki satırı bulun.
-3.  `connectionString` parametresini kendi yerel sunucu isminize (Server Name) göre güncelleyin.
+1. **SQL Server Management Studio (SSMS)** uygulamasını açın.
+2. Proje dizinindeki `Veri Tabanı/DB.sql` dosyasını bir metin editörüyle açıp içeriğini kopyalayın veya doğrudan SSMS içine sürükleyin.
+3. Sorgu ekranında **Execute (F5)** tuşuna basarak scripti çalıştırın.
 
-Örnek `App.config` yapısı:
+> [!NOTE]
+> Script, gerekli tüm tabloları ve veritabanı şemasını otomatik olarak oluşturacaktır.
+---
+
+### ⚙️ 2. Bağlantı Ayarları (App.config)
+
+Veritabanını kurduktan sonra projenin yerel SQL Server'ınıza erişebilmesi için bağlantı dizesini (connection string) kendi bilgisayarınıza göre düzenlemeniz gerekmektedir.
+
+1. Visual Studio'da **`App.config`** dosyasını açın.
+2. `<connectionStrings>` etiketi altındaki ilgili satırı bulun.
+3. `connectionString` içindeki `data source` parametresini kendi yerel sunucu isminize (Server Name) göre güncelleyin.
+
+**Örnek `App.config` Yapısı:**
 ```xml
 <connectionStrings>
   <add name="DBRestoranProjeEntities" 
-       connectionString="[...] provider connection string=&quot;data source=BILGISAYAR-ADI\SQLEXPRESS;initial [...]" 
+       connectionString="metadata=res://*/Model1.csdl|...;provider=System.Data.SqlClient;provider connection string=&quot;data source=BILGISAYAR-ADI\SQLEXPRESS;initial catalog=DBRestoranProje;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" 
        providerName="System.Data.EntityClient" />
 </connectionStrings>
 ```
