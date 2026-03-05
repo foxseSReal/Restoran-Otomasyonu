@@ -208,4 +208,33 @@
     </Style>
     <!---->
 
+    <!--Odeme Sayfasi icin olan Styles-->
+    <!--Kisayol butonlari-->
+    <Style x:Key="OdemeKisayolBtn" TargetType="Button">
+        <Setter Property="Height" Value="100"/>
+        <Setter Property="Width" Value="200"/>
+        <Setter Property="Margin" Value="0 10 0 0"/>
+        <Setter Property="Background" Value="#90dcdcdc"/>
+        <Setter Property="FontFamily" Value="Segoe UI Black"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="ButonCercevesi" Background="{TemplateBinding Background}" BorderThickness="1" CornerRadius="5">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter TargetName="ButonCercevesi" Property="Background" Value="OrangeRed"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!---->
+
+
 </ResourceDictionary>
