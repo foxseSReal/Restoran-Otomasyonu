@@ -75,16 +75,16 @@
                             <Button ToolTip="Yönetim Paneline Geç" Style="{StaticResource KontrolButtons}" Click="YonetimClick">
                                 <materialDesign:PackIcon Kind="ArrowRightBold" Width="50" Height="50"/>
                             </Button>
-                            <Button ToolTip="Masa Ekle" Style="{StaticResource KontrolButtons}">
+                            <Button x:Name="MasaEkle" Click="MasaEkle_Click" ToolTip="Masa Ekle" Style="{StaticResource KontrolButtons}">
                                 <materialDesign:PackIcon Kind="TableAdd" Width="50" Height="50"/>
                             </Button>
-                            <Button ToolTip="Kategori Ekle" Style="{StaticResource KontrolButtons}">
+                            <Button x:Name="KategoriEkle" ToolTip="Kategori Ekle" Style="{StaticResource KontrolButtons}">
                                 <materialDesign:PackIcon Kind="Food" Width="50" Height="50"/>
                             </Button>
-                            <Button ToolTip="Ürün EKle" Style="{StaticResource KontrolButtons}">
+                            <Button x:Name="UrunEkle" Click="UrunEkle_Click" ToolTip="Ürün Ekle" Style="{StaticResource KontrolButtons}">
                                 <materialDesign:PackIcon Kind="AddBold" Width="50" Height="50"/>
                             </Button>
-                            <Button ToolTip="Fiyat Güncelle" Style="{StaticResource KontrolButtons}">
+                            <Button x:Name="FiyatGuncelle" ToolTip="Fiyat Güncelle" Style="{StaticResource KontrolButtons}">
                                 <materialDesign:PackIcon Kind="CashSync" Width="50" Height="50"/>
                             </Button>
                         </StackPanel>

@@ -178,5 +178,23 @@ namespace RestoranOtomasyonu
             main.Show();
             this.Close();
         }
+
+        private void UrunEkle_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MasaEkle_Click(object sender, RoutedEventArgs e)
+        {
+            MasaEkleWindow win = new MasaEkleWindow();
+            win.Owner = this; // Ana pencerenin üzerinde kalması için önemli
+            bool? result = win.ShowDialog(); // Show() yerine ShowDialog() kullan
+
+            if (result == true)
+            {
+                // Kayıt başarılı olduysa ana sayfadaki masa listesini yenileyebilirsin
+                // ListeYenile(); 
+            }
+        }
     }
 }

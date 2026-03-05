@@ -368,6 +368,9 @@
     <Compile Include="OtherWindows\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OtherWindows\MasaEkleWindow.xaml.cs">
+      <DependentUpon>MasaEkleWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OtherWindows\MusteriDetay.xaml.cs">
       <DependentUpon>MusteriDetay.xaml</DependentUpon>
     </Compile>
@@ -449,6 +452,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OtherWindows\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OtherWindows\MasaEkleWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
