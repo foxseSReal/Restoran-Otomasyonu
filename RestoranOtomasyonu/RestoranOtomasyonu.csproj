@@ -380,6 +380,9 @@
     <Compile Include="Pages\KategoriSayfa.xaml.cs">
       <DependentUpon>KategoriSayfa.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\OdemeSayfa.xaml.cs">
+      <DependentUpon>OdemeSayfa.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\UrunlerSayfa.xaml.cs">
       <DependentUpon>UrunlerSayfa.xaml</DependentUpon>
     </Compile>
@@ -462,6 +465,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\KategoriSayfa.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\OdemeSayfa.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

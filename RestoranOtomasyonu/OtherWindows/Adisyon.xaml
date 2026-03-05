@@ -92,7 +92,10 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Button Style="{StaticResource OdemeOnaylamaButtonu}" x:Name="OnaylaButtonu" Content="Onayla/Ödeme Yap" Click="btnOnayla_Click"/>
+                                <StackPanel>
+                                    <Button Style="{StaticResource OdemeOnaylamaButtonu}" x:Name="OnaylaButtonu" Content="Onayla" Click="btnOnayla_Click"/>
+                                    <Button Style="{StaticResource OdemeOnaylamaButtonu}" Background="Red" x:Name="OdemeButtonu" Content="Ödeme Al" Click="OdemeButtonu_Click"/>
+                                </StackPanel>
                                 <TextBlock x:Name="txtGenelToplam" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Foreground="#27AE60" FontWeight="Bold" Text="₺ 0,00"/>
                             </Grid>
                         </Border>
