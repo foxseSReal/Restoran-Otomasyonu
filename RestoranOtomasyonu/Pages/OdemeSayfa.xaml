@@ -59,44 +59,38 @@
                         </StackPanel>
                     </Grid>
 
-                    <Border Background="#5C5C7D" CornerRadius="15" Padding="20 0 0 20" Height="145">
+                    <Border Background="#5C5C7D" CornerRadius="15" Padding="20,0,0,20" Height="145">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <DockPanel Grid.Row="0">
+                            <DockPanel Grid.Row="0" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
-                                    <Button x:Name="BtnHizliTutar_5" Content="₺5" Style="{StaticResource AmountButtonStyle}"/>
-                                    <Button x:Name="BtnHizliTutar_10" Content="₺10" Style="{StaticResource AmountButtonStyle}"/>
-                                    <Button x:Name="BtnHizliTutar_20" Content="₺20" Style="{StaticResource AmountButtonStyle}"/>
-                                    <Button x:Name="BtnHizliTutar_50" Content="₺50" Style="{StaticResource AmountButtonStyle}"/>
-                                    <Button x:Name="BtnHizliTutar_100" Content="₺100" Style="{StaticResource AmountButtonStyle}"/>
-                                    <Button x:Name="BtnHizliTutar_200" Content="₺200" Style="{StaticResource AmountButtonStyle}"/>
+                                    <Button x:Name="BtnHizliTutar_5" Content="₺5" Click="QuickAmount_Click" Style="{StaticResource AmountButtonStyle}"/>
+                                    <Button x:Name="BtnHizliTutar_10" Content="₺10" Click="QuickAmount_Click" Style="{StaticResource AmountButtonStyle}"/>
+                                    <Button x:Name="BtnHizliTutar_20" Content="₺20" Click="QuickAmount_Click" Style="{StaticResource AmountButtonStyle}"/>
+                                    <Button x:Name="BtnHizliTutar_50" Content="₺50" Click="QuickAmount_Click" Style="{StaticResource AmountButtonStyle}"/>
+                                    <Button x:Name="BtnHizliTutar_100" Content="₺100" Click="QuickAmount_Click" Style="{StaticResource AmountButtonStyle}"/>
+                                    <Button x:Name="BtnHizliTutar_200" Content="₺200" Click="QuickAmount_Click" Style="{StaticResource AmountButtonStyle}"/>
                                 </StackPanel>
 
-                                <Button x:Name="TamaminiOdemeBtn" Content="Bütün Ödemeyi Al" Style="{StaticResource PayAllButtonStyle}" 
-                            HorizontalAlignment="Right" Height="55" Margin="5,-7,0,0"/>
+                                <Button x:Name="TamaminiOdemeBtn" Content="Bütün Ödemeyi Al" Style="{StaticResource PayAllButtonStyle}" HorizontalAlignment="Right" Height="55" Margin="5,-7,0,8"/>
                             </DockPanel>
+                            <ScrollViewer Grid.Row="1"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" PanningMode="HorizontalOnly" Margin="0,5,20,0">
 
-                            <WrapPanel Grid.Row="1" VerticalAlignment="Bottom">
-                                <Border Style="{StaticResource PaymentChipStyle}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Nakit " Foreground="#8E8EA9" VerticalAlignment="Center"/>
-                                        <TextBlock Text="₺25" FontWeight="Bold" Foreground="#2D2D44" VerticalAlignment="Center"/>
-                                        <Button Content="✕" Margin="10,0,0,0" Background="Transparent" BorderThickness="0" Foreground="#8E8EA9"/>
-                                    </StackPanel>
-                                </Border>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border Style="{StaticResource PaymentChipBorderStyle}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock VerticalAlignment="Center" FontSize="14"><Run Text="Nakit" Foreground="#8E8EA9"/> <Run Text=" "/> <Run Text="₺25" FontWeight="Bold" Foreground="#2D2D44"/>
+                                            </TextBlock>
+                                            <Button Content="✕" Style="{StaticResource ChipDeleteButtonStyle}" ToolTip="Ödemeyi İptal Et"/>
+                                        </StackPanel>
+                                    </Border>
 
-                                <Border Style="{StaticResource PaymentChipStyle}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Kart " Foreground="#8E8EA9" VerticalAlignment="Center"/>
-                                        <TextBlock Text="₺25" FontWeight="Bold" Foreground="#2D2D44" VerticalAlignment="Center"/>
-                                        <Button Content="✕" Margin="10,0,0,0" Background="Transparent" BorderThickness="0" Foreground="#8E8EA9"/>
-                                    </StackPanel>
-                                </Border>
-                            </WrapPanel>
+                                </StackPanel>
+                            </ScrollViewer>
                         </Grid>
                     </Border>
                 </StackPanel>
@@ -109,15 +103,15 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <!--Odeme Kisayol Butonlari-->
-            <StackPanel Grid.Column="0">
-                <Button Content="KART" Style="{StaticResource OdemelerButtonStyle}"/>
-                <Button Content="NAKIT" Style="{StaticResource OdemelerButtonStyle}"/>
-                <Button Content="CARİ" Style="{StaticResource OdemelerButtonStyle}"/>
-                <Button Content="TICKET" Style="{StaticResource OdemelerButtonStyle}"/>
+            <StackPanel Background="#F0F1F8" Grid.Column="0">
+                <Button x:Name="btn_Kart" Click="PaymentMethod_Click" Content="KART" Style="{StaticResource OdemelerButtonStyle}"/>
+                <Button x:Name="btn_Nakit" Click="PaymentMethod_Click" Content="NAKIT" Style="{StaticResource OdemelerButtonStyle}"/>
+                <Button x:Name="btn_Cari" Click="PaymentMethod_Click" Content="CARİ" Style="{StaticResource OdemelerButtonStyle}"/>
+                <Button x:Name="btn_Ticket" Click="PaymentMethod_Click" Content="TICKET" Style="{StaticResource OdemelerButtonStyle}"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1">
-                <Border Background="Transparent" Padding="20" Width="685" Height="574" HorizontalAlignment="Center">
+                <Border Background="#F0F1F8" Padding="20" Width="685" Height="574" HorizontalAlignment="Center">
                     <StackPanel>
                         <Border Style="{StaticResource DisplayBorderStyle}">
                             <Grid Margin="15,0">
@@ -144,25 +138,25 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Content="7" Grid.Row="0" Grid.Column="0" Style="{StaticResource NumpadButtonStyle}"/>
-                            <Button Content="8" Grid.Row="0" Grid.Column="1" Style="{StaticResource NumpadButtonStyle}"/>
-                            <Button Content="9" Grid.Row="0" Grid.Column="2" Style="{StaticResource NumpadButtonStyle}"/>
-                            <Button Content="⌫" Grid.Row="0" Grid.Column="3" Style="{StaticResource NumpadButtonStyle}"/>
+                            <Button Content="7" Click="Num_Click" Grid.Row="0" Grid.Column="0" Style="{StaticResource NumpadButtonStyle}"/>
+                            <Button Content="8" Click="Num_Click" Grid.Row="0" Grid.Column="1" Style="{StaticResource NumpadButtonStyle}"/>
+                            <Button Content="9" Click="Num_Click" Grid.Row="0" Grid.Column="2" Style="{StaticResource NumpadButtonStyle}"/>
+                            <Button Content="⌫" Click="Delete_Click" Grid.Row="0" Grid.Column="3" Style="{StaticResource NumpadButtonStyle}"/>
 
-                            <Button Content="4" Grid.Row="1" Grid.Column="0" Style="{StaticResource NumpadButtonStyle}"/>
-                            <Button Content="5" Grid.Row="1" Grid.Column="1" Style="{StaticResource NumpadButtonStyle}"/>
-                            <Button Content="6" Grid.Row="1" Grid.Column="2" Style="{StaticResource NumpadButtonStyle}"/>
-                            <Button Content="C" Grid.Row="1" Grid.Column="3" Style="{StaticResource NumpadButtonStyle}"/>
+                            <Button Content="4" Click="Num_Click" Grid.Row="1" Grid.Column="0" Style="{StaticResource NumpadButtonStyle}"/>
+                            <Button Content="5" Click="Num_Click" Grid.Row="1" Grid.Column="1" Style="{StaticResource NumpadButtonStyle}"/>
+                            <Button Content="6" Click="Num_Click" Grid.Row="1" Grid.Column="2" Style="{StaticResource NumpadButtonStyle}"/>
+                            <Button Content="C" Click="Clear_Click" Grid.Row="1" Grid.Column="3" Style="{StaticResource NumpadButtonStyle}"/>
 
-                            <Button Content="1" Grid.Row="2" Grid.Column="0" Style="{StaticResource NumpadButtonStyle}"/>
-                            <Button Content="2" Grid.Row="2" Grid.Column="1" Style="{StaticResource NumpadButtonStyle}"/>
-                            <Button Content="3" Grid.Row="2" Grid.Column="2" Style="{StaticResource NumpadButtonStyle}"/>
+                            <Button Content="1" Click="Num_Click" Grid.Row="2" Grid.Column="0" Style="{StaticResource NumpadButtonStyle}"/>
+                            <Button Content="2" Click="Num_Click" Grid.Row="2" Grid.Column="1" Style="{StaticResource NumpadButtonStyle}"/>
+                            <Button Content="3" Click="Num_Click" Grid.Row="2" Grid.Column="2" Style="{StaticResource NumpadButtonStyle}"/>
 
-                            <Button Content="00" Grid.Row="3" Grid.Column="0" Style="{StaticResource NumpadButtonStyle}"/>
-                            <Button Content="0" Grid.Row="3" Grid.Column="1" Style="{StaticResource NumpadButtonStyle}"/>
-                            <Button Content="." Grid.Row="3" Grid.Column="2" Style="{StaticResource NumpadButtonStyle}"/>
+                            <Button Content="00" Click="Num_Click" Grid.Row="3" Grid.Column="0" Style="{StaticResource NumpadButtonStyle}"/>
+                            <Button Content="0"  Click="Num_Click" Grid.Row="3" Grid.Column="1" Style="{StaticResource NumpadButtonStyle}"/>
+                            <Button Content="."  Click="Num_Click" Grid.Row="3" Grid.Column="2" Style="{StaticResource NumpadButtonStyle}"/>
 
-                            <Button Grid.Row="2" Grid.Column="3" Grid.RowSpan="2" Style="{StaticResource EnterButtonStyle}">
+                            <Button Click="Enter_Click" Grid.Row="2" Grid.Column="3" Grid.RowSpan="2" Style="{StaticResource EnterButtonStyle}">
                                 <StackPanel>
                                     <TextBlock Text="↵" FontSize="35" HorizontalAlignment="Center" Margin="0,-5,0,0"/>
                                     <TextBlock Text="ENTER" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center"/>

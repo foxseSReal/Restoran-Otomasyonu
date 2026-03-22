@@ -557,6 +557,7 @@
         <Setter Property="Background" Value="#8E8EA9"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Width" Value="100"/>
         <Setter Property="Height" Value="55"/>
@@ -604,6 +605,46 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
+    <Style x:Key="PaymentChipBorderStyle" TargetType="Border">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="CornerRadius" Value="20"/>
+        <Setter Property="Padding" Value="15,5"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="5" ShadowDepth="1" Color="#EEEEEE" Opacity="0.8"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
+    <Style x:Key="ChipDeleteButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Foreground" Value="#FF5252"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Margin" Value="10,0,0,0"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="Red"/>
+                <Setter Property="RenderTransform">
+                    <Setter.Value>
+                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 
 </ResourceDictionary>
