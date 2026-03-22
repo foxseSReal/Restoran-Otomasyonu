@@ -1,5 +1,5 @@
 <!--Sayfa olarak görüntülemek için Visual Studio Code ile açılmalı ardından CTRL+SHIFT+V kombinasyonunu kullanın. -->
-# 🍽️ Restoran Otomasyonu (WPF & Material Design XAML Tool Kit)
+# 🍽️ Restoran Otomasyonu (WPF & Material Design Tool Kit)
 - Projenin hedef Framework = .NET Framework(4.8)
 ---
 
