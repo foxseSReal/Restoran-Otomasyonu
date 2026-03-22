@@ -61,6 +61,9 @@
         <AssociationConnector Association="RESTORANDBModel.FK_Adisyon_Masa" />
         <AssociationConnector Association="RESTORANDBModel.FK_Detay_Adisyon" />
         <AssociationConnector Association="RESTORANDBModel.FK_Detay_Urun" />
+        <EntityTypeShape EntityType="RESTORANDBModel.TblADISYON_ODEME" Width="1.5" PointX="9" PointY="35.125" />
+        <EntityTypeShape EntityType="RESTORANDBModel.TblPAKET" Width="1.5" PointX="5.375" PointY="3.75" />
+        <AssociationConnector Association="RESTORANDBModel.FK_Odeme_Adisyon" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

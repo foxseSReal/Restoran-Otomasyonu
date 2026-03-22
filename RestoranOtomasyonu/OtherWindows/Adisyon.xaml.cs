@@ -71,12 +71,7 @@ namespace RestoranOtomasyonu.OtherWindows
         {
 
         }
-
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
+        private void CloseButton_Click(object sender, RoutedEventArgs e) => this.Close();
         private void Frame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
 
@@ -222,34 +217,24 @@ namespace RestoranOtomasyonu.OtherWindows
 
         public void SiparisleriGetir()
         {
-            GuncelSepet.Clear(); // Sepeti sıfırla
-
-            var aktifAdisyon = db.TblADISYON.FirstOrDefault(x => x.MasaId == SeciliMasaId && x.Durum == true);
-
-            if (aktifAdisyon != null)
+            GuncelSepet.Clear();
+            var aktif = db.TblADISYON.FirstOrDefault(x => x.MasaId == SeciliMasaId && x.Durum == true);
+            if (aktif != null)
             {
-                // Masanın eski siparişlerini DB'den çekiyoruz
-                var eskiSiparisler = (from d in db.TblADISYON_DETAY
-                                      join u in db.TblURUN on d.UrunId equals u.UrunId
-                                      where d.AdisyonId == aktifAdisyon.AdisyonId
-                                      select new SepetItem
-                                      {
-                                          UrunId = u.UrunId,
-                                          UrunAdi = u.UrunAdi,
-                                          Adet = (int)d.Adet,
-                                          Fiyat = (decimal)d.Fiyat,
-                                          EkstraNot = "",
-                                          YeniEklendiMi = false // Bunlar zaten DB'de var!
-                                      }).ToList();
+                var detaylar = (from d in db.TblADISYON_DETAY
+                                join u in db.TblURUN on d.UrunId equals u.UrunId
+                                where d.AdisyonId == aktif.AdisyonId
+                                select new SepetItem
+                                {
+                                    UrunId = u.UrunId,
+                                    UrunAdi = u.UrunAdi,
+                                    Adet = (int)d.Adet,
+                                    Fiyat = (decimal)d.Fiyat,
+                                    YeniEklendiMi = false
+                                }).ToList();
 
-                // Çekilenleri bizim geçici listemize ekliyoruz
-                foreach (var item in eskiSiparisler)
-                {
-                    GuncelSepet.Add(item);
-                }
+                foreach (var item in detaylar) GuncelSepet.Add(item);
             }
-
-            // XAML'daki ListView'e veri kaynağı olarak bu Dinamik Listeyi veriyoruz
             SiparisList.ItemsSource = GuncelSepet;
             GenelToplamiHesapla();
         }
@@ -315,13 +300,26 @@ namespace RestoranOtomasyonu.OtherWindows
             this.Close();
         }
 
+        // Adisyon.xaml.cs içinde
         public void GenelToplamiHesapla()
         {
-            // Sepetteki (GuncelSepet) tüm ürünlerin "Toplam" özelliklerini LINQ ile topluyoruz
-            decimal genelToplam = GuncelSepet.Sum(x => x.Toplam);
+            // 1. Ürünlerin toplamı
+            decimal urunlerToplami = GuncelSepet.Sum(x => x.Toplam);
 
-            // Çıkan sonucu x:Name verdiğimiz TextBlock'a formatlı şekilde yazdırıyoruz
-            txtGenelToplam.Text = $"₺ {genelToplam:N2}";
+            // 2. SQL'den bu adisyona yapılmış ödemeleri çek
+            var aktifAdisyon = db.TblADISYON.FirstOrDefault(x => x.MasaId == SeciliMasaId && x.Durum == true);
+            decimal odenenMiktar = 0;
+
+            if (aktifAdisyon != null)
+            {
+                odenenMiktar = db.TblADISYON_ODEME
+                                 .Where(x => x.AdisyonId == aktifAdisyon.AdisyonId)
+                                 .Sum(x => (decimal?)x.OdenenTutar) ?? 0;
+            }
+
+            // 3. Kalan borcu yeşil etikete yaz (0'ın altına düşmesin)
+            decimal kalan = urunlerToplami - odenenMiktar;
+            txtGenelToplam.Text = string.Format("₺ {0:N2}", kalan > 0 ? kalan : 0);
         }
 
         private void RezervasyonButton_Click(object sender, RoutedEventArgs e)
@@ -341,7 +339,26 @@ namespace RestoranOtomasyonu.OtherWindows
 
         private void OdemeButtonu_Click(object sender, RoutedEventArgs e)
         {
-            MenuFrame.Navigate(new OdemeSayfa());
+            // 1. KONTROL: Eğer zaten ödeme sayfasındaysak tekrar açma (Hataları önler)
+            if (MenuFrame.Content is OdemeSayfa)
+                return;
+
+            // 2. KRİTİK NOKTA: txtGenelToplam'ı (Kalanı) değil, ürünlerin NET toplamını gönderiyoruz.
+            // Çünkü sayfa zaten SQL'den ödemeleri çekip kendi düşecek.
+            decimal urunlerinNetToplami = GuncelSepet.Sum(x => x.Toplam);
+
+            // Eğer sepette ürün yoksa ödeme sayfasını hiç açma
+            if (urunlerinNetToplami <= 0)
+            {
+                MessageBox.Show("Ödeme almak için önce ürün eklemelisiniz!", "Uyarı");
+                return;
+            }
+
+            string gonderilecekTutar = urunlerinNetToplami.ToString();
+            int gonderilecekMasaId = SeciliMasaId;
+
+            // Sayfayı tek bir sefer ve doğru tutarla açıyoruz
+            MenuFrame.Navigate(new OdemeSayfa(gonderilecekTutar, gonderilecekMasaId, this));
         }
     }
 }

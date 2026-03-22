@@ -35,6 +35,16 @@
           <Property Name="Adet" Type="int" />
           <Property Name="Fiyat" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
+        <EntityType Name="TblADISYON_ODEME">
+          <Key>
+            <PropertyRef Name="OdemeId" />
+          </Key>
+          <Property Name="OdemeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdisyonId" Type="int" Nullable="false" />
+          <Property Name="OdemeTuru" Type="nvarchar" MaxLength="50" />
+          <Property Name="OdenenTutar" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Tarih" Type="datetime" />
+        </EntityType>
         <EntityType Name="TblBORDROLAR">
           <Key>
             <PropertyRef Name="BordroID" />
@@ -222,6 +232,16 @@
           <Property Name="Aciklama" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="Telefon" Type="nvarchar" MaxLength="20" />
           <Property Name="Durum" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblPAKET">
+          <Key>
+            <PropertyRef Name="PaketId" />
+          </Key>
+          <Property Name="PaketId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaketNo" Type="int" />
+          <Property Name="Tutar" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Statu" Type="char" MaxLength="1" />
+          <Property Name="Durum" Type="bit" />
         </EntityType>
         <EntityType Name="TblPERSONELLER">
           <Key>
@@ -492,6 +512,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Odeme_Adisyon">
+          <End Role="TblADISYON" Type="Self.TblADISYON" Multiplicity="1" />
+          <End Role="TblADISYON_ODEME" Type="Self.TblADISYON_ODEME" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblADISYON">
+              <PropertyRef Name="AdisyonId" />
+            </Principal>
+            <Dependent Role="TblADISYON_ODEME">
+              <PropertyRef Name="AdisyonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Personeller_Odeme">
           <End Role="TblPERSONELLER" Type="Self.TblPERSONELLER" Multiplicity="0..1" />
           <End Role="TblPERSONELODEME" Type="Self.TblPERSONELODEME" Multiplicity="*" />
@@ -731,6 +763,7 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblADISYON" EntityType="Self.TblADISYON" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblADISYON_DETAY" EntityType="Self.TblADISYON_DETAY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblADISYON_ODEME" EntityType="Self.TblADISYON_ODEME" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblBORDROLAR" EntityType="Self.TblBORDROLAR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblCEKSENET" EntityType="Self.TblCEKSENET" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblFIRMA" EntityType="Self.TblFIRMA" Schema="dbo" store:Type="Tables" />
@@ -745,6 +778,7 @@
           <EntitySet Name="TblMASA" EntityType="Self.TblMASA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblMODEME" EntityType="Self.TblMODEME" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblMUSTERILER" EntityType="Self.TblMUSTERILER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblPAKET" EntityType="Self.TblPAKET" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblPERSONELLER" EntityType="Self.TblPERSONELLER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblPERSONELODEME" EntityType="Self.TblPERSONELODEME" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblREZARVASYON" EntityType="Self.TblREZARVASYON" Schema="dbo" store:Type="Tables" />
@@ -808,6 +842,10 @@
           <AssociationSet Name="FK_GunlukHarcama_Personel" Association="Self.FK_GunlukHarcama_Personel">
             <End Role="TblPERSONELLER" EntitySet="TblPERSONELLER" />
             <End Role="TblGUNLUKHARCAMA" EntitySet="TblGUNLUKHARCAMA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odeme_Adisyon" Association="Self.FK_Odeme_Adisyon">
+            <End Role="TblADISYON" EntitySet="TblADISYON" />
+            <End Role="TblADISYON_ODEME" EntitySet="TblADISYON_ODEME" />
           </AssociationSet>
           <AssociationSet Name="FK_Personeller_Odeme" Association="Self.FK_Personeller_Odeme">
             <End Role="TblPERSONELLER" EntitySet="TblPERSONELLER" />
@@ -1755,6 +1793,12 @@
             <End Role="TblURUN" EntitySet="TblURUN" />
             <End Role="TblADISYON_DETAY" EntitySet="TblADISYON_DETAY" />
           </AssociationSet>
+          <EntitySet Name="TblADISYON_ODEME" EntityType="RESTORANDBModel.TblADISYON_ODEME" />
+          <EntitySet Name="TblPAKET" EntityType="RESTORANDBModel.TblPAKET" />
+          <AssociationSet Name="FK_Odeme_Adisyon" Association="RESTORANDBModel.FK_Odeme_Adisyon">
+            <End Role="TblADISYON" EntitySet="TblADISYON" />
+            <End Role="TblADISYON_ODEME" EntitySet="TblADISYON_ODEME" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="TblADISYON">
           <Key>
@@ -1767,6 +1811,7 @@
           <Property Name="Durum" Type="Boolean" />
           <NavigationProperty Name="TblMASA" Relationship="RESTORANDBModel.FK_Adisyon_Masa" FromRole="TblADISYON" ToRole="TblMASA" />
           <NavigationProperty Name="TblADISYON_DETAY" Relationship="RESTORANDBModel.FK_Detay_Adisyon" FromRole="TblADISYON" ToRole="TblADISYON_DETAY" />
+          <NavigationProperty Name="TblADISYON_ODEME" Relationship="RESTORANDBModel.FK_Odeme_Adisyon" FromRole="TblADISYON" ToRole="TblADISYON_ODEME" />
         </EntityType>
         <EntityType Name="TblADISYON_DETAY">
           <Key>
@@ -1813,6 +1858,39 @@
             </Principal>
             <Dependent Role="TblADISYON_DETAY">
               <PropertyRef Name="UrunId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TblADISYON_ODEME">
+          <Key>
+            <PropertyRef Name="OdemeId" />
+          </Key>
+          <Property Name="OdemeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdisyonId" Type="Int32" Nullable="false" />
+          <Property Name="OdemeTuru" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OdenenTutar" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Tarih" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TblADISYON" Relationship="RESTORANDBModel.FK_Odeme_Adisyon" FromRole="TblADISYON_ODEME" ToRole="TblADISYON" />
+        </EntityType>
+        <EntityType Name="TblPAKET">
+          <Key>
+            <PropertyRef Name="PaketId" />
+          </Key>
+          <Property Name="PaketId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaketNo" Type="Int32" />
+          <Property Name="Tutar" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Statu" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Durum" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_Odeme_Adisyon">
+          <End Type="RESTORANDBModel.TblADISYON" Role="TblADISYON" Multiplicity="1" />
+          <End Type="RESTORANDBModel.TblADISYON_ODEME" Role="TblADISYON_ODEME" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblADISYON">
+              <PropertyRef Name="AdisyonId" />
+            </Principal>
+            <Dependent Role="TblADISYON_ODEME">
+              <PropertyRef Name="AdisyonId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2170,6 +2248,28 @@
                 <ScalarProperty Name="UrunId" ColumnName="UrunId" />
                 <ScalarProperty Name="AdisyonId" ColumnName="AdisyonId" />
                 <ScalarProperty Name="DetayId" ColumnName="DetayId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblADISYON_ODEME">
+            <EntityTypeMapping TypeName="RESTORANDBModel.TblADISYON_ODEME">
+              <MappingFragment StoreEntitySet="TblADISYON_ODEME">
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="OdenenTutar" ColumnName="OdenenTutar" />
+                <ScalarProperty Name="OdemeTuru" ColumnName="OdemeTuru" />
+                <ScalarProperty Name="AdisyonId" ColumnName="AdisyonId" />
+                <ScalarProperty Name="OdemeId" ColumnName="OdemeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblPAKET">
+            <EntityTypeMapping TypeName="RESTORANDBModel.TblPAKET">
+              <MappingFragment StoreEntitySet="TblPAKET">
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+                <ScalarProperty Name="Tutar" ColumnName="Tutar" />
+                <ScalarProperty Name="PaketNo" ColumnName="PaketNo" />
+                <ScalarProperty Name="PaketId" ColumnName="PaketId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

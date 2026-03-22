@@ -1,115 +1,122 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using RestoranOtomasyonu.Entity;
+using RestoranOtomasyonu.OtherWindows; // Adisyon penceresine ulaşmak için
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace RestoranOtomasyonu.Pages
 {
-    /// <summary>
-    /// OdemeSayfa.xaml etkileşim mantığı
-    /// </summary>
     public partial class OdemeSayfa : Page
     {
-        public OdemeSayfa()
+        RESTORANDBEntities db = new RESTORANDBEntities();
+        private Adisyon _anaPencere;
+        private int _masaId;
+        private int _adisyonId;
+        private decimal _toplamBorc;
+        private decimal _tahsilEdilen;
+        private string _numpadMetni = "0";
+
+        public OdemeSayfa(string gelenTutar, int masaId, Adisyon anaPencere)
         {
             InitializeComponent();
+            this._masaId = masaId;
+            this._anaPencere = anaPencere;
+
+            // "₺ 150,00" formatını temizleyip sayıya çeviriyoruz
+            decimal.TryParse(gelenTutar.Replace("₺", "").Trim(), out _toplamBorc);
+
+            VerileriYukle();
         }
 
-        private void PaymentMethod_Click(object sender, RoutedEventArgs e)
+        private void VerileriYukle()
         {
-            // Tıklanan butonu yakalıyoruz
-            Button tıklananButon = sender as Button;
-
-            if (tıklananButon != null)
+            var aktif = db.TblADISYON.FirstOrDefault(x => x.MasaId == _masaId && x.Durum == true);
+            if (aktif != null)
             {
-                // Butonun Content bilgisini (KART, NAKIT vb.) TextBlock'a yazıyoruz
-                txt_OdemeSekli.Text = tıklananButon.Content.ToString();
-
-                // Bonus: Eğer görseldeki o yeşil noktayı da değiştirmek istersen:
-                // (Noktanın adı 'dotIcon' varsayalım)
-                // dotIcon.Fill = tıklananButon.Background; 
+                _adisyonId = aktif.AdisyonId;
+                // SQL'den bu adisyona ait önceki ödemelerin toplamını al
+                _tahsilEdilen = db.TblADISYON_ODEME
+                                  .Where(x => x.AdisyonId == _adisyonId)
+                                  .Sum(x => (decimal?)x.OdenenTutar) ?? 0;
             }
+            KalanTutariGuncelle();
         }
 
-        // Girilen rakamları burada tutacağız
-        private string girilenTutar = "";
-
-        // Rakamlara ve Noktaya Basıldığında
-        private void Num_Click(object sender, RoutedEventArgs e)
-        {
-            Button btn = sender as Button;
-            string deger = btn.Content.ToString();
-
-            // Nokta kontrolü: Birden fazla nokta girilmesini engelle
-            if (deger == "." && girilenTutar.Contains(".")) return;
-
-            // İlk rakam 0 ise ve nokta değilse temizle (05 yerine 5 yazması için)
-            if (girilenTutar == "0" && deger != ".") girilenTutar = "";
-
-            girilenTutar += deger;
-            TutarGuncelle();
-        }
-
-        // "C" (Clear) Butonu: Her şeyi sıfırlar
-        private void Clear_Click(object sender, RoutedEventArgs e)
-        {
-            girilenTutar = "0";
-            TutarGuncelle();
-        }
-
-        // "⌫" (Backspace) Butonu: Son karakteri siler
-        private void Delete_Click(object sender, RoutedEventArgs e)
-        {
-            if (girilenTutar.Length > 0)
-            {
-                girilenTutar = girilenTutar.Substring(0, girilenTutar.Length - 1);
-            }
-
-            if (girilenTutar == "") girilenTutar = "0";
-            TutarGuncelle();
-        }
-
-        // Metni Formatlayıp TextBlock'a Yazdıran Fonksiyon
-        private void TutarGuncelle()
-        {
-            // Ekranda ₺ sembolü ile gösteriyoruz
-            txt_Tutar.Text = "₺" + girilenTutar;
-        }
-
-        // "ENTER" Butonu: Ödemeyi onayla
         private void Enter_Click(object sender, RoutedEventArgs e)
         {
-            // Burada ödeme işlemini veritabanına kaydedecek kodlar gelecek
-            MessageBox.Show($"{txt_OdemeSekli.Text} ile {txt_Tutar.Text} tutarında ödeme alındı!");
-        }
-
-        private void QuickAmount_Click(object sender, RoutedEventArgs e)
-        {
-            Button btn = sender as Button;
-            if (btn != null)
+            if (decimal.TryParse(_numpadMetni.Replace(".", ","), out decimal miktar) && miktar > 0)
             {
-                // Butonun içeriğindeki "₺" sembolünü temizleyip sadece rakamı alıyoruz
-                // Örn: "₺50" -> "50"
-                string secilenTutar = btn.Content.ToString().Replace("₺", "").Trim();
+                try
+                {
+                    // 1. SQL'e Yeni Ödeme Kaydı
+                    db.TblADISYON_ODEME.Add(new TblADISYON_ODEME
+                    {
+                        AdisyonId = _adisyonId,
+                        OdemeTuru = txt_OdemeSekli.Text,
+                        OdenenTutar = miktar,
+                        Tarih = DateTime.Now
+                    });
 
-                // Arka plandaki değişkenimizi güncelliyoruz ki 
-                // sonrasında numpad ile ekleme yapmak istersek kaldığı yerden devam etsin
-                girilenTutar = secilenTutar;
+                    _tahsilEdilen += miktar;
 
-                // Ekrana yansıt
-                TutarGuncelle();
+                    // 2. Borç Tamamlandıysa Adisyonu ve Masayı Kapat
+                    if (_tahsilEdilen >= _toplamBorc)
+                    {
+                        var ad = db.TblADISYON.Find(_adisyonId);
+                        if (ad != null) { ad.Durum = false; ad.KapanisZamani = DateTime.Now; }
+
+                        var ms = db.TblMASA.FirstOrDefault(m => m.MasaId == _masaId);
+                        if (ms != null) { ms.Statu = "B"; ms.Tutar = 0; }
+                    }
+
+                    db.SaveChanges(); // SQL'e Yaz
+
+                    // 3. ANA PENCEREYE HABER VER (Yeşil alanı güncellet)
+                    if (_anaPencere != null) _anaPencere.GenelToplamiHesapla();
+
+                    // 4. UI Reset
+                    _numpadMetni = "0";
+                    TutarGuncelle();
+                    KalanTutariGuncelle();
+                    MessageBox.Show("Ödeme Başarıyla Alındı.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Hata: " + ex.Message);
+                }
             }
         }
 
+        private void KalanTutariGuncelle()
+        {
+            decimal kalan = _toplamBorc - _tahsilEdilen;
+            txt_KalanTutar.Text = string.Format("₺{0:N2}", kalan > 0 ? kalan : 0);
+            if (kalan <= 0) txt_KalanTutar.Foreground = Brushes.Green;
+        }
+
+        // --- BUTON İŞLEVLERİ ---
+        private void Num_Click(object sender, RoutedEventArgs e)
+        {
+            string d = (sender as Button).Content.ToString();
+            if (d == "." && _numpadMetni.Contains(".")) return;
+            if (_numpadMetni == "0" && d != ".") _numpadMetni = "";
+            _numpadMetni += d; TutarGuncelle();
+        }
+        private void QuickAmount_Click(object sender, RoutedEventArgs e)
+        {
+            _numpadMetni = (sender as Button).Content.ToString().Replace("₺", "").Trim();
+            TutarGuncelle();
+        }
+        private void TutarGuncelle() => txt_Tutar.Text = "₺" + _numpadMetni;
+        private void Clear_Click(object sender, RoutedEventArgs e) { _numpadMetni = "0"; TutarGuncelle(); }
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (_numpadMetni.Length > 0) _numpadMetni = _numpadMetni.Substring(0, _numpadMetni.Length - 1);
+            if (_numpadMetni == "") _numpadMetni = "0";
+            TutarGuncelle();
+        }
+        private void PaymentMethod_Click(object sender, RoutedEventArgs e) => txt_OdemeSekli.Text = (sender as Button).Content.ToString();
     }
 }

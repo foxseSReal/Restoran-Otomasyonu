@@ -18,6 +18,7 @@ namespace RestoranOtomasyonu.Entity
         public TblADISYON()
         {
             this.TblADISYON_DETAY = new HashSet<TblADISYON_DETAY>();
+            this.TblADISYON_ODEME = new HashSet<TblADISYON_ODEME>();
         }
     
         public int AdisyonId { get; set; }
@@ -29,5 +30,7 @@ namespace RestoranOtomasyonu.Entity
         public virtual TblMASA TblMASA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblADISYON_DETAY> TblADISYON_DETAY { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblADISYON_ODEME> TblADISYON_ODEME { get; set; }
     }
 }
