@@ -6,7 +6,7 @@
 ## ℹ️ Bilgilendirme!
 
 >[!WARNING]
-> Proje tamamen Türkçe hazırlanmıştır ve ortalama bir Restoranın takibini yapmayı hedefler.
+> Proje ortalama bir Restoranın takibini yapmayı hedefler.
 > Bu Proje bir okul projesidir. 
 > Tamamen kullanıma hazır olmayabilir...
 
