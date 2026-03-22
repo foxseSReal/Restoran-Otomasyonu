@@ -1,5 +1,5 @@
 <!--Sayfa olarak görüntülemek için Visual Studio Code ile açılmalı ardından CTRL+SHIFT+V kombinasyonunu kullanın. -->
-# 🍽️ Restoran Otomasyonu (WPF+XAML (Material Design XAML Tool Kit) )
+# 🍽️ Restoran Otomasyonu (WPF & Material Design XAML Tool Kit)
 - Projenin hedef Framework = .NET Framework(4.8)
 ---
 
@@ -19,6 +19,7 @@
 Proje ortalama bir restoranın işleyişini takip etmek için hazırlanmıştır.
 Aşağıda belirtilen özellikleri kontrol eder; 
 
+- Masa Kontrolleri
 - Gelir-Gider Takibi
 - Personel Yönetimi
 - Muhasebe
