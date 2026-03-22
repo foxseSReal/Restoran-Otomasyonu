@@ -23,14 +23,84 @@
     </Page.Triggers>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="250"/>
+            <RowDefinition Height="230"/>
             <RowDefinition Height="574"/>
         </Grid.RowDefinitions>
 
         <!--Odeme Geçmişi ve Kısa yollar-->
         <!--row0-->
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Margin="0,0,0,0">
+            <Border Background="#F0F1F8" Padding="10">
+                <StackPanel>
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
 
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <materialDesign:PackIcon Kind="CashRegister" Width="40" Height="40" Foreground="#4A4A68" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                <TextBlock Text="Ödeme Al" FontFamily="/Resources/Noto/Pacifico-Regular.ttf#Pacifico" FontSize="25" FontWeight="Bold" Foreground="#4A4A68" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" Orientation="Horizontal">
+                            <StackPanel Margin="20,0">
+                                <TextBlock Text="ÖDENEN TUTAR" FontSize="14" Foreground="#8E8EA9" FontWeight="Bold"/>
+                                <TextBlock x:Name="txt_OdenenTutar" Text="₺75,00" FontSize="24" FontWeight="Bold" Foreground="#2D2D44"/>
+                            </StackPanel>
+                            <StackPanel Margin="20,0">
+                                <TextBlock Text="KALAN TUTAR" FontSize="14" Foreground="#8E8EA9" FontWeight="Bold"/>
+                                <TextBlock x:Name="txt_KalanTutar" Text="₺50,30" FontSize="24" FontWeight="Bold" Foreground="#E91E63"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+
+                    <Border Background="#5C5C7D" CornerRadius="15" Padding="20 0 0 20" Height="145">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <DockPanel Grid.Row="0">
+                                <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                    <Button x:Name="BtnHizliTutar_5" Content="₺5" Style="{StaticResource AmountButtonStyle}"/>
+                                    <Button x:Name="BtnHizliTutar_10" Content="₺10" Style="{StaticResource AmountButtonStyle}"/>
+                                    <Button x:Name="BtnHizliTutar_20" Content="₺20" Style="{StaticResource AmountButtonStyle}"/>
+                                    <Button x:Name="BtnHizliTutar_50" Content="₺50" Style="{StaticResource AmountButtonStyle}"/>
+                                    <Button x:Name="BtnHizliTutar_100" Content="₺100" Style="{StaticResource AmountButtonStyle}"/>
+                                    <Button x:Name="BtnHizliTutar_200" Content="₺200" Style="{StaticResource AmountButtonStyle}"/>
+                                </StackPanel>
+
+                                <Button x:Name="TamaminiOdemeBtn" Content="Bütün Ödemeyi Al" Style="{StaticResource PayAllButtonStyle}" 
+                            HorizontalAlignment="Right" Height="55" Margin="5,-7,0,0"/>
+                            </DockPanel>
+
+                            <WrapPanel Grid.Row="1" VerticalAlignment="Bottom">
+                                <Border Style="{StaticResource PaymentChipStyle}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Nakit " Foreground="#8E8EA9" VerticalAlignment="Center"/>
+                                        <TextBlock Text="₺25" FontWeight="Bold" Foreground="#2D2D44" VerticalAlignment="Center"/>
+                                        <Button Content="✕" Margin="10,0,0,0" Background="Transparent" BorderThickness="0" Foreground="#8E8EA9"/>
+                                    </StackPanel>
+                                </Border>
+
+                                <Border Style="{StaticResource PaymentChipStyle}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Kart " Foreground="#8E8EA9" VerticalAlignment="Center"/>
+                                        <TextBlock Text="₺25" FontWeight="Bold" Foreground="#2D2D44" VerticalAlignment="Center"/>
+                                        <Button Content="✕" Margin="10,0,0,0" Background="Transparent" BorderThickness="0" Foreground="#8E8EA9"/>
+                                    </StackPanel>
+                                </Border>
+                            </WrapPanel>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+            </Border>
         </Grid>
         <!--row1-->
         <Grid Grid.Row="1">
@@ -39,34 +109,70 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <!--Odeme Kisayol Butonlari-->
-            <Border Padding="0 20 0 20">
-                <StackPanel Grid.Column="0">
-                    <Button x:Name="NakitBnt" Style="{StaticResource OdemeKisayolBtn}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Nakit" FontSize="28" VerticalAlignment="Center"/>
-                            <materialDesign:PackIcon Kind="Cash" Margin="20 0 0 0" Width="50" Height="50"/>
-                        </StackPanel>
-                    </Button>
-                    <Button x:Name="KartBnt" Style="{StaticResource OdemeKisayolBtn}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Kart" FontSize="28" VerticalAlignment="Center"/>
-                            <materialDesign:PackIcon Kind="CreditCardFast" Margin="32 0 0 0" Width="50" Height="50"/>
-                        </StackPanel>
-                    </Button>
-                    <Button x:Name="CariBnt" Style="{StaticResource OdemeKisayolBtn}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Cari" FontSize="28" VerticalAlignment="Center"/>
-                            <materialDesign:PackIcon Kind="NoteMinus" Margin="40 0 0 0" Width="50" Height="50"/>
-                        </StackPanel>
-                    </Button>
-                    <Button x:Name="VeresiyeBnt" Style="{StaticResource OdemeKisayolBtn}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Veresiye" FontSize="28" VerticalAlignment="Center"/>
-                            <materialDesign:PackIcon Kind="CashMinus" Margin="10 0 0 0" Width="50" Height="50"/>
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
-            </Border>
+            <StackPanel Grid.Column="0">
+                <Button Content="KART" Style="{StaticResource OdemelerButtonStyle}"/>
+                <Button Content="NAKIT" Style="{StaticResource OdemelerButtonStyle}"/>
+                <Button Content="CARİ" Style="{StaticResource OdemelerButtonStyle}"/>
+                <Button Content="TICKET" Style="{StaticResource OdemelerButtonStyle}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1">
+                <Border Background="Transparent" Padding="20" Width="685" Height="574" HorizontalAlignment="Center">
+                    <StackPanel>
+                        <Border Style="{StaticResource DisplayBorderStyle}">
+                            <Grid Margin="15,0">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                    <Ellipse Fill="ForestGreen" Width="20" Height="20" Margin="0,0,10,0"/>
+                                    <TextBlock x:Name="txt_OdemeSekli" Text="KART" Foreground="#8E8EA9" FontSize="24" FontWeight="Bold" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <TextBlock x:Name="txt_Tutar" Text="₺256,00" Foreground="#2D2D44" FontSize="35" FontWeight="Bold" 
+                           HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="100"/>
+                                <RowDefinition Height="100"/>
+                                <RowDefinition Height="100"/>
+                                <RowDefinition Height="100"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Content="7" Grid.Row="0" Grid.Column="0" Style="{StaticResource NumpadButtonStyle}"/>
+                            <Button Content="8" Grid.Row="0" Grid.Column="1" Style="{StaticResource NumpadButtonStyle}"/>
+                            <Button Content="9" Grid.Row="0" Grid.Column="2" Style="{StaticResource NumpadButtonStyle}"/>
+                            <Button Content="⌫" Grid.Row="0" Grid.Column="3" Style="{StaticResource NumpadButtonStyle}"/>
+
+                            <Button Content="4" Grid.Row="1" Grid.Column="0" Style="{StaticResource NumpadButtonStyle}"/>
+                            <Button Content="5" Grid.Row="1" Grid.Column="1" Style="{StaticResource NumpadButtonStyle}"/>
+                            <Button Content="6" Grid.Row="1" Grid.Column="2" Style="{StaticResource NumpadButtonStyle}"/>
+                            <Button Content="C" Grid.Row="1" Grid.Column="3" Style="{StaticResource NumpadButtonStyle}"/>
+
+                            <Button Content="1" Grid.Row="2" Grid.Column="0" Style="{StaticResource NumpadButtonStyle}"/>
+                            <Button Content="2" Grid.Row="2" Grid.Column="1" Style="{StaticResource NumpadButtonStyle}"/>
+                            <Button Content="3" Grid.Row="2" Grid.Column="2" Style="{StaticResource NumpadButtonStyle}"/>
+
+                            <Button Content="00" Grid.Row="3" Grid.Column="0" Style="{StaticResource NumpadButtonStyle}"/>
+                            <Button Content="0" Grid.Row="3" Grid.Column="1" Style="{StaticResource NumpadButtonStyle}"/>
+                            <Button Content="." Grid.Row="3" Grid.Column="2" Style="{StaticResource NumpadButtonStyle}"/>
+
+                            <Button Grid.Row="2" Grid.Column="3" Grid.RowSpan="2" Style="{StaticResource EnterButtonStyle}">
+                                <StackPanel>
+                                    <TextBlock Text="↵" FontSize="35" HorizontalAlignment="Center" Margin="0,-5,0,0"/>
+                                    <TextBlock Text="ENTER" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
         </Grid>
     </Grid>
 </Page>
