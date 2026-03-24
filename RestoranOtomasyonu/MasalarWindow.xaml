@@ -111,6 +111,32 @@
                 <Button Content="Paketleri Git" Margin="0 20 0 10" Background="CadetBlue" BorderBrush="CadetBlue" materialDesign:ButtonAssist.CornerRadius="20" Width="150" Click="PaketGoster"/>
                 <Separator Width="200" Background="White" />
                 <Button Content="Salona Git" Width="150" materialDesign:ButtonAssist.CornerRadius="20" Background="#dcdcdc" BorderBrush="#dcdcdc" Margin="0 10 0 0" Click="Window_Loaded"/>
+
+                <!---->
+                <Border Style="{StaticResource DashboardCardStyle}" Width="280" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,20,0">
+                    <StackPanel>
+                        <StackPanel Margin="0,0,0,12">
+                            <TextBlock Text="GÜNÜN CİROSU" Foreground="#88FFFFFF" FontSize="16" FontWeight="Bold"/>
+                            <TextBlock x:Name="txtGunlukCiro" Text="₺ 0,00" Foreground="#FF00FF7F" FontSize="30" FontWeight="ExtraBold" Margin="0,2,0,0"/>
+                        </StackPanel>
+
+                        <Rectangle Height="1" Fill="#22FFFFFF" Margin="0,0,0,12"/>
+
+                        <Grid>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <Ellipse Width="8" Height="8" Fill="#FF00FF7F" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                                <TextBlock Text="AÇIK MASALAR" Foreground="#88FFFFFF" FontSize="11" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <TextBlock x:Name="txtAcikMasaSayisi" Text="0" Foreground="White" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                                <TextBlock Text="ADET" Foreground="#44FFFFFF" FontSize="10" FontWeight="Bold" VerticalAlignment="Bottom" Margin="0,0,0,2"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!---->
             </StackPanel>
         </Grid>
     </Grid>
