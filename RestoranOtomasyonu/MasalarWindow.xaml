@@ -107,6 +107,9 @@
                 <TextBlock x:Name="_tarih" FontSize="22" VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center" FontFamily="/NewFonts/Pacifico-Regular.ttf#Pacifico"/>
                 <Separator Width="200" Background="White"/>
             </StackPanel>
+            <StackPanel Grid.Row="1" Orientation="Vertical">
+                <Button Content="Paket getir" Click="PaketGoster"/>
+            </StackPanel>   
         </Grid>
     </Grid>
 </Window>

@@ -35,6 +35,11 @@ namespace RestoranOtomasyonu
             timer.Start();
             _tarih.Text = DateTime.Now.ToString("D", _tr);
         }
+        public enum AdisyonTipi
+        {
+            Masa,
+            Paket
+        }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -69,10 +74,12 @@ namespace RestoranOtomasyonu
         {
             MasaPanel.Children.Clear();
             var masalar = (from x in db.TblMASA
-                           where x.Durum == true && x.MasaId != 999
+                           where x.Durum == true && x.NESNE_DURUMU != "Paket"
                            select new
                            {
                                x.MasaId,
+                               x.NESNE_DURUMU,
+                               x.MasaNo,
                                x.Durum
                            }).ToList();
 
@@ -83,13 +90,13 @@ namespace RestoranOtomasyonu
                 btn.Margin = new Thickness(10);
                 var converter = new System.Windows.Media.BrushConverter();
                 btn.Background = (System.Windows.Media.Brush)converter.ConvertFromString("#85dcdcdc");
-                btn.Tag = item.MasaId;
+                btn.Tag = item.MasaNo;
                 btn.Click += Masa_Click;
 
                 StackPanel sp = new StackPanel();
 
                 TextBlock tb = new TextBlock();
-                tb.Text = "Masa " + item.MasaId;
+                tb.Text = item.NESNE_DURUMU + " " + item.MasaId;
                 tb.FontSize = 28;
 
                 tb.FontFamily = new System.Windows.Media.FontFamily(new Uri("pack://application:,,,/"), "/NewFonts/Modak-Regular.ttf#Modak");
@@ -105,11 +112,8 @@ namespace RestoranOtomasyonu
             Button secilenMasa = (Button)sender;
             int masaId = Convert.ToInt32(secilenMasa.Tag);
 
-            Adisyon adisyonPenceresi = new Adisyon(masaId);
+            Adisyon adisyonPenceresi = new Adisyon(masaId, AdisyonTipi.Masa);
 
-            // İŞTE KESİN ÇÖZÜM: Pencerenin "Kapandı" (Closed) olayına kanca atıyoruz!
-            // Bu kod sayesinde, Adisyon penceresi (Onayla veya Çarpı ile) TAMAMEN kapandığı an 
-            // MasaRenklendir metodu otomatik olarak tetiklenecek.
             adisyonPenceresi.Closed += (s, args) =>
             {
                 // Arayüzün nefes alıp güncellenmesi için ufak bir Dispatcher (Kuyruk) içine alıyoruz
@@ -127,7 +131,7 @@ namespace RestoranOtomasyonu
             // Veritabanını tazeleyerek en güncel statüleri alıyoruz
             using (RESTORANDBEntities tazeDb = new RESTORANDBEntities())
             {
-                var tumMasalar = tazeDb.TblMASA.AsNoTracking().Where(x => x.Durum == true && x.MasaId != 999).ToList();
+                var tumMasalar = tazeDb.TblMASA.AsNoTracking().Where(x => x.Durum == true && x.NESNE_DURUMU != "Paket").ToList();
 
                 var converter = new System.Windows.Media.BrushConverter();
                 var standartArkaplan = (Brush)converter.ConvertFromString("#85dcdcdc");
@@ -149,7 +153,7 @@ namespace RestoranOtomasyonu
                             {
                                 btn.Background = (Brush)FindResource("DoluMasaBrush");
                                 tb.Foreground = Brushes.AntiqueWhite;
-                                tb.Text = "Masa " + masaId; // Dolu olsa da numara yazsın
+                                tb.Text = masaVerisi.NESNE_DURUMU + " " + masaVerisi.MasaNo; // Dolu olsa da numara yazsın
                             }
                             else if (masaVerisi.Statu == "R") // REZERVE
                             {
@@ -164,7 +168,7 @@ namespace RestoranOtomasyonu
                                 btn.Background = standartArkaplan; // #85dcdcdc rengi
                                 btn.BorderBrush = Brushes.Transparent;
                                 tb.Foreground = Brushes.Black; // Varsayılan yazı rengi
-                                tb.Text = "Masa " + masaId; // Standart yazı
+                                tb.Text = masaVerisi.NESNE_DURUMU + " " + masaVerisi.MasaNo; // Standart yazı
                             }
                         }
                     }
@@ -189,11 +193,117 @@ namespace RestoranOtomasyonu
             MasaEkleWindow win = new MasaEkleWindow();
             win.Owner = this; // Ana pencerenin üzerinde kalması için önemli
             bool? result = win.ShowDialog(); // Show() yerine ShowDialog() kullan
+        }
 
-            if (result == true)
+        //Paketleme işlemi için gerekli olan kodlar
+        public void PaketGoster(object sender, RoutedEventArgs e)
+        {
+            MasaPanel.Children.Clear();
+            var masalar = (from x in db.TblMASA
+                           where x.Durum == true && x.NESNE_DURUMU != "Masa"
+                           select new
+                           {
+                               x.MasaId,
+                               x.NESNE_DURUMU,
+                               x.MasaNo,
+                               x.Durum
+                           }).ToList();
+
+            foreach (var item in masalar)
             {
-                // Kayıt başarılı olduysa ana sayfadaki masa listesini yenileyebilirsin
-                // ListeYenile(); 
+                Button btn = new Button();
+                btn.Style = (Style)FindResource("MasaButton");
+                btn.Margin = new Thickness(10);
+                var converter = new System.Windows.Media.BrushConverter();
+                btn.Background = (System.Windows.Media.Brush)converter.ConvertFromString("#85dcdcdc");
+                btn.Tag = item.MasaNo;
+                btn.Click += Paket_Click;
+
+                StackPanel sp = new StackPanel();
+
+                TextBlock tb = new TextBlock();
+                tb.Text = item.NESNE_DURUMU + " " + item.MasaNo;
+                tb.FontSize = 28;
+
+                tb.FontFamily = new System.Windows.Media.FontFamily(new Uri("pack://application:,,,/"), "/NewFonts/Modak-Regular.ttf#Modak");
+
+                sp.Children.Add(tb);
+                btn.Content = sp;
+                MasaPanel.Children.Add(btn);
+            }
+
+            PaketRenklendir();
+
+        }
+
+
+        private void Paket_Click(object sender, RoutedEventArgs e)
+        {
+            Button secilenMasa = (Button)sender;
+            int masaId = Convert.ToInt32(secilenMasa.Tag);
+
+            Adisyon adisyonPenceresi = new Adisyon(masaId, AdisyonTipi.Paket);
+
+            adisyonPenceresi.Closed += (s, args) =>
+            {
+                // Arayüzün nefes alıp güncellenmesi için ufak bir Dispatcher (Kuyruk) içine alıyoruz
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    PaketRenklendir();
+                });
+            };
+
+            // Pencereyi açıyoruz. (ShowDialog olması çok önemli!)
+            adisyonPenceresi.ShowDialog();
+        }
+
+        public void PaketRenklendir()
+        {
+            // Veritabanını tazeleyerek en güncel statüleri alıyoruz
+            using (RESTORANDBEntities tazeDb = new RESTORANDBEntities())
+            {
+                var tumMasalar = tazeDb.TblMASA.AsNoTracking().Where(x => x.Durum == true && x.NESNE_DURUMU != "Masa").ToList();
+
+                var converter = new System.Windows.Media.BrushConverter();
+                var standartArkaplan = (Brush)converter.ConvertFromString("#85dcdcdc");
+
+                foreach (var child in MasaPanel.Children)
+                {
+                    if (child is Button btn)
+                    {
+                        int masaId = Convert.ToInt32(btn.Tag);
+                        var masaVerisi = tumMasalar.FirstOrDefault(x => x.MasaId == masaId);
+
+                        // Butonun içindeki StackPanel ve TextBlock'a ulaşıyoruz
+                        StackPanel sp = (StackPanel)btn.Content;
+                        TextBlock tb = (TextBlock)sp.Children[0];
+
+                        if (masaVerisi != null)
+                        {
+                            if (masaVerisi.Statu == "D") // DOLU
+                            {
+                                btn.Background = (Brush)FindResource("DoluMasaBrush");
+                                tb.Foreground = Brushes.AntiqueWhite;
+                                tb.Text = masaVerisi.NESNE_DURUMU + " " + masaVerisi.MasaNo; // Dolu olsa da numara yazsın
+                            }
+                            else if (masaVerisi.Statu == "R") // REZERVE
+                            {
+                                btn.Background = (Brush)FindResource("AmberBrush");
+                                tb.Foreground = Brushes.Black;
+                                tb.Text = !string.IsNullOrEmpty(masaVerisi.RezervasyonSaati)
+                                          ? $"Rezerve {masaVerisi.RezervasyonSaati}"
+                                          : "Rezerve";
+                            }
+                            else // BOŞ (Senin MasaGoster'deki standart halin)
+                            {
+                                btn.Background = standartArkaplan; // #85dcdcdc rengi
+                                btn.BorderBrush = Brushes.Transparent;
+                                tb.Foreground = Brushes.Black; // Varsayılan yazı rengi
+                                tb.Text =AdisyonTipi.Paket + " " + masaVerisi.MasaNo; // Standart yazı
+                            }
+                        }
+                    }
+                }
             }
         }
     }
