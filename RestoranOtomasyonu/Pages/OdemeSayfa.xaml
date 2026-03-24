@@ -50,11 +50,11 @@
                         <StackPanel Grid.Column="2" Orientation="Horizontal">
                             <StackPanel Margin="20,0">
                                 <TextBlock Text="ÖDENEN TUTAR" FontSize="14" Foreground="#8E8EA9" FontWeight="Bold"/>
-                                <TextBlock x:Name="txt_OdenenTutar" Text="₺75,00" FontSize="24" FontWeight="Bold" Foreground="#2D2D44"/>
+                                <TextBlock x:Name="txt_OdenenTutar" Text="₺0,00" FontSize="24" FontWeight="Bold" Foreground="#2D2D44"/>
                             </StackPanel>
                             <StackPanel Margin="20,0">
                                 <TextBlock Text="KALAN TUTAR" FontSize="14" Foreground="#8E8EA9" FontWeight="Bold"/>
-                                <TextBlock x:Name="txt_KalanTutar" Text="₺50,30" FontSize="24" FontWeight="Bold" Foreground="#E91E63"/>
+                                <TextBlock x:Name="txt_KalanTutar" Text="₺0,00" FontSize="24" FontWeight="Bold" Foreground="#E91E63"/>
                             </StackPanel>
                         </StackPanel>
                     </Grid>
@@ -117,9 +117,9 @@
                             <Grid Margin="15,0">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                                     <Ellipse Fill="ForestGreen" Width="20" Height="20" Margin="0,0,10,0"/>
-                                    <TextBlock x:Name="txt_OdemeSekli" Text="KART" Foreground="#8E8EA9" FontSize="24" FontWeight="Bold" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="txt_OdemeSekli" Text="NAKIT" Foreground="#8E8EA9" FontSize="24" FontWeight="Bold" VerticalAlignment="Center"/>
                                 </StackPanel>
-                                <TextBlock x:Name="txt_Tutar" Text="₺256,00" Foreground="#2D2D44" FontSize="35" FontWeight="Bold" 
+                                <TextBlock x:Name="txt_Tutar" Text="₺0,00" Foreground="#2D2D44" FontSize="35" FontWeight="Bold" 
                            HorizontalAlignment="Right" VerticalAlignment="Center"/>
                             </Grid>
                         </Border>

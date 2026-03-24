@@ -120,7 +120,7 @@
                             <TextBlock x:Name="txtGunlukCiro" Text="₺ 0,00" Foreground="#FF00FF7F" FontSize="30" FontWeight="ExtraBold" Margin="0,2,0,0"/>
                         </StackPanel>
 
-                        <Rectangle Height="1" Fill="#22FFFFFF" Margin="0,0,0,12"/>
+                        <Rectangle Height="3" Fill="#22FFFFFF" Margin="0,0,0,12"/>
 
                         <Grid>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
