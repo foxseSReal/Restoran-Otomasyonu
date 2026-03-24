@@ -108,8 +108,9 @@
                 <Separator Width="200" Background="White"/>
             </StackPanel>
             <StackPanel Grid.Row="1" Orientation="Vertical">
-                <Button Content="Paket getir" Click="PaketGoster"/>
-            </StackPanel>   
+                <Button Content="Paketleri Getir" Click="PaketGoster"/>
+                <Button Content="Salona Git" Click="Window_Loaded"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>

@@ -52,29 +52,35 @@ namespace RestoranOtomasyonu.OtherWindows
         public int SeciliMasaId { get; set; }
         public AdisyonTipi GelenTip;
         public ObservableCollection<SepetItem> GuncelSepet = new ObservableCollection<SepetItem>();
-        public Adisyon(int SecilenMasa, AdisyonTipi Tip)
+        public Adisyon(int SecilenMasaId, AdisyonTipi Tip)
         {
             InitializeComponent();
-            SeciliMasaId = SecilenMasa;
-            this.DataContext = SecilenMasa;
-            RESTORANDBEntities _context = new RESTORANDBEntities();
-            var secilenMasa = _context.TblMASA.FirstOrDefault(m => m.MasaNo == SecilenMasa);
-            if (secilenMasa != null)
-            {
-                if (Tip != AdisyonTipi.Paket)
-                {
-                    AdisyonMasaYazisi.Text = $"{secilenMasa.NESNE_DURUMU} - {secilenMasa.MasaNo}";
-                    this.DataContext = secilenMasa;
-                }
-                else
-                {
-                    AdisyonMasaYazisi.Text = $"Paket - {secilenMasa.MasaNo}";
-                    this.DataContext = secilenMasa;
-                }
+            this.SeciliMasaId = SecilenMasaId;
+            this.GelenTip = Tip;
 
+            using (RESTORANDBEntities _context = new RESTORANDBEntities())
+            {
+                // DÜZELTME: Sorguyu MasaId üzerinden yapıyoruz
+                var secilenMasa = _context.TblMASA.FirstOrDefault(m => m.MasaId == SecilenMasaId);
+
+                if (secilenMasa != null)
+                {
+                    this.DataContext = secilenMasa;
+
+                    if (Tip == AdisyonTipi.Paket)
+                    {
+                        // Eğer paketse her zaman "Paket" yazsın
+                        AdisyonMasaYazisi.Text = $"Paket - {secilenMasa.MasaNo}";
+                    }
+                    else
+                    {
+                        // Masa ise veritabanındaki durumu (Masa 1, Bahçe 2 vb.) yazsın
+                        AdisyonMasaYazisi.Text = $"{secilenMasa.NESNE_DURUMU} - {secilenMasa.MasaNo}";
+                    }
+                }
             }
+
             SiparisleriGetir();
-            // Adisyon sayfası açıldığında KategoriSayfa'ya yönlendirme yap
             MenuFrame.Navigate(new KategoriSayfa());
         }
 
@@ -251,7 +257,7 @@ namespace RestoranOtomasyonu.OtherWindows
         }
         private void btnOnayla_Click(object sender, RoutedEventArgs e)
         {
-            // Sadece "YeniEklendiMi == true" olanları filtrele
+            // 1. Sadece "YeniEklendiMi == true" olanları filtrele
             var onaylanacakSiparisler = GuncelSepet.Where(x => x.YeniEklendiMi == true).ToList();
 
             if (onaylanacakSiparisler.Count == 0)
@@ -260,22 +266,38 @@ namespace RestoranOtomasyonu.OtherWindows
                 return;
             }
 
-            // Masa adisyonu yoksa aç
+            // 2. Masanın verisini en başta çekiyoruz (Hem durumunu öğrenmek hem de adisyona tipini yazmak için)
+            var secilenMasa = db.TblMASA.FirstOrDefault(x => x.MasaId == SeciliMasaId);
+
+            // 3. Masa adisyonu yoksa yeni bir tane aç
             var aktifAdisyon = db.TblADISYON.FirstOrDefault(x => x.MasaId == SeciliMasaId && x.Durum == true);
+
             if (aktifAdisyon == null)
             {
                 aktifAdisyon = new TblADISYON();
                 aktifAdisyon.MasaId = SeciliMasaId;
                 aktifAdisyon.AcilisZamani = DateTime.Now;
                 aktifAdisyon.Durum = true;
+
+                // --- YENİ EKLENEN KISIM: SİPARİŞ TİPİNİ BELİRLEME ---
+                if (GelenTip == AdisyonTipi.Paket)
+                {
+                    aktifAdisyon.SiparisTipi = "Paket";
+                }
+                else
+                {
+                    // Eğer paket değilse, masanın NESNE_DURUMU'nu (Bahçe, Salon vb.) aynen aktar
+                    aktifAdisyon.SiparisTipi = secilenMasa?.NESNE_DURUMU ?? "Masa";
+                }
+                // ----------------------------------------------------
+
                 db.TblADISYON.Add(aktifAdisyon);
-                db.SaveChanges(); // ID almak için kaydet
+                db.SaveChanges(); // ID ve SiparisTipi'ni SQL'e gönder
             }
 
-            // Bekleyen siparişleri veritabanına ekle
+            // 4. Bekleyen siparişleri veritabanına ekle
             foreach (var item in onaylanacakSiparisler)
             {
-                // Belki bu adisyonda önceden aynı üründen vardır, varsa adetini güncelle
                 var varOlanSiparis = db.TblADISYON_DETAY.FirstOrDefault(d => d.AdisyonId == aktifAdisyon.AdisyonId && d.UrunId == item.UrunId);
 
                 if (varOlanSiparis != null)
@@ -292,22 +314,18 @@ namespace RestoranOtomasyonu.OtherWindows
                     db.TblADISYON_DETAY.Add(yeniSiparis);
                 }
             }
-            var secilenMasa = db.TblMASA.FirstOrDefault(x => x.MasaId == SeciliMasaId);
 
+            // 5. Masa durumunu güncelle (Dolu yap)
             if (secilenMasa != null)
             {
-                // 2. Masanın SADECE "Statu" sütununu "D" (Dolu) olarak güncelliyoruz.
-                // (Eğer veritabanındaki sütununuzun adı 'Statu' değil de başka bir şeyse burayı ona göre değiştirin)
                 secilenMasa.Statu = "D";
-
-                // 3. Değişikliği SQL'e fırlatıyoruz!
             }
-            db.SaveChanges(); // Tüm yenilikleri tek seferde SQL'e çak!
 
-            // İşlem bitince listeyi tazelemek için baştan yükle (Artık hepsi YeniEklendiMi = false olacak)
+            db.SaveChanges(); // Tüm detayları ve statü değişikliğini kaydet
+
             SiparisleriGetir();
 
-            MessageBox.Show("Siparişler başarıyla onaylandı ve mutfağa iletildi!", "Sipariş Alındı", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Siparişler başarıyla onaylandı!", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
             this.Close();
         }
 

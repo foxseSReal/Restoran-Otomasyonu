@@ -90,7 +90,7 @@ namespace RestoranOtomasyonu
                 btn.Margin = new Thickness(10);
                 var converter = new System.Windows.Media.BrushConverter();
                 btn.Background = (System.Windows.Media.Brush)converter.ConvertFromString("#85dcdcdc");
-                btn.Tag = item.MasaNo;
+                btn.Tag = item.MasaId;
                 btn.Click += Masa_Click;
 
                 StackPanel sp = new StackPanel();
@@ -216,13 +216,13 @@ namespace RestoranOtomasyonu
                 btn.Margin = new Thickness(10);
                 var converter = new System.Windows.Media.BrushConverter();
                 btn.Background = (System.Windows.Media.Brush)converter.ConvertFromString("#85dcdcdc");
-                btn.Tag = item.MasaNo;
+                btn.Tag = item.MasaId;
                 btn.Click += Paket_Click;
 
                 StackPanel sp = new StackPanel();
 
                 TextBlock tb = new TextBlock();
-                tb.Text = item.NESNE_DURUMU + " " + item.MasaNo;
+                tb.Text = item.NESNE_DURUMU + " " + item.MasaId;
                 tb.FontSize = 28;
 
                 tb.FontFamily = new System.Windows.Media.FontFamily(new Uri("pack://application:,,,/"), "/NewFonts/Modak-Regular.ttf#Modak");
