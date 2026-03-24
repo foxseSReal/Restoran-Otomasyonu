@@ -34,6 +34,7 @@ namespace RestoranOtomasyonu
             timer.Tick += Timer_Tick;
             timer.Start();
             _tarih.Text = DateTime.Now.ToString("D", _tr);
+            DashboardBilgileriniGuncelle();
         }
         public enum AdisyonTipi
         {
@@ -120,6 +121,7 @@ namespace RestoranOtomasyonu
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     MasaRenklendir();
+                    DashboardBilgileriniGuncelle();
                 });
             };
 
@@ -250,6 +252,7 @@ namespace RestoranOtomasyonu
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     PaketRenklendir();
+                    DashboardBilgileriniGuncelle();
                 });
             };
 
@@ -299,12 +302,46 @@ namespace RestoranOtomasyonu
                                 btn.Background = standartArkaplan; // #85dcdcdc rengi
                                 btn.BorderBrush = Brushes.Transparent;
                                 tb.Foreground = Brushes.Black; // Varsayılan yazı rengi
-                                tb.Text =AdisyonTipi.Paket + " " + masaVerisi.MasaNo; // Standart yazı
+                                tb.Text = AdisyonTipi.Paket + " " + masaVerisi.MasaNo; // Standart yazı
                             }
                         }
                     }
                 }
             }
         }
+
+        public void DashboardBilgileriniGuncelle()
+        {
+            try
+            {
+                using (RESTORANDBEntities db = new RESTORANDBEntities())
+                {
+                    // 1. Açık Masa Sayısını Hesapla
+                    // Statu "D" (Dolu) olan ve sistemde aktif (Durum == true) olanları sayıyoruz
+                    int acikMasaSayisi = db.TblMASA.Count(x => x.Statu == "D" && x.Durum == true);
+
+                    // UI Güncelleme
+                    txtAcikMasaSayisi.Text = acikMasaSayisi.ToString();
+
+                    // 2. Günlük Ciroyu Hesapla (Önceki konuştuğumuz kısım)
+                    DateTime bugun = DateTime.Today;
+                    decimal gunlukToplam = db.TblADISYON_ODEME
+                        .Where(x => x.Tarih >= bugun)
+                        .Sum(x => (decimal?)x.OdenenTutar) ?? 0;
+
+                    txtGunlukCiro.Text = string.Format("₺ {0:N2}", gunlukToplam);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Hata durumunda 0 yazdır ki uygulama çökmesin
+                txtAcikMasaSayisi.Text = "0";
+                txtGunlukCiro.Text = "₺ 0,00";
+            }
+        }
+
+
+
+
     }
 }
