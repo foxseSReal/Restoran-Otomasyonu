@@ -24,6 +24,7 @@
           <Property Name="AcilisZamani" Type="datetime" />
           <Property Name="KapanisZamani" Type="datetime" />
           <Property Name="Durum" Type="bit" />
+          <Property Name="SiparisTipi" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="TblADISYON_DETAY">
           <Key>
@@ -1814,6 +1815,7 @@
           <NavigationProperty Name="TblMASA" Relationship="RESTORANDBModel.FK_Adisyon_Masa" FromRole="TblADISYON" ToRole="TblMASA" />
           <NavigationProperty Name="TblADISYON_DETAY" Relationship="RESTORANDBModel.FK_Detay_Adisyon" FromRole="TblADISYON" ToRole="TblADISYON_DETAY" />
           <NavigationProperty Name="TblADISYON_ODEME" Relationship="RESTORANDBModel.FK_Odeme_Adisyon" FromRole="TblADISYON" ToRole="TblADISYON_ODEME" />
+          <Property Name="SiparisTipi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TblADISYON_DETAY">
           <Key>
@@ -2235,6 +2237,7 @@
           <EntitySetMapping Name="TblADISYON">
             <EntityTypeMapping TypeName="RESTORANDBModel.TblADISYON">
               <MappingFragment StoreEntitySet="TblADISYON">
+                <ScalarProperty Name="SiparisTipi" ColumnName="SiparisTipi" />
                 <ScalarProperty Name="Durum" ColumnName="Durum" />
                 <ScalarProperty Name="KapanisZamani" ColumnName="KapanisZamani" />
                 <ScalarProperty Name="AcilisZamani" ColumnName="AcilisZamani" />
