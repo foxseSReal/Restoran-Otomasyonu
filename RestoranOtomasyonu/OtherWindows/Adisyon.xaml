@@ -81,7 +81,7 @@
                             <RowDefinition Height="110"/>
                         </Grid.RowDefinitions>
                         <Border Grid.Row="0" Style="{StaticResource AdisyonMasaYazisiBorder}">
-                            <TextBlock Style="{StaticResource MasaYazisiTextBlock}"/>
+                            <TextBlock x:Name="AdisyonMasaYazisi" FontSize="36" FontFamily="Segoe UI Black" HorizontalAlignment="Center"/>
                         </Border>
                         <!--Siparislerin yazacagi kisim birasi buraya listelenecek-->
                         <ListView PreviewMouseLeftButtonDown="SiparisList_PreviewMouseLeftButtonDown" Grid.Row="1" x:Name="SiparisList" ItemTemplate="{DynamicResource ListViewItemTemplate1}" ItemsPanel="{DynamicResource ListViewItemsPanel1}" ItemContainerStyle="{DynamicResource ListViewItemContainerStyle1}"/>

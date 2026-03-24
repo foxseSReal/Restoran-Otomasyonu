@@ -17,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static RestoranOtomasyonu.MasalarWindow;
 
 namespace RestoranOtomasyonu.OtherWindows
 {
@@ -49,18 +50,28 @@ namespace RestoranOtomasyonu.OtherWindows
     {
         RESTORANDBEntities db = new RESTORANDBEntities();
         public int SeciliMasaId { get; set; }
+        public AdisyonTipi GelenTip;
         public ObservableCollection<SepetItem> GuncelSepet = new ObservableCollection<SepetItem>();
-        public Adisyon(int SecilenMasa)
+        public Adisyon(int SecilenMasa, AdisyonTipi Tip)
         {
             InitializeComponent();
             SeciliMasaId = SecilenMasa;
             this.DataContext = SecilenMasa;
             RESTORANDBEntities _context = new RESTORANDBEntities();
             var secilenMasa = _context.TblMASA.FirstOrDefault(m => m.MasaNo == SecilenMasa);
-
             if (secilenMasa != null)
             {
-                this.DataContext = secilenMasa;
+                if (Tip != AdisyonTipi.Paket)
+                {
+                    AdisyonMasaYazisi.Text = $"{secilenMasa.NESNE_DURUMU} - {secilenMasa.MasaNo}";
+                    this.DataContext = secilenMasa;
+                }
+                else
+                {
+                    AdisyonMasaYazisi.Text = $"Paket - {secilenMasa.MasaNo}";
+                    this.DataContext = secilenMasa;
+                }
+
             }
             SiparisleriGetir();
             // Adisyon sayfası açıldığında KategoriSayfa'ya yönlendirme yap
