@@ -69,7 +69,8 @@ Veritabanını kurduktan sonra projenin yerel SQL Server'ınıza erişebilmesi i
 
 ## 📚 Kullanılan Nuget Paketleri & Diğer
 * 📦 MaterialDesignTheme
-* 📦Microsoft.SqlServer.SqlManagementObjects
+* 📦 LiveCharts.Wpf
+* 📦 Microsoft.SqlServer.SqlManagementObjects
 * 🧩 Entity Framework 5 ya da Entity Framework 6
 
 ---
