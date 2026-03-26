@@ -27,6 +27,7 @@ namespace RestoranOtomasyonu.OtherWindows
         {
             InitializeComponent();
             OrnekVerileriYukle();
+            UrunBazliRaporYukle();
         }
 
         private void OrnekVerileriYukle()
@@ -70,5 +71,29 @@ namespace RestoranOtomasyonu.OtherWindows
         {
             MessageBox.Show($"Ürün: {chartPoint.SeriesView.Title}\nSatış Adedi: {chartPoint.Y}", "Ürün Detayı");
         }
+
+
+        // Örnek bir Model Sınıfı
+        public class UrunRaporuModel
+        {
+            public string UrunAd { get; set; }
+            public string Kategori { get; set; }
+            public int Adet { get; set; }
+            public string BirimFiyat { get; set; }
+            public string ToplamTutar { get; set; }
+        }
+
+        // DataGrid'i doldurmak için örnek kod (OrnekVerileriYukle içine ekleyebilirsin)
+        private void UrunBazliRaporYukle()
+        {
+            List<UrunRaporuModel> liste = new List<UrunRaporuModel>
+    {
+        new UrunRaporuModel { UrunAd="Adana Kebap", Kategori="Kebaplar", Adet=42, BirimFiyat="₺240,00", ToplamTutar="₺10.080,00" },
+        new UrunRaporuModel { UrunAd="Mercimek Çorbası", Kategori="Çorbalar", Adet=15, BirimFiyat="₺80,00", ToplamTutar="₺1.200,00" },
+        new UrunRaporuModel { UrunAd="Ayran 200ml", Kategori="İçecekler", Adet=50, BirimFiyat="₺25,00", ToplamTutar="₺1.250,00" }
+    };
+            dgUrunRaporu.ItemsSource = liste;
+        }
+
     }
 }
