@@ -340,8 +340,11 @@ namespace RestoranOtomasyonu
             }
         }
 
-
-
-
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            GunSonuRaporu gunSonuRaporu = new GunSonuRaporu();
+            gunSonuRaporu.Owner = this;
+            bool? result = gunSonuRaporu.ShowDialog();
+        }
     }
 }
