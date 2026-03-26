@@ -560,12 +560,12 @@
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Width" Value="100"/>
-        <Setter Property="Height" Value="55"/>
+        <Setter Property="Height" Value="105"/>
         <Setter Property="Margin" Value="2 0 2 0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}" CornerRadius="8,8,0,0">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="8,8,8,8">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                 </ControlTemplate>

@@ -76,20 +76,9 @@
                                     <Button x:Name="BtnHizliTutar_200" Content="₺200" Click="QuickAmount_Click" Style="{StaticResource AmountButtonStyle}"/>
                                 </StackPanel>
 
-                                <Button x:Name="TamaminiOdemeBtn" Content="Bütün Ödemeyi Al" Style="{StaticResource PayAllButtonStyle}" HorizontalAlignment="Right" Height="55" Margin="5,-7,0,8"/>
+                                <Button x:Name="TamaminiOdemeBtn" Click="AllAmount_Click" Content="Bütün Ödemeyi Al" Style="{StaticResource PayAllButtonStyle}" HorizontalAlignment="Right" Height="55" Margin="5,-56,0,8"/>
                             </DockPanel>
                             <ScrollViewer Grid.Row="1"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" PanningMode="HorizontalOnly" Margin="0,5,20,0">
-
-                                <StackPanel Orientation="Horizontal">
-                                    <Border Style="{StaticResource PaymentChipBorderStyle}">
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock VerticalAlignment="Center" FontSize="14"><Run Text="Nakit" Foreground="#8E8EA9"/> <Run Text=" "/> <Run Text="₺25" FontWeight="Bold" Foreground="#2D2D44"/>
-                                            </TextBlock>
-                                            <Button Content="✕" Style="{StaticResource ChipDeleteButtonStyle}" ToolTip="Ödemeyi İptal Et"/>
-                                        </StackPanel>
-                                    </Border>
-
-                                </StackPanel>
                             </ScrollViewer>
                         </Grid>
                     </Border>
