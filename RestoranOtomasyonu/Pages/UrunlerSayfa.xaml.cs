@@ -31,12 +31,15 @@ namespace RestoranOtomasyonu.Pages
         public void UrunleriGoster(int SecilenKategoriID)
         {
             UrunlerPanel.Children.Clear();
+
+            // 1. Veritabanından resim yolunu da çekecek şekilde sorguyu güncelledik.
             var urunler = (from x in db.TblURUN
                            where x.KategoriId == SecilenKategoriID
                            select new
                            {
                                x.UrunId,
-                               x.UrunAdi
+                               x.UrunAdi,
+                               x.ResimYolu // Veritabanındaki resim sütununun adı (Değiştirmen gerekebilir)
                            }).ToList();
 
             foreach (var item in urunler)
@@ -49,15 +52,44 @@ namespace RestoranOtomasyonu.Pages
                 btn.Tag = item.UrunId;
                 btn.Click += UrunEkle_Click;
 
+                // Elemanları alt alta dizmek için StackPanel
                 StackPanel sp = new StackPanel();
+                sp.Orientation = Orientation.Vertical;
 
+                // 2. Resim (Image) Kontrolünü Oluşturma
+                if (!string.IsNullOrEmpty(item.ResimYolu))
+                {
+                    try
+                    {
+                        var imageBrush = new System.Windows.Media.ImageBrush();
+                        imageBrush.ImageSource = new System.Windows.Media.Imaging.BitmapImage(new Uri(item.ResimYolu, UriKind.RelativeOrAbsolute));
+
+                        imageBrush.Stretch = System.Windows.Media.Stretch.UniformToFill;
+
+                        Border imgBorder = new Border();
+                        imgBorder.Width = 250;
+                        imgBorder.Height = 107;
+                        imgBorder.CornerRadius = new CornerRadius(5, 5, 0, 0);
+                        imgBorder.Background = imageBrush;
+                        imgBorder.Margin = new Thickness(0, 0, 0, 2);
+
+                        sp.Children.Add(imgBorder);
+                    }
+                    catch
+                    {
+
+                    }
+                }
+
+                // 3. Metin (TextBlock) Kontrolünü Oluşturma
                 TextBlock tb = new TextBlock();
                 tb.Text = item.UrunAdi;
                 tb.FontSize = 28;
-
+                tb.TextAlignment = TextAlignment.Center; // Resmi ortaladığımız için yazıyı da ortalamak şık durur
                 tb.FontFamily = new System.Windows.Media.FontFamily(new Uri("pack://application:,,,/"), "/NewFonts/Modak-Regular.ttf#Modak");
 
-                sp.Children.Add(tb);
+                sp.Children.Add(tb); // Yazıyı StackPanel'e ekle
+
                 btn.Content = sp;
                 UrunlerPanel.Children.Add(btn);
             }
