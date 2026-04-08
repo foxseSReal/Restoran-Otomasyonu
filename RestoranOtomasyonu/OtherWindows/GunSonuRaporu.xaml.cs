@@ -40,11 +40,11 @@ namespace RestoranOtomasyonu.OtherWindows
             // 2. SOL PANEL - EN ÇOK SATANLAR (Pie Chart)
             ChartUrunler.Series = new SeriesCollection
             {
-                new PieSeries { Title = "Adana Kebap", Values = new ChartValues<int> { 45 }, DataLabels = true, Fill = Brushes.OrangeRed },
-                new PieSeries { Title = "Lahmacun", Values = new ChartValues<int> { 82 }, DataLabels = true, Fill = Brushes.Goldenrod },
-                new PieSeries { Title = "İskender", Values = new ChartValues<int> { 28 }, DataLabels = true, Fill = Brushes.Crimson },
-                new PieSeries { Title = "Ayran", Values = new ChartValues<int> { 110 }, DataLabels = true, Fill = Brushes.DeepSkyBlue },
-                new PieSeries { Title = "Sütlaç", Values = new ChartValues<int> { 35 }, DataLabels = true, Fill = Brushes.MediumPurple }
+                new PieSeries { Title = "Adana Kebap", Values = new ChartValues<int> { 45 }, DataLabels = true, Fill = Brushes.OrangeRed ,PushOut=0},
+                new PieSeries { Title = "Lahmacun", Values = new ChartValues<int> { 82 }, DataLabels = true, Fill = Brushes.Goldenrod    ,PushOut=0},
+                new PieSeries { Title = "İskender", Values = new ChartValues<int> { 28 }, DataLabels = true, Fill = Brushes.Crimson      ,PushOut=0},
+                new PieSeries { Title = "Ayran", Values = new ChartValues<int> { 110 }, DataLabels = true, Fill = Brushes.DeepSkyBlue    ,PushOut=0},
+                new PieSeries { Title = "Sütlaç", Values = new ChartValues<int> { 35 }, DataLabels = true, Fill = Brushes.MediumPurple   ,PushOut=0}
             };
 
             // 3. SAĞ PANEL - SAATLİK TREND (Column Chart)

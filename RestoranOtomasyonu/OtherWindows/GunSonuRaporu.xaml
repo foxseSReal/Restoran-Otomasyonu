@@ -50,9 +50,9 @@
                             <Button Content="SORGULA" Background="{StaticResource CiroGlow}" BorderBrush="{x:Null}" Height="45" FontWeight="Bold" materialDesign:ButtonAssist.CornerRadius="10"/>
                             <Separator Background="#11FFFFFF" Margin="0,30"/>
                             <TextBlock Text="ÜRÜN DAĞILIMI" Foreground="#88FFFFFF" FontWeight="Bold" Margin="0,0,0,15"/>
-                            <lvc:PieChart x:Name="ChartUrunler" Height="320" LegendLocation="Bottom" InnerRadius="60">
+                            <lvc:PieChart x:Name="ChartUrunler" Height="320" LegendLocation="Bottom" DataClick="ChartUrunler_DataClick" InnerRadius="0" Hoverable="True" HoverPushOut="30">
                                 <lvc:PieChart.ChartLegend>
-                                    <lvc:DefaultLegend BulletSize="12" Foreground="White"/>
+                                    <lvc:DefaultLegend BulletSize="20" Foreground="White"/>
                                 </lvc:PieChart.ChartLegend>
                             </lvc:PieChart>
                         </StackPanel>
