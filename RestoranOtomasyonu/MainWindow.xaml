@@ -77,8 +77,8 @@
                 <Separator Background="#FF424242" Width="120" Margin="15 0 0 0"/>
                 <RadioButton x:Name="btnSatisDurumu" Click="satisDurumu" Style="{StaticResource RadioAnimasyon}">
                     <StackPanel Width="100" Height="75" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
-                        <materialDesign:PackIcon Kind="Finance" Style="{StaticResource iconMaterialDesign}"/>
-                        <TextBlock TextAlignment="Center" Padding="0 0 0 0" Text="SATIŞ DURUMU" Style="{StaticResource textBlock}" HorizontalAlignment="Center"/>
+                        <materialDesign:PackIcon Kind="Safe" Style="{StaticResource iconMaterialDesign}"/>
+                        <TextBlock TextAlignment="Center" Padding="0 0 0 0" Text="KASA" Style="{StaticResource textBlock}" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </RadioButton>
                 <Separator Background="#FF424242" Width="120" Margin="15 0 0 0"/>
