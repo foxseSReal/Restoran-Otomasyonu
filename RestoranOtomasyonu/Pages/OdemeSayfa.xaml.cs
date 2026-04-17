@@ -50,33 +50,50 @@ namespace RestoranOtomasyonu.Pages
             {
                 try
                 {
+                    // Önce masa adını çekelim ki açıklamada kullanalım
+                    var masa = db.TblMASA.FirstOrDefault(m => m.MasaId == _masaId);
+                    string masaAdi = masa != null ? "Masa " + masa.MasaNo.ToString() : "Bilinmeyen Masa";
+
                     // 1. SQL'e Yeni Ödeme Kaydı
-                    db.TblADISYON_ODEME.Add(new TblADISYON_ODEME
+                    var yeniOdeme = new TblADISYON_ODEME
                     {
                         AdisyonId = _adisyonId,
                         OdemeTuru = txt_OdemeSekli.Text,
                         OdenenTutar = miktar,
                         Tarih = DateTime.Now
+                    };
+                    db.TblADISYON_ODEME.Add(yeniOdeme);
+                    db.SaveChanges();
+
+                    // 2. KASA (GELİR) TABLOSUNA KAYIT - Masa Adı ile
+                    db.TblGELIR.Add(new TblGELIR
+                    {
+                        GelirTuru = "Restoran Satışı",
+                        Tutar = miktar,
+                        Tarih = DateTime.Now,
+                        // Açıklamayı burada güncelledik:
+                        Aciklama = $"{masaAdi} ödemesi ({yeniOdeme.OdemeTuru})",
+                        PersonelId = 1,
+                        ReferansTablo = "TblADISYON_ODEME",
+                        ReferansId = yeniOdeme.OdemeId
                     });
 
                     _tahsilEdilen += miktar;
 
-                    // 2. Borç Tamamlandıysa Adisyonu ve Masayı Kapat
+                    // 3. Borç Tamamlandıysa Adisyonu ve Masayı Kapat
                     if (_tahsilEdilen >= _toplamBorc)
                     {
                         var ad = db.TblADISYON.Find(_adisyonId);
                         if (ad != null) { ad.Durum = false; ad.KapanisZamani = DateTime.Now; }
 
-                        var ms = db.TblMASA.FirstOrDefault(m => m.MasaId == _masaId);
-                        if (ms != null) { ms.Statu = "B"; ms.Tutar = 0; }
+                        // Masayı zaten yukarıda çekmiştik, tekrar çekmeye gerek yok
+                        if (masa != null) { masa.Statu = "B"; masa.Tutar = 0; }
                     }
 
-                    db.SaveChanges(); // SQL'e Yaz
+                    db.SaveChanges();
 
-                    // 3. ANA PENCEREYE HABER VER (Yeşil alanı güncellet)
+                    // UI ve Bildirim işlemleri...
                     if (_anaPencere != null) _anaPencere.GenelToplamiHesapla();
-
-                    // 4. UI Reset
                     _numpadMetni = "0";
                     TutarGuncelle();
                     KalanTutariGuncelle();
