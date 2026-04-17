@@ -35,6 +35,22 @@ namespace RestoranOtomasyonu
                 btn.ContextMenu.IsOpen = true;
             }
         }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            var culture = new System.Globalization.CultureInfo("tr-TR");
+            System.Threading.Thread.CurrentThread.CurrentCulture = culture;
+            System.Threading.Thread.CurrentThread.CurrentUICulture = culture;
+
+            // WPF bindinglerindeki (DataGrid vs.) formatları Türkçe yapar
+            FrameworkElement.LanguageProperty.OverrideMetadata(
+                typeof(FrameworkElement),
+                new FrameworkPropertyMetadata(
+                    System.Windows.Markup.XmlLanguage.GetLanguage(culture.IetfLanguageTag)));
+        }
+
     }
 
 }
