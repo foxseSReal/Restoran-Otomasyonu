@@ -47,7 +47,7 @@
                             <TextBlock Text="VERİ SORGULAMA" Foreground="#88FFFFFF" FontWeight="Bold" Margin="0,0,0,20"/>
                             <DatePicker x:Name="dtBaslangic" materialDesign:HintAssist.Hint="Başlangıç" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Foreground="White" Margin="0,0,0,10"/>
                             <DatePicker x:Name="dtBitis" materialDesign:HintAssist.Hint="Bitiş" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Foreground="White" Margin="0,0,0,20"/>
-                            <Button Content="SORGULA" Background="{StaticResource CiroGlow}" BorderBrush="{x:Null}" Height="45" FontWeight="Bold" materialDesign:ButtonAssist.CornerRadius="10"/>
+                            <Button Content="SORGULA" Click="btnSorgula_Click" Background="{StaticResource CiroGlow}" BorderBrush="{x:Null}" Height="45" FontWeight="Bold" materialDesign:ButtonAssist.CornerRadius="10"/>
                             <Separator Background="#11FFFFFF" Margin="0,30"/>
                             <TextBlock Text="ÜRÜN DAĞILIMI" Foreground="#88FFFFFF" FontWeight="Bold" Margin="0,0,0,15"/>
                             <lvc:PieChart x:Name="ChartUrunler" Height="320" LegendLocation="Bottom" DataClick="ChartUrunler_DataClick" InnerRadius="0" Hoverable="True" HoverPushOut="30">
@@ -102,7 +102,12 @@
                                 <TextBlock Text="SATIŞ ANALİZİ (ZAMAN ÇİZELGESİ)" Foreground="#88FFFFFF" FontWeight="Bold" Margin="0,0,0,20"/>
                                 <lvc:CartesianChart Grid.Row="1" x:Name="ChartTrend">
                                     <lvc:CartesianChart.AxisX>
-                                        <lvc:Axis Labels="09,10,11,12,13,14,15,16,17,18,19,20,21,22" Foreground="#44FFFFFF"/>
+                                        <lvc:Axis Labels="{Binding GrafikEtiketleri}" Foreground="#44FFFFFF">
+                                            <lvc:Axis.Separator>
+                                                <lvc:Separator Step="1" IsEnabled="False"/>
+                                            </lvc:Axis.Separator>
+                                            <lvc:Axis.LabelsRotation>45</lvc:Axis.LabelsRotation>
+                                        </lvc:Axis>
                                     </lvc:CartesianChart.AxisX>
                                     <lvc:CartesianChart.AxisY>
                                         <lvc:Axis Title="Tutar" Foreground="#44FFFFFF" LabelFormatter="{Binding Formatter}"/>
