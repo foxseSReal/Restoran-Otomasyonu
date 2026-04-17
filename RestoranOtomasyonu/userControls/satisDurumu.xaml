@@ -13,14 +13,9 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="70"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!---->
-        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" Grid.RowSpan="4"  Style="{StaticResource effectliBorder}"/>
-        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" Grid.RowSpan="4"  Style="{StaticResource effectliBorder}"/>
-        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" Grid.RowSpan="4"  Style="{StaticResource effectliBorder}"/>
-        <!---->
 
         <Grid Grid.Row="0" Margin="0 0 0 15">
             <Grid.ColumnDefinitions>
@@ -30,79 +25,80 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-
-            <Border Grid.Column="0" CornerRadius="10" Margin="5 15 0 0" Background="White"
-                materialDesign:ElevationAssist.Elevation="Dp3" Padding="10" Width="210">
+            <Border Grid.Column="0" CornerRadius="10" Margin="5 15 5 0" Background="White" materialDesign:ElevationAssist.Elevation="Dp3" Padding="10">
                 <StackPanel>
-                    <TextBlock Text="Bugünkü Satış" Foreground="#666" FontSize="13"/>
-                    <TextBlock x:Name="satis_Bugun" Text="₺3.250" FontSize="22" FontWeight="Bold" Foreground="#212121"/>
+                    <TextBlock Text="Bugünkü Net Kasa" Foreground="#666" FontSize="13"/>
+                    <TextBlock x:Name="lblKasaBugun" Text="₺0,00" FontSize="22" FontWeight="Bold" Foreground="#2ecc71"/>
                 </StackPanel>
             </Border>
 
-            <!-- Aylık -->
-            <Border Grid.Column="1" CornerRadius="10" Margin="5 15 0 0" Background="White"
-                materialDesign:ElevationAssist.Elevation="Dp3" Padding="10">
+            <Border Grid.Column="1" CornerRadius="10" Margin="5 15 5 0" Background="White" materialDesign:ElevationAssist.Elevation="Dp3" Padding="10">
                 <StackPanel>
-                    <TextBlock Text="Aylık Satış" Foreground="#666" FontSize="13"/>
-                    <TextBlock x:Name="satis_Aylik" Text="₺85.700" FontSize="22" FontWeight="Bold" Foreground="#212121"/>
+                    <TextBlock Text="Aylık Toplam Gelir" Foreground="#666" FontSize="13"/>
+                    <TextBlock x:Name="lblGelirAylik" Text="₺0,00" FontSize="22" FontWeight="Bold" Foreground="#1976D2"/>
                 </StackPanel>
             </Border>
 
-            <!-- Toplam Sipariş -->
-            <Border Grid.Column="2" CornerRadius="10" Margin="5 15 0 0" Background="White"
-                materialDesign:ElevationAssist.Elevation="Dp3" Padding="10">
+            <Border Grid.Column="2" CornerRadius="10" Margin="5 15 5 0" Background="White" materialDesign:ElevationAssist.Elevation="Dp3" Padding="10">
                 <StackPanel>
-                    <TextBlock Text="Toplam Sipariş" Foreground="#666" FontSize="13"/>
-                    <TextBlock x:Name="satis_Toplam" Text="247" FontSize="22" FontWeight="Bold" Foreground="#212121"/>
+                    <TextBlock Text="Aylık Toplam Gider" Foreground="#666" FontSize="13"/>
+                    <TextBlock x:Name="lblGiderAylik" Text="₺0,00" FontSize="22" FontWeight="Bold" Foreground="#e74c3c"/>
                 </StackPanel>
             </Border>
 
-            <!-- Satış/Ürün Ortalama -->
-            <Border Grid.Column="3" Width="210" CornerRadius="10" Margin="0 15 10 0" Background="White"
-                materialDesign:ElevationAssist.Elevation="Dp3" Padding="10">
+            <Border Grid.Column="3" CornerRadius="10" Margin="5 15 5 0" Background="White" materialDesign:ElevationAssist.Elevation="Dp3" Padding="10">
                 <StackPanel>
-                    <TextBlock Text="Satış/Ürün Ortalama" Foreground="#666" FontSize="13"/>
-                    <TextBlock x:Name="satis_Ortalama" Text="₺347" FontSize="22" FontWeight="Bold" Foreground="#212121"/>
+                    <TextBlock Text="Toplam İşlem Sayısı" Foreground="#666" FontSize="13"/>
+                    <TextBlock x:Name="lblToplamIslem" Text="0" FontSize="22" FontWeight="Bold" Foreground="#212121"/>
                 </StackPanel>
             </Border>
         </Grid>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 0 0 15" VerticalAlignment="Center">
-            <DatePicker Foreground="Red" x:Name="satis_BaslanicTarih" Width="160" Margin="180 0 20 0"
-                    materialDesign:HintAssist.Hint="Başlangıç Tarihi"
-                    Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
-            <!---->
-            <DatePicker Foreground="Red" x:Name="satis_BitisTarih" Width="160" Margin="15 0 20 0"
-                    materialDesign:HintAssist.Hint="Bitiş Tarihi"
-                    Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
-            <!---->
-            <TextBox x:Name="txtatisara" Foreground="White" Margin="0 0 0 10" Width="200" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Satış Ara" FontSize="20" Style="{StaticResource MaterialDesignFloatingHintTextBox}" TextChanged="satisara_TextChanged" />
-            <!---->
-            <Button Content="Filtrele"
-                Width="100" Height="38" Margin="10 0 0 0"
-                Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                Foreground="White" Click="Button_Click" />
-            <Button Content="Temizle" Margin="10 0 0 0"
-                Width="100" Height="38"
-                Background="{StaticResource MaterialDesignDarkSeparatorBackground}"
-                Style="{StaticResource MaterialDesignRaisedLightButton}"
-                Foreground="White" Click="Button_Click_1"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 0 0 15" HorizontalAlignment="Center">
+            <DatePicker x:Name="dtBaslangic" Width="150" Margin="10 0" materialDesign:HintAssist.Hint="Başlangıç" Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+            <DatePicker x:Name="dtBitis" Width="150" Margin="10 0" materialDesign:HintAssist.Hint="Bitiş" Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+            <TextBox x:Name="txtKasaAra" Width="180" Margin="10 0" materialDesign:HintAssist.Hint="Açıklamada Ara..." Style="{StaticResource MaterialDesignFloatingHintTextBox}" TextChanged="txtKasaAra_TextChanged" />
+            <Button Content="Sorgula" Click="btnSorgula_Click" Margin="10 0" Style="{StaticResource MaterialDesignRaisedDarkButton}"/>
+            <Button Content="Temizle" Click="btnTemizle_Click" Style="{StaticResource MaterialDesignRaisedLightButton}"/>
         </StackPanel>
 
-        <!-- DATA GRID -->
-        <Border Grid.Row="2" CornerRadius="10"
-            materialDesign:ElevationAssist.Elevation="Dp2" Padding="10">
-            <DataGrid x:Name="satis_DataGrid" Width="950" AutoGenerateColumns="True" CanUserAddRows="False" HeadersVisibility="Column" RowHeight="40" FontSize="13" Foreground="Black"/>
-        </Border>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-        <!-- ALT BİLGİ PANELİ -->
-        <Border Grid.Row="3" Background="White" CornerRadius="10" Padding="20"
-            materialDesign:ElevationAssist.Elevation="Dp3">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <TextBlock x:Name="satis_ToplamSatis" Margin="0 0 220 0" Text="Toplam Satış: ₺128.950" FontWeight="Bold" FontSize="24" Foreground="#333"/>
-                <TextBlock x:Name="satis_ToplamSiparis" Text="Toplam Sipariş: 247" FontWeight="Bold" FontSize="24" Foreground="#333"/>
-            </StackPanel>
-        </Border>
+            <GroupBox Grid.Column="0" Header="Gelir Hareketleri (Satışlar vb.)" Margin="5" materialDesign:ColorZoneAssist.Mode="PrimaryLight">
+                <DataGrid x:Name="dgGelirler" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" VerticalScrollBarVisibility="Auto">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Tür" Binding="{Binding GelirTuru}" Width="Auto"/>
+                        <DataGridTextColumn Header="Tutar" Binding="{Binding Tutar, StringFormat={}{0:C2}}" Width="Auto"/>
+                        <DataGridTextColumn Header="Tarih" Binding="{Binding Tarih, StringFormat={}{0:dd.MM.yyyy HH:mm}}" Width="Auto"/>
+                        <DataGridTextColumn Header="Açıklama" Binding="{Binding Aciklama}" Width="Auto"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
 
+            <GroupBox Grid.Column="1" Header="Gider Hareketleri (Stok, Ödemeler)" Margin="5">
+                <DataGrid x:Name="dgGiderler" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" VerticalScrollBarVisibility="Auto">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Tür" Binding="{Binding GiderTuru}" Width="Auto"/>
+                        <DataGridTextColumn Header="Tutar" Binding="{Binding Tutar, StringFormat={}{0:C2}}" Width="Auto"/>
+                        <DataGridTextColumn Header="Tarih" Binding="{Binding Tarih, StringFormat={}{0:dd.MM.yyyy HH:mm}}" Width="Auto"/>
+                        <DataGridTextColumn Header="Açıklama" Binding="{Binding Aciklama}" Width="Auto"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
+        </Grid>
+
+        <Border Grid.Row="3" Background="White" CornerRadius="10" Padding="15" Margin="0 10 0 0" materialDesign:ElevationAssist.Elevation="Dp3">
+            <DockPanel>
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                    <TextBlock Text="Genel Net Durum: " VerticalAlignment="Center" FontSize="18"/>
+                    <TextBlock x:Name="lblNetDurum" Text="₺0,00" FontWeight="Bold" FontSize="26" Foreground="#2ecc71" VerticalAlignment="Center"/>
+                </StackPanel>
+                <TextBlock Text="* Tüm gelir ve giderler otomatik olarak bu ekrana yansıtılır." VerticalAlignment="Center" FontStyle="Italic" Foreground="Gray"/>
+            </DockPanel>
+        </Border>
     </Grid>
 </UserControl>
