@@ -1,112 +1,130 @@
 ﻿using RestoranOtomasyonu.Entity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace RestoranOtomasyonu.userControls
 {
-    /// <summary>
-    /// satisDurumu.xaml etkileşim mantığı
-    /// </summary>
     public partial class satisDurumu : UserControl
     {
+        // Context nesnesi
         RESTORANDBEntities db = new RESTORANDBEntities();
-        
+
         public satisDurumu()
         {
             InitializeComponent();
         }
+
         private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            await SatisListeleAsync();
+            // İlk açılışta bugünün verilerini ve genel toplamları getir
+            await KasaVerileriniYukleAsync();
         }
 
-        public async Task SatisListeleAsync()
+        public async Task KasaVerileriniYukleAsync(DateTime? baslangic = null, DateTime? bitis = null, string aramaMetni = "")
         {
             try
             {
-                var listele = await Task.Run(() =>
+                // UI'ı kitlememek için veritabanı işlemlerini Task.Run ile yapıyoruz
+                var veriler = await Task.Run(() =>
                 {
-                    using (var db = new RESTORANDBEntities())
+                    using (var context = new RESTORANDBEntities())
                     {
-                        return db.TblURUN
-                                 .OrderByDescending(x => x.UrunId)
-                                 .ToList()
-                                 .Select(x => new
-                                 {
-                                     ID = x.UrunId,
-                                     ÜrünAdı = x.UrunAdi,
-                                     Tutar = x.Fiyat,
-                                     Kategori = x.TblKATEGORI != null ? x.TblKATEGORI.KategoriAdi : "Kategori Yok",
-                                     SatılanAdet = x.StokMiktari,
-                                     Birim = x.Birim,
-                                     Tarih = x.EklenmeTarihi.HasValue ? x.EklenmeTarihi.Value.ToString("dd.MM.yyyy") : "-"
-                                 }).ToList();
+                        // 1. GELİR SORGUSU
+                        var gelirQuery = context.TblGELIR.AsQueryable();
+                        if (baslangic.HasValue) gelirQuery = gelirQuery.Where(x => x.Tarih >= baslangic.Value);
+                        if (bitis.HasValue)
+                        {
+                            var bitisDuzenli = bitis.Value.AddDays(1).AddSeconds(-1); // Gün sonuna kadar al
+                            gelirQuery = gelirQuery.Where(x => x.Tarih <= bitisDuzenli);
+                        }
+                        if (!string.IsNullOrEmpty(aramaMetni))
+                            gelirQuery = gelirQuery.Where(x => x.Aciklama.Contains(aramaMetni) || x.GelirTuru.Contains(aramaMetni));
+
+                        var gelirListesi = gelirQuery.OrderByDescending(x => x.Tarih).ToList();
+
+                        // 2. GİDER SORGUSU
+                        var giderQuery = context.TblGIDER.AsQueryable();
+                        if (baslangic.HasValue) giderQuery = giderQuery.Where(x => x.Tarih >= baslangic.Value);
+                        if (bitis.HasValue)
+                        {
+                            var bitisDuzenli = bitis.Value.AddDays(1).AddSeconds(-1);
+                            giderQuery = giderQuery.Where(x => x.Tarih <= bitisDuzenli);
+                        }
+                        if (!string.IsNullOrEmpty(aramaMetni))
+                            giderQuery = giderQuery.Where(x => x.Aciklama.Contains(aramaMetni) || x.GiderTuru.Contains(aramaMetni));
+
+                        var giderListesi = giderQuery.OrderByDescending(x => x.Tarih).ToList();
+
+                        return new { Gelirler = gelirListesi, Giderler = giderListesi };
                     }
                 });
 
-                satis_DataGrid.ItemsSource = listele;
+                // Verileri Tablolara Bağla
+                dgGelirler.ItemsSource = veriler.Gelirler;
+                dgGiderler.ItemsSource = veriler.Giderler;
+
+                // Hesaplamaları Yap
+                İstatistikleriHesapla(veriler.Gelirler, veriler.Giderler);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Listeleme hatası: " + ex.Message);
+                MessageBox.Show("Kasa verileri yüklenirken hata oluştu: " + ex.Message);
             }
         }
-        private void satisara_TextChanged(object sender, TextChangedEventArgs e)
+
+        private void İstatistikleriHesapla(List<TblGELIR> gelirler, List<TblGIDER> giderler)
         {
-            var satisara = txtatisara.Text;
-            var listele = db.TblURUN.OrderByDescending(x => x.UrunId).Where(x => x.UrunAdi.ToLower().Contains(satisara))
-                         .Select(x => new
-                         {
-                             ID = x.UrunId,
-                             ÜrünAdı = x.UrunAdi,
-                             Tutar = x.Fiyat,
-                             Kategori = x.TblKATEGORI.KategoriAdi,
-                             SatılanAdet = x.StokMiktari,
-                             Birim = x.Birim,
-                             Tarih = x.EklenmeTarihi,
-                         }).ToList();
-            satis_DataGrid.ItemsSource = listele;
+            DateTime bugun = DateTime.Today;
+
+            // 1. Bugünkü Net Kasa (Bugünkü Gelir - Bugünkü Gider)
+            decimal bugunGelir = gelirler.Where(x => x.Tarih >= bugun).Sum(x => (decimal?)x.Tutar) ?? 0;
+            decimal bugunGider = giderler.Where(x => x.Tarih >= bugun).Sum(x => (decimal?)x.Tutar) ?? 0;
+            lblKasaBugun.Text = (bugunGelir - bugunGider).ToString("C2");
+
+            // 2. Toplam Gelir ve Gider (Filtreye göre gelen listeden)
+            decimal toplamGelir = gelirler.Sum(x => (decimal?)x.Tutar) ?? 0;
+            decimal toplamGider = giderler.Sum(x => (decimal?)x.Tutar) ?? 0;
+
+            lblGelirAylik.Text = toplamGelir.ToString("C2");
+            lblGiderAylik.Text = toplamGider.ToString("C2");
+            lblToplamIslem.Text = (gelirler.Count + giderler.Count).ToString();
+
+            // 3. Genel Net Durum
+            decimal netDurum = toplamGelir - toplamGider;
+            lblNetDurum.Text = netDurum.ToString("C2");
+            lblNetDurum.Foreground = netDurum >= 0 ? Brushes.Green : Brushes.Red;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void btnSorgula_Click(object sender, RoutedEventArgs e)
         {
-            //Tarih Fitrele
-            DateTime ilktarih = satis_BaslanicTarih.SelectedDate.HasValue ? satis_BaslanicTarih.SelectedDate.Value : DateTime.MinValue;
-            DateTime sontarih = satis_BitisTarih.SelectedDate.HasValue ? satis_BitisTarih.SelectedDate.Value : DateTime.MinValue;
-            var liste = from x in db.TblURUN.OrderByDescending(x => x.UrunId)
-                        .Where(x => x.EklenmeTarihi >= ilktarih && x.EklenmeTarihi <= sontarih)
-                        select new
-                        {
-                            ID = x.UrunId,
-                            ÜrünAdı = x.UrunAdi,
-                            Tutar = x.Fiyat,
-                            Kategori = x.TblKATEGORI.KategoriAdi,
-                            SatılanAdet = x.StokMiktari,
-                            Birim = x.Birim,
-                            Tarih = x.EklenmeTarihi
+            DateTime? bas = dtBaslangic.SelectedDate;
+            DateTime? bit = dtBitis.SelectedDate;
+            string ara = txtKasaAra.Text;
 
-                        };
-            satis_DataGrid.ItemsSource = liste.ToList();
+            await KasaVerileriniYukleAsync(bas, bit, ara);
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private async void btnTemizle_Click(object sender, RoutedEventArgs e)
         {
-            satis_BaslanicTarih.Text = "";
-            satis_BitisTarih.Text = "";
-            txtatisara.Text = "";
-            SatisListeleAsync();
+            dtBaslangic.SelectedDate = null;
+            dtBitis.SelectedDate = null;
+            txtKasaAra.Text = "";
+            await KasaVerileriniYukleAsync();
         }
-    }   
+
+        private async void txtKasaAra_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            // Çok sık sorgu atmaması için basit bir karakter kontrolü (opsiyonel)
+            if (txtKasaAra.Text.Length > 2 || txtKasaAra.Text.Length == 0)
+            {
+                await KasaVerileriniYukleAsync(dtBaslangic.SelectedDate, dtBitis.SelectedDate, txtKasaAra.Text);
+            }
+        }
+    }
 }
