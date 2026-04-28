@@ -1,4 +1,5 @@
-﻿using RestoranOtomasyonu.Entity;
+﻿using Newtonsoft.Json;
+using RestoranOtomasyonu.Entity;
 using RestoranOtomasyonu.OtherWindows;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Microsoft.Web.WebView2.Core;
 
 namespace RestoranOtomasyonu
 {
@@ -26,7 +28,8 @@ namespace RestoranOtomasyonu
         RESTORANDBEntities db = new RESTORANDBEntities();
         DispatcherTimer timer = new DispatcherTimer();
         private readonly CultureInfo _tr = new CultureInfo("tr-TR");
-
+        private YouTubeWindow _ytWindow;
+        private DispatcherTimer _timer;
         public MasalarWindow()
         {
             InitializeComponent();
@@ -34,6 +37,7 @@ namespace RestoranOtomasyonu
             timer.Tick += Timer_Tick;
             timer.Start();
             _tarih.Text = DateTime.Now.ToString("D", _tr);
+            SetupTimer();
             DashboardBilgileriniGuncelle();
         }
         public enum AdisyonTipi
@@ -346,5 +350,138 @@ namespace RestoranOtomasyonu
             gunSonuRaporu.Owner = this;
             bool? result = gunSonuRaporu.ShowDialog();
         }
+
+        /*Youtube*/
+
+        private void SetupTimer()
+        {
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromSeconds(1);
+            _timer.Tick += Timer_TickY;
+            _timer.Start();
+        }
+
+        private async void Timer_TickY(object sender, EventArgs e)
+        {
+            if (MusicSlider.IsMouseCaptureWithin) return;
+
+            if (_ytWindow != null && _ytWindow.IsLoaded)
+            {
+                string rawJson = await _ytWindow.GetVideoProgressJson();
+
+                if (!string.IsNullOrEmpty(rawJson) && rawJson != "null")
+                {
+                    try
+                    {
+                        string cleanJson = JsonConvert.DeserializeObject<string>(rawJson);
+                        var data = JsonConvert.DeserializeObject<dynamic>(cleanJson);
+
+                        double current = (double)data.current;
+                        double total = (double)data.total;
+
+                        if (!double.IsNaN(current) && !double.IsNaN(total))
+                        {
+                            MusicSlider.Maximum = total;
+                            MusicSlider.Value = current;
+
+                            CurrentTimeText.Text = FormatTime(current);
+                            TotalTimeText.Text = FormatTime(total);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Hata durumunda loglama veya kullanıcıya bildirim yapabilirsiniz
+                        Console.WriteLine($"Hata: {ex.Message}");
+                    }
+                }
+            }
+        }
+
+        private void MusicSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (MusicSlider.IsMouseCaptureWithin && _ytWindow != null && _ytWindow.YTWebView.CoreWebView2 != null)
+            {
+                string seekScript = $"document.querySelector('video').currentTime = {MusicSlider.Value};";
+                _ytWindow.YTWebView.CoreWebView2.ExecuteScriptAsync(seekScript);
+            }
+        }
+
+        private string FormatTime(double seconds)
+        {
+            TimeSpan t = TimeSpan.FromSeconds(seconds);
+            return string.Format("{0:D2}:{1:D2}", t.Minutes, t.Seconds);
+        }
+
+        private void MusicPlayer_Click(object sender, MouseButtonEventArgs e)
+        {
+            if (_ytWindow == null)
+            {
+                _ytWindow = new YouTubeWindow(this);
+                _ytWindow.Owner = this;
+                _ytWindow.Show();
+            }
+            else
+            {
+                _ytWindow.Show();
+                _ytWindow.WindowState = WindowState.Normal;
+                _ytWindow.WindowState = WindowState.Maximized;
+                _ytWindow.Activate();
+            }
+        }
+
+        // Önceki Şarkı Butonu
+        private void BtnPrev_Click(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+            if (_ytWindow != null && _ytWindow.IsLoaded && _ytWindow.YTWebView.CoreWebView2 != null)
+            {
+                _ytWindow.YTWebView.CoreWebView2.ExecuteScriptAsync("window.history.back();");
+            }
+        }
+
+        // Oynat/Durdur Butonu
+        private void BtnPlayPause_Click(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+            if (_ytWindow != null && _ytWindow.IsLoaded)
+            {
+                _ytWindow.TogglePlayPause();
+                if (PlayPauseIcon.Kind == MaterialDesignThemes.Wpf.PackIconKind.Pause)
+                {
+                    PlayPauseIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Play;
+                }
+                else
+                {
+                    PlayPauseIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Pause;
+                }
+            }
+        }
+
+        // Sonraki Şarkı Butonu
+        private void BtnNext_Click(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+            if (_ytWindow != null && _ytWindow.IsLoaded)
+            {
+                _ytWindow.NextSong();
+            }
+        }
+
+        // YouTube penceresinden çağrılacak metotlar (Resim ve Başlık güncelleme)
+        public void UpdateTitle(string title)
+        {
+            SongTitleText.Text = title;
+            ArtistText.Text = "YouTube";
+        }
+
+        public void UpdateThumbnail(string imageUrl)
+        {
+            try
+            {
+                SongThumbnail.Source = new BitmapImage(new Uri(imageUrl));
+            }
+            catch { }
+        }
+
     }
 }
