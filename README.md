@@ -71,7 +71,8 @@ Veritabanını kurduktan sonra projenin yerel SQL Server'ınıza erişebilmesi i
 * 📦 MaterialDesignTheme
 * 📦 LiveCharts.Wpf
 * 📦 Microsoft.SqlServer.SqlManagementObjects
-* 🧩 Entity Framework 5 ya da Entity Framework 6
+* 📦 Microsoft.Web.WebView2
+* 🧩 Entity Framework 6
 
 ---
 ## 👥 Katkıda Bulunanlar
