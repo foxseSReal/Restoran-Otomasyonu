@@ -112,8 +112,59 @@
                 <Separator Width="200" Background="White" />
                 <Button Content="Salona Git" Width="150" materialDesign:ButtonAssist.CornerRadius="20" Background="#dcdcdc" BorderBrush="#dcdcdc" Margin="0 10 0 0" Click="Window_Loaded"/>
 
+                <!--Youtube Player-->
+                <Border Grid.Row="1" Height="200" Width="300" Background="#181818" CornerRadius="20" Margin="0 10 0 0" Padding="15" Cursor="Hand" MouseLeftButtonUp="MusicPlayer_Click" Style="{StaticResource YoutubePlayerBorderStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Column="0" CornerRadius="8" Width="60" Height="60" Background="#282828" ClipToBounds="True">
+                                <Image x:Name="SongThumbnail" Stretch="UniformToFill" 
+               Source="https://img.youtube.com/vi/jfKfPfyJRdk/0.jpg"/>
+                            </Border>
+
+                            <StackPanel Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center">
+                                <TextBlock x:Name="SongTitleText" Text="YouTube'dan Şarkı Seçin" 
+                   Foreground="White" FontWeight="Bold" FontSize="15" TextTrimming="CharacterEllipsis"/>
+                                <TextBlock x:Name="ArtistText" Text="Hazır" 
+                   Foreground="#B3B3B3" FontSize="12" Margin="0,5,0,0"/>
+                            </StackPanel>
+                        </Grid>
+                        <StackPanel Grid.Row="1" Margin="0,15,0,5">
+                            <Slider x:Name="MusicSlider" Minimum="0" Maximum="100" Value="0" Style="{StaticResource MaterialDesign3.MaterialDesignSlider}" Foreground="#1DB954" Background="Transparent" BorderBrush="Transparent" FocusVisualStyle="{x:Null}" IsMoveToPointEnabled="True"
+                    ValueChanged="MusicSlider_ValueChanged"/>
+                            <Grid Margin="0,2,0,0">
+                                <TextBlock x:Name="CurrentTimeText" Text="00:00" Foreground="#B3B3B3" FontSize="10" HorizontalAlignment="Left"/>
+                                <TextBlock x:Name="TotalTimeText" Text="00:00" Foreground="#B3B3B3" FontSize="10" HorizontalAlignment="Right"/>
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,0">
+                            <Button x:Name="BtnPrev" Click="BtnPrev_Click" Style="{StaticResource MaterialDesignIconButton}" Foreground="#B3B3B3" Margin="10,0" Cursor="Hand" ToolTip="Önceki">
+                                <materialDesign:PackIcon Kind="SkipPrevious" Width="30" Height="30"/>
+                            </Button>
+
+                            <Button x:Name="BtnPlayPause" Click="BtnPlayPause_Click" Style="{StaticResource MaterialDesignFloatingActionLightButton}" Background="White" BorderBrush="White" Foreground="Black" Width="50" Height="50" Margin="15,0" Cursor="Hand" FocusVisualStyle="{x:Null}">
+                                <materialDesign:PackIcon x:Name="PlayPauseIcon" Kind="Pause" Width="50" Height="50"/>
+                            </Button>
+                            <Button x:Name="BtnNext" Click="BtnNext_Click" Style="{StaticResource MaterialDesignIconButton}" Foreground="#B3B3B3" Margin="10,0" Cursor="Hand" ToolTip="Sonraki">
+                                <materialDesign:PackIcon Kind="SkipNext" Width="30" Height="30"/>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </Border>
                 <!---->
-                <Border Style="{StaticResource DashboardCardStyle}" Width="280" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,20,0" MouseDown="Border_MouseDown">
+                
+                <!--Günün Cirosu-->
+                <Border Style="{StaticResource DashboardCardStyle}" Width="300" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" MouseDown="Border_MouseDown">
                     <StackPanel>
                         <StackPanel Margin="0,0,0,12">
                             <TextBlock Text="GÜNÜN CİROSU" Foreground="#88FFFFFF" FontSize="16" FontWeight="Bold"/>
@@ -133,57 +184,6 @@
                                 <TextBlock Text="ADET" Foreground="#44FFFFFF" FontSize="10" FontWeight="Bold" VerticalAlignment="Bottom" Margin="0,0,0,2"/>
                             </StackPanel>
                         </Grid>
-                        <!--Youtube Player-->
-                        <Border Grid.Row="1" Height="200" Background="#181818" CornerRadius="15" Margin="0,10,0,0" Padding="15"
-        Cursor="Hand" MouseLeftButtonUp="MusicPlayer_Click">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-
-                                <Grid Grid.Row="0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="60"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <Border Grid.Column="0" CornerRadius="8" Width="60" Height="60" Background="#282828" ClipToBounds="True">
-                                        <Image x:Name="SongThumbnail" Stretch="UniformToFill" 
-                       Source="https://img.youtube.com/vi/jfKfPfyJRdk/0.jpg"/>
-                                    </Border>
-
-                                    <StackPanel Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center">
-                                        <TextBlock x:Name="SongTitleText" Text="YouTube'dan Şarkı Seçin" 
-                           Foreground="White" FontWeight="Bold" FontSize="15" TextTrimming="CharacterEllipsis"/>
-                                        <TextBlock x:Name="ArtistText" Text="Hazır" 
-                           Foreground="#B3B3B3" FontSize="12" Margin="0,5,0,0"/>
-                                    </StackPanel>
-                                </Grid>
-                                <StackPanel Grid.Row="1" Margin="0,15,0,5">
-                                    <Slider x:Name="MusicSlider" Minimum="0" Maximum="100" Value="0" Style="{StaticResource MaterialDesign3.MaterialDesignSlider}" Foreground="#1DB954" Background="Transparent" BorderBrush="Transparent" FocusVisualStyle="{x:Null}" IsMoveToPointEnabled="True"
-                            ValueChanged="MusicSlider_ValueChanged"/>
-                                    <Grid Margin="0,2,0,0">
-                                        <TextBlock x:Name="CurrentTimeText" Text="00:00" Foreground="#B3B3B3" FontSize="10" HorizontalAlignment="Left"/>
-                                        <TextBlock x:Name="TotalTimeText" Text="00:00" Foreground="#B3B3B3" FontSize="10" HorizontalAlignment="Right"/>
-                                    </Grid>
-                                </StackPanel>
-                                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,0">
-                                    <Button x:Name="BtnPrev" Click="BtnPrev_Click" Style="{StaticResource MaterialDesignIconButton}" Foreground="#B3B3B3" Margin="10,0" Cursor="Hand" ToolTip="Önceki">
-                                        <materialDesign:PackIcon Kind="SkipPrevious" Width="30" Height="30"/>
-                                    </Button>
-
-                                    <Button x:Name="BtnPlayPause" Click="BtnPlayPause_Click" Style="{StaticResource MaterialDesignFloatingActionLightButton}" Background="White" BorderBrush="White" Foreground="Black" Width="50" Height="50" Margin="15,0" Cursor="Hand" FocusVisualStyle="{x:Null}">
-                                        <materialDesign:PackIcon x:Name="PlayPauseIcon" Kind="Pause" Width="50" Height="50"/>
-                                    </Button>
-                                    <Button x:Name="BtnNext" Click="BtnNext_Click" Style="{StaticResource MaterialDesignIconButton}" Foreground="#B3B3B3" Margin="10,0" Cursor="Hand" ToolTip="Sonraki">
-                                        <materialDesign:PackIcon Kind="SkipNext" Width="30" Height="30"/>
-                                    </Button>
-                                </StackPanel>
-                            </Grid>
-                        </Border>
-
                     </StackPanel>
                 </Border>
 
