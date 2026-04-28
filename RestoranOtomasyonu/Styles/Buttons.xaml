@@ -647,4 +647,16 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="YoutubePlayerBorderStyle" TargetType="Border">
+        <Setter Property="Background" Value="#181818"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" Value="AliceBlue"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
 </ResourceDictionary>
