@@ -50,11 +50,15 @@ namespace RestoranOtomasyonu.Pages
             {
                 try
                 {
-                    // Önce masa adını çekelim ki açıklamada kullanalım
+                    decimal kalanBorc = _toplamBorc - _tahsilEdilen;
+                    if (miktar > kalanBorc)
+                    {
+                        miktar = kalanBorc;
+                    }
+
                     var masa = db.TblMASA.FirstOrDefault(m => m.MasaId == _masaId);
                     string masaAdi = masa != null ? "Masa " + masa.MasaNo.ToString() : "Bilinmeyen Masa";
 
-                    // 1. SQL'e Yeni Ödeme Kaydı
                     var yeniOdeme = new TblADISYON_ODEME
                     {
                         AdisyonId = _adisyonId,
@@ -65,13 +69,11 @@ namespace RestoranOtomasyonu.Pages
                     db.TblADISYON_ODEME.Add(yeniOdeme);
                     db.SaveChanges();
 
-                    // 2. KASA (GELİR) TABLOSUNA KAYIT - Masa Adı ile
                     db.TblGELIR.Add(new TblGELIR
                     {
                         GelirTuru = "Restoran Satışı",
                         Tutar = miktar,
                         Tarih = DateTime.Now,
-                        // Açıklamayı burada güncelledik:
                         Aciklama = $"{masaAdi} ödemesi ({yeniOdeme.OdemeTuru})",
                         PersonelId = 1,
                         ReferansTablo = "TblADISYON_ODEME",
@@ -80,19 +82,16 @@ namespace RestoranOtomasyonu.Pages
 
                     _tahsilEdilen += miktar;
 
-                    // 3. Borç Tamamlandıysa Adisyonu ve Masayı Kapat
                     if (_tahsilEdilen >= _toplamBorc)
                     {
                         var ad = db.TblADISYON.Find(_adisyonId);
                         if (ad != null) { ad.Durum = false; ad.KapanisZamani = DateTime.Now; }
-
-                        // Masayı zaten yukarıda çekmiştik, tekrar çekmeye gerek yok
                         if (masa != null) { masa.Statu = "B"; masa.Tutar = 0; }
                     }
 
                     db.SaveChanges();
 
-                    // UI ve Bildirim işlemleri...
+                    // UI ve Bildirim işlemleri
                     if (_anaPencere != null) _anaPencere.GenelToplamiHesapla();
                     _numpadMetni = "0";
                     TutarGuncelle();
