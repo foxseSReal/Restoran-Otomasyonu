@@ -411,7 +411,7 @@ namespace RestoranOtomasyonu
 
                     DateTime bugun = DateTime.Today;
                     decimal gunlukToplam = db.TblADISYON_ODEME
-                        .Where(x => x.Tarih >= bugun)
+                        .Where(x => x.Tarih >= bugun && x.OdemeTuru!="İNDİRİM")
                         .Sum(x => (decimal?)x.OdenenTutar) ?? 0;
 
                     txtGunlukCiro.Text = string.Format("₺ {0:N2}", gunlukToplam);
