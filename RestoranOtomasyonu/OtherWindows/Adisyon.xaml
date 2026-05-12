@@ -62,13 +62,6 @@
                         </StackPanel>
                     </Button>
                     <Separator Margin="0 0 0 0" Background="#40000000"/>
-                    <Button x:Name="MasaTasiButton" Style="{StaticResource AdisyonYonetimButtons}">
-                        <StackPanel>
-                            <TextBlock Text="Masa Taşı" Style="{StaticResource AYonetimText}"/>
-                            <materialDesign:PackIcon Kind="Arrow" Width="40" Height="40" Foreground="White" HorizontalAlignment="Center"/>
-                        </StackPanel>
-                    </Button>
-                    <Separator Margin="0 0 0 0" Background="#40000000"/>
                 </StackPanel>
             </Border>
 
