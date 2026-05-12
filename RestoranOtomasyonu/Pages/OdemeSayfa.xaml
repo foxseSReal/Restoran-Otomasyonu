@@ -48,20 +48,10 @@
                         </StackPanel>
 
                         <StackPanel Grid.Column="2" Orientation="Horizontal">
+
                             <StackPanel Margin="20,0">
-                                <TextBlock Text="İNDİRİM" FontSize="14" Foreground="#8E8EA9" TextAlignment="Center" FontWeight="Bold"/>
-                                <TextBox x:Name="txt_Indirim"
-                 Text="₺0,00" 
-                 FontSize="24" 
-                 FontWeight="Bold" 
-                 Foreground="#673AB7" 
-                 BorderThickness="0" 
-                 BorderBrush="#673AB7"
-                 Background="Transparent"
-                 MinWidth="80"
-                 TextAlignment="Center"
-                 PreviewTextInput="txt_Indirim_PreviewTextInput"
-                 TextChanged="txt_Indirim_TextChanged"/>
+                                <TextBlock Text="İNDİRİM" FontSize="14" Foreground="#8E8EA9" FontWeight="Bold"/>
+                                <TextBlock x:Name="txt_IndirimTutar" Text="₺0,00" FontSize="24" FontWeight="Bold" Foreground="#673AB7"/>
                             </StackPanel>
 
                             <StackPanel Margin="20,0">
