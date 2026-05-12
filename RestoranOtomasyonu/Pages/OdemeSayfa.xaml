@@ -49,9 +49,26 @@
 
                         <StackPanel Grid.Column="2" Orientation="Horizontal">
                             <StackPanel Margin="20,0">
+                                <TextBlock Text="İNDİRİM" FontSize="14" Foreground="#8E8EA9" TextAlignment="Center" FontWeight="Bold"/>
+                                <TextBox x:Name="txt_Indirim"
+                 Text="₺0,00" 
+                 FontSize="24" 
+                 FontWeight="Bold" 
+                 Foreground="#673AB7" 
+                 BorderThickness="0" 
+                 BorderBrush="#673AB7"
+                 Background="Transparent"
+                 MinWidth="80"
+                 TextAlignment="Center"
+                 PreviewTextInput="txt_Indirim_PreviewTextInput"
+                 TextChanged="txt_Indirim_TextChanged"/>
+                            </StackPanel>
+
+                            <StackPanel Margin="20,0">
                                 <TextBlock Text="ÖDENEN TUTAR" FontSize="14" Foreground="#8E8EA9" FontWeight="Bold"/>
                                 <TextBlock x:Name="txt_OdenenTutar" Text="₺0,00" FontSize="24" FontWeight="Bold" Foreground="#2D2D44"/>
                             </StackPanel>
+
                             <StackPanel Margin="20,0">
                                 <TextBlock Text="KALAN TUTAR" FontSize="14" Foreground="#8E8EA9" FontWeight="Bold"/>
                                 <TextBlock x:Name="txt_KalanTutar" Text="₺0,00" FontSize="24" FontWeight="Bold" Foreground="#E91E63"/>
@@ -95,7 +112,7 @@
             <StackPanel Background="#F0F1F8" Grid.Column="0">
                 <Button x:Name="btn_Kart" Click="PaymentMethod_Click" Content="KART" Style="{StaticResource OdemelerButtonStyle}"/>
                 <Button x:Name="btn_Nakit" Click="PaymentMethod_Click" Content="NAKIT" Style="{StaticResource OdemelerButtonStyle}"/>
-                <Button x:Name="btn_Cari" Click="PaymentMethod_Click" Content="CARİ" Style="{StaticResource OdemelerButtonStyle}"/>
+                <Button x:Name="btn_İndirim" Click="PaymentMethod_Click" Content="İNDİRİM" Style="{StaticResource OdemelerButtonStyle}"/>
                 <Button x:Name="btn_Ticket" Click="PaymentMethod_Click" Content="TICKET" Style="{StaticResource OdemelerButtonStyle}"/>
             </StackPanel>
 
