@@ -30,6 +30,8 @@ namespace RestoranOtomasyonu
         private readonly CultureInfo _tr = new CultureInfo("tr-TR");
         private YouTubeWindow _ytWindow;
         private DispatcherTimer _timer;
+        private Point _startPoint;
+        private bool _isProcessing = false;
         public MasalarWindow()
         {
             InitializeComponent();
@@ -97,6 +99,11 @@ namespace RestoranOtomasyonu
                 btn.Background = (System.Windows.Media.Brush)converter.ConvertFromString("#85dcdcdc");
                 btn.Tag = item.MasaId;
                 btn.Click += Masa_Click;
+                btn.PreviewMouseLeftButtonDown += Masa_PreviewMouseLeftButtonDown;
+                btn.PreviewMouseMove += Masa_PreviewMouseMove;
+                btn.AllowDrop = true;
+                btn.Drop += Masa_Drop;
+
 
                 StackPanel sp = new StackPanel();
 
@@ -111,6 +118,95 @@ namespace RestoranOtomasyonu
                 MasaPanel.Children.Add(btn);
             }
         }
+        private void Masa_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            _startPoint = e.GetPosition(null);
+        }
+
+        private void Masa_PreviewMouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                Point mousePos = e.GetPosition(null);
+                Vector diff = _startPoint - mousePos;
+
+                if (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
+                    Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance)
+                {
+                    if (sender is Button kaynakButon)
+                    {
+                        DragDrop.DoDragDrop(kaynakButon, kaynakButon.Tag, DragDropEffects.Move);
+                    }
+                }
+            }
+        }
+
+        private void Masa_Drop(object sender, DragEventArgs e)
+        {
+            if (_isProcessing) return;
+
+            if (sender is Button hedefButon)
+            {
+                int kaynakMasaId = (int)e.Data.GetData(typeof(int));
+                int hedefMasaId = Convert.ToInt32(hedefButon.Tag);
+                if (kaynakMasaId == hedefMasaId) return;
+                e.Handled = true;
+                _isProcessing = true;
+
+                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    MessageBoxResult onay = MessageBox.Show(
+                        $"{kaynakMasaId} numaralı masayı {hedefMasaId} numaralı masaya taşımak istiyor musunuz?",
+                        "Masa Taşıma Onayı",
+                        MessageBoxButton.YesNo,
+                        MessageBoxImage.Question);
+
+                    if (onay == MessageBoxResult.Yes)
+                    {
+                        MasaTasiIslemi(kaynakMasaId, hedefMasaId);
+                    }
+
+                    _isProcessing = false;
+                }));
+            }
+        }
+
+        private void MasaTasiIslemi(int kaynakId, int hedefId)
+        {
+            using (RESTORANDBEntities context = new RESTORANDBEntities())
+            {
+                var hedefMasa = context.TblMASA.FirstOrDefault(x => x.MasaId == hedefId);
+                if (hedefMasa?.Statu == "D")
+                {
+                    MessageBox.Show("Hedef masa dolu! Taşıma yapılamaz.");
+                    return;
+                }
+
+                var aktifAdisyon = context.TblADISYON.FirstOrDefault(x => x.MasaId == kaynakId && x.Durum == true);
+
+                if (aktifAdisyon != null)
+                {
+                    aktifAdisyon.MasaId = hedefId;
+
+                    var kaynakMasa = context.TblMASA.FirstOrDefault(x => x.MasaId == kaynakId);
+                    if (kaynakMasa != null) kaynakMasa.Statu = "B";
+
+                    hedefMasa.Statu = "D";
+
+                    context.SaveChanges();
+
+                    MasaRenklendir();
+                    DashboardBilgileriniGuncelle();
+
+                    MessageBox.Show("Masa başarıyla taşındı.");
+                }
+                else
+                {
+                    MessageBox.Show("Kaynak masada aktif bir adisyon bulunamadı.");
+                }
+            }
+        }
+
 
         private void Masa_Click(object sender, RoutedEventArgs e)
         {
@@ -121,7 +217,6 @@ namespace RestoranOtomasyonu
 
             adisyonPenceresi.Closed += (s, args) =>
             {
-                // Arayüzün nefes alıp güncellenmesi için ufak bir Dispatcher (Kuyruk) içine alıyoruz
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     MasaRenklendir();
@@ -129,12 +224,10 @@ namespace RestoranOtomasyonu
                 });
             };
 
-            // Pencereyi açıyoruz. (ShowDialog olması çok önemli!)
             adisyonPenceresi.ShowDialog();
         }
         public void MasaRenklendir()
         {
-            // Veritabanını tazeleyerek en güncel statüleri alıyoruz
             using (RESTORANDBEntities tazeDb = new RESTORANDBEntities())
             {
                 var tumMasalar = tazeDb.TblMASA.AsNoTracking().Where(x => x.Durum == true && x.NESNE_DURUMU != "Paket").ToList();
@@ -148,8 +241,6 @@ namespace RestoranOtomasyonu
                     {
                         int masaId = Convert.ToInt32(btn.Tag);
                         var masaVerisi = tumMasalar.FirstOrDefault(x => x.MasaId == masaId);
-
-                        // Butonun içindeki StackPanel ve TextBlock'a ulaşıyoruz
                         StackPanel sp = (StackPanel)btn.Content;
                         TextBlock tb = (TextBlock)sp.Children[0];
 
@@ -159,7 +250,7 @@ namespace RestoranOtomasyonu
                             {
                                 btn.Background = (Brush)FindResource("DoluMasaBrush");
                                 tb.Foreground = Brushes.AntiqueWhite;
-                                tb.Text = masaVerisi.NESNE_DURUMU + " " + masaVerisi.MasaNo; // Dolu olsa da numara yazsın
+                                tb.Text = masaVerisi.NESNE_DURUMU + " " + masaVerisi.MasaNo;
                             }
                             else if (masaVerisi.Statu == "R") // REZERVE
                             {
@@ -169,12 +260,12 @@ namespace RestoranOtomasyonu
                                           ? $"Rezerve {masaVerisi.RezervasyonSaati}"
                                           : "Rezerve";
                             }
-                            else // BOŞ (Senin MasaGoster'deki standart halin)
+                            else // BOŞ
                             {
                                 btn.Background = standartArkaplan; // #85dcdcdc rengi
                                 btn.BorderBrush = Brushes.Transparent;
-                                tb.Foreground = Brushes.Black; // Varsayılan yazı rengi
-                                tb.Text = masaVerisi.NESNE_DURUMU + " " + masaVerisi.MasaNo; // Standart yazı
+                                tb.Foreground = Brushes.Black;
+                                tb.Text = masaVerisi.NESNE_DURUMU + " " + masaVerisi.MasaNo;
                             }
                         }
                     }
@@ -197,11 +288,10 @@ namespace RestoranOtomasyonu
         private void MasaEkle_Click(object sender, RoutedEventArgs e)
         {
             MasaEkleWindow win = new MasaEkleWindow();
-            win.Owner = this; // Ana pencerenin üzerinde kalması için önemli
-            bool? result = win.ShowDialog(); // Show() yerine ShowDialog() kullan
+            win.Owner = this;
+            bool? result = win.ShowDialog();
         }
 
-        //Paketleme işlemi için gerekli olan kodlar
         public void PaketGoster(object sender, RoutedEventArgs e)
         {
             MasaPanel.Children.Clear();
@@ -252,21 +342,17 @@ namespace RestoranOtomasyonu
 
             adisyonPenceresi.Closed += (s, args) =>
             {
-                // Arayüzün nefes alıp güncellenmesi için ufak bir Dispatcher (Kuyruk) içine alıyoruz
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     PaketRenklendir();
                     DashboardBilgileriniGuncelle();
                 });
             };
-
-            // Pencereyi açıyoruz. (ShowDialog olması çok önemli!)
             adisyonPenceresi.ShowDialog();
         }
 
         public void PaketRenklendir()
         {
-            // Veritabanını tazeleyerek en güncel statüleri alıyoruz
             using (RESTORANDBEntities tazeDb = new RESTORANDBEntities())
             {
                 var tumMasalar = tazeDb.TblMASA.AsNoTracking().Where(x => x.Durum == true && x.NESNE_DURUMU != "Masa").ToList();
@@ -281,7 +367,6 @@ namespace RestoranOtomasyonu
                         int masaId = Convert.ToInt32(btn.Tag);
                         var masaVerisi = tumMasalar.FirstOrDefault(x => x.MasaId == masaId);
 
-                        // Butonun içindeki StackPanel ve TextBlock'a ulaşıyoruz
                         StackPanel sp = (StackPanel)btn.Content;
                         TextBlock tb = (TextBlock)sp.Children[0];
 
@@ -291,7 +376,7 @@ namespace RestoranOtomasyonu
                             {
                                 btn.Background = (Brush)FindResource("DoluMasaBrush");
                                 tb.Foreground = Brushes.AntiqueWhite;
-                                tb.Text = masaVerisi.NESNE_DURUMU + " " + masaVerisi.MasaNo; // Dolu olsa da numara yazsın
+                                tb.Text = masaVerisi.NESNE_DURUMU + " " + masaVerisi.MasaNo;
                             }
                             else if (masaVerisi.Statu == "R") // REZERVE
                             {
@@ -301,12 +386,12 @@ namespace RestoranOtomasyonu
                                           ? $"Rezerve {masaVerisi.RezervasyonSaati}"
                                           : "Rezerve";
                             }
-                            else // BOŞ (Senin MasaGoster'deki standart halin)
+                            else
                             {
                                 btn.Background = standartArkaplan; // #85dcdcdc rengi
                                 btn.BorderBrush = Brushes.Transparent;
-                                tb.Foreground = Brushes.Black; // Varsayılan yazı rengi
-                                tb.Text = AdisyonTipi.Paket + " " + masaVerisi.MasaNo; // Standart yazı
+                                tb.Foreground = Brushes.Black;
+                                tb.Text = AdisyonTipi.Paket + " " + masaVerisi.MasaNo;
                             }
                         }
                     }
@@ -320,14 +405,10 @@ namespace RestoranOtomasyonu
             {
                 using (RESTORANDBEntities db = new RESTORANDBEntities())
                 {
-                    // 1. Açık Masa Sayısını Hesapla
-                    // Statu "D" (Dolu) olan ve sistemde aktif (Durum == true) olanları sayıyoruz
                     int acikMasaSayisi = db.TblMASA.Count(x => x.Statu == "D" && x.Durum == true);
 
-                    // UI Güncelleme
                     txtAcikMasaSayisi.Text = acikMasaSayisi.ToString();
 
-                    // 2. Günlük Ciroyu Hesapla (Önceki konuştuğumuz kısım)
                     DateTime bugun = DateTime.Today;
                     decimal gunlukToplam = db.TblADISYON_ODEME
                         .Where(x => x.Tarih >= bugun)
@@ -336,7 +417,7 @@ namespace RestoranOtomasyonu
                     txtGunlukCiro.Text = string.Format("₺ {0:N2}", gunlukToplam);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // Hata durumunda 0 yazdır ki uygulama çökmesin
                 txtAcikMasaSayisi.Text = "0";
@@ -388,10 +469,9 @@ namespace RestoranOtomasyonu
                             TotalTimeText.Text = FormatTime(total);
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-                        // Hata durumunda loglama veya kullanıcıya bildirim yapabilirsiniz
-                        Console.WriteLine($"Hata: {ex.Message}");
+                        // Hata durumunda loglama veya kullanıcıya bildirim 
                     }
                 }
             }
