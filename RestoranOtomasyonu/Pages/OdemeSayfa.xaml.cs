@@ -1,5 +1,5 @@
 ﻿using RestoranOtomasyonu.Entity;
-using RestoranOtomasyonu.OtherWindows; // Adisyon penceresine ulaşmak için
+using RestoranOtomasyonu.OtherWindows;
 using System;
 using System.Linq;
 using System.Windows;
@@ -23,10 +23,7 @@ namespace RestoranOtomasyonu.Pages
             InitializeComponent();
             this._masaId = masaId;
             this._anaPencere = anaPencere;
-
-            // "₺ 150,00" formatını temizleyip sayıya çeviriyoruz
             decimal.TryParse(gelenTutar.Replace("₺", "").Trim(), out _toplamBorc);
-
             VerileriYukle();
         }
 
@@ -91,7 +88,6 @@ namespace RestoranOtomasyonu.Pages
 
                     db.SaveChanges();
 
-                    // UI ve Bildirim işlemleri
                     if (_anaPencere != null) _anaPencere.GenelToplamiHesapla();
                     _numpadMetni = "0";
                     TutarGuncelle();
@@ -102,23 +98,34 @@ namespace RestoranOtomasyonu.Pages
                 {
                     MessageBox.Show("Hata: " + ex.Message);
                 }
+                if (txt_OdemeSekli.Text == "İNDİRİM") txt_OdemeSekli.Text = "NAKIT";
+
             }
         }
 
         private void KalanTutariGuncelle()
         {
-            // 1. Kalan borcu hesapla ve yaz
+            var tumOdemeler = db.TblADISYON_ODEME
+                                .AsNoTracking()
+                                .Where(x => x.AdisyonId == _adisyonId)
+                                .ToList();
+
+            decimal gercekOdenen = tumOdemeler
+                                    .Where(x => x.OdemeTuru != "İNDİRİM")
+                                    .Sum(x => x.OdenenTutar);
+
+            decimal indirimToplami = tumOdemeler
+                                     .Where(x => x.OdemeTuru == "İNDİRİM")
+                                     .Sum(x => x.OdenenTutar);
+
+            _tahsilEdilen = gercekOdenen + indirimToplami;
+
             decimal kalan = _toplamBorc - _tahsilEdilen;
             txt_KalanTutar.Text = string.Format("₺{0:N2}", kalan > 0 ? kalan : 0);
-
-            // 2. ÖDENEN TUTAR kısmını güncelle (İstediğin kısım burası)
-            txt_OdenenTutar.Text = string.Format("₺{0:N2}", _tahsilEdilen);
-
-            // 3. Görsel geri bildirim (Borç bittiyse yeşil yap)
-            if (kalan <= 0)
-            {
-                txt_KalanTutar.Foreground = Brushes.Green;
-            }
+            txt_OdenenTutar.Text = string.Format("₺{0:N2}", gercekOdenen);
+            txt_IndirimTutar.Text = string.Format("₺{0:N2}", indirimToplami);
+            if (kalan <= 0) txt_KalanTutar.Foreground = Brushes.Green;
+            else txt_KalanTutar.Foreground = (Brush)new BrushConverter().ConvertFromString("#E91E63");
         }
 
         // --- BUTON İŞLEVLERİ ---
@@ -143,27 +150,12 @@ namespace RestoranOtomasyonu.Pages
             TutarGuncelle();
         }
         private void PaymentMethod_Click(object sender, RoutedEventArgs e) => txt_OdemeSekli.Text = (sender as Button).Content.ToString();
-
         private void AllAmount_Click(object sender, RoutedEventArgs e)
         {
-            // 1. Kalan borcu hesapla (Toplam - Tahsil Edilen)
             decimal kalan = _toplamBorc - _tahsilEdilen;
-
-            // 2. Borç 0'dan küçükse işlem yapma (Hatalı durumları önlemek için)
-            if (kalan <= 0)
-            {
-                _numpadMetni = "0";
-            }
-            else
-            {
-                // 3. Kalan tutarı numpad formatına uygun hale getiriyoruz.
-                // Numpad metninde nokta kullandığın için "." formatına çeviriyoruz.
-                _numpadMetni = kalan.ToString("0.00").Replace(",", ".");
-            }
-
-            // 4. UI'daki tutar kutusunu güncelle
+            if (kalan <= 0) _numpadMetni = "0";
+            else _numpadMetni = kalan.ToString("0.00").Replace(",", ".");
             TutarGuncelle();
         }
-
     }
 }
