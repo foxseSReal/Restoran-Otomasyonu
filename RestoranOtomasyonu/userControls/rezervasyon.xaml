@@ -41,11 +41,29 @@
 
         <!--Sag-->
         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="0">
-            <ComboBox x:Name="rezervasyon_Adsoyad" Width="300" Height="40" VerticalAlignment="Top" IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
-            Margin="0 100 0 0"
-            Foreground="Black"
-            FontSize="18"
-            />
+            <ComboBox x:Name="rezervasyon_Adsoyad" 
+          Width="300" 
+          Height="50" Margin="0 100 0 0"
+          VerticalAlignment="Top" 
+          FontSize="16"
+          Foreground="WhiteSmoke"
+          
+          Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+          
+          materialDesign:HintAssist.Hint="Müşteri Adı Soyadı"
+          materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="LightGray"
+          materialDesign:HintAssist.HelperText="Listeden arama yapabilir veya seçebilirsiniz"
+          materialDesign:TextFieldAssist.UnderlineBrush="#FF4B23" 
+          
+          DisplayMemberPath="AdSoyad" 
+          SelectedValuePath="Id"
+          
+          IsEditable="True"
+          IsTextSearchEnabled="True"
+          TextSearch.TextPath="AdSoyad"
+          
+          IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}" 
+/>
             <TextBox x:Name="rezervasyon_MasaNo" Width="300" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Masa Numarasi" IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}" Style="{StaticResource MaterialDesignFilledTextBox}"
             TextWrapping="Wrap"
             Margin="0 20 0 0"
