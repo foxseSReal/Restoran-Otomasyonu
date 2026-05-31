@@ -10,88 +10,82 @@
              d:DesignHeight="784" d:DesignWidth="1036">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
+        <!-- Arka Plan Efekti (Gereksiz tekrarlar temizlendi) -->
+        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource effectliBorder}"/>
 
-        <!---->
-        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2"  Style="{StaticResource effectliBorder}"/>
-        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2"  Style="{StaticResource effectliBorder}"/>
-        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2"  Style="{StaticResource effectliBorder}"/>
-        <!---->
+        <!-- SOL ALAN (Arama, Filtreleme ve Tablo) -->
+        <StackPanel Orientation="Vertical" Grid.Column="0" Margin="10">
+            <TextBox x:Name="rezervasyonAra" Width="300" VerticalAlignment="Top" 
+                     materialDesign:HintAssist.Hint="Rezervasyon Ara" 
+                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                     TextWrapping="Wrap" Margin="10 20 0 0" Foreground="WhiteSmoke" FontSize="18"
+                     MaxLength="12" TextChanged="rezervasyonAra_TextChanged"/>
 
-        <!--Sol-->
-        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
-            <TextBox x:Name="rezervasyonAra" Width="300" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Rezervasyon Ara" IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}" Style="{StaticResource MaterialDesignFilledTextBox}"
-    TextWrapping="Wrap"
-    Margin="10 20 0 0"
-    Foreground="WhiteSmoke"
-    FontSize="18"
-    MaxLength="12" TextChanged="rezervasyonAra_TextChanged"/>
-            <StackPanel Margin="30 10 0 0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <DatePicker FontFamily="Calibri" Foreground="Red" FontSize="18" materialDesign:HintAssist.Hint="Tarih Seç" x:Name="RezarvasyonAralik" Margin="0 20 0 0" Width="150" Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
-                <DatePicker FontFamily="Calibri" Foreground="Red" FontSize="18" materialDesign:HintAssist.Hint="Tarih Seç" x:Name="RezarvasyonAralik2" Margin="20 20 0 0" Width="150" Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+            <StackPanel Margin="0 10 0 0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <DatePicker FontFamily="Calibri" Foreground="Red" FontSize="18" materialDesign:HintAssist.Hint="Tarih Seç" x:Name="RezarvasyonAralik" Margin="0 20 0 0" Width="130" Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                <DatePicker FontFamily="Calibri" Foreground="Red" FontSize="18" materialDesign:HintAssist.Hint="Tarih Seç" x:Name="RezarvasyonAralik2" Margin="15 20 0 0" Width="130" Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
                 <Button x:Name="rezervasyonBtn_Filtrele" Content="Filtrele" Width="80" Margin="10 20 0 0" Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}" Click="rezervasyonBtn_Filtrele_Click"/>
-
             </StackPanel>
-            <DataGrid x:Name="rezervasyon_DataGrid" Margin="20 5 0 0" Width="480" Height="600" Foreground="Black" SelectionChanged="rezervasyon_DataGrid_SelectionChanged"/>
+
+            <DataGrid x:Name="rezervasyon_DataGrid" Margin="20 15 0 0" Width="480" Height="580" Foreground="Black" SelectionChanged="rezervasyon_DataGrid_SelectionChanged"/>
         </StackPanel>
-        <!---->
 
-        <!--Sag-->
-        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="0">
-            <ComboBox x:Name="rezervasyon_Adsoyad" 
-          Width="300" 
-          Height="50" Margin="0 100 0 0"
-          VerticalAlignment="Top" 
-          FontSize="16"
-          Foreground="Black"
-          
-          Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-          
-          materialDesign:HintAssist.Hint="Müşteri Adı Soyadı"
-          materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Foreground="LightGray"
-          materialDesign:HintAssist.HelperText="Listeden arama yapabilir veya seçebilirsiniz"
-          materialDesign:TextFieldAssist.UnderlineBrush="#FF4B23" 
-          
-          DisplayMemberPath="AdSoyad" 
-          SelectedValuePath="Id"
-          
-          IsEditable="True"
-          IsTextSearchEnabled="True"
-          TextSearch.TextPath="AdSoyad"
-          
-          IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}" 
-/>
-            <TextBox x:Name="rezervasyon_MasaNo" Width="300" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Masa Numarasi" IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}" Style="{StaticResource MaterialDesignFilledTextBox}"
-            TextWrapping="Wrap"
-            Margin="0 20 0 0"
-            Foreground="WhiteSmoke"
-            FontSize="18"
-            MaxLength="8"/>
-            <!--NumericUpdown-->
-            <materialDesign:NumericUpDown x:Name="rezervasyonKisi_Sayisi" Width="300" Margin="0 10 0 0" FontSize="18" materialDesign:HintAssist.Hint="Kişi Sayısı" Style="{StaticResource MaterialDesignFloatingHintNumericUpDown}" Foreground="White"/>
-            <!---->
+        <!-- SAĞ ALAN (Giriş Formu ve İşlem Butonları) -->
+        <StackPanel Orientation="Vertical" Grid.Column="1" Margin="10" HorizontalAlignment="Center">
 
-            <!--Aciklama Kutusu-->
-            <TextBox x:Name="rezervasyonAciklama" Margin="0 20 0 0" Width="300" Height="100" VerticalAlignment="Top" FontWeight="SemiBold" materialDesign:HintAssist.Hint="Sipariş, İletişim Numarası..." IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" Style="{StaticResource MaterialDesignOutlinedTextBox}"
-TextWrapping="Wrap" MaxLength="250"
-VerticalScrollBarVisibility="Auto"
-Foreground="White"/>
-            <!---->
+            <!-- 🔥 YENİ: Müşteri Seçim ve Hızlı Ekleme Yan Yana Alanı -->
+            <StackPanel Orientation="Horizontal" Width="300" Margin="0 50 0 0">
+                <ComboBox x:Name="rezervasyon_Adsoyad" 
+                          Width="250" Height="50" 
+                          FontSize="16" Foreground="Black"
+                          Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                          materialDesign:HintAssist.Hint="Müşteri Adı Soyadı"
+                          materialDesign:HintAssist.IsFloating="True" 
+                          materialDesign:HintAssist.Foreground="LightGray"
+                          materialDesign:HintAssist.HelperText="Listeden arama yapın veya seçin"
+                          materialDesign:TextFieldAssist.UnderlineBrush="#FF4B23" 
+                          DisplayMemberPath="AdSoyad" 
+                          SelectedValuePath="Id"
+                          IsEditable="True"
+                          IsTextSearchEnabled="True"
+                          TextSearch.TextPath="AdSoyad"/>
 
-            <!--Tarih&Saat-->
+                <!-- Hızlı Müşteri Ekleme Butonu (Pencereyi Açar) -->
+                <Button x:Name="btnHizliMusteriEkle" 
+                        Width="40" Height="40" Margin="10 10 0 0"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}"
+                        ToolTip="Yeni Müşteri Ekle"
+                        Click="btnHizliMusteriEkle_Click">
+                    <materialDesign:PackIcon Kind="Plus" Width="22" Height="22" />
+                </Button>
+            </StackPanel>
+
+            <!-- Masa Numarası -->
+            <TextBox x:Name="rezervasyon_MasaNo" Width="300" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Masa Numarası" Style="{StaticResource MaterialDesignFilledTextBox}"
+                     TextWrapping="Wrap" Margin="0 20 0 0" Foreground="WhiteSmoke" FontSize="18" MaxLength="8"/>
+
+            <!-- Kişi Sayısı -->
+            <materialDesign:NumericUpDown x:Name="rezervasyonKisi_Sayisi" Width="300" Margin="0 15 0 0" FontSize="18" materialDesign:HintAssist.Hint="Kişi Sayısı" Style="{StaticResource MaterialDesignFloatingHintNumericUpDown}" Foreground="White"/>
+
+            <!-- Açıklama Kutusu -->
+            <TextBox x:Name="rezervasyonAciklama" Margin="0 20 0 0" Width="300" Height="90" VerticalAlignment="Top" FontWeight="SemiBold" materialDesign:HintAssist.Hint="Sipariş, İletişim Numarası..." Style="{StaticResource MaterialDesignOutlinedTextBox}" TextWrapping="Wrap" MaxLength="250" VerticalScrollBarVisibility="Auto" Foreground="White"/>
+
+            <!-- Tarih & Saat -->
             <DatePicker x:Name="rezervasyonTarih" Foreground="Red" materialDesign:HintAssist.Hint="Tarih Seç" Margin="0 20 0 0" Width="300" Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
             <materialDesign:TimePicker Foreground="Red" x:Name="rezervasyonSaat" materialDesign:HintAssist.Hint="Saat Seç" Is24Hours="True" Margin="0 20 0 0" Width="300"/>
-            <!---->
-            <StackPanel Orientation="Horizontal">
-                <Button x:Name="rezervasyonButton_Ekle" Content="Ekle" Width="150" Height="50" Margin="10 50 0 0" Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}" Click="rezervasyonButton_Ekle_Click"/>
-                <Button x:Name="rezervasyonButton_Guncelle" Content="Güncelle" Width="150" Height="50" Margin="10 50 0 0" Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}" Click="rezervasyonButton_Guncelle_Click"/>
-                <Button x:Name="rezervasyonButton_Sil" Content="Sil" Width="150" Height="50" Margin="10 50 0 0" Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}" Click="rezervasyonButton_Sil_Click"/>
-                <Button x:Name="rezervasyonBtn_Temizle" Content="Temizle" Width="150" Height="50" Margin="-470 200 0 0" Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}" />
+
+            <!-- Ana İşlem Butonları (Ekle, Güncelle, Sil) -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 30 0 0">
+                <Button x:Name="rezervasyonButton_Ekle" Content="Ekle" Width="95" Height="45" Margin="5 0" Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}" Click="rezervasyonButton_Ekle_Click"/>
+                <Button x:Name="rezervasyonButton_Guncelle" Content="Güncelle" Width="95" Height="45" Margin="5 0" Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}" Click="rezervasyonButton_Guncelle_Click"/>
+                <Button x:Name="rezervasyonButton_Sil" Content="Sil" Width="95" Height="45" Margin="5 0" Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}" Click="rezervasyonButton_Sil_Click"/>
+                <!-- Düzenlenen Temizle Butonu (Negatif marjdan kurtarıldı, sıraya eklendi) -->
+                <Button x:Name="rezervasyonBtn_Temizle" Content="Temizle" Width="95" Height="45" Margin="5 0" Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}" Click="rezervasyonBtn_Temizle_Click" />
             </StackPanel>
         </StackPanel>
-
     </Grid>
 </UserControl>
