@@ -1,0 +1,46 @@
+﻿<Window x:Class="RestoranOtomasyonu.OtherWindows.MusteriEklemeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RestoranOtomasyonu.OtherWindows"
+        mc:Ignorable="d"
+        Title="Yeni Müşteri Ekle" Height="430" Width="450" 
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="#F5F5F5">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <TextBlock Text="YENİ MÜŞTERİ KAYDI" FontSize="20" FontWeight="Bold" Foreground="#2C3E50" HorizontalAlignment="Center"/>
+            <Separator Margin="0,10,0,0" Background="#BDC3C7"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="10,0,10,0">
+
+                <TextBlock Text="Müşteri Adı" FontSize="14" FontWeight="SemiBold" Foreground="#34495E" Margin="0,0,0,5"/>
+                <TextBox x:Name="txtMusteriAd" Height="35" VerticalContentAlignment="Center" Margin="0,0,0,15" Padding="5" FontSize="14"/>
+
+                <TextBlock Text="Müşteri Soyadı" FontSize="14" FontWeight="SemiBold" Foreground="#34495E" Margin="0,0,0,5"/>
+                <TextBox x:Name="txtMusteriSoyad" Height="35" VerticalContentAlignment="Center" Margin="0,0,0,15" Padding="5" FontSize="14"/>
+
+                <TextBlock Text="Telefon Numarası" FontSize="14" FontWeight="SemiBold" Foreground="#34495E" Margin="0,0,0,5"/>
+                <TextBox x:Name="txtMusteriTelefon" Height="35" VerticalContentAlignment="Center" Margin="0,0,0,15" Padding="5" FontSize="14"/>
+
+                <TextBlock Text="Açıklama / Not" FontSize="14" FontWeight="SemiBold" Foreground="#34495E" Margin="0,0,0,5"/>
+                <TextBox x:Name="txtAciklama" Height="60" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Margin="0,0,0,15" Padding="5" FontSize="14"/>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,10,0">
+            <Button x:Name="btnIptal" Content="İptal" Width="100" Height="38" Background="#E74C3C" Foreground="White" BorderThickness="0" Margin="0,0,10,0" Cursor="Hand" Click="btnIptal_Click"/>
+            <Button x:Name="btnKaydet" Content="Kaydet" Width="120" Height="38" Background="#2ECC71" Foreground="White" BorderThickness="0" FontWeight="Bold" Cursor="Hand" Click="btnKaydet_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
