@@ -30,6 +30,7 @@ namespace RestoranOtomasyonu.userControls
         {
             await RezarvasyonListeleAsync();
             await SonRezervasyonuGetirAsync();
+            MusteriComboBoxDoldur();
         }
 
         public async Task RezarvasyonListeleAsync()
@@ -41,12 +42,13 @@ namespace RestoranOtomasyonu.userControls
                     using (var db = new RESTORANDBEntities())
                     {
                         return db.TblREZARVASYON
-                                 .Include("TblMUSTERILER") 
+                                 .Include("TblMUSTERILER")
                                  .OrderByDescending(x => x.RezarvasyonId)
                                  .ToList()
                                  .Select(x => new
                                  {
                                      ID = x.RezarvasyonId,
+                                     MusteriId = x.MusteriId,
                                      Müşteri = x.TblMUSTERILER != null ? x.TblMUSTERILER.Ad + " " + x.TblMUSTERILER.Soyad : "Bilinmiyor",
                                      MasaNo = x.MasaNoId,
                                      KişiS = x.KisiSayisi,
@@ -116,76 +118,188 @@ namespace RestoranOtomasyonu.userControls
         {
             var bukim = db.TblREZARVASYON.Find(rezarvasyonId);
             if (bukim == null) return;
-            rezervasyon_Adsoyad.Text = bukim.TblMUSTERILER.Ad + " " + bukim.TblMUSTERILER.Soyad;
+            rezervasyon_Adsoyad.SelectedValue = bukim.MusteriId;
             rezervasyon_MasaNo.Text = bukim.MasaNoId.ToString();
             rezervasyonKisi_Sayisi.Value = bukim.KisiSayisi;
-            rezervasyonAciklama.Text = bukim.Aciklama.ToString();
+            rezervasyonAciklama.Text = bukim.Aciklama?.ToString() ?? "";
             rezervasyonTarih.Text = bukim.Tarih.ToString("dd.MM.yyyy");
             rezervasyonSaat.Text = bukim.Saat.ToString(@"hh\:mm");
         }
+        private void MusteriComboBoxDoldur()
+        {
+            // Müşteri bilgilerini çekip ComboBox'a dolduruyoruz
+            var musteriler = db.TblMUSTERILER
+                                   .Select(x => new
+                                   {
+                                       Id = x.MusteriId,
+                                       AdSoyad = x.Ad + " " + x.Soyad
+                                   }).ToList();
+
+            rezervasyon_Adsoyad.ItemsSource = musteriler;
+            rezervasyon_Adsoyad.DisplayMemberPath = "AdSoyad";
+            rezervasyon_Adsoyad.SelectedValuePath = "Id";
+            rezervasyon_Adsoyad.SelectedIndex = -1;
+        }
         private void rezervasyonButton_Ekle_Click(object sender, RoutedEventArgs e)
         {
-            var yeniRezervasyon = new TblREZARVASYON
+            if (rezervasyon_Adsoyad.SelectedValue == null)
             {
-                TblMUSTERILER = db.TblMUSTERILER.FirstOrDefault(x => x.Ad + " " + x.Soyad == rezervasyon_Adsoyad.Text),
-                MasaNoId = int.Parse(rezervasyon_MasaNo.Text),
-                KisiSayisi = (int)rezervasyonKisi_Sayisi.Value,
-                Tarih = DateTime.Parse(rezervasyonTarih.Text),
-                Saat = TimeSpan.Parse(rezervasyonSaat.Text),
-                Aciklama = rezervasyonAciklama.Text
-            };
-            db.TblREZARVASYON.Add(yeniRezervasyon);
-            MessageBox.Show("Yeni Rezarvasyon Başarıyla Eklendi", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
-            db.SaveChanges();
-            RezarvasyonListeleAsync();
+                MessageBox.Show("Lütfen geçerli bir müşteri seçiniz!", "Uyarı", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(rezervasyon_MasaNo.Text) || !int.TryParse(rezervasyon_MasaNo.Text, out int girilenMasaId))
+            {
+                MessageBox.Show("Lütfen geçerli bir masa numarası (sayı) giriniz!", "Uyarı", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            var kontrolEdilenMasa = db.TblMASA.Find(girilenMasaId);
+            if (kontrolEdilenMasa == null)
+            {
+                MessageBox.Show("Girilen numaraya ait bir masa veritabanında bulunamadı!", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (kontrolEdilenMasa.Statu == "D")
+            {
+                MessageBox.Show("Bu masa şu anda salonda aktif olarak DOLU! Dolu bir masaya rezervasyon yapılamaz.", "Uyarı", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            try
+            {
+                var yeniRezervasyon = new TblREZARVASYON
+                {
+                    MusteriId = (int)rezervasyon_Adsoyad.SelectedValue,
+                    MasaNoId = girilenMasaId,
+                    KisiSayisi = (int)rezervasyonKisi_Sayisi.Value,
+                    Tarih = DateTime.Parse(rezervasyonTarih.Text),
+                    Saat = TimeSpan.Parse(rezervasyonSaat.Text),
+                    Aciklama = rezervasyonAciklama.Text
+                };
+                db.TblREZARVASYON.Add(yeniRezervasyon);
+                kontrolEdilenMasa.Statu = "R";
+                db.SaveChanges();
+                MessageBox.Show("Yeni Rezervasyon Başarıyla Eklendi ve Masa Rezerve Durumuna Getirildi.", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                RezarvasyonListeleAsync();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Kayıt esnasında bir hata oluştu! Lütfen alanları kontrol edin.\nHata Detayı: {ex.Message}", "Sistem Hatası", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void rezervasyon_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            RezarvasyonListeleAsync();
             var secilmis = rezervasyon_DataGrid.SelectedItem;
             if (secilmis != null)
             {
                 dynamic item = secilmis;
                 int rezarvasyonId = item.ID;
                 RezarvasyonBilgileriDoldur(rezarvasyonId);
+                if (item.MusteriId != null)
+                {
+                    rezervasyon_Adsoyad.SelectedValue = item.MusteriId;
+                }
             }
         }
 
         private void rezervasyonButton_Guncelle_Click(object sender, RoutedEventArgs e)
         {
-            var guncellenecek = db.TblREZARVASYON.Find(((dynamic)rezervasyon_DataGrid.SelectedItem).ID);
-            if (guncellenecek == null) return;
-            var musteri = db.TblMUSTERILER.FirstOrDefault(x => x.Ad + " " + x.Soyad == rezervasyon_Adsoyad.Text);
-            if (musteri == null)
+            if (rezervasyon_DataGrid.SelectedItem == null)
             {
-                MessageBox.Show("Bu isimde bir müşteri bulunamadı!", "Hata", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return; 
+                MessageBox.Show("Lütfen güncellemek istediğiniz rezervasyonu tablodan seçiniz!", "Uyarı", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
             }
 
-           
-            guncellenecek.MusteriId = musteri.MusteriId;
+            if (rezervasyon_Adsoyad.SelectedValue == null)
+            {
+                MessageBox.Show("Lütfen geçerli bir müşteri seçiniz!", "Uyarı", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
-            guncellenecek.MasaNoId = int.Parse(rezervasyon_MasaNo.Text);
-            guncellenecek.KisiSayisi = (int)rezervasyonKisi_Sayisi.Value;
-            guncellenecek.Tarih = DateTime.Parse(rezervasyonTarih.Text);
-            guncellenecek.Saat = TimeSpan.Parse(rezervasyonSaat.Text);
-            guncellenecek.Aciklama = rezervasyonAciklama.Text;
+            if (string.IsNullOrWhiteSpace(rezervasyon_MasaNo.Text) || !int.TryParse(rezervasyon_MasaNo.Text, out int yeniMasaId))
+            {
+                MessageBox.Show("Lütfen geçerli bir masa numarası giriniz!", "Uyarı", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
-            db.SaveChanges();
-            MessageBox.Show("Rezervasyon Güncelleme İşlemi Başarılı", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
-            RezarvasyonListeleAsync();
+            try
+            {
+                var guncellenecek = db.TblREZARVASYON.Find(((dynamic)rezervasyon_DataGrid.SelectedItem).ID);
+                if (guncellenecek == null) return;
+                int eskiMasaId = guncellenecek.MasaNoId;
+                if (eskiMasaId != yeniMasaId)
+                {
+                    var yeniMasaKontrol = db.TblMASA.Find(yeniMasaId);
+                    if (yeniMasaKontrol != null && yeniMasaKontrol.Statu == "D")
+                    {
+                        MessageBox.Show("Geçiş yapmak istediğiniz yeni masa şu anda DOLU!", "Uyarı", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+                    var eskiMasa = db.TblMASA.Find(eskiMasaId);
+                    if (eskiMasa != null) eskiMasa.Statu = "B";
+                    if (yeniMasaKontrol != null) yeniMasaKontrol.Statu = "R";
+                }
+                else
+                {
+                    var mevcutMasa = db.TblMASA.Find(yeniMasaId);
+                    if (mevcutMasa != null) mevcutMasa.Statu = "R";
+                }
+                guncellenecek.MusteriId = (int)rezervasyon_Adsoyad.SelectedValue;
+                guncellenecek.MasaNoId = yeniMasaId;
+                guncellenecek.KisiSayisi = (int)rezervasyonKisi_Sayisi.Value;
+                guncellenecek.Tarih = DateTime.Parse(rezervasyonTarih.Text);
+                guncellenecek.Saat = TimeSpan.Parse(rezervasyonSaat.Text);
+                guncellenecek.Aciklama = rezervasyonAciklama.Text;
+                db.SaveChanges();
+                MessageBox.Show("Rezervasyon ve Masa Durumu Başarıyla Güncellendi", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                RezarvasyonListeleAsync();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Güncelleme sırasında bir hata oluştu: {ex.Message}", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void rezervasyonButton_Sil_Click(object sender, RoutedEventArgs e)
         {
-            var silinecek = db.TblREZARVASYON.Find(((dynamic)rezervasyon_DataGrid.SelectedItem).ID);
-            if (silinecek == null) return;
-            db.TblREZARVASYON.Remove(silinecek);
-            MessageBox.Show("Rezarvasyon Başarıyla Silinmiştir", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
-            db.SaveChanges();
-            AlanlariTemizle();
-            RezarvasyonListeleAsync();
+            if (rezervasyon_DataGrid.SelectedItem == null)
+            {
+                MessageBox.Show("Lütfen silmek istediğiniz rezervasyonu tablodan seçiniz!", "Uyarı", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            MessageBoxResult sonuc = MessageBox.Show("Bu rezervasyonu silmek istediğinize emin misiniz?", "Onay", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (sonuc == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    int silinecekId = ((dynamic)rezervasyon_DataGrid.SelectedItem).ID;
+                    var silinecekRezervasyon = db.TblREZARVASYON.Find(silinecekId);
+
+                    if (silinecekRezervasyon != null)
+                    {
+                        var bağlıMasa = db.TblMASA.Find(silinecekRezervasyon.MasaNoId);
+                        if (bağlıMasa != null)
+                        {
+                            bağlıMasa.Statu = "B";
+                        }
+                        db.TblREZARVASYON.Remove(silinecekRezervasyon);
+
+                        db.SaveChanges();
+                        MessageBox.Show("Rezervasyon iptal edildi ve masa boşa çıkarıldı.", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                        RezarvasyonListeleAsync();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Silme işlemi esnasında hata oluştu: {ex.Message}", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
         public void AlanlariTemizle()
         {
@@ -248,6 +362,35 @@ namespace RestoranOtomasyonu.userControls
 
             }).ToList();
             rezervasyon_DataGrid.ItemsSource = formatlanmisSonuclar;
+        }
+
+        private void rezervasyonBtn_Temizle_Click(object sender, RoutedEventArgs e)
+        {
+            rezervasyon_Adsoyad.SelectedValue = null;
+            rezervasyon_Adsoyad.Text = string.Empty;
+            rezervasyon_MasaNo.Text = string.Empty;
+            rezervasyonAciklama.Text = string.Empty;
+            rezervasyonTarih.Text = string.Empty;
+            rezervasyonSaat.Text = string.Empty;
+            rezervasyonKisi_Sayisi.Value = 1;
+            rezervasyon_DataGrid.SelectedItem = null;
+        }
+        private void btnHizliMusteriEkle_Click(object sender, RoutedEventArgs e)
+        {
+            RestoranOtomasyonu.OtherWindows.MusteriEklemeWindow mstPencere = new RestoranOtomasyonu.OtherWindows.MusteriEklemeWindow();
+            if (mstPencere.ShowDialog() == true)
+            {
+                var guncelMusteriler = db.TblMUSTERILER
+                                   .Select(x => new
+                                   {
+                                       Id = x.MusteriId,
+                                       AdSoyad = x.Ad + " " + x.Soyad
+                                   }).ToList();
+
+                rezervasyon_Adsoyad.ItemsSource = guncelMusteriler;
+
+                MessageBox.Show("Müşteri listesi güncellendi. Yeni eklediğiniz kişiyi seçebilirsiniz.", "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
     }
 }

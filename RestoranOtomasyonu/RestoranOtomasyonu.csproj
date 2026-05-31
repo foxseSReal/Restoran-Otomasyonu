@@ -430,6 +430,9 @@
     <Compile Include="OtherWindows\MusteriDetay.xaml.cs">
       <DependentUpon>MusteriDetay.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OtherWindows\MusteriEklemeWindow.xaml.cs">
+      <DependentUpon>MusteriEklemeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OtherWindows\RezervasyonWindow.xaml.cs">
       <DependentUpon>RezervasyonWindow.xaml</DependentUpon>
     </Compile>
@@ -523,6 +526,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OtherWindows\MusteriDetay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OtherWindows\MusteriEklemeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
