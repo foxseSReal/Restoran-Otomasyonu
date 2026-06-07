@@ -38,9 +38,6 @@ namespace RestoranOtomasyonu.OtherWindows
             RaporuYukle(DateTime.Today, DateTime.Today);
         }
 
-        /// <summary>
-        /// Tüm raporu (Kartlar, Grafikler ve Tablo) seçilen tarihlere göre günceller.
-        /// </summary>
         private void RaporuYukle(DateTime baslangic, DateTime bitis)
         {
             try
@@ -48,37 +45,47 @@ namespace RestoranOtomasyonu.OtherWindows
                 DateTime baslangicSorgu = baslangic.Date;
                 DateTime bitisSorgu = bitis.Date.AddDays(1).AddTicks(-1);
 
-                // DİKKAT: db yerine metodun içinde yeni bir context açıyoruz (using ile)
-                // Bu sayede her sorguda veritabanına 'gerçekten' gidip taze veriyi çeker.
+                // db yerine metodun içinde yeni bir context açıyoruz (using ile)
                 using (var tazeDb = new RESTORANDBEntities())
                 {
-                    // 1. ÖDEMELER
-                    var odemeler = tazeDb.TblADISYON_ODEME
+                    // 1. TÜM ÖDEMELERİ VE İNDİRİMLERİ VERİTABANINDAN ÇEK
+                    var tumKayitlar = tazeDb.TblADISYON_ODEME
                         .Where(x => x.Tarih >= baslangicSorgu && x.Tarih <= bitisSorgu)
-                        .AsNoTracking() // Takibi bırak ki hızlı gelsin
+                        .AsNoTracking()
                         .ToList();
 
-                    // OdemeTuru kontrolünü büyük/küçük harf duyarsız yapalım (En garantisi budur)
-                    decimal nakit = odemeler
+                    // Ödeme Türlerine Göre Filtrele (Büyük/Küçük Harf Duyarsız)
+                    decimal nakit = tumKayitlar
                         .Where(x => x.OdemeTuru != null && x.OdemeTuru.Trim().Equals("Nakit", StringComparison.OrdinalIgnoreCase))
-                        .Sum(x => (decimal?)x.OdenenTutar) ?? 0;
+                        .Sum(x => x.OdenenTutar);
 
-                    decimal kart = odemeler
+                    decimal kart = tumKayitlar
                         .Where(x => x.OdemeTuru != null && x.OdemeTuru.Trim().Equals("Kart", StringComparison.OrdinalIgnoreCase))
-                        .Sum(x => (decimal?)x.OdenenTutar) ?? 0;
+                        .Sum(x => x.OdenenTutar);
 
+                    // OdemeTuru kolonunda 'İndirim' yazan kayıtların toplamı
+                    decimal toplamIndirim = tumKayitlar
+                        .Where(x => x.OdemeTuru != null && x.OdemeTuru.Trim().Equals("İNDİRİM", StringComparison.OrdinalIgnoreCase))
+                        .Sum(x => x.OdenenTutar);
+
+                    // Net Kasaya Giren Toplam Ciro (Nakit + Kart)
                     decimal toplamCiro = nakit + kart;
 
-                    // Kartları Yazdır (Yazmıyorsa buraya bir Breakpoint koyup kontrol et)
+                    // UI Elementlerini Güncelle
                     txtToplamCiro.Text = toplamCiro.ToString("C2");
                     txtNakit.Text = nakit.ToString("C2");
                     txtKart.Text = kart.ToString("C2");
-                    txtToplamIndirim.Text = "₺ 0,00";
+                    txtToplamIndirim.Text = toplamIndirim.ToString("C2");
 
 
-                    // 2. ÜRÜN DAĞILIMI (Pasta Grafiği)
+                    // 2. GRAFİKLER VE DATA GRID İÇİN ADİSYON ID LİSTESİ
+                    // Tip uyuşmazlığı hatasını (int? - int) engellemek için listeyi int? yapıyoruz
+                    var adisyonIdListesi = tumKayitlar.Select(o => (int?)o.AdisyonId).Distinct().ToList();
+
+
+                    // 3. ÜRÜN DAĞILIMI (Pasta Grafiği)
                     var urunSatisSorgu = tazeDb.TblADISYON_DETAY
-                        .Where(x => x.TblADISYON.KapanisZamani >= baslangicSorgu && x.TblADISYON.KapanisZamani <= bitisSorgu)
+                        .Where(x => adisyonIdListesi.Contains(x.AdisyonId))
                         .GroupBy(x => x.TblURUN.UrunAdi)
                         .Select(g => new { Isim = g.Key, Adet = g.Sum(s => s.Adet) ?? 0 })
                         .OrderByDescending(o => o.Adet)
@@ -93,8 +100,10 @@ namespace RestoranOtomasyonu.OtherWindows
                     ChartUrunler.Series = pieSeries;
 
 
-                    // 3. SATIŞ TRENDİ
-                    var gunlukVeriler = odemeler
+                    // 4. SATIŞ TRENDİ (Grafik)
+                    // Trend grafiğinde indirim ödemelerini hariç tutarak gerçek ciroyu gösteriyoruz
+                    var gunlukVeriler = tumKayitlar
+                        .Where(x => x.OdemeTuru != null && !x.OdemeTuru.Trim().Equals("İNDİRİM", StringComparison.OrdinalIgnoreCase))
                         .GroupBy(x => x.Tarih.Value.Date)
                         .Select(g => new {
                             TarihEtiketi = g.Key.ToString("dd.MM.yyyy"),
@@ -109,20 +118,21 @@ namespace RestoranOtomasyonu.OtherWindows
             {
                 new ColumnSeries
                 {
-                    Title = "Günlük Toplam Satış",
+                    Title = "Günlük Net Ciro",
                     Values = new ChartValues<decimal>(gunlukVeriler.Select(x => x.ToplamTutar)),
                     Fill = (Brush)new BrushConverter().ConvertFromString("#FF00FF7F"),
                     LabelPoint = point => $"{point.Y:C2}"
                 }
             };
 
+                    // LiveCharts kütüphanesinin arayüzü tetiklemesi için DataContext tazeleme
                     this.DataContext = null;
                     this.DataContext = this;
 
 
-                    // 4. DATA GRID
+                    // 5. DATA GRID VERİSİ
                     var gridVerisi = tazeDb.TblADISYON_DETAY
-                        .Where(x => x.TblADISYON.KapanisZamani >= baslangicSorgu && x.TblADISYON.KapanisZamani <= bitisSorgu)
+                        .Where(x => adisyonIdListesi.Contains(x.AdisyonId))
                         .GroupBy(x => new { x.TblURUN.UrunAdi, x.TblURUN.TblKATEGORI.KategoriAdi, x.Fiyat })
                         .Select(g => new UrunRaporuModel
                         {
